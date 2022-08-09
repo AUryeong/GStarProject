@@ -12,25 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39a965095c2a7cc40a7af5ac6600d2d5, type: 3}
   m_Name: InsideIngred
   m_EditorClassIdentifier: 
-  ImageSprite:
-  - {fileID: -6751446590889933313, guid: 2286faa3b595f9e4d8c164792bb4aecc, type: 3}
-  - {fileID: 6149629649629771692, guid: 2286faa3b595f9e4d8c164792bb4aecc, type: 3}
-  - {fileID: 8660577993500930206, guid: 2286faa3b595f9e4d8c164792bb4aecc, type: 3}
-  - {fileID: 384747078932957728, guid: 2286faa3b595f9e4d8c164792bb4aecc, type: 3}
-  - {fileID: 1795316135467509629, guid: 2286faa3b595f9e4d8c164792bb4aecc, type: 3}
-  - {fileID: 5806502527106199098, guid: 2286faa3b595f9e4d8c164792bb4aecc, type: 3}
-  - {fileID: -119187402588486279, guid: 2286faa3b595f9e4d8c164792bb4aecc, type: 3}
-  - {fileID: 6928139822778378998, guid: 2286faa3b595f9e4d8c164792bb4aecc, type: 3}
-  - {fileID: -4824032136333769233, guid: 2286faa3b595f9e4d8c164792bb4aecc, type: 3}
-  - {fileID: 226101359228144569, guid: 2286faa3b595f9e4d8c164792bb4aecc, type: 3}
-  - {fileID: 1513352983446254618, guid: 2286faa3b595f9e4d8c164792bb4aecc, type: 3}
-  - {fileID: -9123877488558648868, guid: 2286faa3b595f9e4d8c164792bb4aecc, type: 3}
-  - {fileID: -7378717935869304787, guid: 2286faa3b595f9e4d8c164792bb4aecc, type: 3}
-  - {fileID: -4985656280004880670, guid: 2286faa3b595f9e4d8c164792bb4aecc, type: 3}
-  - {fileID: -1698372094629731552, guid: 2286faa3b595f9e4d8c164792bb4aecc, type: 3}
-  - {fileID: -2589965367476325448, guid: 2286faa3b595f9e4d8c164792bb4aecc, type: 3}
-  - {fileID: 746549724041782502, guid: 2286faa3b595f9e4d8c164792bb4aecc, type: 3}
-  - {fileID: -7647724178123625825, guid: 2286faa3b595f9e4d8c164792bb4aecc, type: 3}
-  - {fileID: -5780156242648501128, guid: 2286faa3b595f9e4d8c164792bb4aecc, type: 3}
-  - {fileID: -1552731592187746558, guid: 2286faa3b595f9e4d8c164792bb4aecc, type: 3}
-  - {fileID: -8093306698178822761, guid: 2286faa3b595f9e4d8c164792bb4aecc, type: 3}
+  Stats:
+  - ImageSprite: {fileID: 4126829880072513313, guid: 2286faa3b595f9e4d8c164792bb4aecc, type: 3}
+    Size: 0
+  - ImageSprite: {fileID: 4066210652593619757, guid: 2286faa3b595f9e4d8c164792bb4aecc, type: 3}
+    Size: 0
+  - ImageSprite: {fileID: -6751446590889933313, guid: 2286faa3b595f9e4d8c164792bb4aecc, type: 3}
+    Size: 0
+  - ImageSprite: {fileID: 6149629649629771692, guid: 2286faa3b595f9e4d8c164792bb4aecc, type: 3}
+    Size: 0
+  - ImageSprite: {fileID: 8660577993500930206, guid: 2286faa3b595f9e4d8c164792bb4aecc, type: 3}
+    Size: 0
+  - ImageSprite: {fileID: 384747078932957728, guid: 2286faa3b595f9e4d8c164792bb4aecc, type: 3}
+    Size: 0
+  - ImageSprite: {fileID: 1795316135467509629, guid: 2286faa3b595f9e4d8c164792bb4aecc, type: 3}
+    Size: 0
+  - ImageSprite: {fileID: -119187402588486279, guid: 2286faa3b595f9e4d8c164792bb4aecc, type: 3}
+    Size: 0
+  - ImageSprite: {fileID: -4824032136333769233, guid: 2286faa3b595f9e4d8c164792bb4aecc, type: 3}
+    Size: 0
+  - ImageSprite: {fileID: 1513352983446254618, guid: 2286faa3b595f9e4d8c164792bb4aecc, type: 3}
+    Size: 0

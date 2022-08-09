@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39a965095c2a7cc40a7af5ac6600d2d5, type: 3}
   m_Name: Bread
   m_EditorClassIdentifier: 
-  ImageSprite:
-  - {fileID: -1696390383276173721, guid: 2286faa3b595f9e4d8c164792bb4aecc, type: 3}
-  - {fileID: 4126829880072513313, guid: 2286faa3b595f9e4d8c164792bb4aecc, type: 3}
-  - {fileID: 4066210652593619757, guid: 2286faa3b595f9e4d8c164792bb4aecc, type: 3}
+  Stats:
+  - ImageSprite: {fileID: -1696390383276173721, guid: 2286faa3b595f9e4d8c164792bb4aecc, type: 3}
+    Size: 3
