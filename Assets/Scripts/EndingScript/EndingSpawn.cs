@@ -28,11 +28,18 @@ public class EndingSpawn : MonoBehaviour
         {
             Object = Instantiate(SpawnObject, transform.position, transform.rotation);
             Object.GetComponent<SpriteRenderer>().sprite = Inside.Stats[InsideList[i]].ImageSprite;
-            transform.position += Vector3.up*1f;
+            transform.position += Vector3.up;
             if(i>=5)//중간 갔을떄 화면이 올라감
             {
                 LimitValue++;
-                MainCamera.transform.position += Vector3.up;
+                float timer = 0;
+                Vector3 CameraPos = MainCamera.transform.position;
+                while(timer < 1f)
+                {
+                    MainCamera.transform.position = Vector3.Lerp(CameraPos, CameraPos + Vector3.up, timer);
+                    timer += Time.deltaTime*3;
+                    yield return null;
+                }
             }
             yield return new WaitForSeconds(0.5f);
         }
@@ -48,6 +55,8 @@ public class EndingSpawn : MonoBehaviour
     {
         GameObject Object = Instantiate(SpawnObject, transform.position, transform.rotation);
         Object.GetComponent<SpriteRenderer>().sprite = Bread.Stats[BreadIdx].ImageSprite;
-        Object.transform.localScale += Vector3.right * 2;
+        Object.GetComponent<BoxCollider2D>().size = new Vector2(0.5f,1);
+        Object.transform.localScale += Vector3.right * 3;
+        
     }
 }
