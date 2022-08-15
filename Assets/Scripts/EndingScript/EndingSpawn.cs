@@ -9,10 +9,13 @@ public class EndingSpawn : Singleton<EndingSpawn>
     [SerializeField] GameObject SpawnObject;
     public List<int> InsideIdx = new List<int>();
 
-    [SerializeField] Camera MainCamera;
 
     [SerializeField] float ZoomOut;
 
+    private void Start()
+    {
+        Spawn(0, InsideIdx);
+    }
     public void Spawn(int breadIdx, List<int> insideList)
     {
         StartCoroutine(SpawnIngredients(breadIdx, insideList));
@@ -34,10 +37,10 @@ public class EndingSpawn : Singleton<EndingSpawn>
             {
                 LimitValue++;
                 float timer = 0;
-                Vector3 CameraPos = MainCamera.transform.position;
+                Vector3 CameraPos = Camera.main.transform.position;
                 while (timer < 1f)
                 {
-                    MainCamera.transform.position = Vector3.Lerp(CameraPos, CameraPos + Vector3.up, timer);
+                    Camera.main.transform.position = Vector3.Lerp(CameraPos, CameraPos + Vector3.up, timer);
                     timer += Time.deltaTime * 3;
                     yield return null;
                 }
@@ -45,9 +48,9 @@ public class EndingSpawn : Singleton<EndingSpawn>
             yield return new WaitForSeconds(0.5f);
         }
         yield return new WaitForSeconds(1.5f);
-        MainCamera.GetComponent<Camera>().orthographicSize += ZoomOut;
-        MainCamera.GetComponent<EndingCamera>().MoveLimitValue = LimitValue;
-        MainCamera.GetComponent<EndingCamera>().CameraMove = true;
+        Camera.main.GetComponent<Camera>().orthographicSize += ZoomOut;
+        Camera.main.GetComponent<EndingCamera>().MoveLimitValue = LimitValue;
+        Camera.main.GetComponent<EndingCamera>().CameraMove = true;
         SpawnBread(BreadIdx);
 
         yield return null;
