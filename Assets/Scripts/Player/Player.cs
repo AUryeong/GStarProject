@@ -20,14 +20,18 @@ public class Player : Singleton<Player>
 
     private PlayerState state;
 
-    public float speed;
-    public float hp;
-    public float jumpSpeed;
+    public float fSpeed;
+    public float fHp;
 
+    public List<int> ingredients = new List<int>();
+
+    [Header("플레이어 점프 관련")]
+    public float fJumpSpeed;
     private float jumpCheckDistance = 0.1f;
     private int jumpCount = 0;
     public int jumpMaxCount = 2;
 
+    //장애물 충돌
     protected bool hitable = true;
     protected float hitDamage = 10;
     private float hitFadeInTime = 0.1f;
@@ -46,7 +50,7 @@ public class Player : Singleton<Player>
     protected virtual void Update()
     {
         float deltaTime = Time.deltaTime;
-        if (hp > 0)
+        if (fHp > 0)
         {
             Move(deltaTime);
             CheckJumpReset();
@@ -77,7 +81,7 @@ public class Player : Singleton<Player>
     //이동을 관리하는 함수
     protected virtual void Move(float deltaTime)
     {
-        transform.Translate(deltaTime * speed * Vector2.right);
+        transform.Translate(deltaTime * fSpeed * Vector2.right);
     }
 
     //컴퓨터일때 키보드 감지를 담당하는 함수
@@ -123,7 +127,7 @@ public class Player : Singleton<Player>
         state = PlayerState.Jumping;
 
         rigid.velocity = Vector2.zero;
-        rigid.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
+        rigid.AddForce(Vector2.up * fJumpSpeed, ForceMode2D.Impulse);
     }
     public virtual void ReturnToIdle()
     {
@@ -138,19 +142,37 @@ public class Player : Singleton<Player>
 
         if (collider2D.CompareTag("Block"))
             HurtByBlock();
+
+        if (collider2D.CompareTag("Ingredient"))
+            AddIngredient(collider2D.GetComponent<Ingredient>());
+    }
+
+    //재료 획득
+    protected void AddIngredient(Ingredient ingredient)
+    {
+        ingredient.OnGet();
+        ingredients.Add(ingredient.ingredientIdx);
+
+        ingredient.gameObject.SetActive(false);
     }
 
     //장애물에 부딛혔을 경우
     protected virtual void HurtByBlock()
     {
-        if (hitable)
-        {
-            hitable = false;
-            hp -= hitDamage;
+        if (!hitable)
+            return;
 
-            spriteRenderer.DOFade(hitFadeInAlpha, hitFadeInTime).SetUpdate(true).
-                OnComplete(() => spriteRenderer.DOFade(1, hitFadeOutTime).SetEase(Ease.InExpo).SetUpdate(true).
-                OnComplete(() => hitable = true));
+        hitable = false;
+
+        fHp -= hitDamage;
+        if (fHp <= 0)
+        {
+            GameManager.Instance.GameOver();
+            return;
         }
+
+        spriteRenderer.DOFade(hitFadeInAlpha, hitFadeInTime).
+            OnComplete(() => spriteRenderer.DOFade(1, hitFadeOutTime).SetEase(Ease.InExpo).
+            OnComplete(() => hitable = true));
     }
 }
