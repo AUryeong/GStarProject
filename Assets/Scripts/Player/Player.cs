@@ -38,6 +38,10 @@ public class Player : Singleton<Player>
     private float hitFadeInAlpha = 0.5f;
     private float hitFadeOutTime = 1f;
 
+    private Vector2 idleColiderSize = new Vector2(0.8f, 2f);
+    private Vector2 slidingColiderSize = new Vector2(2, 0.8f);
+    private Vector2 jumpingColiderSize = new Vector2(1f, 1f);
+
     protected override void Awake()
     {
         base.Awake();
@@ -103,10 +107,22 @@ public class Player : Singleton<Player>
     protected virtual void CheckAnimator()
     {
         if (animator.GetInteger("State") != (int)state)
-        {
             animator.SetInteger("State", (int)state);
+
+        switch (state)
+        {
+            case PlayerState.Idle:
+                colider2D.size = idleColiderSize;
+                break;
+            case PlayerState.Sliding:
+                colider2D.size = slidingColiderSize;
+                break;
+            case PlayerState.Jumping:
+                colider2D.size = jumpingColiderSize;
+                break;
         }
-        colider2D.size = spriteRenderer.sprite.bounds.size;
+
+        //colider2D.size = spriteRenderer.bounds.size;
     }
 
     //버튼을 위한 public, 함수화
@@ -123,6 +139,9 @@ public class Player : Singleton<Player>
         if (jumpCount >= jumpMaxCount)
             return;
         jumpCount++;
+
+        if (state == PlayerState.Jumping)
+            animator.SetTrigger("Jump");
 
         state = PlayerState.Jumping;
 
