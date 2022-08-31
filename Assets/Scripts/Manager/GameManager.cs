@@ -9,13 +9,14 @@ public class GameManager : Singleton<GameManager>
     private Vector3 cameraDistance = new Vector3(6, 2.5f, -10);
     protected bool inGaming = true;
     private bool pressSliding = false;
+    [SerializeField] GameObject PausePanel;
 
     //씬 나누는게 삭제될 가능성이 높아서 코드 대충짬
     List<int> ingredientIdxList = new List<int>();
 
     protected override void Awake()
     {
-        if(Instance != this)
+        if (Instance != this)
             Destroy(gameObject);
         else
             DontDestroyOnLoad(gameObject);
@@ -54,7 +55,7 @@ public class GameManager : Singleton<GameManager>
         EndingSpawn.Instance.Spawn(0, ingredientIdxList);
         SceneManager.sceneLoaded -= EndingSceneLoadComplete;
     }
-    
+
     //아래부터 버튼
     public void PressDownSliding()
     {
@@ -74,4 +75,21 @@ public class GameManager : Singleton<GameManager>
         if (inGaming)
             Player.Instance.Jump();
     }
+    public void PauseButton()
+    {
+        if(inGaming)
+        {
+            PausePanel.SetActive(true);
+            Time.timeScale = 0;
+        }
+    }
+    public void Continue()
+    {
+        if (inGaming)
+        {
+            PausePanel.SetActive(false);
+            Time.timeScale = 1;
+        }
+    }
 }
+1
