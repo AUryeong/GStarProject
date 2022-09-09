@@ -7,7 +7,7 @@ using UnityEngine;
 public class stats
 {
     public Sprite ImageSprite;
-    public float Size;
+    public int Size;
 }
 public class Ingredients : ScriptableObject
 {
