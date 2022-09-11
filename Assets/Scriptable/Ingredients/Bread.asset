@@ -14,4 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Stats:
   - ImageSprite: {fileID: -1696390383276173721, guid: 2286faa3b595f9e4d8c164792bb4aecc, type: 3}
+    Name: aa
+    Rank: 0
+    LV: 0
+    MaxEXP: 0
+    EXP: 0
+    HP: 0
+    Price: 0
     Size: 3

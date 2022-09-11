@@ -7,6 +7,13 @@ using UnityEngine;
 public class stats
 {
     public Sprite ImageSprite;
+    public string Name;
+    public int Rank;
+    public int LV;
+    public float MaxEXP;
+    public float EXP;
+    public int HP;
+    public int Price;
     public int Size;
 }
 public class Ingredients : ScriptableObject
