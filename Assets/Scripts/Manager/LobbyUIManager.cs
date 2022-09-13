@@ -20,7 +20,7 @@ public class LobbyUIManager : MonoBehaviour
     private GameObject OpenObject;
 
     [Header("Bread")]
-    [SerializeField] Ingredients BreadScriptable;
+    [SerializeField] Breads BreadScriptable;
     [SerializeField] List<GameObject> BreadPanel = new List<GameObject>();//빵 정보창 오브젝트
 
 
@@ -48,10 +48,10 @@ public class LobbyUIManager : MonoBehaviour
         OpenObject.SetActive(true);
     }
 
-    void SettingBreadShop(Ingredients BreadList)
+    void SettingBreadShop(Breads BreadList)
     {
         int BreadCount = 0;
-        foreach (stats Bread in BreadList.Stats)
+        foreach (BreadStat Bread in BreadList.Stats)
         {
             GameObject BreadPanelObject = BreadPanel[BreadCount];
             BreadPanelObject.transform.Find("BreadName").GetComponent<Text>().text = Bread.Name;
