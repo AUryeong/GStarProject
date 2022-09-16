@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+class BreadInspector{
+    Text LVText;
+    Slider Text;
+}
 public class LobbyUIManager : MonoBehaviour
 {
     int Gold = 10000;//테스팅용 추후에 게임매니저로 이동
@@ -21,9 +25,22 @@ public class LobbyUIManager : MonoBehaviour
 
     [Header("Bread")]
     [SerializeField] Breads BreadScriptable;
-    [SerializeField] List<GameObject> BreadPanel = new List<GameObject>();//빵 정보창 오브젝트
-
-
+    [SerializeField] List<GameObject> BreadPanels = new List<GameObject>();//빵 정보창 오브젝트
+    private List<Text> LVTexts = new List<Text>();//레벨 텍스트 리스트
+    private List<Slider> EXPSliders = new List<Slider>();//경험치바 리스트
+    private List<Text> HPTexts = new List<Text>();//체력 텍스트 리스트
+    private List<Text> BuyButtonText = new List<Text>();//레벨업 버튼 텍스트
+    [Header("Quset")]
+    [SerializeField] List<GameObject> QusetPanels = new List<GameObject>();
+    private List<Image> QusetImage = new List<Image>();//퀘스트 보상 이미지
+    private List<Text> Qusetrewards = new List<Text>();//퀘스트 보상 텍스트
+    private List<Text> QusetText = new List<Text>();//퀘스트 내용 텍스트
+    private List<Slider> QusetSliders = new List<Slider>();//퀘스트 진행도 슬라이더
+    [Header("Map")]
+    [SerializeField] List<GameObject> MapPanels = new List<GameObject>(); 
+    private List<Text> MapName = new List<Text>();//맵 이름
+    private List<Text> Mapdescription = new List<Text>();//맵 설명 텍스트
+    private List<GameObject> LockPanels = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
@@ -48,19 +65,23 @@ public class LobbyUIManager : MonoBehaviour
         OpenObject.SetActive(true);
     }
 
-    void SettingBreadShop(Breads BreadList)
+    void SettingBreadShop(Breads BreadList)        
     {
         int BreadCount = 0;
         foreach (BreadStat Bread in BreadList.Stats)
         {
-            GameObject BreadPanelObject = BreadPanel[BreadCount];
-            BreadPanelObject.transform.Find("BreadName").GetComponent<Text>().text = Bread.Name;
-            BreadPanelObject.transform.Find("LV").GetChild(0).GetComponent<Text>().text = "" + Bread.LV;
-            BreadPanelObject.transform.Find("LV").GetChild(1).GetComponent<Slider>().value = Bread.EXP / Bread.MaxEXP;
-            BreadPanelObject.transform.Find("BreadImage").GetComponent<Image>().sprite = Bread.ImageSprite;
-            BreadPanelObject.transform.Find("BreadInspector").GetChild(0).GetChild(0).GetComponent<Text>().text = "" + Bread.HP;
-            BreadPanelObject.transform.Find("BreadInspector").GetChild(0).GetChild(1).GetComponent<Image>().sprite = Bread.ImageSprite;
-            BreadPanelObject.transform.Find("BreadInspector").GetChild(1).GetComponent<Button>().onClick.AddListener(() => Gold -= Bread.Price);
+            GameObject BreadPanelObject = BreadPanels[BreadCount];
+            BreadPanelObject.transform.Find("BreadName").GetComponent<Text>().text = Bread.Name;//BreadName Text
+            BreadPanelObject.transform.Find("BreadImage").GetComponent<Image>().sprite = Bread.ImageSprite;//BreadImage
+            BreadPanelObject.transform.Find("BreadInspector").GetChild(0).GetChild(1).GetComponent<Image>().sprite = Bread.ImageSprite;//BreadAction
+            BreadPanelObject.transform.Find("BreadInspector").GetChild(1).GetComponent<Button>().onClick.AddListener(()=> BuyButton(BreadCount)) ;//price
+
+            LVTexts.Add(BreadPanelObject.transform.Find("LV").GetChild(0).GetComponent<Text>());
+            EXPSliders.Add(BreadPanelObject.transform.Find("LV").GetChild(1).GetComponent<Slider>());
+            HPTexts.Add(BreadPanelObject.transform.Find("BreadInspector").GetChild(0).GetChild(0).GetComponent<Text>());
+            LVTexts[BreadCount].text = "" + Bread.LV;//LvText
+            EXPSliders[BreadCount].value = Bread.EXP / Bread.MaxEXP;//ExpSlider
+            HPTexts[BreadCount].text = "" + Bread.HP;//BreadHP
 
             for (int Rank = 0; Rank < Bread.Rank; Rank++)
                 BreadPanelObject.transform.Find("BreadRankGroup").transform.GetChild(Rank).gameObject.SetActive(true);
@@ -68,5 +89,9 @@ public class LobbyUIManager : MonoBehaviour
             BreadCount++;
         }
         Bread.SetActive(false);
+    }
+    void BuyButton(int idx)
+    {
+
     }
 }
