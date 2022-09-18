@@ -18,7 +18,7 @@ MonoBehaviour:
     Rank: 1
     LV: 0
     EXP: 0
-    MaxEXP: 0
+    MaxEXP: 1
     HP: 100
     Price: 0
   - Name: "\uBE44\uC0C1 \uC2DD\uBE75"
@@ -26,7 +26,7 @@ MonoBehaviour:
     Rank: 1
     LV: 0
     EXP: 0
-    MaxEXP: 0
+    MaxEXP: 1
     HP: 50
     Price: 0
   - Name: "\uCC38\uAE68\uBE75"
@@ -34,7 +34,7 @@ MonoBehaviour:
     Rank: 1
     LV: 0
     EXP: 0
-    MaxEXP: 0
+    MaxEXP: 1
     HP: 100
     Price: 0
   - Name: "\uC218\uBC15\uC2DD\uBE75"
@@ -42,7 +42,7 @@ MonoBehaviour:
     Rank: 1
     LV: 0
     EXP: 0
-    MaxEXP: 0
+    MaxEXP: 1
     HP: 125
     Price: 0
   - Name: "\uC8FD\uBE75"
@@ -50,7 +50,7 @@ MonoBehaviour:
     Rank: 1
     LV: 0
     EXP: 0
-    MaxEXP: 0
+    MaxEXP: 1
     HP: 200
     Price: 0
   - Name: "\uB450\uBD80"
@@ -58,7 +58,7 @@ MonoBehaviour:
     Rank: 1
     LV: 0
     EXP: 0
-    MaxEXP: 0
+    MaxEXP: 1
     HP: 100
     Price: 0
   - Name: "\uBC84\uD130\uD1B1 \uC2DD\uBE75"
@@ -66,7 +66,7 @@ MonoBehaviour:
     Rank: 2
     LV: 0
     EXP: 0
-    MaxEXP: 0
+    MaxEXP: 1
     HP: 125
     Price: 0
   - Name: "\uD480\uBA3C \uC2DD\uBE75"
@@ -74,7 +74,7 @@ MonoBehaviour:
     Rank: 2
     LV: 0
     EXP: 0
-    MaxEXP: 0
+    MaxEXP: 1
     HP: 150
     Price: 0
   - Name: "\uD1A0\uC2A4\uD2B8"
@@ -82,7 +82,7 @@ MonoBehaviour:
     Rank: 2
     LV: 0
     EXP: 0
-    MaxEXP: 0
+    MaxEXP: 1
     HP: 150
     Price: 0
   - Name: "\uBC14\uAC8C\uD2B8 \uBE75"
@@ -90,7 +90,7 @@ MonoBehaviour:
     Rank: 2
     LV: 0
     EXP: 0
-    MaxEXP: 0
+    MaxEXP: 1
     HP: 225
     Price: 0
   - Name: "\uD50C\uB7AB \uBE0C\uB808\uB4DC"
@@ -98,7 +98,7 @@ MonoBehaviour:
     Rank: 3
     LV: 0
     EXP: 0
-    MaxEXP: 0
+    MaxEXP: 1
     HP: 225
     Price: 0
   - Name: "\uB6F0\uB6F0\uBE75\uBE75"
@@ -106,7 +106,7 @@ MonoBehaviour:
     Rank: 3
     LV: 0
     EXP: 0
-    MaxEXP: 0
+    MaxEXP: 1
     HP: 275
     Price: 0
   - Name: "\uC548\uC804\uBE75"
@@ -114,7 +114,7 @@ MonoBehaviour:
     Rank: 3
     LV: 0
     EXP: 0
-    MaxEXP: 0
+    MaxEXP: 1
     HP: 250
     Price: 0
   - Name: "\uAE5C\uBE75"
@@ -122,7 +122,7 @@ MonoBehaviour:
     Rank: 3
     LV: 0
     EXP: 0
-    MaxEXP: 0
+    MaxEXP: 1
     HP: 250
     Price: 0
   - Name: "\uB77C\uBA74\uC0AC\uB9AC"
@@ -130,6 +130,6 @@ MonoBehaviour:
     Rank: 3
     LV: 0
     EXP: 0
-    MaxEXP: 0
+    MaxEXP: 1
     HP: 300
     Price: 0

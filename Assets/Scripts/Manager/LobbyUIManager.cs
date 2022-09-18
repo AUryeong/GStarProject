@@ -61,8 +61,8 @@ public class LobbyUIManager : MonoBehaviour
     }
     public void ClosePanel()
     {
-        BackGroundObjcet.SetActive(true);
-        OpenObject.SetActive(true);
+        BackGroundObjcet.SetActive(false);
+        OpenObject.SetActive(false);
     }
 
     void SettingBreadShop(Breads BreadList)        
@@ -78,7 +78,7 @@ public class LobbyUIManager : MonoBehaviour
 
             LVTexts.Add(BreadPanelObject.transform.Find("LV").GetChild(0).GetComponent<Text>());
             EXPSliders.Add(BreadPanelObject.transform.Find("LV").GetChild(1).GetComponent<Slider>());
-            HPTexts.Add(BreadPanelObject.transform.Find("BreadInspector").GetChild(0).GetChild(0).GetComponent<Text>());
+            HPTexts.Add(BreadPanelObject.transform.Find("BreadInspector").GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>());
             LVTexts[BreadCount].text = "" + Bread.LV;//LvText
             EXPSliders[BreadCount].value = Bread.EXP / Bread.MaxEXP;//ExpSlider
             HPTexts[BreadCount].text = "" + Bread.HP;//BreadHP
