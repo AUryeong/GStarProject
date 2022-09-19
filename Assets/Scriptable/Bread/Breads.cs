@@ -37,4 +37,10 @@ public class BreadStat
     public int MaxEXP;
     public int HP;
     public int Price;
+    public int AbilityLV_1;
+    public int AbilityLV_2;
+    public Sprite AbilityImage_1;
+    public Sprite AbilityImage_2;
+    public string AbilityText_1;
+    public string AbilityText_2;
 }
