@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class EndingSpawn : Singleton<EndingSpawn>
 {
-    [SerializeField] Ingredients Bread;
+    [SerializeField] Breads Bread;
     [SerializeField] Ingredients Inside;
     [SerializeField] GameObject SpawnObject;
     [SerializeField] Text CMTextObcject;
@@ -18,7 +18,6 @@ public class EndingSpawn : Singleton<EndingSpawn>
 
     private void Start()
     {
-        Spawn(0, InsideIdx);
     }
     public void Spawn(int breadIdx, List<int> insideList)
     {

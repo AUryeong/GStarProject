@@ -8,7 +8,6 @@ public class GameManager : Singleton<GameManager>
     public Ingredients Inside;
     private Vector3 cameraDistance = new Vector3(6, 2.5f, -10);
     public bool inGaming = true;
-    private bool pressSliding = false;
     
 
     //씬 나누는게 삭제될 가능성이 높아서 코드 대충짬
@@ -26,7 +25,6 @@ public class GameManager : Singleton<GameManager>
         if (inGaming)
         {
             CameraMove();
-            CheckSliding();
         }
     }
 
@@ -34,16 +32,11 @@ public class GameManager : Singleton<GameManager>
     {
         Camera.main.transform.position = new Vector3(Player.Instance.transform.position.x + cameraDistance.x, cameraDistance.y, cameraDistance.z);
     }
-    private void CheckSliding()
-    {
-        if (pressSliding)
-            Player.Instance.Sliding();
-    }
 
-    public void GameOver()
+    public void GameOver(List<int> ingredients)
     {
         inGaming = false;
-        ingredientIdxList = Player.Instance.ingredients;
+        ingredientIdxList = ingredients;
 
         //씬 넘어가는게 삭제될 가능성이 높기에 대충짜서 코드 더러움
         SceneManager.LoadScene("Ending");
@@ -56,23 +49,4 @@ public class GameManager : Singleton<GameManager>
         SceneManager.sceneLoaded -= EndingSceneLoadComplete;
     }
 
-    //아래부터 버튼
-    public void PressDownSliding()
-    {
-        if (inGaming)
-            pressSliding = true;
-    }
-    public void PressUpSliding()
-    {
-        if (inGaming)
-        {
-            pressSliding = false;
-            Player.Instance.ReturnToIdle();
-        }
-    }
-    public void PressJump()
-    {
-        if (inGaming)
-            Player.Instance.Jump();
-    }
 }

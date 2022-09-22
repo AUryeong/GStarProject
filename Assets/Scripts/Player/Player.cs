@@ -23,8 +23,6 @@ public class Player : Singleton<Player>
     public float fSpeed;
     public float fHp;
 
-    public List<int> ingredients = new List<int>();
-
     [Header("플레이어 점프 관련")]
     public float fJumpSpeed;
     private float jumpCheckDistance = 0.1f;
@@ -41,6 +39,8 @@ public class Player : Singleton<Player>
     private Vector2 idleColiderSize = new Vector2(0.8f, 2f);
     private Vector2 slidingColiderSize = new Vector2(2, 0.8f);
     private Vector2 jumpingColiderSize = new Vector2(1f, 1f);
+
+    private float downGameoverY = -4.5f;
 
     protected override void Awake()
     {
@@ -60,6 +60,8 @@ public class Player : Singleton<Player>
             CheckJumpReset();
             CheckPressKey();
             CheckAnimator();
+            if (transform.position.y <= downGameoverY)
+                InGameManager.Instance.GameOver();
         }
     }
 
@@ -170,7 +172,7 @@ public class Player : Singleton<Player>
     protected void AddIngredient(Ingredient ingredient)
     {
         ingredient.OnGet();
-        ingredients.Add(ingredient.ingredientIdx);
+        InGameManager.Instance.AddIngredients(ingredient.ingredientIdx);
 
         ingredient.gameObject.SetActive(false);
     }
@@ -186,7 +188,7 @@ public class Player : Singleton<Player>
         fHp -= hitDamage;
         if (fHp <= 0)
         {
-            GameManager.Instance.GameOver();
+            InGameManager.Instance.GameOver();
             return;
         }
 
