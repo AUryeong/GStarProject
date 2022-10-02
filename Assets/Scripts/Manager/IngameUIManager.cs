@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
+using DG.Tweening;
 
 public class IngameUIManager : Singleton<IngameUIManager>
 {
@@ -10,9 +12,42 @@ public class IngameUIManager : Singleton<IngameUIManager>
     [SerializeField] GameObject ExitPanel;
     [SerializeField] GameObject SettingPanel;
 
+    [Header("체력바")]
+    private float hpSizeX = 900;
+    [SerializeField] Slider hpBarSlider;
+    [SerializeField] Image hpIconImage;
+    [SerializeField] Sprite[] hpIconSprites;
+    private bool hpIconBounce = true;
+    private float hpIconBouncePower = 1.2f;
+    private Vector2 hpBarShakePos;
+    RectTransform _hpBarRect;
+    RectTransform hpBarRect
+    {
+        get
+        {
+            if (_hpBarRect == null)
+                _hpBarRect = hpBarSlider.GetComponent<RectTransform>();
+            return _hpBarRect;
+        }
+    }
+
+    [Header("재료")]
+    [SerializeField] Image ingredientsIcon;
     [SerializeField] TextMeshProUGUI ingredientsCount;
+    [SerializeField] Sprite ingredientsIconBlank;
+    [SerializeField] Sprite ingredientsIconNeg;
+    [SerializeField] Sprite ingredientsIconPos;
+
+    [SerializeField] Image onHItImage;
     private bool pressSliding = false;
 
+    private void OnEnable()
+    {
+        hpBarRect.sizeDelta = new Vector2(hpSizeX * Player.Instance.fHp / 100, hpBarRect.sizeDelta.y);
+        hpBarShakePos = hpBarRect.anchoredPosition;
+        int hpLevel = 1;
+        hpIconImage.sprite = hpIconSprites[Mathf.CeilToInt(hpLevel / 10f) - 1];
+    }
     public void PauseButton()
     {
         if (GameManager.Instance.inGaming)
@@ -20,6 +55,14 @@ public class IngameUIManager : Singleton<IngameUIManager>
             PausePanel.SetActive(true);
             Time.timeScale = 0;
         }
+    }
+
+    public void PlayerHurt()
+    {
+        Camera.main.DOShakePosition(0.1f);
+        onHItImage.gameObject.SetActive(true);
+        onHItImage.color = Color.red;
+        onHItImage.DOFade(0, 1);
     }
     public void Continue()
     {
@@ -60,22 +103,55 @@ public class IngameUIManager : Singleton<IngameUIManager>
         if (GameManager.Instance.inGaming)
         {
             CheckSliding();
+            UpdateHealthBar();
         }
+    }
+
+    public void UpdateHealthBar()
+    {
+        hpBarSlider.value = Mathf.Lerp(hpBarSlider.value, Player.Instance.hp / Player.Instance.fHp, Time.deltaTime * 20);
+        if (Player.Instance.hp <= 20)
+        {
+            hpBarRect.anchoredPosition = hpBarShakePos + Random.insideUnitCircle;
+            if (hpIconBounce)
+            {
+                hpIconImage.rectTransform.localScale = Vector3.Lerp(hpIconImage.rectTransform.localScale, Vector3.one * hpIconBouncePower, Time.deltaTime * 5);
+                if (hpIconImage.rectTransform.localScale.x >= hpIconBouncePower * 0.98f)
+                    hpIconBounce = false;
+            }
+            else
+            {
+                hpIconImage.rectTransform.localScale = Vector3.Lerp(hpIconImage.rectTransform.localScale, Vector3.one, Time.deltaTime * 5);
+                if (hpIconImage.rectTransform.localScale.x <= 1.02f)
+
+                    hpIconBounce = true;
+            }
+        }
+        else
+        {
+            hpBarRect.anchoredPosition = hpBarShakePos;
+            hpIconImage.rectTransform.localScale = Vector3.one;
+        }
+    }
+    public void UpdateIngredientsCount(bool isNegative, int count)
+    {
+        ingredientsCount.text = "X" + count.ToString();
+        ingredientsCount.rectTransform.DOPunchScale(Vector3.one * 0.4f, 0.2f);
+        if (isNegative)
+            ingredientsIcon.sprite = ingredientsIconNeg;
+        else
+            ingredientsIcon.sprite = ingredientsIconPos;
     }
     //아래부터 버튼
 
-    public void UpdateIngredientsCount(int count)
-    {
-        ingredientsCount.text = "X" + count.ToString();
-    }
     public void PressDownSliding()
     {
-        if (GameManager.Instance.inGaming)
+        if (GameManager.Instance.inGaming && Player.Instance.isControllable)
             pressSliding = true;
     }
     public void PressUpSliding()
     {
-        if (GameManager.Instance.inGaming)
+        if (GameManager.Instance.inGaming && Player.Instance.isControllable)
         {
             pressSliding = false;
             Player.Instance.ReturnToIdle();
@@ -83,7 +159,7 @@ public class IngameUIManager : Singleton<IngameUIManager>
     }
     public void PressJump()
     {
-        if (GameManager.Instance.inGaming)
+        if (GameManager.Instance.inGaming && Player.Instance.isControllable)
             Player.Instance.Jump();
     }
     private void CheckSliding()

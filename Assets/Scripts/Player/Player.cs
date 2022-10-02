@@ -23,6 +23,12 @@ public class Player : Singleton<Player>
     public float fSpeed;
     public float fHp;
 
+    public float hp;
+    public bool isControllable
+    {
+        get; private set; 
+    } = true;
+
     [Header("플레이어 점프 관련")]
     public float fJumpSpeed;
     private float jumpCheckDistance = 0.1f;
@@ -34,7 +40,7 @@ public class Player : Singleton<Player>
     protected float hitDamage = 10;
     private float hitFadeInTime = 0.1f;
     private float hitFadeInAlpha = 0.5f;
-    private float hitFadeOutTime = 1f;
+    private float hitFadeOutTime = 0.9f;
 
     private Vector2 idleColiderSize = new Vector2(0.8f, 2f);
     private Vector2 slidingColiderSize = new Vector2(2, 0.8f);
@@ -51,17 +57,41 @@ public class Player : Singleton<Player>
         colider2D = GetComponent<BoxCollider2D>();
     }
 
+    protected virtual void OnEnable()
+    {
+        hp = fHp;
+    }
+
     protected virtual void Update()
     {
         float deltaTime = Time.deltaTime;
-        if (fHp > 0)
+        if (hp > 0)
         {
             Move(deltaTime);
             CheckJumpReset();
             CheckPressKey();
             CheckAnimator();
             if (transform.position.y <= downGameoverY)
-                InGameManager.Instance.GameOver();
+                GameOver();
+        }
+    }
+
+    public void MoveCenter()
+    {
+        StartCoroutine(MoveCenterCoroutine());
+    }
+
+    IEnumerator MoveCenterCoroutine()
+    {
+        while (true)
+        {
+            Move(Time.deltaTime);
+            if(transform.position.x >= Camera.main.ScreenToWorldPoint(Vector3.zero).x)
+            {
+                //죽음 TODO
+                yield break;
+            }
+            yield return null;
         }
     }
 
@@ -93,7 +123,7 @@ public class Player : Singleton<Player>
     //컴퓨터일때 키보드 감지를 담당하는 함수
     protected virtual void CheckPressKey()
     {
-        if (Application.platform != RuntimePlatform.Android)
+        if (Application.platform != RuntimePlatform.Android && isControllable && GameManager.Instance.inGaming)
         {
             if (Input.GetKey(KeyCode.DownArrow)) // 점프 중에 슬라이딩 눌러도 땅 도착하자마자 슬라이딩함
                 Sliding();
@@ -102,6 +132,12 @@ public class Player : Singleton<Player>
             if (Input.GetKeyUp(KeyCode.DownArrow))
                 ReturnToIdle();
         }
+    }
+
+    protected virtual void GameOver()
+    {
+        isControllable = false;
+        InGameManager.Instance.GameOver();
     }
 
 
@@ -162,7 +198,10 @@ public class Player : Singleton<Player>
             return;
 
         if (collider2D.CompareTag("Block"))
-            HurtByBlock();
+            HurtByBlock(collider2D.GetComponent<Block>());
+
+        if (collider2D.CompareTag("Gold"))
+            GetGold(collider2D.gameObject);
 
         if (collider2D.CompareTag("Ingredient"))
             AddIngredient(collider2D.GetComponent<Ingredient>());
@@ -172,28 +211,43 @@ public class Player : Singleton<Player>
     protected void AddIngredient(Ingredient ingredient)
     {
         ingredient.OnGet();
-        InGameManager.Instance.AddIngredients(ingredient.ingredientIdx);
+        InGameManager.Instance.AddIngredients(ingredient);
 
         ingredient.gameObject.SetActive(false);
     }
 
+    protected void GetGold(GameObject obj)
+    {
+        obj.SetActive(false);
+        // 이펙트 넣기 TODO
+        InGameManager.Instance.gold++;
+    }
+
     //장애물에 부딛혔을 경우
-    protected virtual void HurtByBlock()
+    protected virtual void HurtByBlock(Block block)
     {
         if (!hitable)
             return;
 
         hitable = false;
 
-        fHp -= hitDamage;
-        if (fHp <= 0)
-        {
-            InGameManager.Instance.GameOver();
+        hp -= block.damage;
+        block.OnHit();
+        if (hp <= 0)
+        { 
+            GameOver();
             return;
         }
 
+        IngameUIManager.Instance.PlayerHurt();
+
+        gameObject.layer = LayerMask.NameToLayer("PlayerInv");
         spriteRenderer.DOFade(hitFadeInAlpha, hitFadeInTime).
-            OnComplete(() => spriteRenderer.DOFade(1, hitFadeOutTime).SetEase(Ease.InExpo).
-            OnComplete(() => hitable = true));
+            OnComplete(() => spriteRenderer.DOFade(0.5f, hitFadeOutTime).SetEase(Ease.InExpo).
+            OnComplete(() =>
+            {
+                hitable = true;
+                gameObject.layer = LayerMask.NameToLayer("Player");
+            }));
     }
 }

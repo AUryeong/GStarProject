@@ -7,7 +7,7 @@ public class Ingredient : MonoBehaviour
 {
     SpriteRenderer spriteRenderer;
 
-
+    public bool isNegative = false;
     public int ingredientIdx = 0;
     protected virtual void Awake()
     {
