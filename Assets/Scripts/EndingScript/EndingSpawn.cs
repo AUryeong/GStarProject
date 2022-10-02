@@ -34,7 +34,7 @@ public class EndingSpawn : Singleton<EndingSpawn>
         for (int i = 0; i < InsideList.Count; i++)
         {
             SandWichObject = Instantiate(SpawnObject, transform.position, transform.rotation);
-            SandWichObject.GetComponent<SpriteRenderer>().sprite = Inside.Stats[InsideList[i]].ImageSprite;
+            SandWichObject.GetComponent<SpriteRenderer>().sprite = Inside.Stats[InsideList[i]].SandwichSprite;
             transform.position += Vector3.up;
             if (i >= 5)//중간 갔을떄 화면이 올라감
             {

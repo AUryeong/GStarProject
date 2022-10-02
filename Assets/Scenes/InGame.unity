@@ -5082,7 +5082,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fSpeed: 5
-  fHp: 100
+  fHp: 150
   hp: 0
   fJumpSpeed: 10
   jumpMaxCount: 2
