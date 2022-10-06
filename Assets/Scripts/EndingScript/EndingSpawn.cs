@@ -64,7 +64,7 @@ public class EndingSpawn : Singleton<EndingSpawn>
         SandWichObject = Instantiate(SpawnObject, transform.position, transform.rotation);
         SandWichObject.GetComponent<SpriteRenderer>().sprite = Bread.Stats[BreadIdx].ImageSprite;
         SandWichObject.GetComponent<BoxCollider2D>().size = new Vector2(0.5f, 1);
-        SandWichObject.transform.localScale += Vector3.right * 3;
+        SandWichObject.transform.localScale += Vector3.right * 2;
     }
 
     public void ExitEndingScene()

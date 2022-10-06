@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 class BreadInspector{
     Text LVText;
@@ -31,6 +32,8 @@ public class LobbyUIManager : MonoBehaviour
     private List<Text> HPTexts = new List<Text>();//체력 텍스트 리스트
     private List<Text> BuyButtonText = new List<Text>();//레벨업 버튼 텍스트
     private int SelectBread;
+    private Text SelectButtonTxt;
+
     [Header("Quset")]
     [SerializeField] List<GameObject> QusetPanels = new List<GameObject>();
     private List<Image> QusetImage = new List<Image>();//퀘스트 보상 이미지
@@ -80,18 +83,21 @@ public class LobbyUIManager : MonoBehaviour
         int BreadCount = 0;
         foreach (BreadStat Bread in BreadList.Stats)
         {
+            BreadPanels[BreadCount].SetActive(true);
+            int idx = BreadCount;
             GameObject BreadPanelObject = BreadPanels[BreadCount];
             BreadPanelObject.transform.Find("BreadName").GetComponent<Text>().text = Bread.Name;//BreadName Text
             BreadPanelObject.transform.Find("BreadImage").GetComponent<Image>().sprite = Bread.ImageSprite;//BreadImage
             BreadPanelObject.transform.Find("BreadInspector").GetChild(0).GetChild(1).GetComponent<Image>().sprite = Bread.ImageSprite;//BreadAction
-            BreadPanelObject.transform.Find("BreadInspector").GetChild(1).GetComponent<Button>().onClick.AddListener(() => BuyButton(BreadCount));//price
-
+            BreadPanelObject.transform.Find("BreadInspector").GetChild(1).GetComponent<Button>().onClick.AddListener(() => BuyButton(idx));//price
+            SelectButtonTxt = BreadPanelObject.transform.Find("BreadInspector").GetChild(1).GetChild(0).GetComponent<Text>();
+            SelectButtonTxt.text = "선택하기";
             LVTexts.Add(BreadPanelObject.transform.Find("LV").GetChild(0).GetComponent<Text>());
             EXPSliders.Add(BreadPanelObject.transform.Find("LV").GetChild(1).GetComponent<Slider>());
             HPTexts.Add(BreadPanelObject.transform.Find("BreadInspector").GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>());
-            LVTexts[BreadCount].text = "" + Bread.LV;//LvText
+            LVTexts[BreadCount].text = $"{Bread.LV}.LV";//LvText
             EXPSliders[BreadCount].value = Bread.EXP / Bread.MaxEXP;//ExpSlider
-            HPTexts[BreadCount].text = "" + Bread.HP;//BreadHP
+            HPTexts[BreadCount].text = $"{Bread.HP}";//BreadHP
 
             for (int Rank = 0; Rank < Bread.Rank; Rank++)
                 BreadPanelObject.transform.Find("BreadRankGroup").transform.GetChild(Rank).gameObject.SetActive(true);
@@ -100,8 +106,14 @@ public class LobbyUIManager : MonoBehaviour
         }
         Bread.SetActive(false);
     }
-    void BuyButton(int idx)
+    void BuyButton(in int idx)
     {
+        Debug.Log(idx);
+        SelectBread = idx;
+        GameObject ClickButton = EventSystem.current.currentSelectedGameObject;
+        SelectButtonTxt.text = "선택하기";
+        SelectButtonTxt = ClickButton.GetComponentInChildren<Text>();
+        SelectButtonTxt.text = "선택됨";
 
     }
     public void StartPanelSetting()
