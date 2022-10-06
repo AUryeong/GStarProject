@@ -30,6 +30,10 @@ public class IngameUIManager : Singleton<IngameUIManager>
             return _hpBarRect;
         }
     }
+    [Header("¿Àºì¹Ù")]
+    [SerializeField] Slider OvenBar;
+    [SerializeField] GameObject StartPoint;
+    [SerializeField] GameObject EndPoint;
 
     [Header("Àç·á")]
     [SerializeField] Image ingredientsIcon;
@@ -47,6 +51,7 @@ public class IngameUIManager : Singleton<IngameUIManager>
         hpBarShakePos = hpBarRect.anchoredPosition;
         int hpLevel = 1;
         hpIconImage.sprite = hpIconSprites[Mathf.CeilToInt(hpLevel / 10f) - 1];
+        UpdateOvenBar();
     }
     public void PauseButton()
     {
@@ -166,5 +171,10 @@ public class IngameUIManager : Singleton<IngameUIManager>
     {
         if (pressSliding)
             Player.Instance.Sliding();
+    }
+    private void UpdateOvenBar()
+    {
+        OvenBar.value = Vector2.Distance(StartPoint.transform.position, Player.Instance.transform.position) / 
+                        Vector2.Distance(StartPoint.transform.position, EndPoint.transform.position);
     }
 }

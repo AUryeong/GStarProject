@@ -8,7 +8,7 @@ class BreadInspector{
     Text LVText;
     Slider Text;
 }
-public class LobbyUIManager : MonoBehaviour
+public class LobbyUIManager : Singleton<LobbyUIManager>
 {
     int Gold = 10000;//테스팅용 추후에 게임매니저로 이동
     [Header("Top UI")]
@@ -41,11 +41,8 @@ public class LobbyUIManager : MonoBehaviour
     private List<Text> QusetText = new List<Text>();//퀘스트 내용 텍스트
     private List<Slider> QusetSliders = new List<Slider>();//퀘스트 진행도 슬라이더
     [Header("Map")]
-    [SerializeField] List<GameObject> MapPanels = new List<GameObject>();
-    private List<Text> MapName = new List<Text>();//맵 이름
-    private List<Text> Mapdescription = new List<Text>();//맵 설명 텍스트
-    private List<GameObject> LockPanels = new List<GameObject>();
-
+    [SerializeField] List<GameObject> MapPanel = new List<GameObject>();
+    [SerializeField] bool[] MapLock;
     [Header("Start")]
     [SerializeField] GameObject StartPanel;
     [SerializeField] Image AbilityImage_1;// 능력 선택 버튼 이미지
@@ -58,13 +55,10 @@ public class LobbyUIManager : MonoBehaviour
     void Start()
     {
         SettingBreadShop(BreadScriptable);
+        OpenMap();
         Quset.SetActive(false);
         Map.SetActive(false);
         BackGroundObjcet.SetActive(false);
-    }
-    void Update()
-    {
-
     }
     public void OpenPanel(GameObject Object)
     {
@@ -86,10 +80,12 @@ public class LobbyUIManager : MonoBehaviour
             BreadPanels[BreadCount].SetActive(true);
             int idx = BreadCount;
             GameObject BreadPanelObject = BreadPanels[BreadCount];
+
             BreadPanelObject.transform.Find("BreadName").GetComponent<Text>().text = Bread.Name;//BreadName Text
             BreadPanelObject.transform.Find("BreadImage").GetComponent<Image>().sprite = Bread.ImageSprite;//BreadImage
             BreadPanelObject.transform.Find("BreadInspector").GetChild(0).GetChild(1).GetComponent<Image>().sprite = Bread.ImageSprite;//BreadAction
             BreadPanelObject.transform.Find("BreadInspector").GetChild(1).GetComponent<Button>().onClick.AddListener(() => BuyButton(idx));//price
+
             SelectButtonTxt = BreadPanelObject.transform.Find("BreadInspector").GetChild(1).GetChild(0).GetComponent<Text>();
             SelectButtonTxt.text = "선택하기";
             LVTexts.Add(BreadPanelObject.transform.Find("LV").GetChild(0).GetComponent<Text>());
@@ -144,6 +140,12 @@ public class LobbyUIManager : MonoBehaviour
         //UpgradeMoney.text = 기획 나오면
         AbilityExplanation.text = (string)GetType().GetField($"Bread.AbilityText_{idx}").GetValue(this); 
     }
-   
+    private void OpenMap()
+    {
+        for (int i = MapPanel.Count; i > 0; i--)
+        {
+            MapPanel[i].SetActive(MapLock[i]);
+        }
+    }
     
 }
