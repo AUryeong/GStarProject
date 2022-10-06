@@ -6,7 +6,9 @@ using UnityEngine;
 [System.Serializable]
 public class stats
 {
-    public Sprite ImageSprite;
+    public Sprite SandwichSprite;
+    public Sprite IconSprite;
+    public Sprite OutlineSprite;
     public int Size;
 }
 public class Ingredients : ScriptableObject

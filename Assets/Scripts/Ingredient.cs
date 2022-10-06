@@ -7,7 +7,7 @@ public class Ingredient : MonoBehaviour
 {
     SpriteRenderer spriteRenderer;
 
-
+    public bool isNegative = false;
     public int ingredientIdx = 0;
     protected virtual void Awake()
     {
@@ -16,7 +16,7 @@ public class Ingredient : MonoBehaviour
     protected virtual void OnEnable()
     {
         ingredientIdx = Random.Range(0, GameManager.Instance.Inside.Stats.Count);
-        spriteRenderer.sprite = GameManager.Instance.Inside.Stats[Random.Range(0, GameManager.Instance.Inside.Stats.Count)].ImageSprite;
+        spriteRenderer.sprite = GameManager.Instance.Inside.Stats[Random.Range(0, GameManager.Instance.Inside.Stats.Count)].IconSprite;
     }
     public virtual void OnGet()
     {
