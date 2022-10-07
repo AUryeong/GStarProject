@@ -4,13 +4,19 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
-class BreadInspector{
+class BreadInspector
+{
     Text LVText;
     Slider Text;
 }
 public class LobbyUIManager : Singleton<LobbyUIManager>
 {
-    int Gold = 10000;//테스팅용 추후에 게임매니저로 이동
+    #region Test
+    public int Gold = 10000;//테스팅용 추후에 게임매니저로 이동
+    int MaxHpLv = 0;
+    int DefenseLv = 0;
+    int SelectAbility = 0;//0 : MaxHp , 1 : Defense
+    #endregion
     [Header("Top UI")]
     [SerializeField] Text GoldText;
     [SerializeField] Text BuyGoldText;
@@ -44,13 +50,14 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     [SerializeField] List<GameObject> MapPanel = new List<GameObject>();
     [SerializeField] bool[] MapLock;
     [Header("Start")]
-    [SerializeField] GameObject StartPanel;
-    [SerializeField] Image AbilityImage_1;// 능력 선택 버튼 이미지
-    [SerializeField] Image AbilityImage_2;//능력 선택 버튼 이미지
+    [SerializeField] GameObject StartPanel;//정비 화면
+    [SerializeField] GameObject ReCheckPanel;//정비 화면에서 시작을 누를떄 나오는 이미지
     [SerializeField] Image AbilityImage_Main;//클릭 했을떄 나오는 이미지
-    [SerializeField] Text AbilityNameAndLV;
-    [SerializeField] Text UpgradeMoney;
-    [SerializeField] Text AbilityExplanation;
+    [SerializeField] Text AbilityNameAndLV;//스킬 이름과 레벨텍스트
+    [SerializeField] Text UpgradeMoney;//가격 텍스트
+    [SerializeField] Text AbilityExplanation;//스킬 설명 텍스트
+    [SerializeField] Sprite[] AbilitySprite = new Sprite[2];//스킬 이미지
+    [SerializeField] string[,] AbilityText = new string[2,2];//스킬 설명 내용
     // Start is called before the first frame update
     void Start()
     {
@@ -112,33 +119,38 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
         SelectButtonTxt.text = "선택됨";
 
     }
-    public void StartPanelSetting()
+    public void OpenStartPanel()
     {
-        BreadStat Bread = BreadScriptable.Stats[SelectBread];
-        AbilityImage_1.sprite = Bread.AbilityImage_1;
-        AbilityImage_2.sprite = Bread.AbilityImage_2;
-        AbilityImage_Main.sprite = Bread.AbilityImage_1;
-        AbilityNameAndLV.text = "" + Bread.Name + "LV." + Bread.AbilityLV_1;
-        //UpgradeMoney.text = 기획 나오면
-        AbilityExplanation.text = "" + Bread.AbilityText_1;
         StartPanel.SetActive(true);
+    }
+    public void CloseStartPanel()
+    {
+        StartPanel.SetActive(false);
+    }
+    public void OpenReCheck()
+    {
+        ReCheckPanel.SetActive(true);
+    }
+    public void CloseReCheck()
+    {
+        ReCheckPanel.SetActive(true);
     }
     public void StartButton()
     {
         SceneManager.LoadScene(0);
     }
-    public void StartPanelExit()
-    {
-        StartPanel.SetActive(false);
-    }
     public void AbilitySelect(int idx)
     {
-        Sprite s = (Sprite)GetType().GetField("temp1").GetValue(this);
-        BreadStat Bread = BreadScriptable.Stats[SelectBread];
-        AbilityImage_Main.sprite = (Sprite)GetType().GetField($"Bread.AbilityImage_{idx}").GetValue(this); 
-        AbilityNameAndLV.text = "" + Bread.Name + "LV." + (int)GetType().GetField($"Bread.AbilityLV_{idx}").GetValue(this); 
-        //UpgradeMoney.text = 기획 나오면
-        AbilityExplanation.text = (string)GetType().GetField($"Bread.AbilityText_{idx}").GetValue(this); 
+        AbilityImage_Main.sprite = AbilitySprite[idx];
+        AbilityNameAndLV.text = idx == 0 ? $"최대 체력 LV.{MaxHpLv}" : $"충돌 데미지 감소 LV.{DefenseLv}";
+        UpgradeMoney.text = idx == 0 ? $"{5000 + (MaxHpLv - 1) * 500} Gold" : $"{5000 + (DefenseLv - 1) * 500} Gold";
+        SelectAbility = idx;
+    }
+    public void UpgradeAbility()
+    {
+        Gold -= SelectAbility == 0 ? 5000 - (MaxHpLv++ - 1) * 500 : 5000 + (DefenseLv++ - 1) * 500;
+        AbilityNameAndLV.text = SelectAbility == 0 ? $"최대 체력 LV.{MaxHpLv}" : $"충돌 데미지 감소 LV.{DefenseLv}";
+        UpgradeMoney.text = SelectAbility == 0 ? $"{5000 + (MaxHpLv - 1) * 500} Gold" : $"{5000 + (DefenseLv - 1) * 500} Gold";
     }
     private void OpenMap()
     {
@@ -147,5 +159,4 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
             MapPanel[i].SetActive(MapLock[i]);
         }
     }
-    
 }
