@@ -1462,9 +1462,9 @@ MonoBehaviour:
   hpBarSlider: {fileID: 1405459999}
   hpIconImage: {fileID: 1480853792}
   hpIconSprites: []
-  OvenBar: {fileID: 0}
-  StartPoint: {fileID: 0}
-  EndPoint: {fileID: 0}
+  OvenBar: {fileID: 1670937521}
+  StartPoint: {fileID: 820371462}
+  EndPoint: {fileID: 1525313219}
   ingredientsIcon: {fileID: 26076384}
   ingredientsCount: {fileID: 1042580797}
   ingredientsIconBlank: {fileID: 21300000, guid: 7a9cede73019b424fa5aeabd15640a1f, type: 3}

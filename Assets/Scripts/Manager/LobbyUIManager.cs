@@ -57,7 +57,6 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     [SerializeField] Text UpgradeMoney;//가격 텍스트
     [SerializeField] Text AbilityExplanation;//스킬 설명 텍스트
     [SerializeField] Sprite[] AbilitySprite = new Sprite[2];//스킬 이미지
-    [SerializeField] string[,] AbilityText = new string[2,2];//스킬 설명 내용
     // Start is called before the first frame update
     void Start()
     {
@@ -141,16 +140,49 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     }
     public void AbilitySelect(int idx)
     {
-        AbilityImage_Main.sprite = AbilitySprite[idx];
-        AbilityNameAndLV.text = idx == 0 ? $"최대 체력 LV.{MaxHpLv}" : $"충돌 데미지 감소 LV.{DefenseLv}";
-        UpgradeMoney.text = idx == 0 ? $"{5000 + (MaxHpLv - 1) * 500} Gold" : $"{5000 + (DefenseLv - 1) * 500} Gold";
         SelectAbility = idx;
+        switch (SelectAbility)
+        {
+            case 0:
+                {
+
+                    AbilityImage_Main.sprite = AbilitySprite[SelectAbility];
+                    AbilityNameAndLV.text = $"최대 체력 LV.{MaxHpLv}";
+                    UpgradeMoney.text = $"{5000 + (MaxHpLv - 1) * 500} Gold";
+                    AbilityExplanation.text = $"추가 체력이 총 {MaxHpLv * 5} 늘어납니다.체력이 떨어지면 빵들은 더 이상 재료를 모으지 못하니 지속적으로 강화합시다.";
+                    break;
+                }
+            case 1:
+                {
+                    AbilityImage_Main.sprite = AbilitySprite[SelectAbility];
+                    AbilityNameAndLV.text = $"충돌 데미지 감소 LV.{DefenseLv}";
+                    UpgradeMoney.text = $"{5000 + (DefenseLv - 1) * 500} Gold";
+                    AbilityExplanation.text = $"장애물 충돌 시 데미지를 {DefenseLv * 5} %만큼 감소됩니다. 무슨일이 일어날지 모르니 만일을위해 강화해둡시다.";
+                    break;
+                }
+        }
     }
     public void UpgradeAbility()
     {
-        Gold -= SelectAbility == 0 ? 5000 - (MaxHpLv++ - 1) * 500 : 5000 + (DefenseLv++ - 1) * 500;
-        AbilityNameAndLV.text = SelectAbility == 0 ? $"최대 체력 LV.{MaxHpLv}" : $"충돌 데미지 감소 LV.{DefenseLv}";
-        UpgradeMoney.text = SelectAbility == 0 ? $"{5000 + (MaxHpLv - 1) * 500} Gold" : $"{5000 + (DefenseLv - 1) * 500} Gold";
+        switch (SelectAbility)
+        {
+            case 0:
+                {
+                    AbilityImage_Main.sprite = AbilitySprite[SelectAbility];
+                    UpgradeMoney.text = $"{5000 + (++MaxHpLv - 1) * 500} Gold";
+                    AbilityNameAndLV.text = $"최대 체력 LV.{MaxHpLv}";
+                    AbilityExplanation.text = $"추가 체력이 총 {MaxHpLv * 5} 늘어납니다.체력이 떨어지면 빵들은 더 이상 재료를 모으지 못하니 지속적으로 강화합시다.";
+                    break;
+                }
+            case 1:
+                {
+                    AbilityImage_Main.sprite = AbilitySprite[SelectAbility];
+                    UpgradeMoney.text = $"{5000 + (++DefenseLv - 1) * 500} Gold";
+                    AbilityNameAndLV.text = $"충돌 데미지 감소 LV.{DefenseLv}";
+                    AbilityExplanation.text = $"장애물 충돌 시 데미지를 {DefenseLv * 5} %만큼 감소됩니다. 무슨일이 일어날지 모르니 만일을위해 강화해둡시다.";
+                    break;
+                }
+        }
     }
     private void OpenMap()
     {
