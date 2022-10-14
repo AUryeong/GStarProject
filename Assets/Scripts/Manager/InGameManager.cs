@@ -23,6 +23,7 @@ public class InGameManager : Singleton<InGameManager>
     public void GameOver()
     {
         GameManager.Instance.inGaming = false;
+        GameManager.Instance.GameOver(ingredients);
         Player.Instance.gameObject.layer = LayerMask.NameToLayer("PlayerInv");
         Camera.main.DOShakePosition(0.5f, 6);
         Player.Instance.MoveCenter();

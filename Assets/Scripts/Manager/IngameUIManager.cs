@@ -13,7 +13,7 @@ public class IngameUIManager : Singleton<IngameUIManager>
     [SerializeField] GameObject SettingPanel;
 
     [Header("체력바")]
-    private float hpSizeX = 900;
+    private float hpSizeX = 500;
     [SerializeField] Slider hpBarSlider;
     [SerializeField] Image hpIconImage;
     [SerializeField] Sprite[] hpIconSprites;
@@ -75,11 +75,11 @@ public class IngameUIManager : Singleton<IngameUIManager>
         {
             PausePanel.SetActive(false);
             float timer = 3;
-            /*while(timer > 0 )
+            while(timer > 0 )
             {
                 timer -= Time.deltaTime;
                 //텍스트에 타이머 올림해서 적용
-            }*/
+            }
             Time.timeScale = 1;
         }
     }

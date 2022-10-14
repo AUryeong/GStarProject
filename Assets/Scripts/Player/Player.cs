@@ -74,6 +74,10 @@ public class Player : Singleton<Player>
             if (transform.position.y <= downGameoverY)
                 GameOver();
         }
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            GameOver();
+        }
     }
 
     public void MoveCenter()

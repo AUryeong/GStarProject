@@ -24,24 +24,26 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     [SerializeField] Image StaminaImage;
 
     [Header("Shop Object")]
-    [SerializeField] GameObject BackGroundObjcet;
+    [SerializeField] GameObject ShopBgPanel;
     [SerializeField] GameObject Bread;
     [SerializeField] GameObject Quset;
     [SerializeField] GameObject Map;
-    private GameObject OpenObject;
+    private GameObject ShopPanelObject;
 
     [Header("Bread")]
     [SerializeField] Breads BreadScriptable;
-    [SerializeField] List<GameObject> BreadPanels = new List<GameObject>();//빵 정보창 오브젝트
+    [SerializeField] GameObject BreadPrefab;
+    [SerializeField] GameObject BreadContent;
+    //[SerializeField] List<GameObject> BreadPanels = new List<GameObject>();//빵 정보창 오브젝트
     private List<Text> LVTexts = new List<Text>();//레벨 텍스트 리스트
     private List<Slider> EXPSliders = new List<Slider>();//경험치바 리스트
     private List<Text> HPTexts = new List<Text>();//체력 텍스트 리스트
-    private List<Text> BuyButtonText = new List<Text>();//레벨업 버튼 텍스트
+    private List<Text> BuyBtuttonText = new List<Text>();//선택 버튼 텍스트
     private int SelectBread;
     private Text SelectButtonTxt;
 
     [Header("Quset")]
-    [SerializeField] List<GameObject> QusetPanels = new List<GameObject>();
+    [SerializeField] List<GameObject> QusetPanels = new List<GameObject>();//퀘스트창들
     private List<Image> QusetImage = new List<Image>();//퀘스트 보상 이미지
     private List<Text> Qusetrewards = new List<Text>();//퀘스트 보상 텍스트
     private List<Text> QusetText = new List<Text>();//퀘스트 내용 텍스트
@@ -58,24 +60,27 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     [SerializeField] Text AbilityExplanation;//스킬 설명 텍스트
     [SerializeField] Sprite[] AbilitySprite = new Sprite[2];//스킬 이미지
     // Start is called before the first frame update
+    protected override void Awake()
+    {
+        base.Awake();
+        SettingBreadShop(BreadScriptable);
+    }
     void Start()
     {
-        SettingBreadShop(BreadScriptable);
-        OpenMap();
         Quset.SetActive(false);
         Map.SetActive(false);
-        BackGroundObjcet.SetActive(false);
+        ShopBgPanel.SetActive(false);
     }
-    public void OpenPanel(GameObject Object)
+    public void OpenShopPanel(GameObject Object)
     {
-        BackGroundObjcet.SetActive(true);
-        Object.SetActive(true);
-        OpenObject = Object;
+        ShopPanelObject = Object;
+        ShopBgPanel.SetActive(true);
+        ShopPanelObject.SetActive(true);
     }
     public void ClosePanel()
     {
-        BackGroundObjcet.SetActive(false);
-        OpenObject.SetActive(false);
+        ShopBgPanel.SetActive(false);
+        ShopPanelObject.SetActive(false);
     }
 
     void SettingBreadShop(Breads BreadList)
@@ -83,31 +88,39 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
         int BreadCount = 0;
         foreach (BreadStat Bread in BreadList.Stats)
         {
-            BreadPanels[BreadCount].SetActive(true);
-            int idx = BreadCount;
-            GameObject BreadPanelObject = BreadPanels[BreadCount];
+            //BreadPanels[BreadCount].SetActive(true);
+            //GameObject BreadPanelObject = BreadPanels[BreadCount];
+            GameObject BreadPanelObject = Instantiate(BreadPrefab, transform.position, transform.rotation, BreadContent.transform);
 
             BreadPanelObject.transform.Find("BreadName").GetComponent<Text>().text = Bread.Name;//BreadName Text
             BreadPanelObject.transform.Find("BreadImage").GetComponent<Image>().sprite = Bread.ImageSprite;//BreadImage
             BreadPanelObject.transform.Find("BreadInspector").GetChild(0).GetChild(1).GetComponent<Image>().sprite = Bread.ImageSprite;//BreadAction
-            BreadPanelObject.transform.Find("BreadInspector").GetChild(1).GetComponent<Button>().onClick.AddListener(() => BuyButton(idx));//price
+            BreadPanelObject.transform.Find("BreadInspector").GetChild(1).GetComponent<Button>().onClick.AddListener(() => BuyButton(BreadCount));//price
 
-            SelectButtonTxt = BreadPanelObject.transform.Find("BreadInspector").GetChild(1).GetChild(0).GetComponent<Text>();
-            SelectButtonTxt.text = "선택하기";
-            LVTexts.Add(BreadPanelObject.transform.Find("LV").GetChild(0).GetComponent<Text>());
-            EXPSliders.Add(BreadPanelObject.transform.Find("LV").GetChild(1).GetComponent<Slider>());
-            HPTexts.Add(BreadPanelObject.transform.Find("BreadInspector").GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>());
-            LVTexts[BreadCount].text = $"{Bread.LV}.LV";//LvText
-            EXPSliders[BreadCount].value = Bread.EXP / Bread.MaxEXP;//ExpSlider
-            HPTexts[BreadCount].text = $"{Bread.HP}";//BreadHP
+            BuyBtuttonText.Add(BreadPanelObject.transform.Find("BreadInspector").GetChild(1).GetChild(0).GetComponent<Text>());//Buy.Text
+            BuyBtuttonText[BreadCount].text = "선택하기";
 
+            LVTexts.Add(BreadPanelObject.transform.Find("LV").GetChild(0).GetComponent<Text>());//LV Texts
+            EXPSliders.Add(BreadPanelObject.transform.Find("LV").GetChild(1).GetComponent<Slider>());//Exp Texts
+            HPTexts.Add(BreadPanelObject.transform.Find("BreadInspector").GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>());//Hp Texts
+
+            LVTexts[BreadCount].text = $"{Bread.LV}.LV";
+            EXPSliders[BreadCount].value = Bread.EXP / Bread.MaxEXP;
+            HPTexts[BreadCount].text = $"{Bread.HP}";
+
+            GameObject Ranks = BreadPanelObject.transform.Find("BreadRankGroup").gameObject;
             for (int Rank = 0; Rank < Bread.Rank; Rank++)
-                BreadPanelObject.transform.Find("BreadRankGroup").transform.GetChild(Rank).gameObject.SetActive(true);
+                Ranks.transform.GetChild(Rank).gameObject.SetActive(true);
 
             BreadCount++;
         }
         Bread.SetActive(false);
     }
+    void SettingQusetPanel()
+    {
+
+    }
+
     void BuyButton(in int idx)
     {
         Debug.Log(idx);
@@ -117,26 +130,6 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
         SelectButtonTxt = ClickButton.GetComponentInChildren<Text>();
         SelectButtonTxt.text = "선택됨";
 
-    }
-    public void OpenStartPanel()
-    {
-        StartPanel.SetActive(true);
-    }
-    public void CloseStartPanel()
-    {
-        StartPanel.SetActive(false);
-    }
-    public void OpenReCheck()
-    {
-        ReCheckPanel.SetActive(true);
-    }
-    public void CloseReCheck()
-    {
-        ReCheckPanel.SetActive(true);
-    }
-    public void StartButton()
-    {
-        SceneManager.LoadScene(0);
     }
     public void AbilitySelect(int idx)
     {
@@ -184,11 +177,24 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
                 }
         }
     }
-    private void OpenMap()
+    public void OpenStartPanel()
     {
-        for (int i = MapPanel.Count; i > 0; i--)
-        {
-            MapPanel[i].SetActive(MapLock[i]);
-        }
+        StartPanel.SetActive(true);
+    }
+    public void CloseStartPanel()
+    {
+        StartPanel.SetActive(false);
+    }
+    public void OpenReCheck()
+    {
+        ReCheckPanel.SetActive(true);
+    }
+    public void CloseReCheck()
+    {
+        ReCheckPanel.SetActive(true);
+    }
+    public void StartButton()
+    {
+        SceneManager.LoadScene(0);
     }
 }
