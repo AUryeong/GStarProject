@@ -43,11 +43,9 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     private Text SelectButtonTxt;
 
     [Header("Quset")]
-    [SerializeField] List<GameObject> QusetPanels = new List<GameObject>();//퀘스트창들
-    private List<Image> QusetImage = new List<Image>();//퀘스트 보상 이미지
-    private List<Text> Qusetrewards = new List<Text>();//퀘스트 보상 텍스트
-    private List<Text> QusetText = new List<Text>();//퀘스트 내용 텍스트
-    private List<Slider> QusetSliders = new List<Slider>();//퀘스트 진행도 슬라이더
+    public QusetScriptable[] qusetScriptables;
+    public GameObject[] qusetPanel;
+    public GameObject qusetPrefab;
     [Header("Map")]
     [SerializeField] List<GameObject> MapPanel = new List<GameObject>();
     [SerializeField] bool[] MapLock;
@@ -64,6 +62,7 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     {
         base.Awake();
         SettingBreadShop(BreadScriptable);
+        SettingQusetPanel();
     }
     void Start()
     {
@@ -118,7 +117,14 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     }
     void SettingQusetPanel()
     {
-
+        for(int i = 0;i < 3;i++)//0 : 일일 / 1 : 주간 / 2 : 메인
+        {
+            for(int j = qusetScriptables[i].QusetList.Count; j < qusetScriptables[i].QusetList.Count; j++)
+            {
+                Instantiate(qusetPrefab, transform.position, transform.rotation, qusetPanel[i].transform)
+                    .GetComponent<QusetScript>().SettingQuset(qusetScriptables[i],j);
+            }
+        }
     }
 
     void BuyButton(in int idx)
