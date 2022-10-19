@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class QusetManager : MonoBehaviour
+public class QusetManager : Singleton<QusetManager>
 {
     QusetScriptable dayQuset;
     QusetScriptable aweekQuset;
