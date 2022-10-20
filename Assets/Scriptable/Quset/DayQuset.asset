@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DayQuset
   m_EditorClassIdentifier: 
   QusetList:
-  - isClear: 0
+  - isClear: 1
     qusetCondition: 1
     questSituation: 0
     sprite: {fileID: 0}
@@ -24,7 +24,7 @@ MonoBehaviour:
     M_ClearCount: 0
     rewardType: 0
     qusetType: 0
-  - isClear: 0
+  - isClear: 1
     qusetCondition: 20
     questSituation: 0
     sprite: {fileID: 0}
@@ -35,7 +35,7 @@ MonoBehaviour:
     M_ClearCount: 0
     rewardType: 0
     qusetType: 0
-  - isClear: 0
+  - isClear: 1
     qusetCondition: 20
     questSituation: 0
     sprite: {fileID: 0}
@@ -46,7 +46,7 @@ MonoBehaviour:
     M_ClearCount: 0
     rewardType: 0
     qusetType: 0
-  - isClear: 0
+  - isClear: 1
     qusetCondition: 50
     questSituation: 0
     sprite: {fileID: 0}
@@ -57,7 +57,7 @@ MonoBehaviour:
     M_ClearCount: 0
     rewardType: 1
     qusetType: 0
-  - isClear: 0
+  - isClear: 1
     qusetCondition: 30
     questSituation: 0
     sprite: {fileID: 0}
@@ -68,7 +68,7 @@ MonoBehaviour:
     M_ClearCount: 0
     rewardType: 2
     qusetType: 0
-  - isClear: 0
+  - isClear: 1
     qusetCondition: 5
     questSituation: 0
     sprite: {fileID: 0}
