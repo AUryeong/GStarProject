@@ -12,10 +12,7 @@ class BreadInspector
 public class LobbyUIManager : Singleton<LobbyUIManager>
 {
     #region Test
-    public int Gold = 10000;//테스팅용 추후에 게임매니저로 이동
-    int MaxHpLv = 0;
-    int DefenseLv = 0;
-    int SelectAbility = 0;//0 : MaxHp , 1 : Defense
+    private int SelectAbility = 0;//0 : MaxHp , 1 : Defense
     #endregion
     [Header("Top UI")]
     [SerializeField] Text GoldText;
@@ -44,7 +41,8 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
 
     [Header("Quset")]
     public QusetScriptable[] qusetScriptables;
-    public GameObject[] qusetPanel;
+    public ScrollRect qusetScroll;
+    public RectTransform[] qusetPanel;
     public Button[] qusetButtons;
     public GameObject qusetPrefab;
     private int openingQusetPanel = 0;
@@ -72,6 +70,8 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
         Map.SetActive(false);
         ShopBgPanel.SetActive(false);
     }
+
+
     public void OpenShopPanel(GameObject Object)
     {
         ShopPanelObject = Object;
@@ -119,25 +119,26 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     }
     void SettingQusetPanel()
     {
-        for(int i = 0;i < 3;i++)//0 : 일일 / 1 : 주간 / 2 : 메인
+        for (int i = 0; i < 3; i++)//0 : 일일 / 1 : 주간 / 2 : 메인
         {
-         /*   for(int j = qusetScriptables[i].QusetList.Count; j < qusetScriptables[i].QusetList.Count; j++)
+            for (int j = 0; j < qusetScriptables[i].QusetList.Count; j++)
             {
                 Instantiate(qusetPrefab, transform.position, transform.rotation, qusetPanel[i].transform)
-                    .GetComponent<QusetScript>().SettingQuset(qusetScriptables[i],j);
-            }*/
+                    .GetComponent<QusetScript>().SettingQuset(qusetScriptables[i], j);
+            }
         }
     }
     public void OpenQusetPanel(int Type)
     {
-        qusetPanel[openingQusetPanel].SetActive(false);
-        qusetPanel[Type].SetActive(true);
-        qusetButtons[openingQusetPanel].transform.position -= new Vector3(0,20,0);//이전 선택창 내리기
-        qusetButtons[Type].transform.position += new Vector3(0,20,0);//선택창 올리기
+        qusetScroll.content = qusetPanel[Type];//콘텐츠 변경
+        qusetPanel[openingQusetPanel].gameObject.SetActive(false);//이전 퀘스트창 비활성화
+        qusetPanel[Type].gameObject.SetActive(true);//열려는 퀘스트창 활성화
+        qusetButtons[openingQusetPanel].transform.position -= new Vector3(0, 20, 0);//이전 선택창 내리기
+        qusetButtons[Type].transform.position += new Vector3(0, 20, 0);//선택창 올리기
         Image openingColor = qusetButtons[openingQusetPanel].gameObject.GetComponent<Image>();
         Image openPanelColor = qusetButtons[Type].gameObject.GetComponent<Image>();
         openingColor.color = new Color(0.75f, 0.75f, 0.75f);//버튼 회색으로 변경
-        openPanelColor.color = new Color(1,1, 1);//버튼 흰색으로 변경
+        openPanelColor.color = new Color(1, 1, 1);//버튼 흰색으로 변경
         openingQusetPanel = Type;
     }
     void BuyButton(in int idx)
@@ -159,17 +160,17 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
                 {
 
                     AbilityImage_Main.sprite = AbilitySprite[SelectAbility];
-                    AbilityNameAndLV.text = $"최대 체력 LV.{MaxHpLv}";
-                    UpgradeMoney.text = $"{5000 + (MaxHpLv - 1) * 500} Gold";
-                    AbilityExplanation.text = $"추가 체력이 총 {MaxHpLv * 5} 늘어납니다.체력이 떨어지면 빵들은 더 이상 재료를 모으지 못하니 지속적으로 강화합시다.";
+                    AbilityNameAndLV.text = $"최대 체력 LV.{GameManager.Instance.MaxHpLv}";
+                    UpgradeMoney.text = $"{5000 + (GameManager.Instance.MaxHpLv - 1) * 500} Gold";
+                    AbilityExplanation.text = $"추가 체력이 총 {GameManager.Instance.MaxHpLv * 5} 늘어납니다.체력이 떨어지면 빵들은 더 이상 재료를 모으지 못하니 지속적으로 강화합시다.";
                     break;
                 }
             case 1:
                 {
                     AbilityImage_Main.sprite = AbilitySprite[SelectAbility];
-                    AbilityNameAndLV.text = $"충돌 데미지 감소 LV.{DefenseLv}";
-                    UpgradeMoney.text = $"{5000 + (DefenseLv - 1) * 500} Gold";
-                    AbilityExplanation.text = $"장애물 충돌 시 데미지를 {DefenseLv * 5} %만큼 감소됩니다. 무슨일이 일어날지 모르니 만일을위해 강화해둡시다.";
+                    AbilityNameAndLV.text = $"충돌 데미지 감소 LV.{GameManager.Instance.DefenseLv}";
+                    UpgradeMoney.text = $"{5000 + (GameManager.Instance.DefenseLv - 1) * 500} Gold";
+                    AbilityExplanation.text = $"장애물 충돌 시 데미지를 {GameManager.Instance.DefenseLv * 5} %만큼 감소됩니다. 무슨일이 일어날지 모르니 만일을위해 강화해둡시다.";
                     break;
                 }
         }
@@ -181,17 +182,17 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
             case 0:
                 {
                     AbilityImage_Main.sprite = AbilitySprite[SelectAbility];
-                    UpgradeMoney.text = $"{5000 + (++MaxHpLv - 1) * 500} Gold";
-                    AbilityNameAndLV.text = $"최대 체력 LV.{MaxHpLv}";
-                    AbilityExplanation.text = $"추가 체력이 총 {MaxHpLv * 5} 늘어납니다.체력이 떨어지면 빵들은 더 이상 재료를 모으지 못하니 지속적으로 강화합시다.";
+                    UpgradeMoney.text = $"{5000 + (++GameManager.Instance.MaxHpLv - 1) * 500} Gold";
+                    AbilityNameAndLV.text = $"최대 체력 LV.{GameManager.Instance.MaxHpLv}";
+                    AbilityExplanation.text = $"추가 체력이 총 {GameManager.Instance.MaxHpLv * 5} 늘어납니다.체력이 떨어지면 빵들은 더 이상 재료를 모으지 못하니 지속적으로 강화합시다.";
                     break;
                 }
             case 1:
                 {
                     AbilityImage_Main.sprite = AbilitySprite[SelectAbility];
-                    UpgradeMoney.text = $"{5000 + (++DefenseLv - 1) * 500} Gold";
-                    AbilityNameAndLV.text = $"충돌 데미지 감소 LV.{DefenseLv}";
-                    AbilityExplanation.text = $"장애물 충돌 시 데미지를 {DefenseLv * 5} %만큼 감소됩니다. 무슨일이 일어날지 모르니 만일을위해 강화해둡시다.";
+                    UpgradeMoney.text = $"{5000 + (++GameManager.Instance.DefenseLv - 1) * 500} Gold";
+                    AbilityNameAndLV.text = $"충돌 데미지 감소 LV.{GameManager.Instance.DefenseLv}";
+                    AbilityExplanation.text = $"장애물 충돌 시 데미지를 {GameManager.Instance.DefenseLv * 5} %만큼 감소됩니다. 무슨일이 일어날지 모르니 만일을위해 강화해둡시다.";
                     break;
                 }
         }

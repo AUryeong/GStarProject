@@ -49,8 +49,7 @@ public class IngameUIManager : Singleton<IngameUIManager>
     {
         hpBarRect.sizeDelta = new Vector2(hpSizeX * Player.Instance.fHp / 100, hpBarRect.sizeDelta.y);
         hpBarShakePos = hpBarRect.anchoredPosition;
-        int hpLevel = 1;
-        //hpIconImage.sprite = hpIconSprites[Mathf.CeilToInt(hpLevel / 10f) - 1];
+        hpIconImage.sprite = hpIconSprites[GameManager.Instance.MaxHpLv / 10];
         UpdateOvenBar();
     }
     public void PauseButton()

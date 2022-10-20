@@ -15,6 +15,7 @@ public class QusetScript : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+
     }
     private void Update()
     {
@@ -34,9 +35,13 @@ public class QusetScript : MonoBehaviour
         QusetContents = scriptable.QusetList[Idx];
         QusetImage.sprite = QusetContents.sprite;
         QusetrewardText.text = "" + QusetContents.rewards;
-        QusetText.text = QusetContents.text;
         QusetButton.onClick.AddListener(QusetClear);
         QusetButton.interactable = false;
+        QusetButtonText.text = "미달성";
+        if (QusetContents.qusetType == QusetType.Main)
+            QusetText.text = $"{QusetContents.text[0]} {QusetContents.qusetCondition} {QusetContents.text[1]}";
+        else
+            QusetText.text = QusetContents.text[0];
     }
     public void QusetClear()
     {
@@ -45,19 +50,23 @@ public class QusetScript : MonoBehaviour
             QusetButtonText.text = "미달성";
             QusetContents.isClear = false;
             QusetContents.qusetCondition = QusetContents.rewards + QusetContents.M_UpCondition * QusetContents.M_ClearCount;
+            QusetText.text = $"{QusetContents.text[0]} {QusetContents.qusetCondition} {QusetContents.text[1]}";
         }
         switch (QusetContents.rewardType)
         {
             case RewardType.Gold:
                 {
+                    GameManager.Instance.Gold += QusetContents.rewards;
                     return;
                 }
             case RewardType.Heart:
                 {
+                    GameManager.Instance.Heart += QusetContents.rewards;
                     return;
                 }
             case RewardType.Macaron:
                 {
+                    GameManager.Instance.Macaron += QusetContents.rewards;
                     return;
                 }
         }

@@ -7,7 +7,17 @@ public class GameManager : Singleton<GameManager>
 {
     public Ingredients Inside;
     public bool inGaming = true;
-    
+    [Header("InGameStats")]
+    public int selectBread;
+    public int selectMap;
+
+    [Header("Assets")]
+    public int Gold;
+    public int Macaron;
+    public int Heart;
+    [Header("Ability")]
+    public int MaxHpLv;
+    public int DefenseLv;
 
     //씬 나누는게 삭제될 가능성이 높아서 코드 대충짬
     List<int> ingredientIdxList = new List<int>();
