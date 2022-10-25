@@ -2244,7 +2244,7 @@ RectTransform:
   - {fileID: 685497025}
   - {fileID: 1715169676}
   m_Father: {fileID: 1568003343}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3101,8 +3101,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: 100}
-  m_SizeDelta: {x: 160, y: 180}
+  m_AnchoredPosition: {x: 0, y: 95}
+  m_SizeDelta: {x: 180, y: 105}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &294034664
 MonoBehaviour:
@@ -3180,8 +3180,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 25422e0d244ec0f459ef104f3e67370b, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -5172,7 +5172,7 @@ RectTransform:
   - {fileID: 1994356277}
   - {fileID: 2099299681}
   m_Father: {fileID: 1568003343}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5663,7 +5663,7 @@ GameObject:
   - component: {fileID: 685477935}
   - component: {fileID: 685477934}
   m_Layer: 5
-  m_Name: PayGold
+  m_Name: Macaron
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6087,7 +6087,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.0002600515, y: 0}
+  m_AnchoredPosition: {x: 0.0007514447, y: 0}
   m_SizeDelta: {x: -1780, y: 683}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &711645858
@@ -11899,8 +11899,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 552057461}
   - {fileID: 207809167}
+  - {fileID: 552057461}
   m_Father: {fileID: 1298985176}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12901,7 +12901,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GoldText: {fileID: 13607328}
-  BuyGoldText: {fileID: 1022127115}
+  MacaronText: {fileID: 1022127115}
   StaminaText: {fileID: 0}
   StaminaImage: {fileID: 1556337946}
   ShopBgPanel: {fileID: 1298985175}
@@ -12924,6 +12924,13 @@ MonoBehaviour:
   - {fileID: 294034664}
   - {fileID: 1994356278}
   - {fileID: 2099299682}
+  qusetButtonsSprite:
+  - {fileID: 21300000, guid: 25422e0d244ec0f459ef104f3e67370b, type: 3}
+  - {fileID: 21300000, guid: 58e878fa93c262a4eb1dbd555b8b857d, type: 3}
+  - {fileID: 21300000, guid: 2454bb0ad63cd79489995018aa1cf34c, type: 3}
+  - {fileID: 21300000, guid: 108c5b85a4e53e641a9a5c2e261a336f, type: 3}
+  - {fileID: 21300000, guid: ac12d286f84f1eb43930eca90262c708, type: 3}
+  - {fileID: 21300000, guid: 58d59123cf5cbb943a56f5098c2bee33, type: 3}
   qusetPrefab: {fileID: 1434964374479437888, guid: 349fdf4f58b7047419f8b70ee68ec67b, type: 3}
   MapPanel: []
   MapLock: 
@@ -13992,8 +13999,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 170, y: 80}
-  m_SizeDelta: {x: 160, y: 180}
+  m_AnchoredPosition: {x: 200, y: 90}
+  m_SizeDelta: {x: 180, y: 105}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1994356278
 MonoBehaviour:
@@ -14064,15 +14071,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: ac12d286f84f1eb43930eca90262c708, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -14531,7 +14538,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00007494804}
+  m_AnchoredPosition: {x: 0, y: 0.00011310416}
   m_SizeDelta: {x: 0, y: 20}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2049428066
@@ -15082,8 +15089,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 340, y: 80}
-  m_SizeDelta: {x: 160, y: 180}
+  m_AnchoredPosition: {x: 400, y: 90}
+  m_SizeDelta: {x: 180, y: 105}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2099299682
 MonoBehaviour:
@@ -15154,15 +15161,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 58d59123cf5cbb943a56f5098c2bee33, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

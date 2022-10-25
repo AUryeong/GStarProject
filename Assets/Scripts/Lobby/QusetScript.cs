@@ -5,13 +5,13 @@ using UnityEngine.UI;
 
 public class QusetScript : MonoBehaviour
 {
-    private Quset QusetContents;
-    [SerializeField] Image QusetImage;//퀘스트 보상 이미지
-    [SerializeField] Text QusetrewardText;//퀘스트 보상 텍스트
-    [SerializeField] Text QusetText; //퀘스트 내용 텍스트
-    [SerializeField] Button QusetButton; //퀘스트 내용 텍스트
-    [SerializeField] Text QusetButtonText; //퀘스트 내용 텍스트
-    [SerializeField] Slider QusetSliders;//퀘스트 진행도 슬라이더
+    private Quset qusetContents;
+    [SerializeField] Image qusetImage;//퀘스트 보상 이미지
+    [SerializeField] Text qusetrewardText;//퀘스트 보상 텍스트
+    [SerializeField] Text qusetText; //퀘스트 내용 텍스트
+    [SerializeField] Button qusetButton; //퀘스트 버튼
+    [SerializeField] Sprite[] qusetButtonImages;//버튼 이미지
+    [SerializeField] Slider qusetSliders;//퀘스트 진행도 슬라이더
     // Start is called before the first frame update
     private void Start()
     {
@@ -19,54 +19,60 @@ public class QusetScript : MonoBehaviour
     }
     private void Update()
     {
-        if (!QusetContents.isClear)
+        if (!qusetContents.isClear)
         {
-            QusetSliders.value = QusetContents.questSituation / QusetContents.qusetCondition;
-            if (QusetContents.qusetCondition >= QusetContents.questSituation)
+            qusetSliders.value = qusetContents.questSituation / qusetContents.qusetCondition;
+            if (qusetContents.qusetCondition <= qusetContents.questSituation)
             {
-                QusetButtonText.text = "달성";
-                QusetButton.interactable = true;
-                QusetContents.isClear = true;
+                qusetButton.image.sprite = qusetButtonImages[1];
+                qusetButton.interactable = true;
+                qusetContents.isClear = true;
             }
+        }
+        else if (qusetContents.qusetCondition > qusetContents.questSituation)
+        {
+            qusetButton.image.sprite = qusetButtonImages[0];
+            qusetButton.interactable = false;
+            qusetContents.isClear = false;
         }
     }
     public void SettingQuset(QusetScriptable scriptable, int Idx)
     {
-        QusetContents = scriptable.QusetList[Idx];
-        QusetImage.sprite = QusetContents.sprite;
-        QusetrewardText.text = "" + QusetContents.rewards;
-        QusetButton.onClick.AddListener(QusetClear);
-        QusetButton.interactable = false;
-        QusetButtonText.text = "미달성";
-        if (QusetContents.qusetType == QusetType.Main)
-            QusetText.text = $"{QusetContents.text[0]} {QusetContents.qusetCondition} {QusetContents.text[1]}";
+        qusetContents = scriptable.QusetList[Idx];
+        qusetImage.sprite = qusetContents.sprite;
+        qusetrewardText.text = "" + qusetContents.rewards;
+        qusetButton.onClick.AddListener(QusetClear);
+        qusetButton.interactable = false;
+        qusetButton.image.sprite = qusetButtonImages[0];
+        if (qusetContents.qusetType == QusetType.Main)
+            qusetText.text = $"{qusetContents.text[0]} {qusetContents.qusetCondition} {qusetContents.text[1]}";
         else
-            QusetText.text = QusetContents.text[0];
+            qusetText.text = qusetContents.text[0];
     }
     public void QusetClear()
     {
-        if (QusetContents.qusetType == QusetType.Main)
+        if (qusetContents.qusetType == QusetType.Main)
         {
-            QusetButtonText.text = "미달성";
-            QusetContents.isClear = false;
-            QusetContents.qusetCondition = QusetContents.rewards + QusetContents.M_UpCondition * QusetContents.M_ClearCount;
-            QusetText.text = $"{QusetContents.text[0]} {QusetContents.qusetCondition} {QusetContents.text[1]}";
+            qusetButton.image.sprite = qusetButtonImages[0];
+            qusetContents.isClear = false;
+            qusetContents.qusetCondition = qusetContents.rewards + qusetContents.M_UpCondition * qusetContents.M_ClearCount;
+            qusetText.text = $"{qusetContents.text[0]} {qusetContents.qusetCondition} {qusetContents.text[1]}";
         }
-        switch (QusetContents.rewardType)
+        switch (qusetContents.rewardType)
         {
             case RewardType.Gold:
                 {
-                    GameManager.Instance.Gold += QusetContents.rewards;
+                    GameManager.Instance.Gold += qusetContents.rewards;
                     return;
                 }
             case RewardType.Heart:
                 {
-                    GameManager.Instance.Heart += QusetContents.rewards;
+                    GameManager.Instance.Heart += qusetContents.rewards;
                     return;
                 }
             case RewardType.Macaron:
                 {
-                    GameManager.Instance.Macaron += QusetContents.rewards;
+                    GameManager.Instance.Macaron += qusetContents.rewards;
                     return;
                 }
         }

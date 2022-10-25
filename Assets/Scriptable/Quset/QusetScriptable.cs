@@ -9,7 +9,7 @@ public class QusetScriptable : ScriptableObject
 [System.Serializable]
 public class Quset
 {
-    public bool isClear;//클리어 bool
+    public bool isClear = false;//클리어 bool
     public float qusetCondition;//퀘스트 조건
     public float questSituation;//퀘스트 상황
     public Sprite sprite;//이미지

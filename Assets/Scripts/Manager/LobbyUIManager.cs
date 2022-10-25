@@ -16,7 +16,7 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     #endregion
     [Header("Top UI")]
     [SerializeField] Text GoldText;
-    [SerializeField] Text BuyGoldText;
+    [SerializeField] Text MacaronText;
     [SerializeField] Text StaminaText;
     [SerializeField] Image StaminaImage;
 
@@ -44,6 +44,7 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     public ScrollRect qusetScroll;
     public RectTransform[] qusetPanel;
     public Button[] qusetButtons;
+    public Sprite[] qusetButtonsSprite;
     public GameObject qusetPrefab;
     private int openingQusetPanel = 0;
     [Header("Map")]
@@ -70,7 +71,11 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
         Map.SetActive(false);
         ShopBgPanel.SetActive(false);
     }
-
+    void Update()
+    {
+        GoldText.text = $"{GameManager.Instance.Gold}";
+        MacaronText.text = $"{GameManager.Instance.Macaron}";
+    }
 
     public void OpenShopPanel(GameObject Object)
     {
@@ -133,17 +138,14 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
         qusetScroll.content = qusetPanel[Type];//콘텐츠 변경
         qusetPanel[openingQusetPanel].gameObject.SetActive(false);//이전 퀘스트창 비활성화
         qusetPanel[Type].gameObject.SetActive(true);//열려는 퀘스트창 활성화
-        qusetButtons[openingQusetPanel].transform.position -= new Vector3(0, 20, 0);//이전 선택창 내리기
-        qusetButtons[Type].transform.position += new Vector3(0, 20, 0);//선택창 올리기
-        Image openingColor = qusetButtons[openingQusetPanel].gameObject.GetComponent<Image>();
-        Image openPanelColor = qusetButtons[Type].gameObject.GetComponent<Image>();
-        openingColor.color = new Color(0.75f, 0.75f, 0.75f);//버튼 회색으로 변경
-        openPanelColor.color = new Color(1, 1, 1);//버튼 흰색으로 변경
+        qusetButtons[openingQusetPanel].transform.position -= new Vector3(0, 5, 0);//이전 선택창 내리기
+        qusetButtons[Type].transform.position += new Vector3(0, 5, 0);//선택창 올리기
+        qusetButtons[openingQusetPanel].image.sprite = qusetButtonsSprite[openingQusetPanel +3];
+        qusetButtons[Type].image.sprite = qusetButtonsSprite[Type];
         openingQusetPanel = Type;
     }
     void BuyButton(in int idx)
     {
-        Debug.Log(idx);
         SelectBread = idx;
         GameObject ClickButton = EventSystem.current.currentSelectedGameObject;
         SelectButtonTxt.text = "선택하기";
@@ -215,6 +217,7 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     }
     public void StartButton()
     {
+        GameManager.Instance.selectBread = SelectBread;
         SceneManager.LoadScene(0);
     }
 }
