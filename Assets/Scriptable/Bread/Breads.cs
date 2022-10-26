@@ -43,4 +43,5 @@ public class BreadStat
     public Sprite AbilityImage_2;
     public string AbilityText_1;
     public string AbilityText_2;
+    public bool isBuy;
 }

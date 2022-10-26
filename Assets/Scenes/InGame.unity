@@ -257,7 +257,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 23335642}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -266,8 +266,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 408, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 321.1155, y: -0.000081539}
+  m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &23335644
 MonoBehaviour:
@@ -1462,9 +1462,9 @@ MonoBehaviour:
   hpBarSlider: {fileID: 1405459999}
   hpIconImage: {fileID: 1480853792}
   hpIconSprites: []
-  OvenBar: {fileID: 0}
-  StartPoint: {fileID: 0}
-  EndPoint: {fileID: 0}
+  OvenBar: {fileID: 1670937521}
+  StartPoint: {fileID: 820371462}
+  EndPoint: {fileID: 1525313219}
   ingredientsIcon: {fileID: 26076384}
   ingredientsCount: {fileID: 1042580797}
   ingredientsIconBlank: {fileID: 21300000, guid: 7a9cede73019b424fa5aeabd15640a1f, type: 3}
@@ -3712,8 +3712,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 93.10504, y: -103}
-  m_SizeDelta: {x: 901.79, y: 100}
+  m_AnchoredPosition: {x: 43, y: -84.2912}
+  m_SizeDelta: {x: 687.1095, y: 90.2379}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1405459999
 MonoBehaviour:
@@ -4432,8 +4432,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 102.68994, y: -182}
-  m_SizeDelta: {x: 736.5641, y: 91.0054}
+  m_AnchoredPosition: {x: 43, y: -142.3927}
+  m_SizeDelta: {x: 610.6278, y: 81.3421}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1670937521
 MonoBehaviour:
@@ -4482,7 +4482,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.451
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -5005,7 +5005,7 @@ RectTransform:
   m_GameObject: {fileID: 1781874450}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0.6, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2022987249}
   m_RootOrder: 0
@@ -5013,7 +5013,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 50, y: 0}
+  m_SizeDelta: {x: 80.6, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1781874452
 MonoBehaviour:
