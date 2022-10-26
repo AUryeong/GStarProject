@@ -254,6 +254,7 @@ GameObject:
   - component: {fileID: 5429128338923264144}
   - component: {fileID: 5429128338923264146}
   - component: {fileID: 5429128338923264145}
+  - component: {fileID: 7398386904800327179}
   m_Layer: 5
   m_Name: Bread
   m_TagString: Untagged
@@ -324,6 +325,60 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7398386904800327179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5429128338923264175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d797197f49a35e4a9998f96dd31d0e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scriptable:
+    Name: 
+    ImageSprite: {fileID: 0}
+    Rank: 0
+    LV: 0
+    EXP: 0
+    MaxEXP: 0
+    HP: 0
+    Price: 0
+    AbilityLV_1: 0
+    AbilityLV_2: 0
+    AbilityImage_1: {fileID: 0}
+    AbilityImage_2: {fileID: 0}
+    AbilityText_1: 
+    AbilityText_2: 
+    isBuy: 0
+  mainName: {fileID: 5429128338820228590}
+  detailButton: {fileID: 5429128340121550115}
+  mainImage: {fileID: 5429128340055788478}
+  mainRanks:
+  - {fileID: 5429128338853928717}
+  - {fileID: 5429128340219063440}
+  - {fileID: 5429128340065770664}
+  mainLv: {fileID: 5429128339047410747}
+  mainExp: {fileID: 5429128338620263246}
+  mainHp: {fileID: 5429128340416806755}
+  mainAbility: {fileID: 5429128339750603366}
+  mainSelectButton: {fileID: 5429128338942700947}
+  mainSelectText: {fileID: 0}
+  detailPanel: {fileID: 0}
+  detailRank: []
+  detailImage: {fileID: 0}
+  detailName: {fileID: 0}
+  detailText: {fileID: 0}
+  detailLv: {fileID: 0}
+  detailExp: {fileID: 0}
+  detailHp: {fileID: 0}
+  detailAbility: {fileID: 0}
+  detailLvUp: {fileID: 0}
+  detailPrice: {fileID: 0}
+  detailHpUp: {fileID: 0}
+  detailAbilityUp: {fileID: 0}
 --- !u!1 &5429128338942700945
 GameObject:
   m_ObjectHideFlags: 0

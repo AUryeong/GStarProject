@@ -13,6 +13,7 @@ public class QusetScript : MonoBehaviour
     [SerializeField] Sprite[] qusetButtonImages;//버튼 이미지
     [SerializeField] Slider qusetSliders;//퀘스트 진행도 슬라이더
     [SerializeField] GameObject fadePanel;//퀘스트 진행도 슬라이더
+    private int qusetIdx;
     // Start is called before the first frame update
     private void Start()
     {
@@ -20,7 +21,7 @@ public class QusetScript : MonoBehaviour
     }
     private void Update()
     {
-        if(qusetContents.isClear == false)
+        if (qusetContents.isClear == false)
         {
             qusetSliders.value = qusetContents.questSituation / qusetContents.qusetCondition;
             if (qusetContents.qusetCondition <= qusetContents.questSituation)
@@ -38,19 +39,21 @@ public class QusetScript : MonoBehaviour
     public void SettingQuset(QusetScriptable scriptable, int Idx)
     {
         qusetContents = scriptable.QusetList[Idx];
+        qusetIdx = Idx;
         qusetImage.sprite = qusetContents.sprite;
         qusetrewardText.text = "" + qusetContents.rewards;
         qusetButton.onClick.AddListener(QusetClear);
         qusetButton.interactable = false;
         qusetButton.image.sprite = qusetButtonImages[0];
         if (qusetContents.qusetType == QusetType.Main)
-            qusetText.text = $"{qusetContents.text[0]} {qusetContents.qusetCondition} {qusetContents.text[1]}";
+            qusetText.text = $"{qusetContents.text[0]}{qusetContents.qusetCondition}{qusetContents.text[1]}";
         else
             qusetText.text = qusetContents.text[0];
     }
     public void QusetClear()
     {
         qusetContents.isClear = true;
+        //메인일때는 달성시 바로 초기화
         if (qusetContents.qusetType == QusetType.Main)
         {
             qusetButton.image.sprite = qusetButtonImages[0];
@@ -64,6 +67,22 @@ public class QusetScript : MonoBehaviour
             fadePanel.SetActive(true);
             transform.SetAsLastSibling();
         }
+
+        //QusetUpdate - 클리어 횟수 추가
+        switch (qusetContents.qusetType)
+        {
+            case QusetType.Day:
+                {
+                    QusetManager.Instance.QusetUpdate(qusetContents.qusetType, 5, 1);//5 - 일일 퀘스트 클리어 갯수
+                    break;
+                }
+            case QusetType.Aweek:
+                {
+                    QusetManager.Instance.QusetUpdate(qusetContents.qusetType, 7, 1);//7 - 주간 퀘스트 클리어 갯수
+                    break;
+                }
+        }
+
         switch (qusetContents.rewardType)
         {
             case RewardType.Gold:

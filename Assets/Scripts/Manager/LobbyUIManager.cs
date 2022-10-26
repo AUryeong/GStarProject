@@ -104,7 +104,7 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
         foreach (BreadStat Bread in BreadList.Stats)
         {
             GameObject breadPanelObject = Instantiate(BreadPrefab, transform.position, transform.rotation, BreadContent.transform);
-            breadPanelObject.transform.GetComponent<BreadScript>().BreadSetting(breadCount);
+            breadPanelObject.transform.GetComponent<BreadScript>().BreadSetting(BreadScriptable,breadCount);
             breadCount++;
         }
     }

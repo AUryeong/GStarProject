@@ -19,7 +19,6 @@ public class BreadScript : MonoBehaviour
     [Space(10f)]
     [SerializeField] Button mainSelectButton;
     [SerializeField] Text mainSelectText;
-    [Space(10f)]
     [Header("DetailPanel")]
     [SerializeField] GameObject detailPanel;
     [Space(10f)]
@@ -41,8 +40,9 @@ public class BreadScript : MonoBehaviour
     {
 
     }
-    public void BreadSetting(int breadCount)
+    public void BreadSetting(Breads breadscriptable,int breadCount)
     {
+        scriptable = breadscriptable.Stats[breadCount];
         mainName.text = scriptable.Name;
         mainImage.sprite = scriptable.ImageSprite;
         mainSelectButton.onClick.AddListener(() => BuyButton(breadCount));
