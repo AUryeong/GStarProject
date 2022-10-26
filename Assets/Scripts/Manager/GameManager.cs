@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : Singleton<GameManager>
 {
     public Ingredients Inside;
+    public Breads Breads;
     public bool inGaming = true;
     [Header("InGameStats")]
     public int selectBread;

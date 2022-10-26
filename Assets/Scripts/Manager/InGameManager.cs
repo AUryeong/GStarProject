@@ -13,7 +13,7 @@ public class InGameManager : Singleton<InGameManager>
 
     private void Update()
     {
-        if (GameManager.Instance.inGaming)
+        if (Player.Instance.isControllable)
             CameraMove();
     }
     protected void CameraMove()
@@ -22,16 +22,19 @@ public class InGameManager : Singleton<InGameManager>
     }
     public void GameOver()
     {
-        GameManager.Instance.inGaming = false;
-        GameManager.Instance.GameOver(ingredients);
         Player.Instance.gameObject.layer = LayerMask.NameToLayer("PlayerInv");
         Camera.main.DOShakePosition(0.5f, 6);
         Player.Instance.MoveCenter();
     }
 
+    public void GameOverMoveCP()
+    {
+        GameManager.Instance.GameOver(ingredients);
+    }
+
     public void AddIngredients(Ingredient ingredient)
     {
         ingredients.Add(ingredient.ingredientIdx);
-        uiManager.UpdateIngredientsCount(ingredient.isNegative, ingredients.Count);
+        uiManager.UpdateIngredientsCount(ingredient, ingredients.Count);
     }
 }

@@ -26,7 +26,7 @@ public class Ingredients : ScriptableObject
         Salmon,
         Bacon,
         Egg,
-        Meatball,
+        Meetball,
         BerryJam,
         Potato,
         Cream,
@@ -41,6 +41,7 @@ public class Ingredients : ScriptableObject
         KoChuJang,
         Ice,
         PoplingCandy,
-        LiveOctopus
+        LiveOctopus,
+        NONE
     }
 }

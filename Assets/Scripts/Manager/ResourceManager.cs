@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class ResourceManager : Singleton<ResourceManager>
 {
@@ -11,15 +12,13 @@ public class ResourceManager : Singleton<ResourceManager>
     protected override void Awake()
     {
         base.Awake();
-        Sprite[] sprites = Resources.LoadAll<Sprite>("Ingredients");
-        Sprite[] spritesIcon = Resources.LoadAll<Sprite>("Ingredients/Icon");
-        for (int i = 0; i < sprites.Length; i++)
+        Sprite empty = Resources.Load<Sprite>("Ingredients/SandWich/Square");
+        for (Ingredients.Type i = 0; i < Ingredients.Type.NONE; i++)
         {
-            if (ingredients.Stats.Count < i)
-            {
-                ingredients.Stats[i].IconSprite = sprites[i];
-                ingredients.Stats[i].IconSprite = sprites[i];
-            }
+            ingredients.Stats[(int)i].IconSprite = Resources.Load<Sprite>("Ingredients/" + i.ToString());
+            ingredients.Stats[(int)i].OutlineSprite = Resources.Load<Sprite>("Ingredients/Icon/Icon_" + i.ToString());
+            ingredients.Stats[(int)i].SandwichSprite = empty;
+            //TODO 쌓이는 오브젝트
         }
     }
 }

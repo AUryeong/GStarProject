@@ -20,6 +20,7 @@ public class Player : Singleton<Player>
 
     private PlayerState state;
 
+    public Breads.Type type;
     public float fSpeed;
     public float fHp;
 
@@ -28,6 +29,7 @@ public class Player : Singleton<Player>
     {
         get; private set; 
     } = true;
+
 
     [Header("플레이어 점프 관련")]
     public float fJumpSpeed;
@@ -48,6 +50,11 @@ public class Player : Singleton<Player>
 
     private float downGameoverY = -4.5f;
 
+    //시간 지날때마다 다는 hp
+    private float hpRemoveCool = 1;
+    private float hpRemoveDuration = 0;
+    private float hpRemoveValue = 1;
+
     protected override void Awake()
     {
         base.Awake();
@@ -59,6 +66,7 @@ public class Player : Singleton<Player>
 
     protected virtual void OnEnable()
     {
+        fHp = GameManager.Instance.Breads.Stats[(int)type].HP;
         hp = fHp;
     }
 
@@ -71,8 +79,12 @@ public class Player : Singleton<Player>
             CheckJumpReset();
             CheckPressKey();
             CheckAnimator();
+            HpRemove();
             if (transform.position.y <= downGameoverY)
-                GameOver();
+            {
+                isControllable = false;
+                InGameManager.Instance.GameOverMoveCP();
+            }
         }
         if(Input.GetKeyDown(KeyCode.C))
         {
@@ -92,7 +104,8 @@ public class Player : Singleton<Player>
             Move(Time.deltaTime);
             if(transform.position.x >= Camera.main.ScreenToWorldPoint(Vector3.zero).x)
             {
-                //죽음 TODO
+                yield return new WaitForSeconds(1);
+                InGameManager.Instance.GameOverMoveCP();
                 yield break;
             }
             yield return null;
@@ -115,6 +128,21 @@ public class Player : Singleton<Player>
                 state = PlayerState.Jumping;
             if (jumpCount == 0) // 땅에서 떨어질때는 점프 횟수 줄이기 위함
                 jumpCount++;
+        }
+    }
+
+    protected virtual void HpRemove()
+    {
+        hpRemoveDuration += Time.deltaTime;
+        if(hpRemoveDuration >= hpRemoveCool)
+        {
+            hpRemoveDuration -= hpRemoveCool;
+            hp -= hpRemoveValue;
+            if (hp <= 0)
+            {
+                GameOver();
+                return;
+            }
         }
     }
 
