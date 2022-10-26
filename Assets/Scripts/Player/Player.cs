@@ -81,6 +81,7 @@ public class Player : Singleton<Player>
             CheckPressKey();
             CheckAnimator();
             HpRemove();
+            LiveUpdate(deltaTime);
             if (transform.position.y <= downGameoverY)
             {
                 isControllable = false;
@@ -91,6 +92,11 @@ public class Player : Singleton<Player>
         {
             GameOver();
         }
+    }
+
+    //살아있으면 작동하는 업데이트, 능력에서 사용 예정
+    protected virtual void LiveUpdate(float deltaTime)
+    {
     }
 
     public void MoveCenter()
@@ -232,7 +238,7 @@ public class Player : Singleton<Player>
     protected virtual void OnTriggerEnter2D(Collider2D collider2D)
     {
         if (collider2D == null) return;
-        if (isControllable || hp < 0) return;
+        if (!isControllable || hp < 0) return;
 
         if (collider2D.CompareTag("Block"))
             HurtByBlock(collider2D.GetComponent<Block>());
