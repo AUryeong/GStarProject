@@ -12,6 +12,7 @@ public class QusetScript : MonoBehaviour
     [SerializeField] Button qusetButton; //퀘스트 버튼
     [SerializeField] Sprite[] qusetButtonImages;//버튼 이미지
     [SerializeField] Slider qusetSliders;//퀘스트 진행도 슬라이더
+    [SerializeField] GameObject fadePanel;//퀘스트 진행도 슬라이더
     // Start is called before the first frame update
     private void Start()
     {
@@ -19,21 +20,19 @@ public class QusetScript : MonoBehaviour
     }
     private void Update()
     {
-        if (!qusetContents.isClear)
+        if(qusetContents.isClear == false)
         {
             qusetSliders.value = qusetContents.questSituation / qusetContents.qusetCondition;
             if (qusetContents.qusetCondition <= qusetContents.questSituation)
             {
                 qusetButton.image.sprite = qusetButtonImages[1];
                 qusetButton.interactable = true;
-                qusetContents.isClear = true;
             }
-        }
-        else if (qusetContents.qusetCondition > qusetContents.questSituation)
-        {
-            qusetButton.image.sprite = qusetButtonImages[0];
-            qusetButton.interactable = false;
-            qusetContents.isClear = false;
+            else
+            {
+                qusetButton.image.sprite = qusetButtonImages[0];
+                qusetButton.interactable = false;
+            }
         }
     }
     public void SettingQuset(QusetScriptable scriptable, int Idx)
@@ -51,12 +50,19 @@ public class QusetScript : MonoBehaviour
     }
     public void QusetClear()
     {
+        qusetContents.isClear = true;
         if (qusetContents.qusetType == QusetType.Main)
         {
             qusetButton.image.sprite = qusetButtonImages[0];
             qusetContents.isClear = false;
             qusetContents.qusetCondition = qusetContents.rewards + qusetContents.M_UpCondition * qusetContents.M_ClearCount;
             qusetText.text = $"{qusetContents.text[0]} {qusetContents.qusetCondition} {qusetContents.text[1]}";
+        }
+        else
+        {
+            qusetButton.gameObject.SetActive(false);
+            fadePanel.SetActive(true);
+            transform.SetAsLastSibling();
         }
         switch (qusetContents.rewardType)
         {
@@ -76,5 +82,6 @@ public class QusetScript : MonoBehaviour
                     return;
                 }
         }
+
     }
 }
