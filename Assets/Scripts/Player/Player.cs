@@ -22,7 +22,7 @@ public class Player : Singleton<Player>
 
     public Breads.Type type;
     public float fSpeed = 5;
-    public float fHp;
+    [HideInInspector] public float fHp;
 
     public float hp;
     public bool isControllable
