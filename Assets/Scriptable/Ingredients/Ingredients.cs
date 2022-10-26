@@ -6,12 +6,42 @@ using UnityEngine;
 [System.Serializable]
 public class stats
 {
-    public Sprite SandwichSprite;
-    public Sprite IconSprite;
-    public Sprite OutlineSprite;
+    [HideInInspector] public Sprite SandwichSprite;
+    [HideInInspector] public Sprite IconSprite;
+    [HideInInspector] public Sprite OutlineSprite;
     public int Size;
 }
 public class Ingredients : ScriptableObject
 {
     public List<stats> Stats = new List<stats>();
+    public enum Type
+    {
+        Ham,
+        Chicken,
+        Lettuce,
+        Tomato,
+        Tuna,
+        Cheese,
+        Butter,
+        Salmon,
+        Bacon,
+        Egg,
+        Meetball,
+        BerryJam,
+        Potato,
+        Cream,
+        PeanutButter,
+        Kimchi,
+        Durian,
+        MintChoco,
+        Oyster,
+        PineApple,
+        Cilantro,
+        Cucumber,
+        KoChuJang,
+        Ice,
+        PoplingCandy,
+        LiveOctopus,
+        NONE
+    }
 }

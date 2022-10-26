@@ -18,35 +18,43 @@ public class Player : Singleton<Player>
     protected Animator animator;
     protected BoxCollider2D colider2D;
 
-    private PlayerState state;
+    protected PlayerState state;
 
-    public float fSpeed;
-    public float fHp;
+    public Breads.Type type;
+    public float fSpeed = 5;
+    [HideInInspector] public float fHp;
 
     public float hp;
     public bool isControllable
     {
-        get; private set; 
+        get; protected set; 
     } = true;
 
+
     [Header("플레이어 점프 관련")]
-    public float fJumpSpeed;
-    private float jumpCheckDistance = 0.1f;
-    private int jumpCount = 0;
+    public float fJumpSpeed = 10;
+    protected float jumpCheckDistance = 0.1f;
+    protected int jumpCount = 0;
     public int jumpMaxCount = 2;
 
     //장애물 충돌
     protected bool hitable = true;
     protected float hitDamage = 10;
-    private float hitFadeInTime = 0.1f;
-    private float hitFadeInAlpha = 0.5f;
-    private float hitFadeOutTime = 0.9f;
+    protected float hitFadeInTime = 0.1f;
+    protected float hitFadeInAlpha = 0.5f;
+    protected float hitFadeOutTime = 0.9f;
 
-    private Vector2 idleColiderSize = new Vector2(0.8f, 2f);
-    private Vector2 slidingColiderSize = new Vector2(2, 0.8f);
-    private Vector2 jumpingColiderSize = new Vector2(1f, 1f);
+    [Header("장애물 충돌 판정")]
+    public Vector2 idleColiderSize = new Vector2(0.8f, 2f);
+    public Vector2 slidingColiderSize = new Vector2(2, 0.8f);
+    public Vector2 jumpingColiderSize = new Vector2(1f, 1f);
 
-    private float downGameoverY = -4.5f;
+    protected float downGameoverY = -4.5f;
+
+    //시간 지날때마다 다는 hp
+    protected float hpRemoveCool = 1;
+    protected float hpRemoveDuration = 0;
+    protected float hpRemoveValue = 1;
 
     protected override void Awake()
     {
@@ -59,20 +67,25 @@ public class Player : Singleton<Player>
 
     protected virtual void OnEnable()
     {
+        fHp = GameManager.Instance.Breads.Stats[(int)type].HP;
         hp = fHp;
     }
 
     protected virtual void Update()
     {
         float deltaTime = Time.deltaTime;
-        if (hp > 0)
+        if (hp > 0 && isControllable)
         {
             Move(deltaTime);
             CheckJumpReset();
             CheckPressKey();
             CheckAnimator();
+            HpRemove();
             if (transform.position.y <= downGameoverY)
-                GameOver();
+            {
+                isControllable = false;
+                InGameManager.Instance.GameOverMoveCP();
+            }
         }
         if(Input.GetKeyDown(KeyCode.C))
         {
@@ -92,7 +105,9 @@ public class Player : Singleton<Player>
             Move(Time.deltaTime);
             if(transform.position.x >= Camera.main.ScreenToWorldPoint(Vector3.zero).x)
             {
-                //죽음 TODO
+                animator.Play("Die");
+                yield return new WaitForSeconds(2);
+                InGameManager.Instance.GameOverMoveCP();
                 yield break;
             }
             yield return null;
@@ -118,6 +133,21 @@ public class Player : Singleton<Player>
         }
     }
 
+    protected virtual void HpRemove()
+    {
+        hpRemoveDuration += Time.deltaTime;
+        if(hpRemoveDuration >= hpRemoveCool)
+        {
+            hpRemoveDuration -= hpRemoveCool;
+            hp -= hpRemoveValue;
+            if (hp <= 0)
+            {
+                GameOver();
+                return;
+            }
+        }
+    }
+
     //이동을 관리하는 함수
     protected virtual void Move(float deltaTime)
     {
@@ -140,8 +170,11 @@ public class Player : Singleton<Player>
 
     protected virtual void GameOver()
     {
-        isControllable = false;
-        InGameManager.Instance.GameOver();
+        if (isControllable)
+        {
+            isControllable = false;
+            InGameManager.Instance.GameOver();
+        }
     }
 
 
@@ -198,8 +231,8 @@ public class Player : Singleton<Player>
 
     protected virtual void OnTriggerEnter2D(Collider2D collider2D)
     {
-        if (collider2D == null)
-            return;
+        if (collider2D == null) return;
+        if (isControllable || hp < 0) return;
 
         if (collider2D.CompareTag("Block"))
             HurtByBlock(collider2D.GetComponent<Block>());
@@ -212,7 +245,7 @@ public class Player : Singleton<Player>
     }
 
     //재료 획득
-    protected void AddIngredient(Ingredient ingredient)
+    protected virtual void AddIngredient(Ingredient ingredient)
     {
         ingredient.OnGet();
         InGameManager.Instance.AddIngredients(ingredient);

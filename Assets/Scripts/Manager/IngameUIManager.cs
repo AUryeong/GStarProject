@@ -49,8 +49,8 @@ public class IngameUIManager : Singleton<IngameUIManager>
     {
         hpBarRect.sizeDelta = new Vector2(hpSizeX * Player.Instance.fHp / 100, hpBarRect.sizeDelta.y);
         hpBarShakePos = hpBarRect.anchoredPosition;
-        hpIconImage.sprite = hpIconSprites[GameManager.Instance.MaxHpLv / 10];
         UpdateOvenBar();
+        hpIconImage.sprite = hpIconSprites[GameManager.Instance.MaxHpLv / 10];
     }
     public void PauseButton()
     {
@@ -137,14 +137,11 @@ public class IngameUIManager : Singleton<IngameUIManager>
             hpIconImage.rectTransform.localScale = Vector3.one;
         }
     }
-    public void UpdateIngredientsCount(bool isNegative, int count)
+    public void UpdateIngredientsCount(int ingredientIdx, int count)
     {
         ingredientsCount.text = "X" + count.ToString();
         ingredientsCount.rectTransform.DOPunchScale(Vector3.one * 0.4f, 0.2f);
-        if (isNegative)
-            ingredientsIcon.sprite = ingredientsIconNeg;
-        else
-            ingredientsIcon.sprite = ingredientsIconPos;
+        ingredientsIcon.sprite = GameManager.Instance.Inside.Stats[ingredientIdx].OutlineSprite;
     }
     //아래부터 버튼
 

@@ -12,7 +12,7 @@ public class Breads : ScriptableObject
         Sesame,
         WaterMelon,
         Punch,
-        Tofu,
+        Tufu,
         Buttertop,
         Pullman,
         Toast,
