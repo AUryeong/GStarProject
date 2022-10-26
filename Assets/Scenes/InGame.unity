@@ -956,6 +956,63 @@ RectTransform:
   m_AnchoredPosition: {x: -38, y: -35}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 1, y: 1}
+--- !u!1001 &181238725
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2358966065156922116, guid: f029403e818610449bcfeca62e678424, type: 3}
+      propertyPath: m_Name
+      value: Milk_Bread
+      objectReference: {fileID: 0}
+    - target: {fileID: 2358966065156922234, guid: f029403e818610449bcfeca62e678424, type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2358966065156922234, guid: f029403e818610449bcfeca62e678424, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -12.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 2358966065156922234, guid: f029403e818610449bcfeca62e678424, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2358966065156922234, guid: f029403e818610449bcfeca62e678424, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2358966065156922234, guid: f029403e818610449bcfeca62e678424, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2358966065156922234, guid: f029403e818610449bcfeca62e678424, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2358966065156922234, guid: f029403e818610449bcfeca62e678424, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2358966065156922234, guid: f029403e818610449bcfeca62e678424, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2358966065156922234, guid: f029403e818610449bcfeca62e678424, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2358966065156922234, guid: f029403e818610449bcfeca62e678424, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2358966065156922234, guid: f029403e818610449bcfeca62e678424, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f029403e818610449bcfeca62e678424, type: 3}
 --- !u!1 &211345826
 GameObject:
   m_ObjectHideFlags: 0
@@ -2866,63 +2923,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &879837999
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3128059375846203986, guid: f029403e818610449bcfeca62e678424, type: 3}
-      propertyPath: m_Name
-      value: Milk_Bread
-      objectReference: {fileID: 0}
-    - target: {fileID: 3128059375846203990, guid: f029403e818610449bcfeca62e678424, type: 3}
-      propertyPath: m_RootOrder
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 3128059375846203990, guid: f029403e818610449bcfeca62e678424, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -12.42
-      objectReference: {fileID: 0}
-    - target: {fileID: 3128059375846203990, guid: f029403e818610449bcfeca62e678424, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3128059375846203990, guid: f029403e818610449bcfeca62e678424, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3128059375846203990, guid: f029403e818610449bcfeca62e678424, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3128059375846203990, guid: f029403e818610449bcfeca62e678424, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3128059375846203990, guid: f029403e818610449bcfeca62e678424, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3128059375846203990, guid: f029403e818610449bcfeca62e678424, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3128059375846203990, guid: f029403e818610449bcfeca62e678424, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3128059375846203990, guid: f029403e818610449bcfeca62e678424, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3128059375846203990, guid: f029403e818610449bcfeca62e678424, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: f029403e818610449bcfeca62e678424, type: 3}
 --- !u!1 &881048830
 GameObject:
   m_ObjectHideFlags: 0
@@ -6468,7 +6468,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Inside: {fileID: 11400000, guid: 2e224c58cda19024abf407faf4f77ea8, type: 2}
-  Breads: {fileID: 0}
+  Breads: {fileID: 11400000, guid: 5b31b5c9ae4ed8d4ba162f0581743b00, type: 2}
   inGaming: 1
   selectBread: 0
   selectMap: 0

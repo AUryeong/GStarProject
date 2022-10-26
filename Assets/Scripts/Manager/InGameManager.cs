@@ -35,6 +35,6 @@ public class InGameManager : Singleton<InGameManager>
     public void AddIngredients(Ingredient ingredient)
     {
         ingredients.Add(ingredient.ingredientIdx);
-        uiManager.UpdateIngredientsCount(ingredient, ingredients.Count);
+        uiManager.UpdateIngredientsCount(ingredient.ingredientIdx, ingredients.Count);
     }
 }

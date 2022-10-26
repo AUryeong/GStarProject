@@ -17,6 +17,10 @@ public class ResourceManager : Singleton<ResourceManager>
         {
             ingredients.Stats[(int)i].IconSprite = Resources.Load<Sprite>("Ingredients/" + i.ToString());
             ingredients.Stats[(int)i].OutlineSprite = Resources.Load<Sprite>("Ingredients/Icon/Icon_" + i.ToString());
+            if (ingredients.Stats[(int)i].IconSprite == null || ingredients.Stats[(int)i].OutlineSprite == null)
+            {
+                Debug.Log(i);
+            }
             ingredients.Stats[(int)i].SandwichSprite = empty;
             //TODO 쌓이는 오브젝트
         }

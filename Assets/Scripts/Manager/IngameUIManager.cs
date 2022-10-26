@@ -137,11 +137,11 @@ public class IngameUIManager : Singleton<IngameUIManager>
             hpIconImage.rectTransform.localScale = Vector3.one;
         }
     }
-    public void UpdateIngredientsCount(Ingredient ingredient, int count)
+    public void UpdateIngredientsCount(int ingredientIdx, int count)
     {
         ingredientsCount.text = "X" + count.ToString();
         ingredientsCount.rectTransform.DOPunchScale(Vector3.one * 0.4f, 0.2f);
-        ingredientsIcon.sprite = GameManager.Instance.Inside.Stats[ingredient.ingredientIdx].OutlineSprite;
+        ingredientsIcon.sprite = GameManager.Instance.Inside.Stats[ingredientIdx].OutlineSprite;
     }
     //아래부터 버튼
 
