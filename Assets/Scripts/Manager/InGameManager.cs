@@ -35,8 +35,8 @@ public class InGameManager : Singleton<InGameManager>
     public void GameOver()
     {
         player.gameObject.layer = LayerMask.NameToLayer("PlayerInv");
-        Camera.main.DOShakePosition(0.5f, 6);
         player.MoveCenter();
+        Camera.main.DOShakePosition(0.5f, 6);
     }
 
     public void GameOverMoveCP()

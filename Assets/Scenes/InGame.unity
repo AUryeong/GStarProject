@@ -958,20 +958,21 @@ MonoBehaviour:
   uiManager: {fileID: 280773575}
   gold: 0
   breadArray:
-  - {fileID: 2358966065156922116, guid: f029403e818610449bcfeca62e678424, type: 3}
+  - {fileID: 6148039255070333001, guid: f029403e818610449bcfeca62e678424, type: 3}
+  - {fileID: 6148039255070333001, guid: f029403e818610449bcfeca62e678424, type: 3}
+  - {fileID: 6148039255070333001, guid: f029403e818610449bcfeca62e678424, type: 3}
+  - {fileID: 8660454301742699941, guid: 7111c3b3aa6188040a38ca3f566b92a1, type: 3}
+  - {fileID: 6148039255070333001, guid: f029403e818610449bcfeca62e678424, type: 3}
+  - {fileID: 1550404406684823248, guid: a7a9600e3aaf32b479d921d69f5ff4df, type: 3}
+  - {fileID: 6148039255070333001, guid: f029403e818610449bcfeca62e678424, type: 3}
+  - {fileID: 6148039255070333001, guid: f029403e818610449bcfeca62e678424, type: 3}
+  - {fileID: 6148039255070333001, guid: f029403e818610449bcfeca62e678424, type: 3}
   - {fileID: 5519395511417958222, guid: 99a05da4f824f54409017122e8c22ee1, type: 3}
-  - {fileID: 1550404406684823248, guid: a7a9600e3aaf32b479d921d69f5ff4df, type: 3}
-  - {fileID: 1550404406684823248, guid: a7a9600e3aaf32b479d921d69f5ff4df, type: 3}
-  - {fileID: 1550404406684823248, guid: a7a9600e3aaf32b479d921d69f5ff4df, type: 3}
-  - {fileID: 1550404406684823248, guid: a7a9600e3aaf32b479d921d69f5ff4df, type: 3}
-  - {fileID: 1550404406684823248, guid: a7a9600e3aaf32b479d921d69f5ff4df, type: 3}
-  - {fileID: 1550404406684823248, guid: a7a9600e3aaf32b479d921d69f5ff4df, type: 3}
-  - {fileID: 5519395511417958222, guid: 99a05da4f824f54409017122e8c22ee1, type: 3}
-  - {fileID: 5519395511417958222, guid: 99a05da4f824f54409017122e8c22ee1, type: 3}
-  - {fileID: 1550404406684823248, guid: a7a9600e3aaf32b479d921d69f5ff4df, type: 3}
-  - {fileID: 1550404406684823248, guid: a7a9600e3aaf32b479d921d69f5ff4df, type: 3}
-  - {fileID: 1550404406684823248, guid: a7a9600e3aaf32b479d921d69f5ff4df, type: 3}
-  - {fileID: 1550404406684823248, guid: a7a9600e3aaf32b479d921d69f5ff4df, type: 3}
+  - {fileID: 6148039255070333001, guid: f029403e818610449bcfeca62e678424, type: 3}
+  - {fileID: 6148039255070333001, guid: f029403e818610449bcfeca62e678424, type: 3}
+  - {fileID: 3577672963972731989, guid: 7871b6df0e7719644a7aa0347957243d, type: 3}
+  - {fileID: 6148039255070333001, guid: f029403e818610449bcfeca62e678424, type: 3}
+  - {fileID: 6148039255070333001, guid: f029403e818610449bcfeca62e678424, type: 3}
   startPos: {x: -12.5, y: 0, z: 0}
 --- !u!1 &240130977
 GameObject:
@@ -3788,7 +3789,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1525313219}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.4, y: 0, z: 0}
+  m_LocalPosition: {x: 36.29, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
