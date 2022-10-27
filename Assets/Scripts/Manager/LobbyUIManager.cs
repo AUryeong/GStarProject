@@ -15,12 +15,6 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     #region Test
     private int SelectAbility = 0;//0 : MaxHp , 1 : Defense
     #endregion
-    [Header("Top UI")]
-    [SerializeField] Text GoldText;
-    [SerializeField] Text MacaronText;
-    [SerializeField] Text StaminaText;
-    [SerializeField] Image StaminaImage;
-
     [Header("Shop Object")]
     [SerializeField] GameObject ShopBgPanel;
     [SerializeField] GameObject Bread;
@@ -30,17 +24,29 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     [SerializeField] Vector3 shopClosePos;
     private GameObject ShopPanelObject;
 
+    [Header("Top UI")]
+    [Space(10f)]
+    [SerializeField] Text GoldText;
+    [SerializeField] Text MacaronText;
+    [SerializeField] Text StaminaText;
+    [SerializeField] Image StaminaImage;
+
+    [Header("Mid UI")]
+    [Space(10f)]
+    [SerializeField] Animator breadAnim;
+
+    [Header("Bottom UI")]
+    [Header("Shop UI")]
+    [SerializeField] GameObject shopUIGroup;
+    [SerializeField] Vector3 shopUIOpenPos;
+    [SerializeField] Vector3 shopUIClosePos;
     [Header("Bread")]
-    [SerializeField] Breads BreadScriptable;
-    [SerializeField] GameObject BreadPrefab;
-    [SerializeField] GameObject BreadContent;
+    [Space(10f)]
+    [SerializeField] Breads breadScriptable;
+    [SerializeField] GameObject breadPrefab;
+    [SerializeField] GameObject breadContent;
     //[SerializeField] List<GameObject> BreadPanels = new List<GameObject>();//빵 정보창 오브젝트
-    private List<Text> LVTexts = new List<Text>();//레벨 텍스트 리스트
-    private List<Slider> EXPSliders = new List<Slider>();//경험치바 리스트
-    private List<Text> HPTexts = new List<Text>();//체력 텍스트 리스트
-    private List<Text> BuyBtuttonText = new List<Text>();//선택 버튼 텍스트
-    public int SelectBread;
-    private Text SelectButtonTxt;
+    public Breads.Type selectBread;
 
     [Header("Quset")]
     public QusetScriptable[] qusetScriptables;
@@ -51,27 +57,25 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     public GameObject qusetPrefab;
     private int openingQusetPanel = 0;
     [Header("Map")]
-    [SerializeField] List<GameObject> MapPanel = new List<GameObject>();
-    [SerializeField] bool[] MapLock;
+    [SerializeField] List<GameObject> mapPanel = new List<GameObject>();
+    [SerializeField] bool[] mapLock;
     [Header("Start")]
-    [SerializeField] GameObject StartPanel;//정비 화면
-    [SerializeField] GameObject ReCheckPanel;//정비 화면에서 시작을 누를떄 나오는 이미지
-    [SerializeField] Image AbilityImage_Main;//클릭 했을떄 나오는 이미지
-    [SerializeField] Text AbilityNameAndLV;//스킬 이름과 레벨텍스트
-    [SerializeField] Text UpgradeMoney;//가격 텍스트
-    [SerializeField] Text AbilityExplanation;//스킬 설명 텍스트
-    [SerializeField] Sprite[] AbilitySprite = new Sprite[2];//스킬 이미지
+    [SerializeField] GameObject startPanel;//정비 화면
+    [SerializeField] GameObject reCheckPanel;//정비 화면에서 시작을 누를떄 나오는 이미지
+    [SerializeField] Image abilityImage_Main;//클릭 했을떄 나오는 이미지
+    [SerializeField] Text abilityNameAndLV;//스킬 이름과 레벨텍스트
+    [SerializeField] Text upgradeMoney;//가격 텍스트
+    [SerializeField] Text abilityExplanation;//스킬 설명 텍스트
+    [SerializeField] Sprite[] abilitySprite = new Sprite[2];//스킬 이미지
     [SerializeField] Vector3 startOpenPos;
     [SerializeField] Vector3 startClosePos;
+    private bool reCheck;
     // Start is called before the first frame update
     protected override void Awake()
     {
         base.Awake();
-        SettingBreadShop(BreadScriptable);
+        SettingBreadShop(breadScriptable);
         SettingQusetPanel();
-    }
-    void Start()
-    {
 
     }
     void Update()
@@ -103,8 +107,8 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
         int breadCount = 0;
         foreach (BreadStat Bread in BreadList.Stats)
         {
-            GameObject breadPanelObject = Instantiate(BreadPrefab, transform.position, transform.rotation, BreadContent.transform);
-            breadPanelObject.transform.GetComponent<BreadScript>().BreadSetting(BreadScriptable,breadCount);
+            GameObject breadPanelObject = Instantiate(breadPrefab, transform.position, transform.rotation, breadContent.transform);
+            breadPanelObject.transform.GetComponent<BreadScript>().BreadSetting(breadScriptable,(Breads.Type)breadCount);
             breadCount++;
         }
     }
@@ -131,7 +135,10 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
         openingQusetPanel = Type;
     }
 
-
+    public void SettingButton()
+    {
+        GameManager.Instance.OnOffSetting();
+    }
     public void AbilitySelect(int idx)
     {
         SelectAbility = idx;
@@ -140,18 +147,18 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
             case 0:
                 {
 
-                    AbilityImage_Main.sprite = AbilitySprite[SelectAbility];
-                    AbilityNameAndLV.text = $"최대 체력 LV.{GameManager.Instance.MaxHpLv}";
-                    UpgradeMoney.text = $"{5000 + (GameManager.Instance.MaxHpLv - 1) * 500} Gold";
-                    AbilityExplanation.text = $"추가 체력이 총 {GameManager.Instance.MaxHpLv * 5} 늘어납니다.체력이 떨어지면 빵들은 더 이상 재료를 모으지 못하니 지속적으로 강화합시다.";
+                    abilityImage_Main.sprite = abilitySprite[SelectAbility];
+                    abilityNameAndLV.text = $"최대 체력 LV.{GameManager.Instance.MaxHpLv}";
+                    upgradeMoney.text = $"{5000 + (GameManager.Instance.MaxHpLv - 1) * 500} Gold";
+                    abilityExplanation.text = $"추가 체력이 총 {GameManager.Instance.MaxHpLv * 5} 늘어납니다.체력이 떨어지면 빵들은 더 이상 재료를 모으지 못하니 지속적으로 강화합시다.";
                     break;
                 }
             case 1:
                 {
-                    AbilityImage_Main.sprite = AbilitySprite[SelectAbility];
-                    AbilityNameAndLV.text = $"충돌 데미지 감소 LV.{GameManager.Instance.DefenseLv}";
-                    UpgradeMoney.text = $"{5000 + (GameManager.Instance.DefenseLv - 1) * 500} Gold";
-                    AbilityExplanation.text = $"장애물 충돌 시 데미지를 {GameManager.Instance.DefenseLv * 5} %만큼 감소됩니다. 무슨일이 일어날지 모르니 만일을위해 강화해둡시다.";
+                    abilityImage_Main.sprite = abilitySprite[SelectAbility];
+                    abilityNameAndLV.text = $"충돌 데미지 감소 LV.{GameManager.Instance.DefenseLv}";
+                    upgradeMoney.text = $"{5000 + (GameManager.Instance.DefenseLv - 1) * 500} Gold";
+                    abilityExplanation.text = $"장애물 충돌 시 데미지를 {GameManager.Instance.DefenseLv * 5} %만큼 감소됩니다. 무슨일이 일어날지 모르니 만일을위해 강화해둡시다.";
                     break;
                 }
         }
@@ -162,18 +169,18 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
         {
             case 0:
                 {
-                    AbilityImage_Main.sprite = AbilitySprite[SelectAbility];
-                    UpgradeMoney.text = $"{5000 + (++GameManager.Instance.MaxHpLv - 1) * 500} Gold";
-                    AbilityNameAndLV.text = $"최대 체력 LV.{GameManager.Instance.MaxHpLv}";
-                    AbilityExplanation.text = $"추가 체력이 총 {GameManager.Instance.MaxHpLv * 5} 늘어납니다.체력이 떨어지면 빵들은 더 이상 재료를 모으지 못하니 지속적으로 강화합시다.";
+                    abilityImage_Main.sprite = abilitySprite[SelectAbility];
+                    upgradeMoney.text = $"{5000 + (++GameManager.Instance.MaxHpLv - 1) * 500} Gold";
+                    abilityNameAndLV.text = $"최대 체력 LV.{GameManager.Instance.MaxHpLv}";
+                    abilityExplanation.text = $"추가 체력이 총 {GameManager.Instance.MaxHpLv * 5} 늘어납니다.체력이 떨어지면 빵들은 더 이상 재료를 모으지 못하니 지속적으로 강화합시다.";
                     break;
                 }
             case 1:
                 {
-                    AbilityImage_Main.sprite = AbilitySprite[SelectAbility];
-                    UpgradeMoney.text = $"{5000 + (++GameManager.Instance.DefenseLv - 1) * 500} Gold";
-                    AbilityNameAndLV.text = $"충돌 데미지 감소 LV.{GameManager.Instance.DefenseLv}";
-                    AbilityExplanation.text = $"장애물 충돌 시 데미지를 {GameManager.Instance.DefenseLv * 5} %만큼 감소됩니다. 무슨일이 일어날지 모르니 만일을위해 강화해둡시다.";
+                    abilityImage_Main.sprite = abilitySprite[SelectAbility];
+                    upgradeMoney.text = $"{5000 + (++GameManager.Instance.DefenseLv - 1) * 500} Gold";
+                    abilityNameAndLV.text = $"충돌 데미지 감소 LV.{GameManager.Instance.DefenseLv}";
+                    abilityExplanation.text = $"장애물 충돌 시 데미지를 {GameManager.Instance.DefenseLv * 5} %만큼 감소됩니다. 무슨일이 일어날지 모르니 만일을위해 강화해둡시다.";
                     break;
                 }
         }
@@ -182,23 +189,39 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
 
     public void OpenStartPanel()
     {
-        StartPanel.transform.DOLocalMove(startOpenPos,0.5f).SetEase(Ease.OutBack);
+        if(reCheck == false)
+        {
+            startPanel.transform.DOLocalMove(startOpenPos, 0.5f).SetEase(Ease.OutBack);
+            shopUIGroup.transform.DOLocalMove(shopUIClosePos, 0.5f).SetEase(Ease.OutQuad);
+            reCheck = true;
+        }
+        else
+        {
+            reCheckPanel.SetActive(true);
+        }
     }
     public void CloseStartPanel()
     {
-        StartPanel.transform.DOLocalMove(startClosePos, 0.5f).SetEase(Ease.InBack);
+        startPanel.transform.DOLocalMove(startClosePos, 0.5f).SetEase(Ease.InBack);
+        shopUIGroup.transform.DOLocalMove(shopUIOpenPos, 0.5f).SetEase(Ease.InQuad);
+        reCheckPanel.SetActive(false);
+        reCheck = false;
     }
-    public void OpenReCheck()
+    public void StartYesNoButton(bool _bool)
     {
-        ReCheckPanel.SetActive(true);
+        if(_bool)
+        {
+            GameManager.Instance.selectBread = selectBread;
+            SceneManager.LoadScene("InGame");
+        }
+        else
+        {
+            reCheck = false;
+            reCheckPanel.SetActive(false);
+        }
     }
-    public void CloseReCheck()
+    public void ChangeBread()
     {
-        ReCheckPanel.SetActive(true);
-    }
-    public void StartButton()
-    {
-        GameManager.Instance.selectBread = SelectBread;
-        SceneManager.LoadScene(0);
+
     }
 }

@@ -33,8 +33,8 @@ public class BreadStat
     public Sprite ImageSprite;
     public int Rank;
     public int LV;
-    public int EXP;
-    public int MaxEXP;
+    public float EXP;
+    public float MaxEXP;
     public int HP;
     public int Price;
     public int AbilityLV_1;

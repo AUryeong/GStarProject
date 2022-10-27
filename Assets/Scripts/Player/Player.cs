@@ -11,7 +11,7 @@ public enum PlayerState
 }
 
 //플레이어 능력같은게 있을 가능성이 높기에 대부분의 함수를 Virtual로 작성함
-public class Player : Singleton<Player>
+public class Player : MonoBehaviour
 {
     protected SpriteRenderer spriteRenderer;
     protected Rigidbody2D rigid;
@@ -56,9 +56,8 @@ public class Player : Singleton<Player>
     protected float hpRemoveDuration = 0;
     protected float hpRemoveValue = 1;
 
-    protected override void Awake()
+    void Awake()
     {
-        base.Awake();
         spriteRenderer = GetComponent<SpriteRenderer>();
         rigid = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();

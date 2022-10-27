@@ -40,7 +40,7 @@ public class QusetScript : MonoBehaviour
     {
         qusetContents = scriptable.QusetList[Idx];
         qusetIdx = Idx;
-        qusetImage.sprite = qusetContents.sprite;
+        qusetImage.sprite = QusetManager.Instance.rewardSprite[(int)qusetContents.rewardType];
         qusetrewardText.text = "" + qusetContents.rewards;
         qusetButton.onClick.AddListener(QusetClear);
         qusetButton.interactable = false;

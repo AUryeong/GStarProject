@@ -24,5 +24,9 @@ public class ResourceManager : Singleton<ResourceManager>
             ingredients.Stats[(int)i].SandwichSprite = empty;
             //TODO 쌓이는 오브젝트
         }
+        if (Instance != this)
+            Destroy(gameObject);
+        else
+            DontDestroyOnLoad(gameObject);
     }
 }

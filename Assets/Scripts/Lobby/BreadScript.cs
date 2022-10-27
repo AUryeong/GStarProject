@@ -40,9 +40,9 @@ public class BreadScript : MonoBehaviour
     {
 
     }
-    public void BreadSetting(Breads breadscriptable,int breadCount)
+    public void BreadSetting(Breads breadscriptable,Breads.Type breadCount)
     {
-        scriptable = breadscriptable.Stats[breadCount];
+        scriptable = breadscriptable.Stats[(int)breadCount];
         mainName.text = scriptable.Name;
         mainImage.sprite = scriptable.ImageSprite;
         mainSelectButton.onClick.AddListener(() => BuyButton(breadCount));
@@ -59,9 +59,9 @@ public class BreadScript : MonoBehaviour
         for (int Rank = 0; Rank < scriptable.Rank; Rank++)
            mainRanks[Rank].gameObject.SetActive(true);
     }
-    void BuyButton(in int idx)
+    void BuyButton(Breads.Type idx)
     {
-        LobbyUIManager.Instance.SelectBread = idx;
+        LobbyUIManager.Instance.selectBread = idx;
     /*    GameObject ClickButton = EventSystem.current.currentSelectedGameObject;
         SelectButtonTxt.text = "선택하기";
         SelectButtonTxt = ClickButton.GetComponentInChildren<Text>();

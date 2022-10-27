@@ -8,8 +8,11 @@ public class GameManager : Singleton<GameManager>
     public Ingredients Inside;
     public Breads Breads;
     public bool inGaming = true;
+    [Header("Setting")]
+    [SerializeField] GameObject settingObject;
+    public bool buttonReversal;
     [Header("InGameStats")]
-    public int selectBread;
+    public Breads.Type selectBread;
     public int selectMap;
 
     [Header("Assets")]
@@ -25,6 +28,7 @@ public class GameManager : Singleton<GameManager>
 
     protected override void Awake()
     {
+        base.Awake();
         if (Instance != this)
             Destroy(gameObject);
         else
@@ -48,4 +52,13 @@ public class GameManager : Singleton<GameManager>
         SceneManager.sceneLoaded -= EndingSceneLoadComplete;
     }
 
+    //------------------Setting Button------------------
+    public void OnOffSetting()
+    {
+        settingObject.SetActive(!settingObject.activeSelf);
+    }
+    public void ButtonReversal()
+    {
+        buttonReversal = !buttonReversal;
+    }
 }

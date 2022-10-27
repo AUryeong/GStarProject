@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EndingCamera : MonoBehaviour
 {
@@ -73,7 +74,6 @@ public class EndingCamera : MonoBehaviour
         }
     }
 
-
     public void PushUpButton()
     {
         if (CameraMove)
@@ -111,5 +111,9 @@ public class EndingCamera : MonoBehaviour
             yield return null;
         }
         yield return CameraMove = true;
+    }
+    public void ExitButton()
+    {
+        SceneManager.LoadScene("Lobby");
     }
 }

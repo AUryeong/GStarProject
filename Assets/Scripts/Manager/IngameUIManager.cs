@@ -10,7 +10,6 @@ public class IngameUIManager : Singleton<IngameUIManager>
 {
     [SerializeField] GameObject PausePanel;
     [SerializeField] GameObject ExitPanel;
-    [SerializeField] GameObject SettingPanel;
 
     [Header("Ã¼·Â¹Ù")]
     private float hpSizeX = 500;
@@ -45,9 +44,10 @@ public class IngameUIManager : Singleton<IngameUIManager>
     [SerializeField] Image onHItImage;
     private bool pressSliding = false;
 
+ 
     private void OnEnable()
     {
-        hpBarRect.sizeDelta = new Vector2(hpSizeX * Player.Instance.fHp / 100, hpBarRect.sizeDelta.y);
+        hpBarRect.sizeDelta = new Vector2(hpSizeX * InGameManager.Instance.player.fHp / 100, hpBarRect.sizeDelta.y);    
         hpBarShakePos = hpBarRect.anchoredPosition;
         UpdateOvenBar();
         hpIconImage.sprite = hpIconSprites[GameManager.Instance.MaxHpLv / 10];
@@ -84,9 +84,9 @@ public class IngameUIManager : Singleton<IngameUIManager>
     }
     public void SettingButton()
     {
-        SettingPanel.SetActive(false);
+        GameManager.Instance.OnOffSetting();
     }
-    public void ExitButton(bool yes)
+    public void ExitButton()
     {
         ExitPanel.SetActive(true);
     }
@@ -113,8 +113,8 @@ public class IngameUIManager : Singleton<IngameUIManager>
 
     public void UpdateHealthBar()
     {
-        hpBarSlider.value = Mathf.Lerp(hpBarSlider.value, Player.Instance.hp / Player.Instance.fHp, Time.deltaTime * 20);
-        if (Player.Instance.hp <= 20)
+        hpBarSlider.value = Mathf.Lerp(hpBarSlider.value, InGameManager.Instance.player.hp / InGameManager.Instance.player.fHp, Time.deltaTime * 20);
+        if (InGameManager.Instance.player.hp <= 20)
         {
             hpBarRect.anchoredPosition = hpBarShakePos + Random.insideUnitCircle;
             if (hpIconBounce)
@@ -147,30 +147,30 @@ public class IngameUIManager : Singleton<IngameUIManager>
 
     public void PressDownSliding()
     {
-        if (GameManager.Instance.inGaming && Player.Instance.isControllable)
+        if (GameManager.Instance.inGaming && InGameManager.Instance.player.isControllable)
             pressSliding = true;
     }
     public void PressUpSliding()
     {
-        if (GameManager.Instance.inGaming && Player.Instance.isControllable)
+        if (GameManager.Instance.inGaming && InGameManager.Instance.player.isControllable)
         {
             pressSliding = false;
-            Player.Instance.ReturnToIdle();
+            InGameManager.Instance.player.ReturnToIdle();
         }
     }
     public void PressJump()
     {
-        if (GameManager.Instance.inGaming && Player.Instance.isControllable)
-            Player.Instance.Jump();
+        if (GameManager.Instance.inGaming && InGameManager.Instance.player.isControllable)
+            InGameManager.Instance.player.Jump();
     }
     private void CheckSliding()
     {
         if (pressSliding)
-            Player.Instance.Sliding();
+            InGameManager.Instance.player.Sliding();
     }
     private void UpdateOvenBar()
     {
-        OvenBar.value = Vector2.Distance(StartPoint.transform.position, Player.Instance.transform.position) / 
+        OvenBar.value = Vector2.Distance(StartPoint.transform.position, InGameManager.Instance.player.transform.position) / 
                         Vector2.Distance(StartPoint.transform.position, EndPoint.transform.position);
     }
 }
