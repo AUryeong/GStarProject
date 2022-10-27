@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 using UnityEngine.SceneManagement;
 
-public class GameManager : Singleton<GameManager>
+public class GameManager: Singleton<GameManager>
 {
     public Ingredients Inside;
     public Breads breads;
@@ -64,7 +65,21 @@ public class GameManager : Singleton<GameManager>
     //------------------Setting Button------------------
     public void OnOffSetting()
     {
-        settingObject.SetActive(!settingObject.activeSelf);
+        StartCoroutine(C_OnOffSetting());
+    }
+    private IEnumerator C_OnOffSetting()
+    {
+        if (settingObject.activeSelf)
+        {
+            settingObject.transform.DOScale(Vector3.zero, 0.5f);
+            yield return new WaitForSeconds(0.5f);
+            settingObject.SetActive(false);
+        }
+        else
+        {
+            settingObject.SetActive(true);
+            settingObject.transform.DOScale(Vector3.one, 0.5f);
+        }
     }
     public void ButtonReversal()
     {
