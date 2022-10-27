@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : Singleton<GameManager>
 {
     public Ingredients Inside;
-    public Breads Breads;
+    public Breads breads;
     public bool inGaming = true;
     [Header("Setting")]
     [SerializeField] GameObject settingObject;
@@ -16,12 +16,21 @@ public class GameManager : Singleton<GameManager>
     public int selectMap;
 
     [Header("Assets")]
-    public int Gold;
-    public int Macaron;
-    public int Heart;
+    public int gold;
+    public int macaron;
+    public int stamina;
+    public int heart
+    {
+        get { return stamina; }
+        set
+        {
+            stamina = value;
+            LobbyUIManager.Instance.StaminaUpdate();
+        }
+    }
     [Header("Ability")]
-    public int MaxHpLv;
-    public int DefenseLv;
+    public int maxHpLv;
+    public int defenseLv;
 
     //씬 나누는게 삭제될 가능성이 높아서 코드 대충짬
     List<int> ingredientIdxList = new List<int>();

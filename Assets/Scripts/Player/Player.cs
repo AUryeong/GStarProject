@@ -66,7 +66,7 @@ public class Player : MonoBehaviour
 
     protected virtual void OnEnable()
     {
-        fHp = GameManager.Instance.Breads.Stats[(int)type].HP;
+        fHp = GameManager.Instance.breads.Stats[(int)type].HP;
         hp = fHp;
     }
 

@@ -26,10 +26,12 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
 
     [Header("Top UI")]
     [Space(10f)]
-    [SerializeField] Text GoldText;
-    [SerializeField] Text MacaronText;
-    [SerializeField] Text StaminaText;
-    [SerializeField] Image StaminaImage;
+    [SerializeField] Text goldText;
+    [SerializeField] Text macaronText;
+    [Header("Stamina")]
+    [SerializeField] GameObject[] heartGroup;
+    [SerializeField] Image staminaImage;
+    [SerializeField] Text staminaText;
 
     [Header("Mid UI")]
     [Space(10f)]
@@ -76,14 +78,28 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
         base.Awake();
         SettingBreadShop(breadScriptable);
         SettingQusetPanel();
-
+        StaminaUpdate();
     }
     void Update()
     {
-        GoldText.text = $"{GameManager.Instance.Gold}";
-        MacaronText.text = $"{GameManager.Instance.Macaron}";
+        goldText.text = $"{GameManager.Instance.gold}";
+        macaronText.text = $"{GameManager.Instance.macaron}";
     }
-
+    public void StaminaUpdate()
+    {
+        int count = GameManager.Instance.heart;
+        //                   MaxMarkStamina
+        staminaText.text = $"+{count - 7}";
+        for (int idx= 0; idx < 8; idx++)
+        {
+            if (idx < count)
+            {
+                heartGroup[idx].SetActive(true);
+            }
+            else
+                heartGroup[idx].SetActive(false);
+        }
+    }
     public void OpenShopPanel(GameObject Object)
     {
         if (ShopPanelObject != null)
@@ -148,17 +164,17 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
                 {
 
                     abilityImage_Main.sprite = abilitySprite[SelectAbility];
-                    abilityNameAndLV.text = $"최대 체력 LV.{GameManager.Instance.MaxHpLv}";
-                    upgradeMoney.text = $"{5000 + (GameManager.Instance.MaxHpLv - 1) * 500} Gold";
-                    abilityExplanation.text = $"추가 체력이 총 {GameManager.Instance.MaxHpLv * 5} 늘어납니다.체력이 떨어지면 빵들은 더 이상 재료를 모으지 못하니 지속적으로 강화합시다.";
+                    abilityNameAndLV.text = $"최대 체력 LV.{GameManager.Instance.maxHpLv}";
+                    upgradeMoney.text = $"{5000 + (GameManager.Instance.maxHpLv - 1) * 500} Gold";
+                    abilityExplanation.text = $"추가 체력이 총 {GameManager.Instance.maxHpLv * 5} 늘어납니다.체력이 떨어지면 빵들은 더 이상 재료를 모으지 못하니 지속적으로 강화합시다.";
                     break;
                 }
             case 1:
                 {
                     abilityImage_Main.sprite = abilitySprite[SelectAbility];
-                    abilityNameAndLV.text = $"충돌 데미지 감소 LV.{GameManager.Instance.DefenseLv}";
-                    upgradeMoney.text = $"{5000 + (GameManager.Instance.DefenseLv - 1) * 500} Gold";
-                    abilityExplanation.text = $"장애물 충돌 시 데미지를 {GameManager.Instance.DefenseLv * 5} %만큼 감소됩니다. 무슨일이 일어날지 모르니 만일을위해 강화해둡시다.";
+                    abilityNameAndLV.text = $"충돌 데미지 감소 LV.{GameManager.Instance.defenseLv}";
+                    upgradeMoney.text = $"{5000 + (GameManager.Instance.defenseLv - 1) * 500} Gold";
+                    abilityExplanation.text = $"장애물 충돌 시 데미지를 {GameManager.Instance.defenseLv * 5} %만큼 감소됩니다. 무슨일이 일어날지 모르니 만일을위해 강화해둡시다.";
                     break;
                 }
         }
@@ -170,17 +186,17 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
             case 0:
                 {
                     abilityImage_Main.sprite = abilitySprite[SelectAbility];
-                    upgradeMoney.text = $"{5000 + (++GameManager.Instance.MaxHpLv - 1) * 500} Gold";
-                    abilityNameAndLV.text = $"최대 체력 LV.{GameManager.Instance.MaxHpLv}";
-                    abilityExplanation.text = $"추가 체력이 총 {GameManager.Instance.MaxHpLv * 5} 늘어납니다.체력이 떨어지면 빵들은 더 이상 재료를 모으지 못하니 지속적으로 강화합시다.";
+                    upgradeMoney.text = $"{5000 + (++GameManager.Instance.maxHpLv - 1) * 500} Gold";
+                    abilityNameAndLV.text = $"최대 체력 LV.{GameManager.Instance.maxHpLv}";
+                    abilityExplanation.text = $"추가 체력이 총 {GameManager.Instance.maxHpLv * 5} 늘어납니다.체력이 떨어지면 빵들은 더 이상 재료를 모으지 못하니 지속적으로 강화합시다.";
                     break;
                 }
             case 1:
                 {
                     abilityImage_Main.sprite = abilitySprite[SelectAbility];
-                    upgradeMoney.text = $"{5000 + (++GameManager.Instance.DefenseLv - 1) * 500} Gold";
-                    abilityNameAndLV.text = $"충돌 데미지 감소 LV.{GameManager.Instance.DefenseLv}";
-                    abilityExplanation.text = $"장애물 충돌 시 데미지를 {GameManager.Instance.DefenseLv * 5} %만큼 감소됩니다. 무슨일이 일어날지 모르니 만일을위해 강화해둡시다.";
+                    upgradeMoney.text = $"{5000 + (++GameManager.Instance.defenseLv - 1) * 500} Gold";
+                    abilityNameAndLV.text = $"충돌 데미지 감소 LV.{GameManager.Instance.defenseLv}";
+                    abilityExplanation.text = $"장애물 충돌 시 데미지를 {GameManager.Instance.defenseLv * 5} %만큼 감소됩니다. 무슨일이 일어날지 모르니 만일을위해 강화해둡시다.";
                     break;
                 }
         }

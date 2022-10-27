@@ -87,17 +87,17 @@ public class QusetScript : MonoBehaviour
         {
             case RewardType.Gold:
                 {
-                    GameManager.Instance.Gold += qusetContents.rewards;
+                    GameManager.Instance.gold += qusetContents.rewards;
                     return;
                 }
             case RewardType.Heart:
                 {
-                    GameManager.Instance.Heart += qusetContents.rewards;
+                    GameManager.Instance.heart += qusetContents.rewards;
                     return;
                 }
             case RewardType.Macaron:
                 {
-                    GameManager.Instance.Macaron += qusetContents.rewards;
+                    GameManager.Instance.macaron += qusetContents.rewards;
                     return;
                 }
         }

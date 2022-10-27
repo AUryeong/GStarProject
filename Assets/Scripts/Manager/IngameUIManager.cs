@@ -50,7 +50,7 @@ public class IngameUIManager : Singleton<IngameUIManager>
         hpBarRect.sizeDelta = new Vector2(hpSizeX * InGameManager.Instance.player.fHp / 100, hpBarRect.sizeDelta.y);    
         hpBarShakePos = hpBarRect.anchoredPosition;
         UpdateOvenBar();
-        hpIconImage.sprite = hpIconSprites[GameManager.Instance.MaxHpLv / 10];
+        hpIconImage.sprite = hpIconSprites[GameManager.Instance.maxHpLv / 10];
     }
     public void PauseButton()
     {
