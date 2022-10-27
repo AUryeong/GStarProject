@@ -285,7 +285,7 @@ public class Player : MonoBehaviour
 
         gameObject.layer = LayerMask.NameToLayer("PlayerInv");
         spriteRenderer.DOFade(hitFadeInAlpha, hitFadeInTime).
-            OnComplete(() => spriteRenderer.DOFade(0.5f, hitFadeOutTime).SetEase(Ease.InExpo).
+            OnComplete(() => spriteRenderer.DOFade(1, hitFadeOutTime).SetEase(Ease.InExpo).
             OnComplete(() =>
             {
                 hitable = true;
