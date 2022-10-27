@@ -1,49 +1,49 @@
 fileFormatVersion: 2
-guid: cfba8cda28b962848a03465d52b1e639
+guid: e0d616301dfd82f4ebdd9d003cec2556
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5070943453273870071
-    second: Normal_Bread_Anim_Died_0
+      213: -8089531285447559917
+    second: Normal_Bread_Anim_Run_0
   - first:
-      213: -1711634403048599213
-    second: Normal_Bread_Anim_Died_1
+      213: 786942110676637088
+    second: Normal_Bread_Anim_Run_1
   - first:
-      213: 420607732593132340
-    second: Normal_Bread_Anim_Died_2
+      213: 3778777890581103977
+    second: Normal_Bread_Anim_Run_2
   - first:
-      213: 5003920165934966756
-    second: Normal_Bread_Anim_Died_3
+      213: -2801931260891287493
+    second: Normal_Bread_Anim_Run_3
   - first:
-      213: -2723508076663051860
-    second: Normal_Bread_Anim_Died_4
+      213: -7331826341477918180
+    second: Normal_Bread_Anim_Run_4
   - first:
-      213: -59148749381533909
-    second: Normal_Bread_Anim_Died_5
+      213: -7315447287517776161
+    second: Normal_Bread_Anim_Run_5
   - first:
-      213: 3081065737840027976
-    second: Normal_Bread_Anim_Died_6
+      213: -7167934170705899251
+    second: Normal_Bread_Anim_Run_6
   - first:
-      213: -5476144235994801334
-    second: Normal_Bread_Anim_Died_7
+      213: 8470410449520007665
+    second: Normal_Bread_Anim_Run_7
   - first:
-      213: 4747637740421353780
-    second: Normal_Bread_Anim_Died_8
+      213: 1241464497549174081
+    second: Normal_Bread_Anim_Run_8
   - first:
-      213: -4476672868491617182
-    second: Normal_Bread_Anim_Died_9
+      213: 3451533901664868590
+    second: Normal_Bread_Anim_Run_9
   - first:
-      213: -409225784255083328
-    second: Normal_Bread_Anim_Died_10
+      213: 4260976152531290567
+    second: Normal_Bread_Anim_Run_10
   - first:
-      213: 7919931973127119651
-    second: Normal_Bread_Anim_Died_11
+      213: 4264373291262134161
+    second: Normal_Bread_Anim_Run_11
   - first:
-      213: -7479058080123452115
-    second: Normal_Bread_Anim_Died_12
+      213: -1165506792817481543
+    second: Normal_Bread_Anim_Run_12
   - first:
-      213: -3878828505203497438
-    second: Normal_Bread_Anim_Died_13
+      213: 7763739292032111625
+    second: Normal_Bread_Anim_Run_13
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -133,12 +133,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Normal_Bread_Anim_Died_0
+      name: Normal_Bread_Anim_Run_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 350
+        width: 250
         height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -147,19 +147,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7fe4b78243c9f5640800000000000000
-      internalID: 5070943453273870071
+      spriteID: 3153d73f7263cbf80800000000000000
+      internalID: -8089531285447559917
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Normal_Bread_Anim_Died_1
+      name: Normal_Bread_Anim_Run_1
       rect:
         serializedVersion: 2
-        x: 350
+        x: 250
         y: 0
-        width: 350
+        width: 250
         height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -168,19 +168,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 35153fc349d0f38e0800000000000000
-      internalID: -1711634403048599213
+      spriteID: 0a55da52ea7cbea00800000000000000
+      internalID: 786942110676637088
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Normal_Bread_Anim_Died_2
+      name: Normal_Bread_Anim_Run_2
       rect:
         serializedVersion: 2
-        x: 700
+        x: 500
         y: 0
-        width: 350
+        width: 250
         height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -189,19 +189,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4330ffa118c46d500800000000000000
-      internalID: 420607732593132340
+      spriteID: 965cf2d787ae07430800000000000000
+      internalID: 3778777890581103977
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Normal_Bread_Anim_Died_3
+      name: Normal_Bread_Anim_Run_3
       rect:
         serializedVersion: 2
-        x: 1050
+        x: 750
         y: 0
-        width: 350
+        width: 250
         height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -210,19 +210,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4e7a7f601ee717540800000000000000
-      internalID: 5003920165934966756
+      spriteID: b30338d0d5a8d19d0800000000000000
+      internalID: -2801931260891287493
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Normal_Bread_Anim_Died_4
+      name: Normal_Bread_Anim_Run_4
       rect:
         serializedVersion: 2
-        x: 1400
+        x: 1000
         y: 0
-        width: 350
+        width: 250
         height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -231,19 +231,61 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ca9679385d7243ad0800000000000000
-      internalID: -2723508076663051860
+      spriteID: c1a5b51c9ce104a90800000000000000
+      internalID: -7331826341477918180
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Normal_Bread_Anim_Died_5
+      name: Normal_Bread_Anim_Run_5
+      rect:
+        serializedVersion: 2
+        x: 1250
+        y: 0
+        width: 250
+        height: 250
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd6786e637f4a7a90800000000000000
+      internalID: -7315447287517776161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Normal_Bread_Anim_Run_6
+      rect:
+        serializedVersion: 2
+        x: 1500
+        y: 0
+        width: 250
+        height: 250
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d01d0bd59d1668c90800000000000000
+      internalID: -7167934170705899251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Normal_Bread_Anim_Run_7
       rect:
         serializedVersion: 2
         x: 1750
         y: 0
-        width: 350
+        width: 250
         height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -252,19 +294,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b2f743c968cdd2ff0800000000000000
-      internalID: -59148749381533909
+      spriteID: 1f99569fc61fc8570800000000000000
+      internalID: 8470410449520007665
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Normal_Bread_Anim_Died_6
+      name: Normal_Bread_Anim_Run_8
       rect:
         serializedVersion: 2
-        x: 2100
+        x: 2000
         y: 0
-        width: 350
+        width: 250
         height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -273,19 +315,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 849e491e6f422ca20800000000000000
-      internalID: 3081065737840027976
+      spriteID: 1456da902619a3110800000000000000
+      internalID: 1241464497549174081
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Normal_Bread_Anim_Died_7
+      name: Normal_Bread_Anim_Run_9
       rect:
         serializedVersion: 2
-        x: 2450
+        x: 2250
         y: 0
-        width: 350
+        width: 250
         height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -294,19 +336,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a4b1abac4d3d004b0800000000000000
-      internalID: -5476144235994801334
+      spriteID: ee8d3faebcf46ef20800000000000000
+      internalID: 3451533901664868590
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Normal_Bread_Anim_Died_8
+      name: Normal_Bread_Anim_Run_10
       rect:
         serializedVersion: 2
-        x: 2800
+        x: 2500
         y: 0
-        width: 350
+        width: 250
         height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -315,19 +357,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4319d00fe5ff2e140800000000000000
-      internalID: 4747637740421353780
+      spriteID: 7c9c9003c37022b30800000000000000
+      internalID: 4260976152531290567
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Normal_Bread_Anim_Died_9
+      name: Normal_Bread_Anim_Run_11
       rect:
         serializedVersion: 2
-        x: 3150
+        x: 2750
         y: 0
-        width: 350
+        width: 250
         height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -336,19 +378,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 26c9de99eb9afd1c0800000000000000
-      internalID: -4476672868491617182
+      spriteID: 197c75f2ae81e2b30800000000000000
+      internalID: 4264373291262134161
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Normal_Bread_Anim_Died_10
+      name: Normal_Bread_Anim_Run_12
       rect:
         serializedVersion: 2
-        x: 3500
+        x: 3000
         y: 0
-        width: 350
+        width: 250
         height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -357,19 +399,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0cc8b804153225af0800000000000000
-      internalID: -409225784255083328
+      spriteID: 9b82fce3fb943dfe0800000000000000
+      internalID: -1165506792817481543
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Normal_Bread_Anim_Died_11
+      name: Normal_Bread_Anim_Run_13
       rect:
         serializedVersion: 2
-        x: 3850
+        x: 3250
         y: 0
-        width: 350
+        width: 250
         height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -378,50 +420,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 323208ffa2049ed60800000000000000
-      internalID: 7919931973127119651
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Normal_Bread_Anim_Died_12
-      rect:
-        serializedVersion: 2
-        x: 4200
-        y: 0
-        width: 350
-        height: 250
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d250ab74d4c053890800000000000000
-      internalID: -7479058080123452115
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Normal_Bread_Anim_Died_13
-      rect:
-        serializedVersion: 2
-        x: 4550
-        y: 0
-        width: 350
-        height: 250
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 226afa28602ab2ac0800000000000000
-      internalID: -3878828505203497438
+      spriteID: 904115680c75ebb60800000000000000
+      internalID: 7763739292032111625
       vertices: []
       indices: 
       edges: []

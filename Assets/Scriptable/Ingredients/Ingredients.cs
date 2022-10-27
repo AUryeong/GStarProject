@@ -2,18 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Ingredients Data" , menuName = "ScriptableObject/Ingredients",order = int.MaxValue)]
-[System.Serializable]
-public class stats
+[CreateAssetMenu(fileName = "Ingredients Data", menuName = "ScriptableObject/Ingredients", order = int.MaxValue)]
+public class Ingredients : ScriptableObject, ISerializationCallbackReceiver
 {
-    [HideInInspector] public Sprite SandwichSprite;
-    [HideInInspector] public Sprite IconSprite;
-    [HideInInspector] public Sprite OutlineSprite;
-    public int Size;
-}
-public class Ingredients : ScriptableObject
-{
+    public int i;
     public List<stats> Stats = new List<stats>();
+
+    public void OnAfterDeserialize()
+    {
+        for (int i = 0; i < Stats.Count; i++)
+            Stats[i].name = ((Type)i);
+    }
+
+    public void OnBeforeSerialize()
+    {
+    }
+
     public enum Type
     {
         Ham,
@@ -44,4 +48,14 @@ public class Ingredients : ScriptableObject
         LiveOctopus,
         NONE
     }
+}
+
+[System.Serializable]
+public class stats
+{
+    [HideInInspector] public Sprite SandwichSprite;
+    [HideInInspector] public Sprite IconSprite;
+    [HideInInspector] public Sprite OutlineSprite;
+    public Ingredients.Type name;
+    public int Size;
 }

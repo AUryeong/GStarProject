@@ -4,24 +4,26 @@ using UnityEngine;
 
 public class Player_Safe : Player
 {
+    bool magnetActive;
 
-    protected float magnetMoveSpeed = 4f;
     protected override void OnEnable()
     {
         base.OnEnable();
         hpRemoveValue = 0.5f;
+        magnetActive = false;
     }
 
     protected override void LiveUpdate(float deltaTime)
     {
-        base.LiveUpdate(deltaTime);
-        if (hp >= fHp * 0.5f)
+        if (hp / fHp >= 0.5f && !magnetActive)
         {
-            Collider2D[] getableColiders = Physics2D.OverlapCircleAll(transform.position, 3 * Mathf.Max(colider2D.size.x, colider2D.size.y), LayerMask.GetMask("Getable"));
-            foreach (var colider in getableColiders)
-            {
-                colider.transform.Translate((transform.position - colider.transform.position).normalized * magnetMoveSpeed * deltaTime);
-            }
+            magnetActive = true;
+            magnetSize = 3;
+        }
+        else if (magnetActive)
+        {
+            magnetActive = false;
+            magnetSize = 0;
         }
     }
 }

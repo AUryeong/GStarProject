@@ -10,6 +10,13 @@ public enum PlayerState
     Jumping
 }
 
+[System.Serializable]
+public struct ColiderPos
+{
+    public Vector2 offset;
+    public Vector2 size;
+}
+
 //플레이어 능력같은게 있을 가능성이 높기에 대부분의 함수를 Virtual로 작성함
 public class Player : MonoBehaviour
 {
@@ -27,7 +34,7 @@ public class Player : MonoBehaviour
     public float hp;
     public bool isControllable
     {
-        get; protected set; 
+        get; protected set;
     } = true;
 
 
@@ -44,10 +51,14 @@ public class Player : MonoBehaviour
     protected float hitFadeInAlpha = 0.5f;
     protected float hitFadeOutTime = 0.9f;
 
+    [Header("자석")]
+    protected float magnetMoveSpeed = 2f;
+    protected float magnetSize = 0f;
+
     [Header("장애물 충돌 판정")]
-    public Vector2 idleColiderSize = new Vector2(0.8f, 2f);
-    public Vector2 slidingColiderSize = new Vector2(2, 0.8f);
-    public Vector2 jumpingColiderSize = new Vector2(1f, 1f);
+    public ColiderPos idleColiderSize;
+    public ColiderPos slidingColiderSize;
+    public ColiderPos jumpingColiderSize;
 
     protected float downGameoverY = -4.5f;
 
@@ -80,6 +91,7 @@ public class Player : MonoBehaviour
             CheckPressKey();
             CheckAnimator();
             HpRemove();
+            MagnetUpdate(deltaTime);
             LiveUpdate(deltaTime);
             if (transform.position.y <= downGameoverY)
             {
@@ -87,7 +99,7 @@ public class Player : MonoBehaviour
                 InGameManager.Instance.GameOverMoveCP();
             }
         }
-        if(Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.C))
         {
             GameOver();
         }
@@ -98,6 +110,18 @@ public class Player : MonoBehaviour
     {
     }
 
+    //자석
+    protected virtual void MagnetUpdate(float deltaTime)
+    {
+        if (magnetSize == 0 || magnetMoveSpeed == 0)
+            return;
+        Collider2D[] getableColiders = Physics2D.OverlapCircleAll(transform.position, magnetSize * Mathf.Max(colider2D.size.x, colider2D.size.y), LayerMask.GetMask("Getable"));
+        foreach (var colider in getableColiders)
+        {
+            colider.transform.Translate((transform.position - colider.transform.position).normalized * magnetMoveSpeed * deltaTime);
+        }
+    }
+
     public void MoveCenter()
     {
         StartCoroutine(MoveCenterCoroutine());
@@ -105,15 +129,24 @@ public class Player : MonoBehaviour
 
     IEnumerator MoveCenterCoroutine()
     {
+        Vector3 pos = Camera.main.ScreenToWorldPoint(Vector3.zero);
+        state = PlayerState.Idle;
+        CheckAnimator();
+        animator.Play("Run");
         while (true)
         {
-            Move(Time.deltaTime);
-            if(transform.position.x >= Camera.main.ScreenToWorldPoint(Vector3.zero).x)
+            if (transform.position.x < pos.x)
+                Move(Time.deltaTime);
+            else
             {
-                animator.Play("Die");
-                yield return new WaitForSeconds(2);
-                InGameManager.Instance.GameOverMoveCP();
-                yield break;
+                RaycastHit2D raycastHit2D = Physics2D.BoxCast((Vector2)transform.position + colider2D.offset, colider2D.size, 0, Vector2.down, jumpCheckDistance, LayerMask.GetMask("Platform"));
+                if (raycastHit2D.collider != null)
+                {
+                    animator.Play("Die");
+                    yield return new WaitForSeconds(2);
+                    InGameManager.Instance.GameOverMoveCP();
+                    yield break;
+                }
             }
             yield return null;
         }
@@ -122,7 +155,7 @@ public class Player : MonoBehaviour
     //점프 땅에 닿음을 감지하는 함수
     protected virtual void CheckJumpReset()
     {
-        RaycastHit2D raycastHit2D = Physics2D.BoxCast(transform.position, colider2D.size, 0, Vector2.down, jumpCheckDistance, LayerMask.GetMask("Platform"));
+        RaycastHit2D raycastHit2D = Physics2D.BoxCast((Vector2)transform.position + colider2D.offset, colider2D.size, 0, Vector2.down, jumpCheckDistance, LayerMask.GetMask("Platform"));
         if (raycastHit2D.collider != null)
         {
             jumpCount = 0;
@@ -141,7 +174,7 @@ public class Player : MonoBehaviour
     protected virtual void HpRemove()
     {
         hpRemoveDuration += Time.deltaTime;
-        if(hpRemoveDuration >= hpRemoveCool)
+        if (hpRemoveDuration >= hpRemoveCool)
         {
             hpRemoveDuration -= hpRemoveCool;
             hp -= hpRemoveValue;
@@ -192,13 +225,16 @@ public class Player : MonoBehaviour
         switch (state)
         {
             case PlayerState.Idle:
-                colider2D.size = idleColiderSize;
+                colider2D.offset = idleColiderSize.offset;
+                colider2D.size = idleColiderSize.size;
                 break;
             case PlayerState.Sliding:
-                colider2D.size = slidingColiderSize;
+                colider2D.offset = slidingColiderSize.offset;
+                colider2D.size = slidingColiderSize.size;
                 break;
             case PlayerState.Jumping:
-                colider2D.size = jumpingColiderSize;
+                colider2D.offset = jumpingColiderSize.offset;
+                colider2D.size = jumpingColiderSize.size;
                 break;
         }
 
@@ -276,14 +312,15 @@ public class Player : MonoBehaviour
         hp -= block.damage;
         block.OnHit();
         if (hp <= 0)
-        { 
+        {
             GameOver();
             return;
         }
 
         IngameUIManager.Instance.PlayerHurt();
-
+        rigid.velocity = Vector2.zero;
         gameObject.layer = LayerMask.NameToLayer("PlayerInv");
+        animator.Play("Hurt");
         spriteRenderer.DOFade(hitFadeInAlpha, hitFadeInTime).
             OnComplete(() => spriteRenderer.DOFade(1, hitFadeOutTime).SetEase(Ease.InExpo).
             OnComplete(() =>

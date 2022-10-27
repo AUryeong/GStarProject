@@ -79,6 +79,7 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
         SettingBreadShop(breadScriptable);
         SettingQusetPanel();
         StaminaUpdate();
+        AbilitySelect(0);
     }
     void Update()
     {
