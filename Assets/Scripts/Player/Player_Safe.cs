@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player_Safe : Player
 {
 
-    protected float magnetMoveSpeed = 1;
+    protected float magnetMoveSpeed = 4f;
     protected override void OnEnable()
     {
         base.OnEnable();
@@ -15,10 +15,10 @@ public class Player_Safe : Player
     protected override void LiveUpdate(float deltaTime)
     {
         base.LiveUpdate(deltaTime);
-        if(hp >= fHp * 0.5f)
+        if (hp >= fHp * 0.5f)
         {
-            Collider2D[] getableColiders = Physics2D.OverlapCircleAll(transform.position, Mathf.Max(colider2D.size.x, colider2D.size.y), LayerMask.NameToLayer("Getable"));
-            foreach(var colider in getableColiders)
+            Collider2D[] getableColiders = Physics2D.OverlapCircleAll(transform.position, 3 * Mathf.Max(colider2D.size.x, colider2D.size.y), LayerMask.GetMask("Getable"));
+            foreach (var colider in getableColiders)
             {
                 colider.transform.Translate((transform.position - colider.transform.position).normalized * magnetMoveSpeed * deltaTime);
             }
