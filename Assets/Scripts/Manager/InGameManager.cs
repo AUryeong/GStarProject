@@ -15,8 +15,8 @@ public class InGameManager : Singleton<InGameManager>
 
     [Header("¸Ê")]
     [SerializeField] protected List<Platform> firstMapList;
-    protected List<Platform> mapList;
-    protected float mapLength = 0;
+    protected List<Platform> mapList = new List<Platform>();
+    protected float mapLength = -12.5f;
 
     public int gold;
 
@@ -28,7 +28,7 @@ public class InGameManager : Singleton<InGameManager>
         base.Awake();
         breadType = GameManager.Instance.selectBread;
         player = Instantiate(breadArray[(int)breadType].gameObject, startPos, transform.rotation).GetComponent<Player>();
-       // AddNewPlatform();
+        AddNewPlatform();
     }
 
     protected void AddNewPlatform()
@@ -42,6 +42,8 @@ public class InGameManager : Singleton<InGameManager>
     {
         if (player.isControllable)
             CameraMove();
+        if (player.transform.position.x - mapLength < -15)
+            AddNewPlatform();
     }
     protected void CameraMove()
     {
