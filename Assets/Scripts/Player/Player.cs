@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System.Runtime.Serialization;
 
 public enum PlayerState
 {
@@ -54,6 +55,13 @@ public class Player : MonoBehaviour
     [Header("자석")]
     protected float magnetMoveSpeed = 2f;
     protected float magnetSize = 0f;
+    protected float itemMagnetSize = 6;
+    protected float itemMagnetDuration = 3;
+
+    [Header("부스트")]
+    protected float boostMovePercent = 2;
+    protected float itemBoostDuration = 5;
+    public float boostDuration = 0;
 
     [Header("장애물 충돌 판정")]
     public ColiderPos idleColiderSize;
@@ -93,6 +101,7 @@ public class Player : MonoBehaviour
             HpRemove();
             MagnetUpdate(deltaTime);
             LiveUpdate(deltaTime);
+            BoostUpdate(deltaTime);
             if (transform.position.y <= downGameoverY)
             {
                 isControllable = false;
@@ -103,6 +112,13 @@ public class Player : MonoBehaviour
         {
             GameOver();
         }
+    }
+
+    //부스트 작동
+    protected virtual void BoostUpdate(float deltaTime)
+    {
+        if (boostDuration > 0)
+            boostDuration -= deltaTime;
     }
 
     //살아있으면 작동하는 업데이트, 능력에서 사용 예정
@@ -189,7 +205,10 @@ public class Player : MonoBehaviour
     //이동을 관리하는 함수
     protected virtual void Move(float deltaTime)
     {
-        transform.Translate(deltaTime * fSpeed * Vector2.right);
+        float speedMultipler = 1;
+        if (boostDuration > 0)
+            speedMultipler *= boostMovePercent;
+        transform.Translate(deltaTime * speedMultipler * fSpeed * Vector2.right);
     }
 
     //컴퓨터일때 키보드 감지를 담당하는 함수
@@ -283,6 +302,33 @@ public class Player : MonoBehaviour
 
         if (collider2D.CompareTag("Ingredient"))
             AddIngredient(collider2D.GetComponent<Ingredient>());
+
+        if (collider2D.CompareTag("Boost"))
+            GetBoost(collider2D.gameObject);
+
+        if (collider2D.CompareTag("Magnet"))
+            GetMagnet(collider2D.gameObject);
+    }
+
+    protected virtual void GetBoost(GameObject obj)
+    {
+        obj.SetActive(false);
+        //TODO 부스트 이펙트
+        boostDuration += itemBoostDuration;
+    }
+
+    protected virtual void GetMagnet(GameObject obj)
+    {
+        obj.SetActive(false);
+        //TODO 자석 이펙트
+        StartCoroutine(MagnetRemove());
+    }
+
+    protected virtual IEnumerator MagnetRemove()
+    {
+        magnetSize += itemMagnetSize;
+        yield return new WaitForSeconds(itemMagnetDuration);
+        magnetSize -= itemMagnetSize;
     }
 
     //재료 획득
@@ -305,6 +351,8 @@ public class Player : MonoBehaviour
     protected virtual void HurtByBlock(Block block)
     {
         if (!hitable)
+            return;
+        if (boostDuration > 0)
             return;
 
         hitable = false;

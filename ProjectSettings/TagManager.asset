@@ -7,6 +7,8 @@ TagManager:
   - Block
   - Ingredient
   - Gold
+  - Boost
+  - Magnet
   layers:
   - Default
   - TransparentFX
