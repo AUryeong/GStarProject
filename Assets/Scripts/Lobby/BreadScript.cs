@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,35 +8,35 @@ public class BreadScript : MonoBehaviour
 {
     [SerializeField] BreadStat scriptable;
     [Header("Main")]
-    [SerializeField] Text mainName;
+    [SerializeField] TextMeshProUGUI mainName;
     [SerializeField] Button detailButton;
     [SerializeField] Image mainImage;
     [SerializeField] GameObject[] mainRanks;
     [Space(10f)]
-    [SerializeField] Text mainLv;
+    [SerializeField] TextMeshProUGUI mainLv;
     [SerializeField] Slider mainExp;
-    [SerializeField] Text mainHp;
-    [SerializeField] Text mainAbility;
+    [SerializeField] TextMeshProUGUI mainHp;
+    [SerializeField] TextMeshProUGUI mainAbility;
     [Space(10f)]
     [SerializeField] Button mainSelectButton;
-    [SerializeField] Text mainSelectText;
+    [SerializeField] TextMeshProUGUI mainSelectText;
     [Header("DetailPanel")]
     [SerializeField] GameObject detailPanel;
     [Space(10f)]
     [SerializeField] GameObject[] detailRank;
     [SerializeField] Image detailImage;
-    [SerializeField] Text detailName;
-    [SerializeField] Text detailText;
+    [SerializeField] TextMeshProUGUI detailName;
+    [SerializeField] TextMeshProUGUI detailText;
     [Space(10f)]
-    [SerializeField] Text detailLv;
+    [SerializeField] TextMeshProUGUI detailLv;
     [SerializeField] Slider detailExp;
-    [SerializeField] Text detailHp;
-    [SerializeField] Text detailAbility;
+    [SerializeField] TextMeshProUGUI detailHp;
+    [SerializeField] TextMeshProUGUI detailAbility;
     [Space(10f)]
     [SerializeField] Button detailLvUp;
-    [SerializeField] Text detailPrice;
-    [SerializeField] Text detailHpUp;
-    [SerializeField] Text detailAbilityUp;
+    [SerializeField] TextMeshProUGUI detailPrice;
+    [SerializeField] TextMeshProUGUI detailHpUp;
+    [SerializeField] TextMeshProUGUI detailAbilityUp;
     void Update()
     {
 

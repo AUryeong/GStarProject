@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class QusetManager : Singleton<QusetManager>
 {
-    QusetScriptable dayQuset;
-    QusetScriptable aweekQuset;
-    QusetScriptable mainQuset;
+    [SerializeField] QusetScriptable dayQuset;
+    [SerializeField] QusetScriptable aweekQuset;
+    [SerializeField] QusetScriptable mainQuset;
     public Sprite[] rewardSprite;
     public void QusetUpdate(QusetType Type, int QusetId , float Progress)
     {

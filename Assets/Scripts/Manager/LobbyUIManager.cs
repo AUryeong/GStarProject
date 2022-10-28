@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
@@ -26,12 +27,11 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
 
     [Header("Top UI")]
     [Space(10f)]
-    [SerializeField] Text goldText;
-    [SerializeField] Text macaronText;
+    [SerializeField] TextMeshProUGUI goldText;
+    [SerializeField] TextMeshProUGUI macaronText;
     [Header("Stamina")]
     [SerializeField] GameObject[] heartGroup;
-    [SerializeField] Image staminaImage;
-    [SerializeField] Text staminaText;
+    [SerializeField] TextMeshProUGUI staminaText;
 
     [Header("Mid UI")]
     [Space(10f)]
@@ -65,9 +65,9 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     [SerializeField] GameObject startPanel;//정비 화면
     [SerializeField] GameObject reCheckPanel;//정비 화면에서 시작을 누를떄 나오는 이미지
     [SerializeField] Image abilityImage_Main;//클릭 했을떄 나오는 이미지
-    [SerializeField] Text abilityNameAndLV;//스킬 이름과 레벨텍스트
-    [SerializeField] Text upgradeMoney;//가격 텍스트
-    [SerializeField] Text abilityExplanation;//스킬 설명 텍스트
+    [SerializeField] TextMeshProUGUI abilityNameAndLV;//스킬 이름과 레벨텍스트
+    [SerializeField] TextMeshProUGUI upgradeMoney;//가격 텍스트
+    [SerializeField] TextMeshProUGUI abilityExplanation;//스킬 설명 텍스트
     [SerializeField] Sprite[] abilitySprite = new Sprite[2];//스킬 이미지
     [SerializeField] Vector3 startOpenPos;
     [SerializeField] Vector3 startClosePos;
@@ -76,6 +76,7 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     protected override void Awake()
     {
         base.Awake();
+        selectBread = GameManager.Instance.selectBread;
         SettingBreadShop(breadScriptable);
         SettingQusetPanel();
         StaminaUpdate();
