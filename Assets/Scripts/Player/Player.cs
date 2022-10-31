@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
     protected PlayerState state;
 
     public Breads.Type type;
-    public float fSpeed = 5;
+    protected float fSpeed = 5;
     [HideInInspector] public float fHp;
 
     public float hp;
@@ -40,10 +40,10 @@ public class Player : MonoBehaviour
 
 
     [Header("플레이어 점프 관련")]
-    public float fJumpSpeed = 10;
+    protected float fJumpSpeed = 13;
     protected float jumpCheckDistance = 0.1f;
     protected int jumpCount = 0;
-    public int jumpMaxCount = 2;
+    protected int jumpMaxCount = 2;
 
     //장애물 충돌
     protected bool hitable = true;
@@ -202,10 +202,15 @@ public class Player : MonoBehaviour
         }
     }
 
+    protected virtual float GetSpeedMultipler()
+    {
+        return 1;
+    }
+
     //이동을 관리하는 함수
     protected virtual void Move(float deltaTime)
     {
-        float speedMultipler = 1;
+        float speedMultipler = GetSpeedMultipler();
         if (boostDuration > 0)
             speedMultipler *= boostMovePercent;
         transform.Translate(deltaTime * speedMultipler * fSpeed * Vector2.right);
@@ -314,7 +319,7 @@ public class Player : MonoBehaviour
     {
         obj.SetActive(false);
         //TODO 부스트 이펙트
-        boostDuration += itemBoostDuration;
+        boostDuration = Mathf.Max(boostDuration, itemBoostDuration);
     }
 
     protected virtual void GetMagnet(GameObject obj)

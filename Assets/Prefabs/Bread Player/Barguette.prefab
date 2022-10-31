@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -8089531285447559917, guid: e0d616301dfd82f4ebdd9d003cec2556, type: 3}
+  m_Sprite: {fileID: 7454401387483137176, guid: c3d3eb9df65b6364683f38f1c2f1c09f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -143,7 +143,7 @@ Animator:
   m_GameObject: {fileID: 5519395511417958222}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 49ee63d012c0a5e42a43ddcf2e33192d, type: 2}
+  m_Controller: {fileID: 9100000, guid: 57aa33e39b2c3c64ab401bca395a8e72, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -165,11 +165,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 9
-  fSpeed: 5
   fHp: 0
   hp: 0
-  fJumpSpeed: 10
-  jumpMaxCount: 2
+  boostDuration: 0
   idleColiderSize:
     offset: {x: 0.05, y: 0.075}
     size: {x: 1.1, y: 1.65}
