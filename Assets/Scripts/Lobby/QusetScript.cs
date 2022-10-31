@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,8 +8,8 @@ public class QusetScript : MonoBehaviour
 {
     private Quset qusetContents;
     [SerializeField] Image qusetImage;//퀘스트 보상 이미지
-    [SerializeField] Text qusetrewardText;//퀘스트 보상 텍스트
-    [SerializeField] Text qusetText; //퀘스트 내용 텍스트
+    [SerializeField] TextMeshProUGUI qusetrewardText;//퀘스트 보상 텍스트
+    [SerializeField] TextMeshProUGUI qusetText; //퀘스트 내용 텍스트
     [SerializeField] Button qusetButton; //퀘스트 버튼
     [SerializeField] Sprite[] qusetButtonImages;//버튼 이미지
     [SerializeField] Slider qusetSliders;//퀘스트 진행도 슬라이더
