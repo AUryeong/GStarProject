@@ -21,6 +21,13 @@ MonoBehaviour:
     MaxEXP: 1
     HP: 100
     Price: 0
+    AbilityLV_1: 0
+    AbilityLV_2: 0
+    AbilityImage_1: {fileID: 0}
+    AbilityImage_2: {fileID: 0}
+    AbilityText_1: 
+    AbilityText_2: 
+    isBuy: 1
   - Name: "\uBE44\uC0C1 \uC2DD\uBE75"
     ImageSprite: {fileID: 21300000, guid: 9a3a6d22b0a249a4cb50251f901ab05a, type: 3}
     Rank: 1
@@ -29,6 +36,13 @@ MonoBehaviour:
     MaxEXP: 1
     HP: 50
     Price: 0
+    AbilityLV_1: 0
+    AbilityLV_2: 0
+    AbilityImage_1: {fileID: 0}
+    AbilityImage_2: {fileID: 0}
+    AbilityText_1: 
+    AbilityText_2: 
+    isBuy: 0
   - Name: "\uCC38\uAE68\uBE75"
     ImageSprite: {fileID: 21300000, guid: 9fc66053ae0ebb54aa30c1ad167fade5, type: 3}
     Rank: 1
@@ -37,6 +51,13 @@ MonoBehaviour:
     MaxEXP: 1
     HP: 100
     Price: 0
+    AbilityLV_1: 0
+    AbilityLV_2: 0
+    AbilityImage_1: {fileID: 0}
+    AbilityImage_2: {fileID: 0}
+    AbilityText_1: 
+    AbilityText_2: 
+    isBuy: 0
   - Name: "\uC218\uBC15\uC2DD\uBE75"
     ImageSprite: {fileID: 21300000, guid: df82951e82a19a14c8f432657cde1a8f, type: 3}
     Rank: 1
@@ -45,6 +66,13 @@ MonoBehaviour:
     MaxEXP: 1
     HP: 125
     Price: 0
+    AbilityLV_1: 0
+    AbilityLV_2: 0
+    AbilityImage_1: {fileID: 0}
+    AbilityImage_2: {fileID: 0}
+    AbilityText_1: 
+    AbilityText_2: 
+    isBuy: 0
   - Name: "\uC8FD\uBE75"
     ImageSprite: {fileID: 21300000, guid: e5297187de4cb044bb9d3eb246bbc78d, type: 3}
     Rank: 1
@@ -53,6 +81,13 @@ MonoBehaviour:
     MaxEXP: 1
     HP: 200
     Price: 0
+    AbilityLV_1: 0
+    AbilityLV_2: 0
+    AbilityImage_1: {fileID: 0}
+    AbilityImage_2: {fileID: 0}
+    AbilityText_1: 
+    AbilityText_2: 
+    isBuy: 0
   - Name: "\uB450\uBD80"
     ImageSprite: {fileID: 21300000, guid: 3532b10d60d8db245902e46eea93669c, type: 3}
     Rank: 1
@@ -61,6 +96,13 @@ MonoBehaviour:
     MaxEXP: 1
     HP: 100
     Price: 0
+    AbilityLV_1: 0
+    AbilityLV_2: 0
+    AbilityImage_1: {fileID: 0}
+    AbilityImage_2: {fileID: 0}
+    AbilityText_1: 
+    AbilityText_2: 
+    isBuy: 0
   - Name: "\uBC84\uD130\uD1B1 \uC2DD\uBE75"
     ImageSprite: {fileID: 21300000, guid: 8f97059fc931c444490229cfda067950, type: 3}
     Rank: 2
@@ -69,6 +111,13 @@ MonoBehaviour:
     MaxEXP: 1
     HP: 125
     Price: 0
+    AbilityLV_1: 0
+    AbilityLV_2: 0
+    AbilityImage_1: {fileID: 0}
+    AbilityImage_2: {fileID: 0}
+    AbilityText_1: 
+    AbilityText_2: 
+    isBuy: 0
   - Name: "\uD480\uBA3C \uC2DD\uBE75"
     ImageSprite: {fileID: 21300000, guid: 8758dc55855b98e458d14a52f42b2ec1, type: 3}
     Rank: 2
@@ -77,6 +126,13 @@ MonoBehaviour:
     MaxEXP: 1
     HP: 150
     Price: 0
+    AbilityLV_1: 0
+    AbilityLV_2: 0
+    AbilityImage_1: {fileID: 0}
+    AbilityImage_2: {fileID: 0}
+    AbilityText_1: 
+    AbilityText_2: 
+    isBuy: 0
   - Name: "\uD1A0\uC2A4\uD2B8"
     ImageSprite: {fileID: 21300000, guid: f0e48b101ea22014ca1bcc8c3b0472ca, type: 3}
     Rank: 2
@@ -85,6 +141,13 @@ MonoBehaviour:
     MaxEXP: 1
     HP: 150
     Price: 0
+    AbilityLV_1: 0
+    AbilityLV_2: 0
+    AbilityImage_1: {fileID: 0}
+    AbilityImage_2: {fileID: 0}
+    AbilityText_1: 
+    AbilityText_2: 
+    isBuy: 0
   - Name: "\uBC14\uAC8C\uD2B8 \uBE75"
     ImageSprite: {fileID: 21300000, guid: 966b39c3b1384944ba62ea47b02538a2, type: 3}
     Rank: 2
@@ -93,6 +156,13 @@ MonoBehaviour:
     MaxEXP: 1
     HP: 225
     Price: 0
+    AbilityLV_1: 0
+    AbilityLV_2: 0
+    AbilityImage_1: {fileID: 0}
+    AbilityImage_2: {fileID: 0}
+    AbilityText_1: 
+    AbilityText_2: 
+    isBuy: 0
   - Name: "\uD50C\uB7AB \uBE0C\uB808\uB4DC"
     ImageSprite: {fileID: 21300000, guid: 91852f3476bf9e147be34f55c5d76c35, type: 3}
     Rank: 3
@@ -101,6 +171,13 @@ MonoBehaviour:
     MaxEXP: 1
     HP: 225
     Price: 0
+    AbilityLV_1: 0
+    AbilityLV_2: 0
+    AbilityImage_1: {fileID: 0}
+    AbilityImage_2: {fileID: 0}
+    AbilityText_1: 
+    AbilityText_2: 
+    isBuy: 0
   - Name: "\uB6F0\uB6F0\uBE75\uBE75"
     ImageSprite: {fileID: 21300000, guid: 18fd9203622a35f46921331bd08a91d6, type: 3}
     Rank: 3
@@ -109,6 +186,13 @@ MonoBehaviour:
     MaxEXP: 1
     HP: 275
     Price: 0
+    AbilityLV_1: 0
+    AbilityLV_2: 0
+    AbilityImage_1: {fileID: 0}
+    AbilityImage_2: {fileID: 0}
+    AbilityText_1: 
+    AbilityText_2: 
+    isBuy: 0
   - Name: "\uC548\uC804\uBE75"
     ImageSprite: {fileID: 21300000, guid: 60cf51b35fbf42a4592b42d284717e5d, type: 3}
     Rank: 3
@@ -117,6 +201,13 @@ MonoBehaviour:
     MaxEXP: 1
     HP: 250
     Price: 0
+    AbilityLV_1: 0
+    AbilityLV_2: 0
+    AbilityImage_1: {fileID: 0}
+    AbilityImage_2: {fileID: 0}
+    AbilityText_1: 
+    AbilityText_2: 
+    isBuy: 0
   - Name: "\uAE5C\uBE75"
     ImageSprite: {fileID: 21300000, guid: 60956f8567f71c24f9c57c90515d185b, type: 3}
     Rank: 3
@@ -125,6 +216,13 @@ MonoBehaviour:
     MaxEXP: 1
     HP: 250
     Price: 0
+    AbilityLV_1: 0
+    AbilityLV_2: 0
+    AbilityImage_1: {fileID: 0}
+    AbilityImage_2: {fileID: 0}
+    AbilityText_1: 
+    AbilityText_2: 
+    isBuy: 0
   - Name: "\uB77C\uBA74\uC0AC\uB9AC"
     ImageSprite: {fileID: 21300000, guid: c2c6161652235234c85996c805784dca, type: 3}
     Rank: 3
@@ -133,3 +231,10 @@ MonoBehaviour:
     MaxEXP: 1
     HP: 300
     Price: 0
+    AbilityLV_1: 0
+    AbilityLV_2: 0
+    AbilityImage_1: {fileID: 0}
+    AbilityImage_2: {fileID: 0}
+    AbilityText_1: 
+    AbilityText_2: 
+    isBuy: 0

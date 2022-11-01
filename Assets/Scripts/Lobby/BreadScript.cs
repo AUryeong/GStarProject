@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class BreadScript : MonoBehaviour
 {
+    Breads.Type type;
     [SerializeField] BreadStat scriptable;
     [Header("Main")]
     [SerializeField] TextMeshProUGUI mainName;
@@ -43,14 +44,20 @@ public class BreadScript : MonoBehaviour
     }
     public void BreadSetting(Breads breadscriptable,Breads.Type breadCount)
     {
+        type = breadCount;
         scriptable = breadscriptable.Stats[(int)breadCount];
         mainName.text = scriptable.Name;
         mainImage.sprite = scriptable.ImageSprite;
-        mainSelectButton.onClick.AddListener(() => BuyButton(breadCount));
+        mainSelectButton.onClick.RemoveAllListeners();
+        mainSelectButton.onClick.AddListener(() => BuyButton());
 
         if(scriptable.isBuy == true)
         {
             mainSelectText.text = "선택하기";
+        }
+        else
+        {
+            mainSelectText.text = "구매하기";
         }
 
         mainLv.text = $"{scriptable.LV}.LV";
@@ -60,9 +67,9 @@ public class BreadScript : MonoBehaviour
         for (int Rank = 0; Rank < scriptable.Rank; Rank++)
            mainRanks[Rank].gameObject.SetActive(true);
     }
-    void BuyButton(Breads.Type idx)
+    void BuyButton()
     {
-        LobbyUIManager.Instance.selectBread = idx;
+        LobbyUIManager.Instance.selectBread = type;
     /*    GameObject ClickButton = EventSystem.current.currentSelectedGameObject;
         SelectButtonTxt.text = "선택하기";
         SelectButtonTxt = ClickButton.GetComponentInChildren<Text>();

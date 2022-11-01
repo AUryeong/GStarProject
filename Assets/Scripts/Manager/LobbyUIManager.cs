@@ -51,7 +51,7 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     public Breads.Type selectBread;
 
     [Header("Quset")]
-    public QusetScriptable[] qusetScriptables;
+    
     public ScrollRect qusetScroll;
     public RectTransform[] qusetPanel;
     public Button[] qusetButtons;
@@ -134,10 +134,15 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     {
         for (int i = 0; i < 3; i++)//0 : 일일 / 1 : 주간 / 2 : 메인
         {
-            for (int j = 0; j < qusetScriptables[i].QusetList.Count; j++)
+            List<QusetScript> scripts = new List<QusetScript>();
+            for (int j = 0; j < QusetManager.Instance.qusetScriptables[i].QusetList.Count; j++)
             {
-                Instantiate(qusetPrefab, transform.position, transform.rotation, qusetPanel[i].transform)
-                    .GetComponent<QusetScript>().SettingQuset(qusetScriptables[i], j);
+                scripts.Add(Instantiate(qusetPrefab, transform.position, transform.rotation, qusetPanel[i].transform)
+                    .GetComponent<QusetScript>());
+            }
+            for (int j = 0; j < QusetManager.Instance.qusetScriptables[i].QusetList.Count; j++)
+            {
+                scripts[j].SettingQuset(QusetManager.Instance.qusetScriptables[i], j);
             }
         }
     }

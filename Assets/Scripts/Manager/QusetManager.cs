@@ -5,21 +5,25 @@ using UnityEngine;
 
 public class QusetManager : Singleton<QusetManager>
 {
-    [SerializeField] QusetScriptable dayQuset;
-    [SerializeField] QusetScriptable aweekQuset;
-    [SerializeField] QusetScriptable mainQuset;
+    public QusetScriptable[] qusetScriptables;
     public Sprite[] rewardSprite;
+    protected override void Awake()
+    {
+        base.Awake();
+        if (Instance == this)
+            DontDestroyOnLoad(gameObject);
+    }
     public void QusetUpdate(QusetType Type, int QusetId , float Progress)
     {
         switch (Type){
             case QusetType.Day:
-                dayQuset.QusetList[QusetId].qusetCondition += Progress;
+                qusetScriptables[0].QusetList[QusetId].qusetCondition += Progress;
                 return; 
             case QusetType.Aweek:
-                aweekQuset.QusetList[QusetId].qusetCondition += Progress;
+                qusetScriptables[1].QusetList[QusetId].qusetCondition += Progress;
                 return;
             case QusetType.Main:
-                mainQuset.QusetList[QusetId].qusetCondition += Progress;
+                qusetScriptables[2].QusetList[QusetId].qusetCondition += Progress;
                 return;
         }
     }

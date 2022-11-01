@@ -24,9 +24,9 @@ MonoBehaviour:
     M_ClearCount: 0
     rewardType: 0
     qusetType: 0
-  - isClear: 1
+  - isClear: 0
     qusetCondition: 20
-    questSituation: 0
+    questSituation: 20.66
     sprite: {fileID: 0}
     text:
     - "20\uBC88 \uC810\uD504\uD558\uAE30"
@@ -69,7 +69,7 @@ MonoBehaviour:
     rewardType: 2
     qusetType: 0
   - isClear: 0
-    qusetCondition: 5
+    qusetCondition: 9
     questSituation: 0
     sprite: {fileID: 0}
     text:
