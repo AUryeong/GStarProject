@@ -23,7 +23,7 @@ public class GameData
     [System.Serializable]
     public class Quests
     {
-        public QusetType qusetType;
+        public QuestType qusetType;
         public List<Quest> questList = new List<Quest>();
     }
     [System.Serializable]
@@ -95,7 +95,7 @@ public class SaveManager : Singleton<SaveManager>
             var questList = QusetManager.Instance.qusetScriptables[(int)quests.qusetType].QusetList;
             for (int i = 0; i < quests.questList.Count; i++)
             {
-                Quset quest = questList[i];
+                Quest quest = questList[i];
                 GameData.Quest questData = quests.questList[i];
                 quest.isClear = questData.isClear;
                 quest.questSituation = questData.questSituation;
@@ -104,11 +104,10 @@ public class SaveManager : Singleton<SaveManager>
         }
         for (int i = 0; i < gameData.breadData.Count; i++)
         {
-            BreadStat breadStat = GameManager.Instance.breads.Stats[i];
+            BreadStats breadStat = GameManager.Instance.breads.Stats[i];
             GameData.Bread breadData = gameData.breadData[i];
             breadStat.isBuy = breadData.isBuy;
             breadStat.LV = breadData.LV;
-            breadStat.EXP = breadData.EXP;
         }
     }
 
@@ -135,8 +134,8 @@ public class SaveManager : Singleton<SaveManager>
             var questsData = new GameData.Quests();
 
             gameData.questData.Add(questsData);
-            questsData.qusetType = (QusetType)i;
-            foreach (Quset quest in scriptable.QusetList)
+            questsData.qusetType = (QuestType)i;
+            foreach (Quest quest in scriptable.QusetList)
             {
                 GameData.Quest questData = new GameData.Quest();
 
@@ -149,12 +148,11 @@ public class SaveManager : Singleton<SaveManager>
         gameData.breadData.Clear();
         for (int i = 0; i < GameManager.Instance.breads.Stats.Count; i++)
         {
-            BreadStat breadStat = GameManager.Instance.breads.Stats[i];
+            BreadStats breadStat = GameManager.Instance.breads.Stats[i];
             GameData.Bread breadData = new GameData.Bread();
             gameData.breadData.Add(breadData);
             breadData.isBuy = breadStat.isBuy;
             breadData.LV = breadStat.LV;
-            breadData.EXP = breadStat.EXP;
         }
         PlayerPrefs.SetString(prefsName, JsonUtility.ToJson(gameData));
     }

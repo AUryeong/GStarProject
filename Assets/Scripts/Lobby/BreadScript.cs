@@ -7,73 +7,59 @@ using UnityEngine.UI;
 public class BreadScript : MonoBehaviour
 {
     protected Breads.Type type;
-    [SerializeField] BreadStat scriptable;
+    [SerializeField] BreadStats scriptable;
+
     [Header("Main")]
     [SerializeField] TextMeshProUGUI mainName;
     [SerializeField] Button detailButton;
     [SerializeField] Image mainImage;
     [SerializeField] GameObject[] mainRanks;
+
     [Space(10f)]
     [SerializeField] TextMeshProUGUI mainLv;
     [SerializeField] Slider mainExp;
     [SerializeField] TextMeshProUGUI mainHp;
     [SerializeField] TextMeshProUGUI mainAbility;
+
     [Space(10f)]
     [SerializeField] Button mainSelectButton;
     [SerializeField] TextMeshProUGUI mainSelectText;
-    [Header("DetailPanel")]
-    [SerializeField] GameObject detailPanel;
-    [Space(10f)]
-    [SerializeField] GameObject[] detailRank;
-    [SerializeField] Image detailImage;
-    [SerializeField] TextMeshProUGUI detailName;
-    [SerializeField] TextMeshProUGUI detailText;
-    [Space(10f)]
-    [SerializeField] TextMeshProUGUI detailLv;
-    [SerializeField] Slider detailExp;
-    [SerializeField] TextMeshProUGUI detailHp;
-    [SerializeField] TextMeshProUGUI detailAbility;
-    [Space(10f)]
-    [SerializeField] Button detailLvUp;
-    [SerializeField] TextMeshProUGUI detailPrice;
-    [SerializeField] TextMeshProUGUI detailHpUp;
-    [SerializeField] TextMeshProUGUI detailAbilityUp;
-    void Update()
-    {
-        if (LobbyUIManager.Instance.selectBread == type)
-        {
-            mainSelectText.text = "선택됨";
-        }
-        else if (scriptable.isBuy == true)
-        {
-            mainSelectText.text = "선택하기";
-        }
-    }
+
     public void BreadSetting(Breads breadscriptable, Breads.Type breadCount)
     {
         type = breadCount;
         scriptable = breadscriptable.Stats[(int)breadCount];
+
+        detailButton.onClick.RemoveAllListeners();
+        detailButton.onClick.AddListener(() => DetailPanel.instance.OpenPanel(scriptable));
+
         mainName.text = scriptable.Name;
         mainImage.sprite = scriptable.ImageSprite;
-        mainSelectButton.onClick.RemoveAllListeners();
-        mainSelectButton.onClick.AddListener(() => BuyButton());
 
-        if (!scriptable.isBuy)
-            mainSelectText.text = "구매하기\n(" + scriptable.Price + ")";
+        mainSelectButton.onClick.RemoveAllListeners();
+        mainSelectButton.onClick.AddListener(() => SelectButton());
+
+        LobbyUIManager.Instance.breadSelectText.Add(mainSelectText);
+        if (!scriptable.isBuy)//구매하지 않았을때 가격
+            mainSelectText.text = "" + scriptable.Price + "";
+        else if (LobbyUIManager.Instance.selectBread == type)//구매 후 선택된 빵일때
+            mainSelectText.text = "선택됨";
+        else//구매 후 선택되지 않았을때
+            mainSelectText.text = "선택하기";
 
         mainLv.text = $"{scriptable.LV}.LV";
-        mainExp.value = scriptable.EXP / scriptable.MaxEXP;
+        mainExp.value = scriptable.LV / 6;
 
         mainHp.text = $"{scriptable.HP}";
 
         for (int Rank = 0; Rank < scriptable.Rank; Rank++)
             mainRanks[Rank].gameObject.SetActive(true);
     }
-    void BuyButton()
+    void SelectButton()
     {
         if (scriptable.isBuy)
         {
-            LobbyUIManager.Instance.selectBread = type;
+            ChangeBread();
         }
         else
         {
@@ -81,12 +67,25 @@ public class BreadScript : MonoBehaviour
             {
                 GameManager.Instance.gold -= scriptable.Price;
                 scriptable.isBuy = true;
-                LobbyUIManager.Instance.selectBread = type;
+                ChangeBread();
+
+                mainLv.text = $"{++scriptable.LV}.LV";
+                mainExp.value = scriptable.LV / 6;
             }
             else
             {
                 LobbyUIManager.Instance.MoneyLess();
             }
         }
+    }
+    void ChangeBread()
+    {
+        //선택된 빵 패널 텍스트를 선택하기로 변경
+        LobbyUIManager.Instance.breadSelectText
+            [(int)LobbyUIManager.Instance.selectBread].text = "선택하기";
+
+        //텍스트를 선택됨으로 변경
+        mainSelectText.text = "선택됨";
+        LobbyUIManager.Instance.selectBread = type;
     }
 }

@@ -24,17 +24,15 @@ public class Breads : ScriptableObject
         Ramen
     }
 
-    public List<BreadStat> Stats = new List<BreadStat>();
+    public List<BreadStats> Stats = new List<BreadStats>();
 }
 [System.Serializable]
-public class BreadStat
+public class BreadStats
 {
     public string Name;
     public Sprite ImageSprite;
     public int Rank;
     public int LV;
-    public float EXP;
-    public float MaxEXP;
     public int HP;
     public int Price;
     public int AbilityLV_1;

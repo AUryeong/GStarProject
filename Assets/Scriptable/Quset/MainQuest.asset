@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   QusetList:
   - isClear: 0
-    qusetCondition: 50
+    questCondition: 50
     questSituation: 0
     sprite: {fileID: 0}
     text:
@@ -24,9 +24,9 @@ MonoBehaviour:
     M_UpCondition: 50
     M_ClearCount: 0
     rewardType: 2
-    qusetType: 2
+    questType: 2
   - isClear: 0
-    qusetCondition: 100
+    questCondition: 100
     questSituation: 0
     sprite: {fileID: 0}
     text:
@@ -36,9 +36,9 @@ MonoBehaviour:
     M_UpCondition: 100
     M_ClearCount: 0
     rewardType: 2
-    qusetType: 2
+    questType: 2
   - isClear: 0
-    qusetCondition: 100
+    questCondition: 100
     questSituation: 0
     sprite: {fileID: 0}
     text:
@@ -48,9 +48,9 @@ MonoBehaviour:
     M_UpCondition: 100
     M_ClearCount: 0
     rewardType: 2
-    qusetType: 2
+    questType: 2
   - isClear: 0
-    qusetCondition: 20
+    questCondition: 20
     questSituation: 0
     sprite: {fileID: 0}
     text:
@@ -60,9 +60,9 @@ MonoBehaviour:
     M_UpCondition: 20
     M_ClearCount: 0
     rewardType: 2
-    qusetType: 2
+    questType: 2
   - isClear: 0
-    qusetCondition: 100
+    questCondition: 100
     questSituation: 0
     sprite: {fileID: 0}
     text:
@@ -72,9 +72,9 @@ MonoBehaviour:
     M_UpCondition: 100
     M_ClearCount: 0
     rewardType: 2
-    qusetType: 2
+    questType: 2
   - isClear: 0
-    qusetCondition: 50
+    questCondition: 50
     questSituation: 0
     sprite: {fileID: 0}
     text:
@@ -84,9 +84,9 @@ MonoBehaviour:
     M_UpCondition: 50
     M_ClearCount: 0
     rewardType: 2
-    qusetType: 2
+    questType: 2
   - isClear: 0
-    qusetCondition: 50
+    questCondition: 50
     questSituation: 0
     sprite: {fileID: 0}
     text:
@@ -96,9 +96,9 @@ MonoBehaviour:
     M_UpCondition: 50
     M_ClearCount: 0
     rewardType: 2
-    qusetType: 2
+    questType: 2
   - isClear: 0
-    qusetCondition: 100
+    questCondition: 100
     questSituation: 0
     sprite: {fileID: 0}
     text:
@@ -108,9 +108,9 @@ MonoBehaviour:
     M_UpCondition: 100
     M_ClearCount: 0
     rewardType: 2
-    qusetType: 2
+    questType: 2
   - isClear: 1
-    qusetCondition: 10
+    questCondition: 10
     questSituation: 0
     sprite: {fileID: 0}
     text:
@@ -120,9 +120,9 @@ MonoBehaviour:
     M_UpCondition: 50
     M_ClearCount: 0
     rewardType: 2
-    qusetType: 2
+    questType: 2
   - isClear: 0
-    qusetCondition: 20
+    questCondition: 20
     questSituation: 0
     sprite: {fileID: 0}
     text:
@@ -132,9 +132,9 @@ MonoBehaviour:
     M_UpCondition: 20
     M_ClearCount: 0
     rewardType: 2
-    qusetType: 2
+    questType: 2
   - isClear: 0
-    qusetCondition: 100
+    questCondition: 100
     questSituation: 0
     sprite: {fileID: 0}
     text:
@@ -144,9 +144,9 @@ MonoBehaviour:
     M_UpCondition: 100
     M_ClearCount: 0
     rewardType: 2
-    qusetType: 2
+    questType: 2
   - isClear: 0
-    qusetCondition: 20
+    questCondition: 20
     questSituation: 0
     sprite: {fileID: 0}
     text:
@@ -156,4 +156,4 @@ MonoBehaviour:
     M_UpCondition: 20
     M_ClearCount: 0
     rewardType: 2
-    qusetType: 2
+    questType: 2

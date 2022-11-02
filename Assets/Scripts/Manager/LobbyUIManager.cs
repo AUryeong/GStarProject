@@ -21,9 +21,12 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     [SerializeField] GameObject Bread;
     [SerializeField] GameObject Quset;
     [SerializeField] GameObject Map;
+
     [SerializeField] TextMeshProUGUI moneyLessText;
     [SerializeField] Vector3 shopOpenPos;
     [SerializeField] Vector3 shopClosePos;
+
+    public List<TextMeshProUGUI> breadSelectText = new List<TextMeshProUGUI>();//빵 선택 텍스트들
     private GameObject ShopPanelObject;
 
     [Header("Top UI")]
@@ -65,11 +68,15 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     [Header("Start")]
     [SerializeField] GameObject startPanel;//���� ȭ��
     [SerializeField] GameObject reCheckPanel;//���� ȭ�鿡�� ������ ������ ������ �̹���
+
     [SerializeField] Image abilityImage_Main;//Ŭ�� ������ ������ �̹���
+
     [SerializeField] TextMeshProUGUI abilityNameAndLV;//��ų �̸��� �����ؽ�Ʈ
     [SerializeField] TextMeshProUGUI upgradeMoney;//���� �ؽ�Ʈ
     [SerializeField] TextMeshProUGUI abilityExplanation;//��ų ���� �ؽ�Ʈ
+
     [SerializeField] Sprite[] abilitySprite = new Sprite[2];//��ų �̹���
+
     [SerializeField] Vector3 startOpenPos;
     [SerializeField] Vector3 startClosePos;
     private bool reCheck;
@@ -83,7 +90,11 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
         StaminaUpdate();
         AbilitySelect(0);
     }
-
+    private void Start()
+    {
+        SettingBreadShop(breadScriptable);
+        SettingQusetPanel();
+    }
     public void MoneyLess()
     {
         moneyLessText.gameObject.SetActive(true);
@@ -137,7 +148,7 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     void SettingBreadShop(Breads BreadList)
     {
         int breadCount = 0;
-        foreach (BreadStat Bread in BreadList.Stats)
+        foreach (BreadStats Bread in BreadList.Stats)
         {
             GameObject breadPanelObject = Instantiate(breadPrefab, transform.position, transform.rotation, breadContent.transform);
             breadPanelObject.transform.GetComponent<BreadScript>().BreadSetting(breadScriptable, (Breads.Type)breadCount);

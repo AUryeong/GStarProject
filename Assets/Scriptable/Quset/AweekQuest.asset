@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   QusetList:
   - isClear: 0
-    qusetCondition: 20
+    questCondition: 20
     questSituation: 0
     sprite: {fileID: 0}
     text:
@@ -23,9 +23,9 @@ MonoBehaviour:
     M_UpCondition: 0
     M_ClearCount: 0
     rewardType: 0
-    qusetType: 1
+    questType: 1
   - isClear: 0
-    qusetCondition: 300
+    questCondition: 300
     questSituation: 0
     sprite: {fileID: 0}
     text:
@@ -34,9 +34,9 @@ MonoBehaviour:
     M_UpCondition: 0
     M_ClearCount: 0
     rewardType: 0
-    qusetType: 1
+    questType: 1
   - isClear: 0
-    qusetCondition: 300
+    questCondition: 300
     questSituation: 0
     sprite: {fileID: 0}
     text:
@@ -45,9 +45,9 @@ MonoBehaviour:
     M_UpCondition: 0
     M_ClearCount: 0
     rewardType: 0
-    qusetType: 1
+    questType: 1
   - isClear: 0
-    qusetCondition: 100
+    questCondition: 100
     questSituation: 0
     sprite: {fileID: 0}
     text:
@@ -56,9 +56,9 @@ MonoBehaviour:
     M_UpCondition: 0
     M_ClearCount: 0
     rewardType: 1
-    qusetType: 1
+    questType: 1
   - isClear: 0
-    qusetCondition: 60
+    questCondition: 60
     questSituation: 0
     sprite: {fileID: 0}
     text:
@@ -67,9 +67,9 @@ MonoBehaviour:
     M_UpCondition: 0
     M_ClearCount: 0
     rewardType: 0
-    qusetType: 1
+    questType: 1
   - isClear: 0
-    qusetCondition: 30
+    questCondition: 30
     questSituation: 0
     sprite: {fileID: 0}
     text:
@@ -78,9 +78,9 @@ MonoBehaviour:
     M_UpCondition: 0
     M_ClearCount: 0
     rewardType: 1
-    qusetType: 1
+    questType: 1
   - isClear: 0
-    qusetCondition: 1
+    questCondition: 150
     questSituation: 0
     sprite: {fileID: 0}
     text:
@@ -89,9 +89,9 @@ MonoBehaviour:
     M_UpCondition: 0
     M_ClearCount: 0
     rewardType: 2
-    qusetType: 1
+    questType: 1
   - isClear: 0
-    qusetCondition: 7
+    questCondition: 7
     questSituation: 0
     sprite: {fileID: 0}
     text:
@@ -100,4 +100,4 @@ MonoBehaviour:
     M_UpCondition: 0
     M_ClearCount: 0
     rewardType: 2
-    qusetType: 1
+    questType: 1

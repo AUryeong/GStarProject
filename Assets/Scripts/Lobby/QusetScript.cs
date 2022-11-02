@@ -6,13 +6,13 @@ using UnityEngine.UI;
 
 public class QusetScript : MonoBehaviour
 {
-    private Quest qusetContents;
-    [SerializeField] Image qusetImage;//퀘스트 보상 이미지
-    [SerializeField] TextMeshProUGUI qusetrewardText;//퀘스트 보상 텍스트
-    [SerializeField] TextMeshProUGUI qusetText; //퀘스트 내용 텍스트
-    [SerializeField] Button qusetButton; //퀘스트 버튼
-    [SerializeField] Sprite[] qusetButtonImages;//버튼 이미지
-    [SerializeField] Slider qusetSliders;//퀘스트 진행도 슬라이더
+    private Quest questContents;
+    [SerializeField] Image questImage;//퀘스트 보상 이미지
+    [SerializeField] TextMeshProUGUI questrewardText;//퀘스트 보상 텍스트
+    [SerializeField] TextMeshProUGUI questText; //퀘스트 내용 텍스트
+    [SerializeField] Button questButton; //퀘스트 버튼
+    [SerializeField] Sprite[] questButtonImages;//버튼 이미지
+    [SerializeField] Slider questSliders;//퀘스트 진행도 슬라이더
     [SerializeField] GameObject fadePanel;//퀘스트 진행도 슬라이더
     // Start is called before the first frame update
     private void Start()
@@ -21,47 +21,50 @@ public class QusetScript : MonoBehaviour
     }
     private void Update()
     {
-        if (qusetContents.isClear == false)
+        if (questContents.isClear == false)
         {
-            qusetSliders.value = qusetContents.questSituation / qusetContents.questCondition;
-            if (qusetContents.questCondition <= qusetContents.questSituation)
+            questSliders.value = questContents.questSituation / questContents.questCondition;
+            if (questContents.questCondition <= questContents.questSituation)
             {
-                qusetButton.image.sprite = qusetButtonImages[1];
-                qusetButton.interactable = true;
+                questButton.image.sprite = questButtonImages[1];
+                questButton.interactable = true;
             }
             else
             {
-                qusetButton.image.sprite = qusetButtonImages[0];
-                qusetButton.interactable = false;
+                questButton.image.sprite = questButtonImages[0];
+                questButton.interactable = false;
             }
         }
     }
+
     public void SettingQuset(QuestScriptable scriptable, int Idx)
     {
-        qusetContents = scriptable.QusetList[Idx];
-        qusetImage.sprite = QusetManager.Instance.rewardSprite[(int)qusetContents.rewardType];
-        qusetrewardText.text = "" + qusetContents.rewards;
-        qusetButton.onClick.AddListener(QusetClear);
-        qusetButton.interactable = false;
-        qusetButton.image.sprite = qusetButtonImages[0];
-        if (qusetContents.questType == QuestType.Main)
-            qusetText.text = $"{qusetContents.text[0]}{qusetContents.questCondition}{qusetContents.text[1]}";
+        questContents = scriptable.QusetList[Idx];
+
+        questImage.sprite = QusetManager.Instance.rewardSprite[(int)questContents.rewardType];
+        questrewardText.text = "" + questContents.rewards;
+        questButton.onClick.AddListener(QusetClear);
+        questButton.interactable = false;
+        questButton.image.sprite = questButtonImages[0];
+
+        if (questContents.questType == QuestType.Main)
+            questText.text = $"{questContents.text[0]}{questContents.questCondition}{questContents.text[1]}";
         else
-            qusetText.text = qusetContents.text[0];
+            questText.text = questContents.text[0];
 
 
-        if (qusetContents.isClear)
+        if (questContents.isClear)
         {
-            if (qusetContents.qusetType == QusetType.Main)
+            if (questContents.questType == QuestType.Main)
             {
-                qusetButton.image.sprite = qusetButtonImages[0];
-                qusetContents.isClear = false;
-                qusetContents.qusetCondition = qusetContents.rewards + qusetContents.M_UpCondition * qusetContents.M_ClearCount;
-                qusetText.text = $"{qusetContents.text[0]} {qusetContents.qusetCondition} {qusetContents.text[1]}";
+                questButton.image.sprite = questButtonImages[0];
+                questContents.isClear = false;
+                questContents.questCondition = questContents.rewards + questContents.M_UpCondition * questContents.M_ClearCount;
+                questText.text = $"{questContents.text[0]} {questContents.questCondition} {questContents.text[1]}";
             }
             else
             {
-                qusetButton.gameObject.SetActive(false);
+                questButton.gameObject.SetActive(false);
                 fadePanel.SetActive(true);
                 transform.SetAsLastSibling();
             }
@@ -69,52 +72,52 @@ public class QusetScript : MonoBehaviour
     }
     public void QusetClear()
     {
-        qusetContents.isClear = true;
+        questContents.isClear = true;
         //메인일때는 달성시 바로 초기화
-        if (qusetContents.questType == QuestType.Main)
+        if (questContents.questType == QuestType.Main)
         {
-            qusetButton.image.sprite = qusetButtonImages[0];
-            qusetContents.isClear = false;
-            qusetContents.questCondition = qusetContents.rewards + qusetContents.M_UpCondition * qusetContents.M_ClearCount;
-            qusetText.text = $"{qusetContents.text[0]} {qusetContents.questCondition} {qusetContents.text[1]}";
+            questButton.image.sprite = questButtonImages[0];
+            questContents.isClear = false;
+            questContents.questCondition = questContents.rewards + questContents.M_UpCondition * questContents.M_ClearCount;
+            questText.text = $"{questContents.text[0]} {questContents.questCondition} {questContents.text[1]}";
         }
         else
         {
-            qusetButton.gameObject.SetActive(false);
+            questButton.gameObject.SetActive(false);
             fadePanel.SetActive(true);
             transform.SetAsLastSibling();
         }
 
         //QusetUpdate - 클리어 횟수 추가
-        switch (qusetContents.questType)
+        switch (questContents.questType)
         {
             case QuestType.Day:
                 {
-                    QusetManager.Instance.QusetUpdate(qusetContents.questType, 5, 1);//5 - 일일 퀘스트 클리어 갯수
+                    QusetManager.Instance.QusetUpdate(questContents.questType, 5, 1);//5 - 일일 퀘스트 클리어 갯수
                     break;
                 }
             case QuestType.Aweek:
                 {
-                    QusetManager.Instance.QusetUpdate(qusetContents.questType, 7, 1);//7 - 주간 퀘스트 클리어 갯수
+                    QusetManager.Instance.QusetUpdate(questContents.questType, 7, 1);//7 - 주간 퀘스트 클리어 갯수
                     break;
                 }
         }
 
-        switch (qusetContents.rewardType)
+        switch (questContents.rewardType)
         {
             case RewardType.Gold:
                 {
-                    GameManager.Instance.gold += qusetContents.rewards;
+                    GameManager.Instance.gold += questContents.rewards;
                     return;
                 }
             case RewardType.Heart:
                 {
-                    GameManager.Instance.heart += qusetContents.rewards;
+                    GameManager.Instance.heart += questContents.rewards;
                     return;
                 }
             case RewardType.Macaron:
                 {
-                    GameManager.Instance.macaron += qusetContents.rewards;
+                    GameManager.Instance.macaron += questContents.rewards;
                     return;
                 }
         }
