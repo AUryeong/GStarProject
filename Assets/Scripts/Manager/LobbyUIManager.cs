@@ -51,7 +51,7 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     public Breads.Type selectBread;
 
     [Header("Quset")]
-    public QusetScriptable[] qusetScriptables;
+    public QuestScriptable[] qusetScriptables;
     public ScrollRect qusetScroll;
     public RectTransform[] qusetPanel;
     public Button[] qusetButtons;
