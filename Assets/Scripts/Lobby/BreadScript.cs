@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class BreadScript : MonoBehaviour
 {
-    Breads.Type type;
+    protected Breads.Type type;
     [SerializeField] BreadStat scriptable;
     [Header("Main")]
     [SerializeField] TextMeshProUGUI mainName;
@@ -40,9 +40,16 @@ public class BreadScript : MonoBehaviour
     [SerializeField] TextMeshProUGUI detailAbilityUp;
     void Update()
     {
-
+        if (LobbyUIManager.Instance.selectBread == type)
+        {
+            mainSelectText.text = "선택됨";
+        }
+        else if (scriptable.isBuy == true)
+        {
+            mainSelectText.text = "선택하기";
+        }
     }
-    public void BreadSetting(Breads breadscriptable,Breads.Type breadCount)
+    public void BreadSetting(Breads breadscriptable, Breads.Type breadCount)
     {
         type = breadCount;
         scriptable = breadscriptable.Stats[(int)breadCount];
@@ -51,29 +58,35 @@ public class BreadScript : MonoBehaviour
         mainSelectButton.onClick.RemoveAllListeners();
         mainSelectButton.onClick.AddListener(() => BuyButton());
 
-        if(scriptable.isBuy == true)
-        {
-            mainSelectText.text = "선택하기";
-        }
-        else
-        {
-            mainSelectText.text = "구매하기";
-        }
+        if (!scriptable.isBuy)
+            mainSelectText.text = "구매하기\n(" + scriptable.Price + ")";
 
         mainLv.text = $"{scriptable.LV}.LV";
         mainExp.value = scriptable.EXP / scriptable.MaxEXP;
+
         mainHp.text = $"{scriptable.HP}";
 
         for (int Rank = 0; Rank < scriptable.Rank; Rank++)
-           mainRanks[Rank].gameObject.SetActive(true);
+            mainRanks[Rank].gameObject.SetActive(true);
     }
     void BuyButton()
     {
-        LobbyUIManager.Instance.selectBread = type;
-    /*    GameObject ClickButton = EventSystem.current.currentSelectedGameObject;
-        SelectButtonTxt.text = "선택하기";
-        SelectButtonTxt = ClickButton.GetComponentInChildren<Text>();
-        SelectButtonTxt.text = "선택됨";*/
-
+        if (scriptable.isBuy)
+        {
+            LobbyUIManager.Instance.selectBread = type;
+        }
+        else
+        {
+            if (GameManager.Instance.gold >= scriptable.Price)
+            {
+                GameManager.Instance.gold -= scriptable.Price;
+                scriptable.isBuy = true;
+                LobbyUIManager.Instance.selectBread = type;
+            }
+            else
+            {
+                LobbyUIManager.Instance.MoneyLess();
+            }
+        }
     }
 }

@@ -21,6 +21,7 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     [SerializeField] GameObject Bread;
     [SerializeField] GameObject Quset;
     [SerializeField] GameObject Map;
+    [SerializeField] TextMeshProUGUI moneyLessText;
     [SerializeField] Vector3 shopOpenPos;
     [SerializeField] Vector3 shopClosePos;
     private GameObject ShopPanelObject;
@@ -51,7 +52,7 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     public Breads.Type selectBread;
 
     [Header("Quset")]
-    
+
     public ScrollRect qusetScroll;
     public RectTransform[] qusetPanel;
     public Button[] qusetButtons;
@@ -82,6 +83,19 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
         StaminaUpdate();
         AbilitySelect(0);
     }
+
+    public void MoneyLess()
+    {
+        moneyLessText.gameObject.SetActive(true);
+        moneyLessText.color = new Color(moneyLessText.color.r, moneyLessText.color.g, moneyLessText.color.b, 0);
+        moneyLessText.DOFade(1, 0.3f).OnComplete(() =>
+        {
+            moneyLessText.DOFade(0, 1).SetDelay(2).OnComplete(() =>
+            {
+                moneyLessText.gameObject.SetActive(false);
+            });
+        });
+    }
     void Update()
     {
         goldText.text = $"{GameManager.Instance.gold}";
@@ -92,7 +106,7 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
         int count = GameManager.Instance.heart;
         //                   MaxMarkStamina
         staminaText.text = $"+{count - 7}";
-        for (int idx= 0; idx < 8; idx++)
+        for (int idx = 0; idx < 8; idx++)
         {
             if (idx < count)
             {
@@ -126,7 +140,7 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
         foreach (BreadStat Bread in BreadList.Stats)
         {
             GameObject breadPanelObject = Instantiate(breadPrefab, transform.position, transform.rotation, breadContent.transform);
-            breadPanelObject.transform.GetComponent<BreadScript>().BreadSetting(breadScriptable,(Breads.Type)breadCount);
+            breadPanelObject.transform.GetComponent<BreadScript>().BreadSetting(breadScriptable, (Breads.Type)breadCount);
             breadCount++;
         }
     }
@@ -153,7 +167,7 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
         qusetPanel[Type].gameObject.SetActive(true);//열려는 퀘스트창 활성화
         qusetButtons[openingQusetPanel].transform.position -= new Vector3(0, 5, 0);//이전 선택창 내리기
         qusetButtons[Type].transform.position += new Vector3(0, 5, 0);//선택창 올리기
-        qusetButtons[openingQusetPanel].image.sprite = qusetButtonsSprite[openingQusetPanel +3];
+        qusetButtons[openingQusetPanel].image.sprite = qusetButtonsSprite[openingQusetPanel + 3];
         qusetButtons[Type].image.sprite = qusetButtonsSprite[Type];
         openingQusetPanel = Type;
     }
@@ -162,9 +176,9 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     {
         GameManager.Instance.OnOffSetting();
     }
-    public void AbilitySelect(int idx)
+
+    protected void UpdateAbility()
     {
-        SelectAbility = idx;
         switch (SelectAbility)
         {
             case 0:
@@ -173,7 +187,7 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
                     abilityImage_Main.sprite = abilitySprite[SelectAbility];
                     abilityNameAndLV.text = $"최대 체력 LV.{GameManager.Instance.maxHpLv}";
                     upgradeMoney.text = $"{5000 + (GameManager.Instance.maxHpLv - 1) * 500} Gold";
-                    abilityExplanation.text = $"추가 체력이 총 {GameManager.Instance.maxHpLv * 5} 늘어납니다.체력이 떨어지면 빵들은 더 이상 재료를 모으지 못하니 지속적으로 강화합시다.";
+                    abilityExplanation.text = $"추가 체력이 총 {GameManager.Instance.maxHpLv * 5} 늘어납니다.\n\n체력이 떨어지면 빵들은 더 이상 재료를 모으지 못하니 지속적으로 강화합시다.";
                     break;
                 }
             case 1:
@@ -181,10 +195,15 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
                     abilityImage_Main.sprite = abilitySprite[SelectAbility];
                     abilityNameAndLV.text = $"충돌 데미지 감소 LV.{GameManager.Instance.defenseLv}";
                     upgradeMoney.text = $"{5000 + (GameManager.Instance.defenseLv - 1) * 500} Gold";
-                    abilityExplanation.text = $"장애물 충돌 시 데미지를 {GameManager.Instance.defenseLv * 5} %만큼 감소됩니다. 무슨일이 일어날지 모르니 만일을위해 강화해둡시다.";
+                    abilityExplanation.text = $"장애물 충돌 시 데미지를 {GameManager.Instance.defenseLv * 5} %만큼 감소됩니다.\n\n무슨일이 일어날지 모르니 만일을위해 강화해둡시다.";
                     break;
                 }
         }
+    }
+    public void AbilitySelect(int idx)
+    {
+        SelectAbility = idx;
+        UpdateAbility();
     }
     public void UpgradeAbility()
     {
@@ -192,27 +211,23 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
         {
             case 0:
                 {
-                    abilityImage_Main.sprite = abilitySprite[SelectAbility];
-                    upgradeMoney.text = $"{5000 + (++GameManager.Instance.maxHpLv - 1) * 500} Gold";
-                    abilityNameAndLV.text = $"최대 체력 LV.{GameManager.Instance.maxHpLv}";
-                    abilityExplanation.text = $"추가 체력이 총 {GameManager.Instance.maxHpLv * 5} 늘어납니다.체력이 떨어지면 빵들은 더 이상 재료를 모으지 못하니 지속적으로 강화합시다.";
+                    GameManager.Instance.maxHpLv++;
                     break;
                 }
             case 1:
                 {
-                    abilityImage_Main.sprite = abilitySprite[SelectAbility];
-                    upgradeMoney.text = $"{5000 + (++GameManager.Instance.defenseLv - 1) * 500} Gold";
-                    abilityNameAndLV.text = $"충돌 데미지 감소 LV.{GameManager.Instance.defenseLv}";
-                    abilityExplanation.text = $"장애물 충돌 시 데미지를 {GameManager.Instance.defenseLv * 5} %만큼 감소됩니다. 무슨일이 일어날지 모르니 만일을위해 강화해둡시다.";
+                    GameManager.Instance.defenseLv++;
                     break;
                 }
+
         }
+        UpdateAbility();
     }
 
 
     public void OpenStartPanel()
     {
-        if(reCheck == false)
+        if (reCheck == false)
         {
             startPanel.transform.DOLocalMove(startOpenPos, 0.5f).SetEase(Ease.OutBack);
             shopUIGroup.transform.DOLocalMove(shopUIClosePos, 0.5f).SetEase(Ease.OutQuad);
@@ -232,7 +247,7 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     }
     public void StartYesNoButton(bool _bool)
     {
-        if(_bool)
+        if (_bool)
         {
             GameManager.Instance.selectBread = selectBread;
             SceneManager.LoadScene("InGame");

@@ -85,7 +85,7 @@ public class Player : MonoBehaviour
 
     protected virtual void OnEnable()
     {
-        fHp = GameManager.Instance.breads.Stats[(int)type].HP;
+        fHp = GameManager.Instance.breads.Stats[(int)type].HP + GameManager.Instance.maxHpLv * 5;
         hp = fHp;
     }
 
@@ -352,6 +352,11 @@ public class Player : MonoBehaviour
         InGameManager.Instance.gold++;
     }
 
+    protected virtual float GetDamage(float damage)
+    {
+        return damage * (1 - (GameManager.Instance.defenseLv / 20));
+    }
+
     //Àå¾Ö¹°¿¡ ºÎµóÇûÀ» °æ¿ì
     protected virtual void HurtByBlock(Block block)
     {
@@ -362,7 +367,7 @@ public class Player : MonoBehaviour
 
         hitable = false;
 
-        hp -= block.damage;
+        hp -= GetDamage(block.damage);
         block.OnHit();
         if (hp <= 0)
         {

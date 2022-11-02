@@ -11,6 +11,8 @@ public class GameData
     //QUEST QUEST,M_Cle,ISCLEAR
     //SCRIPTABLE BREAD LV,EXP,MAXEXP,ISBUY
     //GAMEMANAGER MONEY,MACARONG,STAMINA
+    public int maxHpLv = 0;
+    public int defenseLv = 0;
     public int gold = 0;
     public int macaron = 0;
     public int stamina = 7;
@@ -86,6 +88,8 @@ public class SaveManager : Singleton<SaveManager>
         GameManager.Instance.stamina = gameData.stamina;
         GameManager.Instance.macaron = gameData.macaron;
         GameManager.Instance.selectBread = gameData.selectBread;
+        GameManager.Instance.defenseLv = gameData.defenseLv;
+        GameManager.Instance.maxHpLv = gameData.maxHpLv;
         foreach (var quests in gameData.questData)
         {
             var questList = QusetManager.Instance.qusetScriptables[(int)quests.qusetType].QusetList;
@@ -122,6 +126,8 @@ public class SaveManager : Singleton<SaveManager>
         gameData.stamina = GameManager.Instance.stamina;
         gameData.macaron = GameManager.Instance.macaron;
         gameData.selectBread = GameManager.Instance.selectBread;
+        gameData.defenseLv = GameManager.Instance.defenseLv;
+        gameData.maxHpLv = GameManager.Instance.maxHpLv;
         gameData.questData.Clear();
         for (int i = 0; i < QusetManager.Instance.qusetScriptables.Length; i++)
         {

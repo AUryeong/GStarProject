@@ -42,7 +42,7 @@ MonoBehaviour:
     AbilityImage_2: {fileID: 0}
     AbilityText_1: 
     AbilityText_2: 
-    isBuy: 0
+    isBuy: 1
   - Name: "\uCC38\uAE68\uBE75"
     ImageSprite: {fileID: 21300000, guid: 9fc66053ae0ebb54aa30c1ad167fade5, type: 3}
     Rank: 1
@@ -50,7 +50,7 @@ MonoBehaviour:
     EXP: 0
     MaxEXP: 1
     HP: 100
-    Price: 0
+    Price: 20000
     AbilityLV_1: 0
     AbilityLV_2: 0
     AbilityImage_1: {fileID: 0}
