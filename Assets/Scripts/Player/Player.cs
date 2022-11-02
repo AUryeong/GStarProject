@@ -56,12 +56,16 @@ public class Player : MonoBehaviour
     protected float magnetMoveSpeed = 4f;
     protected float magnetSize = 0f;
     protected float itemMagnetSize = 6;
-    protected float itemMagnetDuration = 3;
+    protected float itemMagnetDuration = 5;
 
     [Header("부스트")]
     protected float boostMovePercent = 2;
     protected float itemBoostDuration = 5;
     public float boostDuration = 0;
+
+    [Header("토스터기")]
+    protected float toasterHealValue = 20;
+    protected float toasterInvDuration = 2f;
 
     [Header("장애물 충돌 판정")]
     public ColiderPos idleColiderSize;
@@ -117,8 +121,16 @@ public class Player : MonoBehaviour
     //부스트 작동
     protected virtual void BoostUpdate(float deltaTime)
     {
+        
         if (boostDuration > 0)
+        {
             boostDuration -= deltaTime;
+            ParticleSystem boostEffect = InGameManager.Instance.boostEffect;
+            if(boostDuration <= 0 == boostEffect.gameObject.activeSelf)
+            {
+                boostEffect.gameObject.SetActive(!boostEffect.gameObject.activeSelf);
+            }
+        }
     }
 
     //살아있으면 작동하는 업데이트, 능력에서 사용 예정
@@ -313,6 +325,9 @@ public class Player : MonoBehaviour
 
         if (collider2D.CompareTag("Magnet"))
             GetMagnet(collider2D.gameObject);
+
+        if (collider2D.CompareTag("Toaster"))
+            GetToaster(collider2D.gameObject);
     }
 
     protected virtual void GetBoost(GameObject obj)
@@ -327,6 +342,13 @@ public class Player : MonoBehaviour
         obj.SetActive(false);
         //TODO 자석 이펙트
         StartCoroutine(MagnetRemove());
+    }
+
+    protected virtual void GetToaster(GameObject obj)
+    {
+        obj.SetActive(false);
+        //TODO 자석 이펙트
+        hp += toasterHealValue;
     }
 
     protected virtual IEnumerator MagnetRemove()
