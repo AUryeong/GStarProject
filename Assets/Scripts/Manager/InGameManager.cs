@@ -15,19 +15,30 @@ public class InGameManager : Singleton<InGameManager>
 
     [Header("∏ ")]
     [SerializeField] protected List<Platform> firstMapList;
+
+    [Header("¿Ã∆Â∆Æ")]
+    public ParticleSystem boostEffect;
+    public SpriteRenderer magnetEffect;
+    public ParticleSystem toasterEffect;
     protected List<Platform> mapList = new List<Platform>();
     protected float mapLength = -12.5f;
 
-    public int gold;
-
+    [Header("ªß")]
     private Breads.Type breadType;
     [SerializeField] GameObject[] breadArray;
     [SerializeField] Vector3 startPos;
+
+    [Header("¿Ãø‹")]
+    public int gold;
+
     protected override void Awake()
     {
         base.Awake();
         breadType = GameManager.Instance.selectBread;
         player = Instantiate(breadArray[(int)breadType].gameObject, startPos, transform.rotation).GetComponent<Player>();
+        boostEffect.transform.SetParent(player.transform);
+        magnetEffect.transform.SetParent(player.transform);
+        toasterEffect.transform.SetParent(player.transform);
         AddNewPlatform();
     }
 
