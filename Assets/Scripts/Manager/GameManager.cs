@@ -4,7 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
 
-public class GameManager: Singleton<GameManager>
+public class GameManager : Singleton<GameManager>
 {
     public Ingredients Inside;
     public Breads breads;
@@ -48,6 +48,8 @@ public class GameManager: Singleton<GameManager>
 
     public void GameOver(List<int> ingredients)
     {
+        gold += InGameManager.Instance.gold;
+        InGameManager.Instance.gold = 0;
         inGaming = false;
         ingredientIdxList = ingredients;
 

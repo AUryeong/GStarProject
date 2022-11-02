@@ -21,6 +21,7 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     [SerializeField] GameObject Bread;
     [SerializeField] GameObject Quset;
     [SerializeField] GameObject Map;
+    [SerializeField] TextMeshProUGUI moneyLessText;
     [SerializeField] Vector3 shopOpenPos;
     [SerializeField] Vector3 shopClosePos;
     private GameObject ShopPanelObject;
@@ -47,11 +48,11 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     [SerializeField] Breads breadScriptable;
     [SerializeField] GameObject breadPrefab;
     [SerializeField] GameObject breadContent;
-    //[SerializeField] List<GameObject> BreadPanels = new List<GameObject>();//»§ Á¤º¸Ã¢ ¿ÀºêÁ§Æ®
+    //[SerializeField] List<GameObject> BreadPanels = new List<GameObject>();//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¢ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
     public Breads.Type selectBread;
 
     [Header("Quset")]
-    public QuestScriptable[] qusetScriptables;
+
     public ScrollRect qusetScroll;
     public RectTransform[] qusetPanel;
     public Button[] qusetButtons;
@@ -62,13 +63,13 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     [SerializeField] List<GameObject> mapPanel = new List<GameObject>();
     [SerializeField] bool[] mapLock;
     [Header("Start")]
-    [SerializeField] GameObject startPanel;//Á¤ºñ È­¸é
-    [SerializeField] GameObject reCheckPanel;//Á¤ºñ È­¸é¿¡¼­ ½ÃÀÛÀ» ´©¸¦‹š ³ª¿À´Â ÀÌ¹ÌÁö
-    [SerializeField] Image abilityImage_Main;//Å¬¸¯ ÇßÀ»‹š ³ª¿À´Â ÀÌ¹ÌÁö
-    [SerializeField] TextMeshProUGUI abilityNameAndLV;//½ºÅ³ ÀÌ¸§°ú ·¹º§ÅØ½ºÆ®
-    [SerializeField] TextMeshProUGUI upgradeMoney;//°¡°Ý ÅØ½ºÆ®
-    [SerializeField] TextMeshProUGUI abilityExplanation;//½ºÅ³ ¼³¸í ÅØ½ºÆ®
-    [SerializeField] Sprite[] abilitySprite = new Sprite[2];//½ºÅ³ ÀÌ¹ÌÁö
+    [SerializeField] GameObject startPanel;//ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½
+    [SerializeField] GameObject reCheckPanel;//ï¿½ï¿½ï¿½ï¿½ È­ï¿½é¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½
+    [SerializeField] Image abilityImage_Main;//Å¬ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½
+    [SerializeField] TextMeshProUGUI abilityNameAndLV;//ï¿½ï¿½Å³ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø½ï¿½Æ®
+    [SerializeField] TextMeshProUGUI upgradeMoney;//ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½Æ®
+    [SerializeField] TextMeshProUGUI abilityExplanation;//ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½Æ®
+    [SerializeField] Sprite[] abilitySprite = new Sprite[2];//ï¿½ï¿½Å³ ï¿½Ì¹ï¿½ï¿½ï¿½
     [SerializeField] Vector3 startOpenPos;
     [SerializeField] Vector3 startClosePos;
     private bool reCheck;
@@ -82,6 +83,19 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
         StaminaUpdate();
         AbilitySelect(0);
     }
+
+    public void MoneyLess()
+    {
+        moneyLessText.gameObject.SetActive(true);
+        moneyLessText.color = new Color(moneyLessText.color.r, moneyLessText.color.g, moneyLessText.color.b, 0);
+        moneyLessText.DOFade(1, 0.3f).OnComplete(() =>
+        {
+            moneyLessText.DOFade(0, 1).SetDelay(2).OnComplete(() =>
+            {
+                moneyLessText.gameObject.SetActive(false);
+            });
+        });
+    }
     void Update()
     {
         goldText.text = $"{GameManager.Instance.gold}";
@@ -92,7 +106,7 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
         int count = GameManager.Instance.heart;
         //                   MaxMarkStamina
         staminaText.text = $"+{count - 7}";
-        for (int idx= 0; idx < 8; idx++)
+        for (int idx = 0; idx < 8; idx++)
         {
             if (idx < count)
             {
@@ -126,29 +140,34 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
         foreach (BreadStat Bread in BreadList.Stats)
         {
             GameObject breadPanelObject = Instantiate(breadPrefab, transform.position, transform.rotation, breadContent.transform);
-            breadPanelObject.transform.GetComponent<BreadScript>().BreadSetting(breadScriptable,(Breads.Type)breadCount);
+            breadPanelObject.transform.GetComponent<BreadScript>().BreadSetting(breadScriptable, (Breads.Type)breadCount);
             breadCount++;
         }
     }
     void SettingQusetPanel()
     {
-        for (int i = 0; i < 3; i++)//0 : ÀÏÀÏ / 1 : ÁÖ°£ / 2 : ¸ÞÀÎ
+        for (int i = 0; i < 3; i++)//0 : ï¿½ï¿½ï¿½ï¿½ / 1 : ï¿½Ö°ï¿½ / 2 : ï¿½ï¿½ï¿½ï¿½
         {
-            for (int j = 0; j < qusetScriptables[i].QusetList.Count; j++)
+            List<QusetScript> scripts = new List<QusetScript>();
+            for (int j = 0; j < QusetManager.Instance.qusetScriptables[i].QusetList.Count; j++)
             {
-                Instantiate(qusetPrefab, transform.position, transform.rotation, qusetPanel[i].transform)
-                    .GetComponent<QusetScript>().SettingQuset(qusetScriptables[i], j);
+                scripts.Add(Instantiate(qusetPrefab, transform.position, transform.rotation, qusetPanel[i].transform)
+                    .GetComponent<QusetScript>());
+            }
+            for (int j = 0; j < QusetManager.Instance.qusetScriptables[i].QusetList.Count; j++)
+            {
+                scripts[j].SettingQuset(QusetManager.Instance.qusetScriptables[i], j);
             }
         }
     }
     public void OpenQusetPanel(int Type)
     {
-        qusetScroll.content = qusetPanel[Type];//ÄÜÅÙÃ÷ º¯°æ
-        qusetPanel[openingQusetPanel].gameObject.SetActive(false);//ÀÌÀü Äù½ºÆ®Ã¢ ºñÈ°¼ºÈ­
-        qusetPanel[Type].gameObject.SetActive(true);//¿­·Á´Â Äù½ºÆ®Ã¢ È°¼ºÈ­
-        qusetButtons[openingQusetPanel].transform.position -= new Vector3(0, 5, 0);//ÀÌÀü ¼±ÅÃÃ¢ ³»¸®±â
-        qusetButtons[Type].transform.position += new Vector3(0, 5, 0);//¼±ÅÃÃ¢ ¿Ã¸®±â
-        qusetButtons[openingQusetPanel].image.sprite = qusetButtonsSprite[openingQusetPanel +3];
+        qusetScroll.content = qusetPanel[Type];//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        qusetPanel[openingQusetPanel].gameObject.SetActive(false);//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®Ã¢ ï¿½ï¿½È°ï¿½ï¿½È­
+        qusetPanel[Type].gameObject.SetActive(true);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®Ã¢ È°ï¿½ï¿½È­
+        qusetButtons[openingQusetPanel].transform.position -= new Vector3(0, 5, 0);//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¢ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        qusetButtons[Type].transform.position += new Vector3(0, 5, 0);//ï¿½ï¿½ï¿½ï¿½Ã¢ ï¿½Ã¸ï¿½ï¿½ï¿½
+        qusetButtons[openingQusetPanel].image.sprite = qusetButtonsSprite[openingQusetPanel + 3];
         qusetButtons[Type].image.sprite = qusetButtonsSprite[Type];
         openingQusetPanel = Type;
     }
@@ -157,29 +176,34 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     {
         GameManager.Instance.OnOffSetting();
     }
-    public void AbilitySelect(int idx)
+
+    protected void UpdateAbility()
     {
-        SelectAbility = idx;
         switch (SelectAbility)
         {
             case 0:
                 {
 
                     abilityImage_Main.sprite = abilitySprite[SelectAbility];
-                    abilityNameAndLV.text = $"ÃÖ´ë Ã¼·Â LV.{GameManager.Instance.maxHpLv}";
+                    abilityNameAndLV.text = $"ï¿½Ö´ï¿½ Ã¼ï¿½ï¿½ LV.{GameManager.Instance.maxHpLv}";
                     upgradeMoney.text = $"{5000 + (GameManager.Instance.maxHpLv - 1) * 500} Gold";
-                    abilityExplanation.text = $"Ãß°¡ Ã¼·ÂÀÌ ÃÑ {GameManager.Instance.maxHpLv * 5} ´Ã¾î³³´Ï´Ù.Ã¼·ÂÀÌ ¶³¾îÁö¸é »§µéÀº ´õ ÀÌ»ó Àç·á¸¦ ¸ðÀ¸Áö ¸øÇÏ´Ï Áö¼ÓÀûÀ¸·Î °­È­ÇÕ½Ã´Ù.";
+                    abilityExplanation.text = $"ï¿½ß°ï¿½ Ã¼ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ {GameManager.Instance.maxHpLv * 5} ï¿½Ã¾î³³ï¿½Ï´ï¿½.\n\nÃ¼ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ì»ï¿½ ï¿½ï¿½á¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½Õ½Ã´ï¿½.";
                     break;
                 }
             case 1:
                 {
                     abilityImage_Main.sprite = abilitySprite[SelectAbility];
-                    abilityNameAndLV.text = $"Ãæµ¹ µ¥¹ÌÁö °¨¼Ò LV.{GameManager.Instance.defenseLv}";
+                    abilityNameAndLV.text = $"ï¿½æµ¹ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ LV.{GameManager.Instance.defenseLv}";
                     upgradeMoney.text = $"{5000 + (GameManager.Instance.defenseLv - 1) * 500} Gold";
-                    abilityExplanation.text = $"Àå¾Ö¹° Ãæµ¹ ½Ã µ¥¹ÌÁö¸¦ {GameManager.Instance.defenseLv * 5} %¸¸Å­ °¨¼ÒµË´Ï´Ù. ¹«½¼ÀÏÀÌ ÀÏ¾î³¯Áö ¸ð¸£´Ï ¸¸ÀÏÀ»À§ÇØ °­È­ÇØµÓ½Ã´Ù.";
+                    abilityExplanation.text = $"ï¿½ï¿½Ö¹ï¿½ ï¿½æµ¹ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ {GameManager.Instance.defenseLv * 5} %ï¿½ï¿½Å­ ï¿½ï¿½ï¿½ÒµË´Ï´ï¿½.\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï¾î³¯ï¿½ï¿½ ï¿½ð¸£´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½ØµÓ½Ã´ï¿½.";
                     break;
                 }
         }
+    }
+    public void AbilitySelect(int idx)
+    {
+        SelectAbility = idx;
+        UpdateAbility();
     }
     public void UpgradeAbility()
     {
@@ -187,27 +211,23 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
         {
             case 0:
                 {
-                    abilityImage_Main.sprite = abilitySprite[SelectAbility];
-                    upgradeMoney.text = $"{5000 + (++GameManager.Instance.maxHpLv - 1) * 500} Gold";
-                    abilityNameAndLV.text = $"ÃÖ´ë Ã¼·Â LV.{GameManager.Instance.maxHpLv}";
-                    abilityExplanation.text = $"Ãß°¡ Ã¼·ÂÀÌ ÃÑ {GameManager.Instance.maxHpLv * 5} ´Ã¾î³³´Ï´Ù.Ã¼·ÂÀÌ ¶³¾îÁö¸é »§µéÀº ´õ ÀÌ»ó Àç·á¸¦ ¸ðÀ¸Áö ¸øÇÏ´Ï Áö¼ÓÀûÀ¸·Î °­È­ÇÕ½Ã´Ù.";
+                    GameManager.Instance.maxHpLv++;
                     break;
                 }
             case 1:
                 {
-                    abilityImage_Main.sprite = abilitySprite[SelectAbility];
-                    upgradeMoney.text = $"{5000 + (++GameManager.Instance.defenseLv - 1) * 500} Gold";
-                    abilityNameAndLV.text = $"Ãæµ¹ µ¥¹ÌÁö °¨¼Ò LV.{GameManager.Instance.defenseLv}";
-                    abilityExplanation.text = $"Àå¾Ö¹° Ãæµ¹ ½Ã µ¥¹ÌÁö¸¦ {GameManager.Instance.defenseLv * 5} %¸¸Å­ °¨¼ÒµË´Ï´Ù. ¹«½¼ÀÏÀÌ ÀÏ¾î³¯Áö ¸ð¸£´Ï ¸¸ÀÏÀ»À§ÇØ °­È­ÇØµÓ½Ã´Ù.";
+                    GameManager.Instance.defenseLv++;
                     break;
                 }
+
         }
+        UpdateAbility();
     }
 
 
     public void OpenStartPanel()
     {
-        if(reCheck == false)
+        if (reCheck == false)
         {
             startPanel.transform.DOLocalMove(startOpenPos, 0.5f).SetEase(Ease.OutBack);
             shopUIGroup.transform.DOLocalMove(shopUIClosePos, 0.5f).SetEase(Ease.OutQuad);
@@ -227,7 +247,7 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     }
     public void StartYesNoButton(bool _bool)
     {
-        if(_bool)
+        if (_bool)
         {
             GameManager.Instance.selectBread = selectBread;
             SceneManager.LoadScene("InGame");

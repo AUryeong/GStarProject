@@ -48,6 +48,24 @@ public class QusetScript : MonoBehaviour
             qusetText.text = $"{qusetContents.text[0]}{qusetContents.questCondition}{qusetContents.text[1]}";
         else
             qusetText.text = qusetContents.text[0];
+
+
+        if (qusetContents.isClear)
+        {
+            if (qusetContents.qusetType == QusetType.Main)
+            {
+                qusetButton.image.sprite = qusetButtonImages[0];
+                qusetContents.isClear = false;
+                qusetContents.qusetCondition = qusetContents.rewards + qusetContents.M_UpCondition * qusetContents.M_ClearCount;
+                qusetText.text = $"{qusetContents.text[0]} {qusetContents.qusetCondition} {qusetContents.text[1]}";
+            }
+            else
+            {
+                qusetButton.gameObject.SetActive(false);
+                fadePanel.SetActive(true);
+                transform.SetAsLastSibling();
+            }
+        }
     }
     public void QusetClear()
     {
