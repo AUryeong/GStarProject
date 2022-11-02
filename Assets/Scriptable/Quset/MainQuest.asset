@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1c4633890fe2a194da1dbcd83d2c78e5, type: 3}
-  m_Name: MainQuset
+  m_Name: MainQuest
   m_EditorClassIdentifier: 
   QusetList:
   - isClear: 0

@@ -1,16 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[CreateAssetMenu(fileName = "Quset Data", menuName = "ScriptableObject/Qusets", order = int.MaxValue)]
-public class QusetScriptable : ScriptableObject
+[CreateAssetMenu(fileName = "Quest Data", menuName = "ScriptableObject/Quests", order = int.MaxValue)]
+public class QuestScriptable : ScriptableObject
 {
-    public List<Quset> QusetList;
+    public List<Quest> QusetList;
 }
 [System.Serializable]
-public class Quset
+public class Quest
 {
     public bool isClear = false;//클리어 bool
-    public float qusetCondition;//퀘스트 조건
+    public float questCondition;//퀘스트 조건
     public float questSituation;//퀘스트 상황
     public Sprite sprite;//이미지
     public string[] text;//퀘스트 내용
@@ -18,7 +18,7 @@ public class Quset
     public float M_UpCondition;//(메인 전용) 조건 증가 수치
     public float M_ClearCount;//(메인 전용) 클리어 횟수
     public RewardType rewardType;
-    public QusetType qusetType;
+    public QuestType questType;
 }
 public enum RewardType
 {
@@ -26,7 +26,7 @@ public enum RewardType
     Heart,
     Macaron
 }
-public enum QusetType
+public enum QuestType
 {
     Day,
     Aweek,
