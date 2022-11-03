@@ -63,8 +63,8 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     public GameObject qusetPrefab;
     private int openingQusetPanel = 0;
     [Header("Map")]
-    [SerializeField] List<GameObject> mapPanel = new List<GameObject>();
-    [SerializeField] bool[] mapLock;
+    public List<GameObject> mapLockPanel = new List<GameObject>();
+    public MapEX SelectMap;
     [Header("Start")]
     [SerializeField] GameObject startPanel;//���� ȭ��
     [SerializeField] GameObject reCheckPanel;//���� ȭ�鿡�� ������ ������ ������ �̹���
@@ -272,5 +272,12 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     public void ChangeBread()
     {
 
+    }
+    public void ChangeMap(MapEX SelectMap)
+    {
+        if(this.SelectMap != null) this.SelectMap.Select = false;//원래 선택 맵은 버튼 올리기
+
+        this.SelectMap = SelectMap;
+        this.SelectMap.Select = true;//바뀔 맵 버튼 눌리기
     }
 }

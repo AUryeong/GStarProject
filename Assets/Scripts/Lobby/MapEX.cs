@@ -10,12 +10,22 @@ public class MapEX : MonoBehaviour
     [SerializeField] int Rank;
     [SerializeField] string Inspector;
     [SerializeField] bool Lock;
+    public bool Select { set 
+        {
+            Debug.Log(value);
+            if(value == false)
+                SelectButton.image.sprite = buttonImage[0];
+            else
+                SelectButton.image.sprite = buttonImage[1];
+        } }
+    [SerializeField] Sprite[] buttonImage = new Sprite[2];
 
-    [SerializeField] Text MapName;
-    [SerializeField] Image MapImage;
-    [SerializeField] Image[] Ranks;
-    [SerializeField] Text MapInspector;
-    [SerializeField] GameObject LockPanel;
+    [SerializeField] private Text MapName;
+    [SerializeField] private Image MapImage;
+    [SerializeField] private Image[] Ranks;
+    [SerializeField] private Text MapInspector;
+    [SerializeField] private GameObject LockPanel;
+    [SerializeField] private Button SelectButton;
 
     private void Start()
     {
@@ -27,5 +37,6 @@ public class MapEX : MonoBehaviour
         {
             Ranks[i].color = Color.white;
         }
+        SelectButton.onClick.AddListener(() => LobbyUIManager.Instance.ChangeMap(this));
     }
 }
