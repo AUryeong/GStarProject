@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 using TMPro;
 
 
@@ -18,6 +19,11 @@ public class DetailPanel : MonoBehaviour
 
     //Inspector
     [SerializeField] private TextMeshProUGUI breadName;
+
+    [SerializeField] private TextMeshProUGUI lvText;
+    [SerializeField] private Image expBar;
+    [SerializeField] private Sprite[] expSprite;
+
     [SerializeField] private TextMeshProUGUI hpText;
     [SerializeField] private TextMeshProUGUI abilityText;
 
@@ -30,13 +36,13 @@ public class DetailPanel : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        gameObject.SetActive(false);
     }
 
     public void OpenPanel(BreadStats breadstats , BreadScript bread)
     {
+        transform.DOScale(1, 0.5f);
+
         breadScript = bread;
-        gameObject.SetActive(true);
         scriptable = breadstats;
         for (int idx = 0; idx < 3; idx++)
         {
@@ -47,112 +53,92 @@ public class DetailPanel : MonoBehaviour
         breadInspector.text = scriptable.AbilityText_1;
 
         breadName.text = scriptable.Name;
+
+        lvText.text = $"LV.{scriptable.LV}";
+        expBar.sprite = expSprite[scriptable.LV];
+
+
         hpText.text = $"{scriptable.HP}";
         abilityText.text = scriptable.AbilityText_2;
 
+        upgradeButton.onClick.RemoveAllListeners();
         upgradeButton.onClick.AddListener(() => UpgradeBread());
+        TextChange();
+    }
+
+    private void UpgradeBread()
+    {
+        if (GameManager.Instance.gold <= priceUpValue)
+        {
+            LobbyUIManager.Instance.MoneyLess();
+            return;
+        }
+        else
+            GameManager.Instance.gold -= (int)priceUpValue;
+
+        breadScript.Upgrade();
+
+        TextChange();
+
+        hpText.text = $"{scriptable.HP}";
+        lvText.text = $"LV.{scriptable.LV}";
+        expBar.sprite = expSprite[scriptable.LV];
+    }
+    private void TextChange()
+    {
+        if(scriptable.isBuy == false)
+        {
+            priceUpValue = scriptable.Price;
+            priceText.text = $"{scriptable.Price}";
+
+            upgradeHp.text = $"{scriptable.HP}";
+            return;
+        }
+        if(scriptable.LV == 6)
+        {
+            priceText.text = $"최대 레벨!";
+            upgradeHp.text = $"Max";
+            return;
+        }
         switch (scriptable.Rank)
         {
-            case 0:
-                {
-                    //기존 가격 * (0.현재 레벨) + 1성 성장수치
-                    priceUpValue = scriptable.Price * (scriptable.LV / 10) + 2100;
-                    if (scriptable.isBuy == true)
-                    {
-                        priceText.text = $"{scriptable.Price + priceUpValue}";
-
-                    }
-                    else
-                        priceText.text = $"구매 {scriptable.Price}";
-
-                    //레벨-1 * 1성 성장수치
-                    upgradeHp.text = $"{scriptable.HP + 20}";
-
-                    break;
-                }
             case 1:
                 {
-                    //기존 가격 * (0.현재 레벨) + 2성 성장수치
-                    priceUpValue = scriptable.Price * (scriptable.LV / 10) + 2800;
+                    //기존 가격 * (0.현재 레벨) + 1성 성장수치
+                    priceUpValue = (scriptable.Price * ((float)scriptable.LV / 10) + 2100)*scriptable.LV;
                     priceText.text = $"{scriptable.Price + priceUpValue}";
 
-                    //레벨-1 * 2성 성장수치
-                    upgradeHp.text = $"{scriptable.HP + 35}";
+                    //1성 성장수치
+                    upgradeHp.text = $"{scriptable.HP + 20}";
 
                     break;
                 }
             case 2:
                 {
-                    //기존 가격 * (0.현재 레벨) + 3성 성장수치
-                    priceUpValue = scriptable.Price * (scriptable.LV / 10) + 3500;
+                    //기존 가격 * (0.현재 레벨) + 2성 성장수치
+                    priceUpValue = (scriptable.Price * (scriptable.LV / 10) + 2800) * scriptable.LV;
                     priceText.text = $"{scriptable.Price + priceUpValue}";
 
-                    //레벨-1 * 3성 성장수치
+                    //2성 성장수치
+                    upgradeHp.text = $"{scriptable.HP + 35}";
+
+                    break;
+                }
+            case 3:
+                {
+                    //기존 가격 * (0.현재 레벨) + 3성 성장수치
+                    priceUpValue = (scriptable.Price * (scriptable.LV / 10) + 3500) * scriptable.LV;
+                    priceText.text = $"{scriptable.Price + priceUpValue}";
+
+                    //3성 성장수치
                     upgradeHp.text = $"{scriptable.HP + 40}";
 
                     break;
                 }
         }//업그레이드 수치
     }
-    private void UpgradeBread()
-    {
-        if(GameManager.Instance.gold <= priceUpValue)
-        {
-            LobbyUIManager.Instance.MoneyLess();
-            return;
-        }
-        if(scriptable.LV == 6)
-        {
-            return;
-        }
-        if(scriptable.isBuy == false)
-            scriptable.isBuy = true;
-
-
-        switch (scriptable.Rank)
-        {
-            case 0:
-                {
-                    //기존 가격 * (0.현재 레벨) + 1성 성장수치
-                    priceUpValue = scriptable.Price * (scriptable.LV / 10) + 2100;
-                    priceText.text = $"{scriptable.Price + priceUpValue}";
-
-                    //레벨-1 * 1성 성장수치
-                    scriptable.HP += 20;
-                    upgradeHp.text = $"{scriptable.HP +20}";
-
-                    break;
-                }
-            case 1:
-                {
-                    //기존 가격 * (0.현재 레벨) + 2성 성장수치
-                    priceUpValue = scriptable.Price * (scriptable.LV / 10) + 2800;
-                    priceText.text = $"{scriptable.Price + priceUpValue}";
-
-                    //레벨-1 * 2성 성장수치
-                    scriptable.HP += 35;
-                    upgradeHp.text = $"{scriptable.HP +35}";
-
-                    break;
-                }
-            case 2:
-                {
-                    //기존 가격 * (0.현재 레벨) + 3성 성장수치
-                    priceUpValue = scriptable.Price * (scriptable.LV / 10) + 3500;
-                    priceText.text = $"{scriptable.Price + priceUpValue}";
-
-                    //레벨-1 * 3성 성장수치
-                    scriptable.HP += 40;
-                    upgradeHp.text = $"{scriptable.HP +40}";
-
-                    break;
-                }
-        }//업그레이드 수치
-        breadScript.Upgrade();
-        hpText.text = $"{scriptable.HP}";
-    }
     public void CloseButton()
     {
-        gameObject.SetActive(false);
+        transform.DOScale(0, 0.5f);
     }
 }

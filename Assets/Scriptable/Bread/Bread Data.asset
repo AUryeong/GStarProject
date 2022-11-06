@@ -17,7 +17,7 @@ MonoBehaviour:
     ImageSprite: {fileID: 21300000, guid: 33915cb8304d89443ad46b11b4a82b73, type: 3}
     stackSprite: {fileID: 0}
     Rank: 1
-    LV: 1
+    LV: 6
     HP: 100
     Price: 0
     AbilityLV_1: 0
@@ -38,7 +38,7 @@ MonoBehaviour:
     Rank: 1
     LV: 0
     HP: 50
-    Price: 0
+    Price: 2000
     AbilityLV_1: 0
     AbilityLV_2: 0
     AbilityImage_1: {fileID: 0}
@@ -57,7 +57,7 @@ MonoBehaviour:
     Rank: 1
     LV: 0
     HP: 100
-    Price: 20000
+    Price: 2000
     AbilityLV_1: 0
     AbilityLV_2: 0
     AbilityImage_1: {fileID: 0}
@@ -77,9 +77,9 @@ MonoBehaviour:
     ImageSprite: {fileID: 21300000, guid: df82951e82a19a14c8f432657cde1a8f, type: 3}
     stackSprite: {fileID: 0}
     Rank: 1
-    LV: 1
+    LV: 0
     HP: 125
-    Price: 0
+    Price: 2000
     AbilityLV_1: 0
     AbilityLV_2: 0
     AbilityImage_1: {fileID: 0}
@@ -100,7 +100,7 @@ MonoBehaviour:
     Rank: 1
     LV: 0
     HP: 200
-    Price: 0
+    Price: 2000
     AbilityLV_1: 0
     AbilityLV_2: 0
     AbilityImage_1: {fileID: 0}
@@ -123,7 +123,7 @@ MonoBehaviour:
     Rank: 1
     LV: 0
     HP: 100
-    Price: 0
+    Price: 2000
     AbilityLV_1: 0
     AbilityLV_2: 0
     AbilityImage_1: {fileID: 0}
@@ -144,7 +144,7 @@ MonoBehaviour:
     Rank: 2
     LV: 0
     HP: 125
-    Price: 0
+    Price: 3500
     AbilityLV_1: 0
     AbilityLV_2: 0
     AbilityImage_1: {fileID: 0}
@@ -164,7 +164,7 @@ MonoBehaviour:
     Rank: 2
     LV: 0
     HP: 150
-    Price: 0
+    Price: 3500
     AbilityLV_1: 0
     AbilityLV_2: 0
     AbilityImage_1: {fileID: 0}
@@ -183,7 +183,7 @@ MonoBehaviour:
     Rank: 2
     LV: 0
     HP: 150
-    Price: 0
+    Price: 3500
     AbilityLV_1: 0
     AbilityLV_2: 0
     AbilityImage_1: {fileID: 0}
@@ -207,7 +207,7 @@ MonoBehaviour:
     Rank: 2
     LV: 0
     HP: 225
-    Price: 0
+    Price: 3500
     AbilityLV_1: 0
     AbilityLV_2: 0
     AbilityImage_1: {fileID: 0}
@@ -227,7 +227,7 @@ MonoBehaviour:
     Rank: 3
     LV: 0
     HP: 225
-    Price: 0
+    Price: 5000
     AbilityLV_1: 0
     AbilityLV_2: 0
     AbilityImage_1: {fileID: 0}
@@ -248,7 +248,7 @@ MonoBehaviour:
     Rank: 3
     LV: 0
     HP: 275
-    Price: 0
+    Price: 5000
     AbilityLV_1: 0
     AbilityLV_2: 0
     AbilityImage_1: {fileID: 0}
@@ -267,7 +267,7 @@ MonoBehaviour:
     Rank: 3
     LV: 0
     HP: 250
-    Price: 0
+    Price: 5000
     AbilityLV_1: 0
     AbilityLV_2: 0
     AbilityImage_1: {fileID: 0}
@@ -287,7 +287,7 @@ MonoBehaviour:
     Rank: 3
     LV: 0
     HP: 250
-    Price: 0
+    Price: 5000
     AbilityLV_1: 0
     AbilityLV_2: 0
     AbilityImage_1: {fileID: 0}
@@ -314,7 +314,7 @@ MonoBehaviour:
     Rank: 3
     LV: 0
     HP: 300
-    Price: 0
+    Price: 5000
     AbilityLV_1: 0
     AbilityLV_2: 0
     AbilityImage_1: {fileID: 0}

@@ -17,7 +17,10 @@ public class BreadScript : MonoBehaviour
 
     [Space(10f)]
     [SerializeField] TextMeshProUGUI mainLv;
-    [SerializeField] Slider mainExp;
+    [SerializeField] Image mainExp;
+    [SerializeField] Sprite[] expSprite;
+
+
     [SerializeField] TextMeshProUGUI mainHp;
     [SerializeField] TextMeshProUGUI mainAbility;
 
@@ -31,7 +34,7 @@ public class BreadScript : MonoBehaviour
         scriptable = breadscriptable.Stats[(int)breadCount];
 
         detailButton.onClick.RemoveAllListeners();
-        detailButton.onClick.AddListener(() => DetailPanel.instance.OpenPanel(scriptable , this));
+        detailButton.onClick.AddListener(() => DetailPanel.instance.OpenPanel(scriptable, this));
 
         mainName.text = scriptable.Name;
         mainImage.sprite = scriptable.ImageSprite;
@@ -48,7 +51,7 @@ public class BreadScript : MonoBehaviour
             mainSelectText.text = "선택하기";
 
         mainLv.text = $"{scriptable.LV}.LV";
-        mainExp.value = scriptable.LV / 6;
+        mainExp.sprite = expSprite[scriptable.LV];
 
         mainHp.text = $"{scriptable.HP}";
         mainAbility.text = $"{scriptable.AbilityText_2}";
@@ -66,7 +69,7 @@ public class BreadScript : MonoBehaviour
         {
             if (GameManager.Instance.gold >= scriptable.Price)
             {
-                GameManager.Instance.gold -= scriptable.Price;
+                GameManager.Instance.gold -= (int)scriptable.Price;
                 scriptable.isBuy = true;
 
                 Upgrade();
@@ -81,8 +84,26 @@ public class BreadScript : MonoBehaviour
     }
     public void Upgrade()
     {
-        mainLv.text = $"{++scriptable.LV}.LV";
-        mainExp.value = scriptable.LV / 6;
+        scriptable.LV++;
+
+        mainLv.text = $"{scriptable.LV}.LV";
+        mainExp.sprite = expSprite[scriptable.LV];
+
+        if (scriptable.isBuy == true)
+        {
+            switch (scriptable.Rank)
+            {
+                case 1: scriptable.HP += 20; break;
+                case 2: scriptable.HP += 35; break;
+                case 3: scriptable.HP += 40; break;
+            }
+        }
+        else
+        {
+            mainSelectText.text = "선택하기";
+            scriptable.isBuy = true;
+        }
+
         mainHp.text = $"{scriptable.HP}";
     }
 
