@@ -58,7 +58,7 @@ public class DetailPanel : MonoBehaviour
         expBar.sprite = expSprite[scriptable.LV];
 
 
-        hpText.text = $"{scriptable.HP}";
+        hpText.text = $"{scriptable.GetHp()}";
         abilityText.text = scriptable.AbilityText_2;
 
         upgradeButton.onClick.RemoveAllListeners();
@@ -68,7 +68,7 @@ public class DetailPanel : MonoBehaviour
 
     private void UpgradeBread()
     {
-        if (GameManager.Instance.gold <= priceUpValue)
+        if (GameManager.Instance.gold < priceUpValue)
         {
             LobbyUIManager.Instance.MoneyLess();
             return;
@@ -80,7 +80,7 @@ public class DetailPanel : MonoBehaviour
 
         TextChange();
 
-        hpText.text = $"{scriptable.HP}";
+        hpText.text = $"{scriptable.GetHp()}";
         lvText.text = $"LV.{scriptable.LV}";
         expBar.sprite = expSprite[scriptable.LV];
     }
@@ -91,7 +91,7 @@ public class DetailPanel : MonoBehaviour
             priceUpValue = scriptable.Price;
             priceText.text = $"{scriptable.Price}";
 
-            upgradeHp.text = $"{scriptable.HP}";
+            upgradeHp.text = $"{scriptable.GetHp()}";
             return;
         }
         if(scriptable.LV == 6)
@@ -109,7 +109,7 @@ public class DetailPanel : MonoBehaviour
                     priceText.text = $"{scriptable.Price + priceUpValue}";
 
                     //1성 성장수치
-                    upgradeHp.text = $"{scriptable.HP + 20}";
+                    upgradeHp.text = $"{scriptable.GetHp() + 20}";
 
                     break;
                 }
@@ -120,7 +120,7 @@ public class DetailPanel : MonoBehaviour
                     priceText.text = $"{scriptable.Price + priceUpValue}";
 
                     //2성 성장수치
-                    upgradeHp.text = $"{scriptable.HP + 35}";
+                    upgradeHp.text = $"{scriptable.GetHp() + 35}";
 
                     break;
                 }
@@ -131,7 +131,7 @@ public class DetailPanel : MonoBehaviour
                     priceText.text = $"{scriptable.Price + priceUpValue}";
 
                     //3성 성장수치
-                    upgradeHp.text = $"{scriptable.HP + 40}";
+                    upgradeHp.text = $"{scriptable.GetHp() + 40}";
 
                     break;
                 }
