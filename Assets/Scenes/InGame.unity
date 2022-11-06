@@ -810,6 +810,16 @@ MonoBehaviour:
   uiManager: {fileID: 280773575}
   firstMapList:
   - {fileID: 3020420450922708248, guid: 7d23c90576ee18e44b99cd41ace8b4c8, type: 3}
+  - {fileID: 6642072825221440129, guid: f54f525e59f8f494e872450e91acbcba, type: 3}
+  - {fileID: 3638505221390496339, guid: 5a76c008cda3bb045ac337ba3b52c34b, type: 3}
+  - {fileID: 8763847742617428419, guid: f1e6992ade7a6f648bd632b2910a936b, type: 3}
+  - {fileID: 4813098785859932024, guid: b7756b55018b9524fb615d129fcbec3c, type: 3}
+  - {fileID: 1343600960845717732, guid: 65fac6ed42583ab45af148c214724e40, type: 3}
+  - {fileID: 5689898794333089844, guid: 687caed081a98fe46adae6d52d716907, type: 3}
+  - {fileID: 2487246152812932767, guid: b5dd221a67d3a874cab391eea3862e70, type: 3}
+  - {fileID: 8251888865413681429, guid: 812a2ab39efb36444bd529c9a966e20c, type: 3}
+  - {fileID: 8747333326430253912, guid: e3ccc8a0f8fbdcd42967766c96988b9e, type: 3}
+  - {fileID: 6643898874814690042, guid: 226ab0079d356f94086a07e1d057fb63, type: 3}
   ovenMap: {fileID: 8276920893370596245, guid: 74c471807e1d1de48a455c1837e85665, type: 3}
   boostEffect: {fileID: 1516333509}
   magnetEffect: {fileID: 1312669743}

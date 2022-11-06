@@ -91,6 +91,9 @@ public class InGameManager : Singleton<InGameManager>
     public void GameOver()
     {
         player.gameObject.layer = LayerMask.NameToLayer("PlayerInv");
+        boostEffect.gameObject.SetActive(false);
+        toasterEffect.gameObject.SetActive(false);
+        magnetEffect.gameObject.SetActive(false);
         player.MoveCenter();
         Camera.main.DOShakePosition(0.5f, 6);
     }
