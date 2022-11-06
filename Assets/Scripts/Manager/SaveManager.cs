@@ -16,6 +16,9 @@ public class GameData
     public int gold = 0;
     public int macaron = 0;
     public int stamina = 7;
+    public bool bgmActive;
+    public bool sfxActive;
+    public bool uiFlip;
     public Breads.Type selectBread = Breads.Type.Milk;
     public List<Quests> questData = new List<Quests>();
     public List<Bread> breadData = new List<Bread>();

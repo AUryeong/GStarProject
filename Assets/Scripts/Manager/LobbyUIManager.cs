@@ -79,6 +79,10 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
 
     [SerializeField] Vector3 startOpenPos;
     [SerializeField] Vector3 startClosePos;
+    [Header("Setting")]
+    [SerializeField] Toggle bgmToggle;
+    [SerializeField] Toggle sfxToggle;
+    [SerializeField] Toggle flipToggle;
     private bool reCheck;
     // Start is called before the first frame update
     protected override void Awake()
@@ -87,8 +91,21 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
         selectBread = GameManager.Instance.selectBread;
         SettingBreadShop(breadScriptable);
         SettingQusetPanel();
+        SettingUpdate();
         StaminaUpdate();
         AbilitySelect(0);
+    }
+    public void SettingSave()
+    {
+        SaveManager.Instance.gameData.bgmActive = bgmToggle.isOn;
+        SaveManager.Instance.gameData.sfxActive = sfxToggle.isOn;
+        SaveManager.Instance.gameData.uiFlip = flipToggle.isOn;
+    }
+    protected void SettingUpdate()
+    {
+        bgmToggle.isOn = SaveManager.Instance.gameData.bgmActive;
+        sfxToggle.isOn = SaveManager.Instance.gameData.sfxActive;
+        flipToggle.isOn = SaveManager.Instance.gameData.uiFlip;
     }
     public void MoneyLess()
     {
@@ -270,7 +287,7 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     }
     public void ChangeMap(MapEX SelectMap)
     {
-        if(this.SelectMap != null) this.SelectMap.Select = false;//원래 선택 맵은 버튼 올리기
+        if (this.SelectMap != null) this.SelectMap.Select = false;//원래 선택 맵은 버튼 올리기
 
         this.SelectMap = SelectMap;
         this.SelectMap.Select = true;//바뀔 맵 버튼 눌리기
