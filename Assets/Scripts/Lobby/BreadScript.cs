@@ -105,6 +105,7 @@ public class BreadScript : MonoBehaviour
             [(int)LobbyUIManager.Instance.selectBread].text = "선택하기";
 
         //텍스트를 선택됨으로 변경
+        LobbyUIManager.Instance.ChangeBread((int)type);
         mainSelectText.text = "선택됨";
         LobbyUIManager.Instance.selectBread = type;
     }

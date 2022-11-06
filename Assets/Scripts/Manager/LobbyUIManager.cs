@@ -299,9 +299,9 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
             reCheckPanel.SetActive(false);
         }
     }
-    public void ChangeBread()
+    public void ChangeBread(int typeIdx)
     {
-
+        breadAnim.SetInteger("Type", typeIdx);
     }
     public void ChangeMap(MapEX SelectMap)
     {
