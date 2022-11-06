@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class EndingSpawn : Singleton<EndingSpawn>
 {
     [SerializeField] Breads Bread;
     [SerializeField] Ingredients Inside;
     [SerializeField] GameObject SpawnObject;
-    [SerializeField] Text CMTextObcject;
+    [SerializeField] TextMeshProUGUI CMTextObcject;
     private GameObject SandWichObject;
     public List<int> InsideIdx = new List<int>();
 
@@ -62,17 +63,17 @@ public class EndingSpawn : Singleton<EndingSpawn>
     void SpawnBread(int BreadIdx)
     {
         SandWichObject = Instantiate(SpawnObject, transform.position, transform.rotation);
-        SandWichObject.GetComponent<SpriteRenderer>().sprite = Bread.Stats[BreadIdx].ImageSprite;
+        SandWichObject.GetComponent<SpriteRenderer>().sprite = Bread.Stats[BreadIdx].stackSprite;
         SandWichObject.GetComponent<BoxCollider2D>().size = new Vector2(0.5f, 1);
         SandWichObject.transform.localScale += Vector3.right * 2;
     }
-
     public void ExitEndingScene()
     {
         SceneManager.LoadScene(0);
     }
     void CmText(int CM)
     {
+        CMTextObcject.gameObject.SetActive(true);
         CMTextObcject.text = $"와우!! 무려 {CM}Cm를 쌓았습니다!!";
     }
 }
