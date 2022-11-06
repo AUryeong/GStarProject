@@ -41,6 +41,11 @@ public class IngameUIManager : Singleton<IngameUIManager>
 
     [SerializeField] Image onHItImage;
     private bool pressSliding = false;
+    [Header("¼³Á¤")]
+    [SerializeField] Toggle bgmToggle;
+    [SerializeField] Toggle sfxToggle;
+    [SerializeField] Toggle flipToggle;
+    [SerializeField] GameObject settingObject;
 
 
     private void OnEnable()
@@ -49,6 +54,19 @@ public class IngameUIManager : Singleton<IngameUIManager>
         hpBarShakePos = hpBarRect.anchoredPosition;
         UpdateOvenBar();
         hpIconImage.sprite = hpIconSprites[GameManager.Instance.maxHpLv / 10];
+        SettingUpdate();
+    }
+    public void SettingSave()
+    {
+        SaveManager.Instance.gameData.bgmActive = bgmToggle.isOn;
+        SaveManager.Instance.gameData.sfxActive = sfxToggle.isOn;
+        SaveManager.Instance.gameData.uiFlip = flipToggle.isOn;
+    }
+    protected void SettingUpdate()
+    {
+        bgmToggle.isOn = SaveManager.Instance.gameData.bgmActive;
+        sfxToggle.isOn = SaveManager.Instance.gameData.sfxActive;
+        flipToggle.isOn = SaveManager.Instance.gameData.uiFlip;
     }
     public void PauseButton()
     {
@@ -82,7 +100,21 @@ public class IngameUIManager : Singleton<IngameUIManager>
     }
     public void SettingButton()
     {
-        GameManager.Instance.OnOffSetting();
+        StartCoroutine(C_OnOffSetting());
+    }
+    private IEnumerator C_OnOffSetting()
+    {
+        if (settingObject.activeSelf)
+        {
+            settingObject.transform.DOScale(Vector3.zero, 0.5f).SetUpdate(true);
+            yield return new WaitForSecondsRealtime(0.5f);
+            settingObject.SetActive(false);
+        }
+        else
+        {
+            settingObject.SetActive(true);
+            settingObject.transform.DOScale(Vector3.one, 0.5f).SetUpdate(true);
+        }
     }
     public void ExitButton()
     {
@@ -92,7 +124,7 @@ public class IngameUIManager : Singleton<IngameUIManager>
     {
         if (yes)
         {
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene("Lobby");
         }
         else
         {

@@ -9,9 +9,6 @@ public class GameManager : Singleton<GameManager>
     public Ingredients Inside;
     public Breads breads;
     public bool inGaming = true;
-    [Header("Setting")]
-    [SerializeField] GameObject settingObject;
-    public bool buttonReversal;
     [Header("InGameStats")]
     public Breads.Type selectBread = Breads.Type.Milk;
     public int selectMap;
@@ -62,29 +59,5 @@ public class GameManager : Singleton<GameManager>
     {
         EndingSpawn.Instance.Spawn(0, ingredientIdxList);
         SceneManager.sceneLoaded -= EndingSceneLoadComplete;
-    }
-
-    //------------------Setting Button------------------
-    public void OnOffSetting()
-    {
-        StartCoroutine(C_OnOffSetting());
-    }
-    private IEnumerator C_OnOffSetting()
-    {
-        if (settingObject.activeSelf)
-        {
-            settingObject.transform.DOScale(Vector3.zero, 0.5f);
-            yield return new WaitForSeconds(0.5f);
-            settingObject.SetActive(false);
-        }
-        else
-        {
-            settingObject.SetActive(true);
-            settingObject.transform.DOScale(Vector3.one, 0.5f);
-        }
-    }
-    public void ButtonReversal()
-    {
-        buttonReversal = !buttonReversal;
     }
 }

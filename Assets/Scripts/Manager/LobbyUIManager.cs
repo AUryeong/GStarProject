@@ -83,6 +83,7 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     [SerializeField] Toggle bgmToggle;
     [SerializeField] Toggle sfxToggle;
     [SerializeField] Toggle flipToggle;
+    [SerializeField] GameObject settingObject;
     private bool reCheck;
     // Start is called before the first frame update
     protected override void Awake()
@@ -197,9 +198,26 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
 
     public void SettingButton()
     {
-        GameManager.Instance.OnOffSetting();
+        OnOffSetting();
     }
-
+    public void OnOffSetting()
+    {
+        StartCoroutine(C_OnOffSetting());
+    }
+    private IEnumerator C_OnOffSetting()
+    {
+        if (settingObject.activeSelf)
+        {
+            settingObject.transform.DOScale(Vector3.zero, 0.5f);
+            yield return new WaitForSeconds(0.5f);
+            settingObject.SetActive(false);
+        }
+        else
+        {
+            settingObject.SetActive(true);
+            settingObject.transform.DOScale(Vector3.one, 0.5f);
+        }
+    }
     protected void UpdateAbility()
     {
         switch (SelectAbility)
