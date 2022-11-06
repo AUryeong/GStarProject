@@ -17,7 +17,7 @@ public class Ingredient : MonoBehaviour
     protected virtual void OnEnable()
     {
         ingredientIdx = Random.Range(0, GameManager.Instance.Inside.Stats.Count);
-        gameObject.layer = ingredientIdx >= negative ? LayerMask.NameToLayer("Getable") : LayerMask.NameToLayer("Default");
+        gameObject.layer = ingredientIdx < negative ? LayerMask.NameToLayer("Getable") : LayerMask.NameToLayer("Default");
         spriteRenderer.sprite = GameManager.Instance.Inside.Stats[ingredientIdx].IconSprite;
     }
     public virtual void OnGet()
