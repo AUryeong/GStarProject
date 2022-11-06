@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
 
     //장애물 충돌
     protected bool hitable = true;
-    protected float hitDamage = 10;
+    protected float hitDamage = 15;
     protected float hitFadeInTime = 0.1f;
     protected float hitFadeInAlpha = 0.5f;
     protected float hitFadeOutTime = 0.9f;
@@ -315,7 +315,7 @@ public class Player : MonoBehaviour
         if (!isControllable || hp < 0) return;
 
         if (collider2D.CompareTag("Block"))
-            HurtByBlock(collider2D.GetComponent<Block>());
+            HurtByBlock(collider2D.gameObject);
 
         if (collider2D.CompareTag("Gold"))
             GetGold(collider2D.gameObject);
@@ -385,7 +385,7 @@ public class Player : MonoBehaviour
     }
 
     //장애물에 부딛혔을 경우
-    protected virtual void HurtByBlock(Block block)
+    protected virtual void HurtByBlock(GameObject block)
     {
         if (!hitable)
             return;
@@ -394,8 +394,7 @@ public class Player : MonoBehaviour
 
         hitable = false;
 
-        hp -= GetDamage(block.damage);
-        block.OnHit();
+        hp -= hitDamage;
         if (hp <= 0)
         {
             GameOver();

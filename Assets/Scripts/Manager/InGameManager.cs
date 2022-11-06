@@ -14,14 +14,15 @@ public class InGameManager : Singleton<InGameManager>
     }
 
     [Header("∏ ")]
-    [SerializeField] protected List<Platform> firstMapList;
+    [SerializeField] protected List<GameObject> firstMapList;
+    protected float mapLength = 20;
+    protected float platformMapLength = 40;
+    protected List<GameObject> mapList = new List<GameObject>();
 
     [Header("¿Ã∆Â∆Æ")]
     public ParticleSystem boostEffect;
     public SpriteRenderer magnetEffect;
     public ParticleSystem toasterEffect;
-    protected List<Platform> mapList = new List<Platform>();
-    protected float mapLength = -12.5f;
 
     [Header("ªß")]
     private Breads.Type breadType;
@@ -44,20 +45,21 @@ public class InGameManager : Singleton<InGameManager>
         toasterEffect.transform.localPosition = Vector3.zero;
         AddNewPlatform();
     }
-
     protected void AddNewPlatform()
     {
-        Platform platform = Instantiate(firstMapList[Random.Range(0, firstMapList.Count)]);
-        platform.transform.position = new Vector3(mapLength + platform.mapLength / 2, -3, 0);
-        mapLength += platform.mapLength;
+        GameObject platform = Instantiate(firstMapList[Random.Range(0, firstMapList.Count)]);
+        platform.transform.position = new Vector3(mapLength + platformMapLength / 2, 1.5f, 0);
+        mapLength += platformMapLength;
         mapList.Add(platform);
     }
     private void Update()
     {
         if (player.isControllable)
             CameraMove();
-        if (player.transform.position.x - mapLength < -15)
+        if (mapLength - player.transform.position.x < 15)
+        {
             AddNewPlatform();
+        }
     }
     protected void CameraMove()
     {
