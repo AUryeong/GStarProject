@@ -53,7 +53,7 @@ public class BreadScript : MonoBehaviour
         mainLv.text = $"{scriptable.LV}.LV";
         mainExp.sprite = expSprite[scriptable.LV];
 
-        mainHp.text = $"{scriptable.HP}";
+        mainHp.text = $"{scriptable.GetHp()}";
         mainAbility.text = $"{scriptable.AbilityText_2}";
 
         for (int Rank = 0; Rank < scriptable.Rank; Rank++)
@@ -89,22 +89,13 @@ public class BreadScript : MonoBehaviour
         mainLv.text = $"{scriptable.LV}.LV";
         mainExp.sprite = expSprite[scriptable.LV];
 
-        if (scriptable.isBuy == true)
-        {
-            switch (scriptable.Rank)
-            {
-                case 1: scriptable.HP += 20; break;
-                case 2: scriptable.HP += 35; break;
-                case 3: scriptable.HP += 40; break;
-            }
-        }
-        else
+        if (!scriptable.isBuy)
         {
             mainSelectText.text = "선택하기";
             scriptable.isBuy = true;
         }
 
-        mainHp.text = $"{scriptable.HP}";
+        mainHp.text = $"{scriptable.GetHp()}";
     }
 
     void ChangeBread()

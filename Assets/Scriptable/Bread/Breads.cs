@@ -35,6 +35,23 @@ public class BreadStats
     public int Rank;
     public int LV;
     public int HP;
+    public int GetHp()
+    {
+        int hp = HP;
+        switch (Rank)
+        {
+            case 1:
+                hp += 20 * LV;
+                break;
+            case 2:
+                hp += 35 * LV;
+                break;
+            case 3:
+                hp += 40 * LV;
+                break;
+        }
+        return hp;
+    }
     public float Price;
     public int AbilityLV_1;
     public int AbilityLV_2;
