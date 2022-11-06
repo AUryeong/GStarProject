@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
+[RequireComponent(typeof(SpriteRenderer))]
 public class Ingredient : MonoBehaviour
 {
     SpriteRenderer spriteRenderer;
 
-    public bool isNegative = false;
     public int ingredientIdx = 0;
     public static readonly int negative = (int)Ingredients.Type.Kimchi;
     protected virtual void Awake()
@@ -17,7 +17,7 @@ public class Ingredient : MonoBehaviour
     protected virtual void OnEnable()
     {
         ingredientIdx = Random.Range(0, GameManager.Instance.Inside.Stats.Count);
-        isNegative = ingredientIdx >= negative;
+        gameObject.layer = ingredientIdx >= negative ? LayerMask.NameToLayer("Getable") : LayerMask.NameToLayer("Default");
         spriteRenderer.sprite = GameManager.Instance.Inside.Stats[ingredientIdx].IconSprite;
     }
     public virtual void OnGet()

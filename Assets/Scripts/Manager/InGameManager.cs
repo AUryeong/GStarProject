@@ -19,7 +19,7 @@ public class InGameManager : Singleton<InGameManager>
     protected int mapSize = 1;
     public readonly int ovenMapSize = 10;
     public float mapLength { get; private set; } = 20;
-    public readonly float platformMapLength = 40;
+    public readonly float platformMapLength = 44;
     protected List<GameObject> mapList = new List<GameObject>();
 
     [Header("¿Ã∆Â∆Æ")]
