@@ -35,7 +35,7 @@ public class BreadStats
     public int Rank;
     public int LV;
     public int HP;
-    public int Price;
+    public float Price;
     public int AbilityLV_1;
     public int AbilityLV_2;
     public Sprite AbilityImage_1;
