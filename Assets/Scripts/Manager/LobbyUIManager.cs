@@ -36,6 +36,7 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     [Header("Stamina")]
     [SerializeField] GameObject[] heartGroup;
     [SerializeField] TextMeshProUGUI staminaText;
+    [SerializeField] TextMeshProUGUI staminaLessText;
 
     [Header("Mid UI")]
     [Space(10f)]
@@ -109,6 +110,26 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
         bgmToggle.isOn = SaveManager.Instance.gameData.bgmActive;
         sfxToggle.isOn = SaveManager.Instance.gameData.sfxActive;
         flipToggle.isOn = SaveManager.Instance.gameData.uiFlip;
+    }
+    public void MoneyAdd()
+    {
+        GameManager.Instance.gold += 1000;
+    }
+    public void HeartAdd()
+    {
+        GameManager.Instance.heart++;
+    }
+    public void HeartLess()
+    {
+        staminaLessText.gameObject.SetActive(true);
+        staminaLessText.color = new Color(staminaLessText.color.r, staminaLessText.color.g, staminaLessText.color.b, 0);
+        staminaLessText.DOFade(1, 0.3f).OnComplete(() =>
+        {
+            staminaLessText.DOFade(0, 1).SetDelay(2).OnComplete(() =>
+            {
+                staminaLessText.gameObject.SetActive(false);
+            });
+        });
     }
     public void MoneyLess()
     {
@@ -291,9 +312,17 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     {
         if (_bool)
         {
-            GameManager.Instance.selectBread = selectBread;
-            GameManager.Instance.inGaming = true;
-            SceneManager.LoadScene("InGame");
+            if(GameManager.Instance.stamina > 0)
+            {
+                GameManager.Instance.selectBread = selectBread;
+                GameManager.Instance.inGaming = true;
+                GameManager.Instance.stamina--;
+                SceneManager.LoadScene("InGame");
+            }
+            else
+            {
+                HeartLess();
+            }
         }
         else
         {
