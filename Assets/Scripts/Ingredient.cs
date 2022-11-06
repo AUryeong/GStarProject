@@ -9,6 +9,7 @@ public class Ingredient : MonoBehaviour
 
     public bool isNegative = false;
     public int ingredientIdx = 0;
+    public static readonly int negative = (int)Ingredients.Type.Kimchi;
     protected virtual void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -16,6 +17,7 @@ public class Ingredient : MonoBehaviour
     protected virtual void OnEnable()
     {
         ingredientIdx = Random.Range(0, GameManager.Instance.Inside.Stats.Count);
+        isNegative = ingredientIdx >= negative;
         spriteRenderer.sprite = GameManager.Instance.Inside.Stats[ingredientIdx].IconSprite;
     }
     public virtual void OnGet()

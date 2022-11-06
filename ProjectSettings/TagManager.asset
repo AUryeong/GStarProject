@@ -10,6 +10,7 @@ TagManager:
   - Boost
   - Magnet
   - Toaster
+  - Oven
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - PlayerInv
   - Block
   - Getable
-  - 
+  - BlockInv
   - 
   - 
   - 
@@ -44,9 +45,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 204973839
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
   - name: Ingredient
     uniqueID: 531264485
+    locked: 0
+  - name: Player
+    uniqueID: 2793153845
     locked: 0

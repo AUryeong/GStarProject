@@ -15,14 +15,18 @@ public class InGameManager : Singleton<InGameManager>
 
     [Header("∏ ")]
     [SerializeField] protected List<GameObject> firstMapList;
-    protected float mapLength = 20;
-    protected float platformMapLength = 40;
+    [SerializeField] protected GameObject ovenMap;
+    protected int mapSize = 1;
+    public readonly int ovenMapSize = 10;
+    public float mapLength { get; private set; } = 20;
+    public readonly float platformMapLength = 40;
     protected List<GameObject> mapList = new List<GameObject>();
 
     [Header("¿Ã∆Â∆Æ")]
     public ParticleSystem boostEffect;
     public SpriteRenderer magnetEffect;
     public ParticleSystem toasterEffect;
+    [SerializeField] ParticleSystem goldEffect;
 
     [Header("ªß")]
     private Breads.Type breadType;
@@ -31,6 +35,13 @@ public class InGameManager : Singleton<InGameManager>
 
     [Header("¿Ãø‹")]
     public int gold;
+
+    public void GoldEffect(Vector3 pos)
+    {
+        GameObject obj = PoolManager.Instance.Init(goldEffect.gameObject);
+        AutoDestruct.Add(obj, 0.5f);
+        obj.transform.position = pos;
+    }
 
     protected override void Awake()
     {
@@ -47,10 +58,22 @@ public class InGameManager : Singleton<InGameManager>
     }
     protected void AddNewPlatform()
     {
-        GameObject platform = Instantiate(firstMapList[Random.Range(0, firstMapList.Count)]);
+        foreach (GameObject obj in mapList)
+        {
+            if (obj.gameObject.activeSelf)
+                if (mapLength - obj.transform.position.x > 45)
+                    obj.gameObject.SetActive(false);
+        }
+        GameObject platform;
+        if (mapSize % ovenMapSize == 0)
+            platform = PoolManager.Instance.Init(ovenMap);
+        else
+            platform = PoolManager.Instance.Init(firstMapList[Random.Range(0, firstMapList.Count)]);
         platform.transform.position = new Vector3(mapLength + platformMapLength / 2, 1.5f, 0);
         mapLength += platformMapLength;
-        mapList.Add(platform);
+        mapSize++;
+        if (!mapList.Contains(platform))
+            mapList.Add(platform);
     }
     private void Update()
     {
@@ -74,6 +97,7 @@ public class InGameManager : Singleton<InGameManager>
 
     public void GameOverMoveCP()
     {
+        GameManager.Instance.gold += gold;
         GameManager.Instance.GameOver(ingredients);
     }
 

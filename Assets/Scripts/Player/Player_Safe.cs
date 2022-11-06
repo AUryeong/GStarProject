@@ -9,21 +9,43 @@ public class Player_Safe : Player
     protected override void OnEnable()
     {
         base.OnEnable();
-        hpRemoveValue = 0.5f;
         magnetActive = false;
+    }
+    protected override void HpRemove()
+    {
+        hpRemoveDuration += Time.deltaTime;
+        if (hpRemoveDuration >= hpRemoveCool)
+        {
+            hpRemoveDuration -= hpRemoveCool;
+            if (magnetSize != 0 && magnetMoveSpeed != 0)
+                hp -= hpRemoveValue/2;
+            else
+                hp -= hpRemoveValue;
+            if (hp <= 0)
+            {
+                GameOver();
+                return;
+            }
+        }
     }
 
     protected override void LiveUpdate(float deltaTime)
     {
-        if (hp / fHp >= 0.5f && !magnetActive)
+        if (hp / fHp >= 0.5f)
         {
-            magnetActive = true;
-            magnetSize = 3;
+            if (!magnetActive)
+            {
+                magnetActive = true;
+                magnetSize += 3;
+            }
         }
-        else if (magnetActive)
+        else
         {
-            magnetActive = false;
-            magnetSize = 0;
+            if (magnetActive)
+            {
+                magnetActive = false;
+                magnetSize -= 3;
+            }
         }
     }
 }

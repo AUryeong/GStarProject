@@ -31,8 +31,6 @@ public class IngameUIManager : Singleton<IngameUIManager>
     }
     [Header("오븐바")]
     [SerializeField] Slider OvenBar;
-    [SerializeField] GameObject StartPoint;
-    [SerializeField] GameObject EndPoint;
 
     [Header("재료")]
     [SerializeField] Image ingredientsIcon;
@@ -44,10 +42,10 @@ public class IngameUIManager : Singleton<IngameUIManager>
     [SerializeField] Image onHItImage;
     private bool pressSliding = false;
 
- 
+
     private void OnEnable()
     {
-        hpBarRect.sizeDelta = new Vector2(hpSizeX * InGameManager.Instance.player.fHp / 100, hpBarRect.sizeDelta.y);    
+        hpBarRect.sizeDelta = new Vector2(hpSizeX * InGameManager.Instance.player.fHp / 100, hpBarRect.sizeDelta.y);
         hpBarShakePos = hpBarRect.anchoredPosition;
         UpdateOvenBar();
         hpIconImage.sprite = hpIconSprites[GameManager.Instance.maxHpLv / 10];
@@ -74,7 +72,7 @@ public class IngameUIManager : Singleton<IngameUIManager>
         {
             PausePanel.SetActive(false);
             float timer = 3;
-            while(timer > 0 )
+            while (timer > 0)
             {
                 timer -= Time.deltaTime;
                 //텍스트에 타이머 올림해서 적용
@@ -107,6 +105,7 @@ public class IngameUIManager : Singleton<IngameUIManager>
         if (GameManager.Instance.inGaming)
         {
             CheckSliding();
+            UpdateOvenBar();
             UpdateHealthBar();
         }
     }
@@ -170,7 +169,6 @@ public class IngameUIManager : Singleton<IngameUIManager>
     }
     private void UpdateOvenBar()
     {
-        OvenBar.value = Vector2.Distance(StartPoint.transform.position, InGameManager.Instance.player.transform.position) / 
-                        Vector2.Distance(StartPoint.transform.position, EndPoint.transform.position);
+        OvenBar.value = (InGameManager.Instance.player.transform.position.x % (InGameManager.Instance.platformMapLength * InGameManager.Instance.ovenMapSize)) / (InGameManager.Instance.platformMapLength * InGameManager.Instance.ovenMapSize);
     }
 }

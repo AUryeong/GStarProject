@@ -72,8 +72,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1501813451
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -8089531285447559917, guid: e0d616301dfd82f4ebdd9d003cec2556, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -99,11 +99,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  fSpeed: 5
   fHp: 0
   hp: 0
-  fJumpSpeed: 13
-  jumpMaxCount: 2
+  boostDuration: 0
   idleColiderSize:
     offset: {x: 0.05, y: 0.075}
     size: {x: 1.1, y: 1.65}

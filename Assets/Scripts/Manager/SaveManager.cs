@@ -64,8 +64,12 @@ public class SaveManager : Singleton<SaveManager>
         base.Awake();
         if (Instance == this)
         {
-            DontDestroyOnLoad(gameObject);
             LoadGameData();
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
 

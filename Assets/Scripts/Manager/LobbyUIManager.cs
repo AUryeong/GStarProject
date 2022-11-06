@@ -255,6 +255,7 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
         if (_bool)
         {
             GameManager.Instance.selectBread = selectBread;
+            GameManager.Instance.inGaming = true;
             SceneManager.LoadScene("InGame");
         }
         else

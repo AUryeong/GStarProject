@@ -41,31 +41,35 @@ public class Player : MonoBehaviour
 
     [Header("플레이어 점프 관련")]
     protected float fJumpSpeed = 13;
-    protected float jumpCheckDistance = 0.1f;
+    protected readonly float jumpCheckDistance = 0.1f;
     protected int jumpCount = 0;
     protected int jumpMaxCount = 2;
 
     //장애물 충돌
     protected bool hitable = true;
-    protected float hitDamage = 15;
+    protected readonly float hitDamage = 25;
     protected float hitFadeInTime = 0.1f;
-    protected float hitFadeInAlpha = 0.5f;
+    protected readonly float hitFadeInAlpha = 0.5f;
     protected float hitFadeOutTime = 0.9f;
 
     [Header("자석")]
     protected float magnetMoveSpeed = 4f;
     protected float magnetSize = 0f;
-    protected float itemMagnetSize = 6;
-    protected float itemMagnetDuration = 5;
+    protected readonly float itemMagnetSize = 4;
+    protected readonly float itemMagnetDuration = 5;
 
     [Header("부스트")]
-    protected float boostMovePercent = 2;
-    protected float itemBoostDuration = 5;
+    protected readonly float boostMovePercent = 5;
+    protected readonly float itemBoostDuration = 5;
     public float boostDuration = 0;
 
     [Header("토스터기")]
-    protected float toasterHealValue = 20;
-    protected float toasterInvDuration = 2f;
+    protected readonly float toasterHealValue = 20;
+    protected readonly float toasterInvDuration = 2f;
+
+    [Header("오븐")]
+    protected readonly float ovenBoostDuration = 5;
+    protected readonly float ovenHealValue = 40;
 
     [Header("장애물 충돌 판정")]
     public ColiderPos idleColiderSize;
@@ -128,6 +132,17 @@ public class Player : MonoBehaviour
             if (boostDuration <= 0 == boostEffect.gameObject.activeSelf)
             {
                 boostEffect.gameObject.SetActive(!boostEffect.gameObject.activeSelf);
+                if (boostDuration <= 0)
+                {
+                    hitable = false;
+                    spriteRenderer.DOFade(hitFadeInAlpha, hitFadeInTime).
+                        OnComplete(() => spriteRenderer.DOFade(1, hitFadeOutTime).SetEase(Ease.InExpo).
+                        OnComplete(() =>
+                        {
+                            hitable = true;
+                            gameObject.layer = LayerMask.NameToLayer("Player");
+                        }));
+                }
             }
         }
     }
@@ -145,8 +160,9 @@ public class Player : MonoBehaviour
             InGameManager.Instance.magnetEffect.gameObject.SetActive(false);
             return;
         }
+        InGameManager.Instance.magnetEffect.transform.localScale = (Vector3.one * (magnetSize * Mathf.Max(idleColiderSize.size.x, idleColiderSize.size.y))) / 1.5f;
         InGameManager.Instance.magnetEffect.gameObject.SetActive(true);
-        Collider2D[] getableColiders = Physics2D.OverlapCircleAll(transform.position, magnetSize * Mathf.Max(colider2D.size.x, colider2D.size.y), LayerMask.GetMask("Getable"));
+        Collider2D[] getableColiders = Physics2D.OverlapCircleAll(transform.position, magnetSize * Mathf.Max(idleColiderSize.size.x, idleColiderSize.size.y), LayerMask.GetMask("Getable"));
         foreach (var colider in getableColiders)
         {
             colider.transform.Translate((transform.position - colider.transform.position).normalized * magnetMoveSpeed * deltaTime);
@@ -315,7 +331,7 @@ public class Player : MonoBehaviour
         if (!isControllable || hp < 0) return;
 
         if (collider2D.CompareTag("Block"))
-            HurtByBlock(collider2D.gameObject);
+            HurtByBlock(collider2D);
 
         if (collider2D.CompareTag("Gold"))
             GetGold(collider2D.gameObject);
@@ -331,12 +347,30 @@ public class Player : MonoBehaviour
 
         if (collider2D.CompareTag("Toaster"))
             GetToaster(collider2D.gameObject);
+
+        if (collider2D.CompareTag("Oven"))
+            GetOven(collider2D.gameObject);
+    }
+
+    public virtual void GetOven(GameObject obj)
+    {
+        StartCoroutine(OvenCoroutine(obj));
+    }
+    protected virtual IEnumerator OvenCoroutine(GameObject obj)
+    {
+        isControllable = false;
+        spriteRenderer.sortingLayerName = "Background";
+        yield return new WaitForSeconds(1);
+        boostDuration = Mathf.Max(boostDuration, ovenBoostDuration);
+        hp += ovenHealValue;
+        obj.SetActive(false);
+        isControllable = true;
+        spriteRenderer.sortingLayerName = nameof(Player);
     }
 
     protected virtual void GetBoost(GameObject obj)
     {
         obj.SetActive(false);
-        //TODO 부스트 이펙트
         boostDuration = Mathf.Max(boostDuration, itemBoostDuration);
     }
 
@@ -352,7 +386,14 @@ public class Player : MonoBehaviour
         obj.SetActive(false);
         InGameManager.Instance.toasterEffect.gameObject.SetActive(true);
         InGameManager.Instance.toasterEffect.Play();
-        //TODO 자석 이펙트
+        gameObject.layer = LayerMask.NameToLayer("PlayerInv");
+        spriteRenderer.DOFade(hitFadeInAlpha * 2, hitFadeInTime).
+            OnComplete(() => spriteRenderer.DOFade(1, hitFadeOutTime * 2).SetEase(Ease.InExpo).
+            OnComplete(() =>
+            {
+                hitable = true;
+                gameObject.layer = LayerMask.NameToLayer("Player");
+            }));
         hp += toasterHealValue;
     }
 
@@ -376,6 +417,7 @@ public class Player : MonoBehaviour
     {
         obj.SetActive(false);
         // 이펙트 넣기 TODO
+        InGameManager.Instance.GoldEffect(obj.transform.position);
         InGameManager.Instance.gold++;
     }
 
@@ -385,12 +427,21 @@ public class Player : MonoBehaviour
     }
 
     //장애물에 부딛혔을 경우
-    protected virtual void HurtByBlock(GameObject block)
+    protected virtual void HurtByBlock(Collider2D colider)
     {
         if (!hitable)
             return;
         if (boostDuration > 0)
+        {
+            colider.gameObject.layer = LayerMask.NameToLayer("BlockInv");
+            colider.transform.DOScale(2, 1);
+            colider.transform.DORotate(new Vector3(0, 0, 720), 1, RotateMode.FastBeyond360).SetRelative();
+            colider.transform.DOMove(new Vector3(20, 20), 1).SetRelative().OnComplete(() =>
+            {
+                colider.gameObject.SetActive(false);
+            });
             return;
+        }
 
         hitable = false;
 

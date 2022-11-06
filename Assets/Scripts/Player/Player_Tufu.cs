@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player_Tufu : Player
 {
-    protected override void HurtByBlock(GameObject obj)
+    protected override void HurtByBlock(Collider2D obj)
     {
         if (!hitable)
             return;
