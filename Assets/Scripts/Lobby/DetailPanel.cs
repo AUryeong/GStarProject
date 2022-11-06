@@ -68,13 +68,14 @@ public class DetailPanel : MonoBehaviour
 
     private void UpgradeBread()
     {
-        if (GameManager.Instance.gold < priceUpValue)
+        print(priceUpValue);
+        if (GameManager.Instance.gold <= scriptable.Price + priceUpValue)
         {
             LobbyUIManager.Instance.MoneyLess();
             return;
         }
         else
-            GameManager.Instance.gold -= (int)priceUpValue;
+            GameManager.Instance.gold -= (int)(scriptable.Price + priceUpValue);
 
         breadScript.Upgrade();
 

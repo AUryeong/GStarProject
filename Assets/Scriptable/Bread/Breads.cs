@@ -38,16 +38,19 @@ public class BreadStats
     public int GetHp()
     {
         int hp = HP;
+        if (isBuy == false)
+            return hp;
+
         switch (Rank)
         {
             case 1:
-                hp += 20 * LV;
+                hp += 20 * (LV-1);
                 break;
             case 2:
-                hp += 35 * LV;
+                hp += 35 * (LV - 1);
                 break;
             case 3:
-                hp += 40 * LV;
+                hp += 40 * (LV - 1);
                 break;
         }
         return hp;

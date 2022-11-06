@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   QusetList:
   - isClear: 0
-    qusetCondition: 1
+    questCondition: 1
     questSituation: 0
     sprite: {fileID: 0}
     text:
@@ -23,10 +23,10 @@ MonoBehaviour:
     M_UpCondition: 0
     M_ClearCount: 0
     rewardType: 0
-    qusetType: 0
+    questType: 0
   - isClear: 0
-    qusetCondition: 20
-    questSituation: 20.66
+    questCondition: 20
+    questSituation: 0
     sprite: {fileID: 0}
     text:
     - "20\uBC88 \uC810\uD504\uD558\uAE30"
@@ -34,9 +34,9 @@ MonoBehaviour:
     M_UpCondition: 0
     M_ClearCount: 0
     rewardType: 0
-    qusetType: 0
+    questType: 0
   - isClear: 0
-    qusetCondition: 20
+    questCondition: 20
     questSituation: 0
     sprite: {fileID: 0}
     text:
@@ -45,9 +45,9 @@ MonoBehaviour:
     M_UpCondition: 0
     M_ClearCount: 0
     rewardType: 0
-    qusetType: 0
+    questType: 0
   - isClear: 0
-    qusetCondition: 50
+    questCondition: 50
     questSituation: 0
     sprite: {fileID: 0}
     text:
@@ -56,9 +56,9 @@ MonoBehaviour:
     M_UpCondition: 0
     M_ClearCount: 0
     rewardType: 1
-    qusetType: 0
+    questType: 0
   - isClear: 0
-    qusetCondition: 30
+    questCondition: 30
     questSituation: 0
     sprite: {fileID: 0}
     text:
@@ -67,9 +67,9 @@ MonoBehaviour:
     M_UpCondition: 0
     M_ClearCount: 0
     rewardType: 2
-    qusetType: 0
+    questType: 0
   - isClear: 0
-    qusetCondition: 9
+    questCondition: 5
     questSituation: 0
     sprite: {fileID: 0}
     text:
@@ -78,4 +78,4 @@ MonoBehaviour:
     M_UpCondition: 0
     M_ClearCount: 0
     rewardType: 2
-    qusetType: 0
+    questType: 0

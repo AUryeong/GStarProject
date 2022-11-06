@@ -302,6 +302,10 @@ public class Player : MonoBehaviour
         if (state == PlayerState.Idle)
         {
             state = PlayerState.Sliding;
+
+            QusetManager.Instance.QusetUpdate(QuestType.Day, 2, 1);
+            QusetManager.Instance.QusetUpdate(QuestType.Aweek, 2, 1);
+            QusetManager.Instance.QusetUpdate(QuestType.Main, 2, 1);
         }
     }
 
@@ -310,6 +314,10 @@ public class Player : MonoBehaviour
         if (jumpCount >= jumpMaxCount)
             return;
         jumpCount++;
+
+        QusetManager.Instance.QusetUpdate(QuestType.Day, 1, 1);
+        QusetManager.Instance.QusetUpdate(QuestType.Aweek, 1, 1);
+        QusetManager.Instance.QusetUpdate(QuestType.Main, 1, 1);
 
         if (state == PlayerState.Jumping)
             animator.SetTrigger("Jump");
@@ -334,7 +342,12 @@ public class Player : MonoBehaviour
             HurtByBlock(collider2D);
 
         if (collider2D.CompareTag("Gold"))
+        {
             GetGold(collider2D.gameObject);
+            QusetManager.Instance.QusetUpdate(QuestType.Day, 3, 1);
+            QusetManager.Instance.QusetUpdate(QuestType.Aweek, 3, 1);
+            QusetManager.Instance.QusetUpdate(QuestType.Main, 4, 1);
+        }
 
         if (collider2D.CompareTag("Ingredient"))
             AddIngredient(collider2D.GetComponent<Ingredient>());

@@ -93,8 +93,10 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
         SettingBreadShop(breadScriptable);
         SettingQusetPanel();
         SettingUpdate();
+
         StaminaUpdate();
         AbilitySelect(0);
+        ChangeBread();
     }
     public void SettingSave()
     {
@@ -189,8 +191,8 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
         qusetScroll.content = qusetPanel[Type];//콘텐츠 변경
         qusetPanel[openingQusetPanel].gameObject.SetActive(false);//이전 퀘스트창 비활성화
         qusetPanel[Type].gameObject.SetActive(true);//열려는 퀘스트창 활성화
-        qusetButtons[openingQusetPanel].transform.position -= new Vector3(0, 5, 0);//이전 선택창 내리기
-        qusetButtons[Type].transform.position += new Vector3(0, 5, 0);//선택창 올리기
+        qusetButtons[openingQusetPanel].transform.localPosition -= new Vector3(0, 5, 0);//이전 선택창 내리기
+        qusetButtons[Type].transform.localPosition += new Vector3(0, 5, 0);//선택창 올리기
         qusetButtons[openingQusetPanel].image.sprite = qusetButtonsSprite[openingQusetPanel + 3];
         qusetButtons[Type].image.sprite = qusetButtonsSprite[Type];
         openingQusetPanel = Type;
@@ -299,9 +301,9 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
             reCheckPanel.SetActive(false);
         }
     }
-    public void ChangeBread(int typeIdx)
+    public void ChangeBread()
     {
-        breadAnim.SetInteger("Type", typeIdx);
+        breadAnim.SetInteger("Type", (int)selectBread);
     }
     public void ChangeMap(MapEX SelectMap)
     {
