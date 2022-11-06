@@ -37,8 +37,11 @@ public class InGameManager : Singleton<InGameManager>
         breadType = GameManager.Instance.selectBread;
         player = Instantiate(breadArray[(int)breadType].gameObject, startPos, transform.rotation).GetComponent<Player>();
         boostEffect.transform.SetParent(player.transform);
+        boostEffect.transform.localPosition = Vector3.zero;
         magnetEffect.transform.SetParent(player.transform);
+        magnetEffect.transform.localPosition = Vector3.zero;
         toasterEffect.transform.SetParent(player.transform);
+        toasterEffect.transform.localPosition = Vector3.zero;
         AddNewPlatform();
     }
 

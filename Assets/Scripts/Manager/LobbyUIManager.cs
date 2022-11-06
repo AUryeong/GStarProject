@@ -66,16 +66,16 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     public List<GameObject> mapLockPanel = new List<GameObject>();
     public MapEX SelectMap;
     [Header("Start")]
-    [SerializeField] GameObject startPanel;//���� ȭ��
-    [SerializeField] GameObject reCheckPanel;//���� ȭ�鿡�� ������ ������ ������ �̹���
+    [SerializeField] GameObject startPanel;//정비 화면
+    [SerializeField] GameObject reCheckPanel;//정비 화면에서 시작을 누를떄 나오는 이미지
 
-    [SerializeField] Image abilityImage_Main;//Ŭ�� ������ ������ �̹���
+    [SerializeField] Image abilityImage_Main;//클릭 했을떄 나오는 이미지
 
-    [SerializeField] TextMeshProUGUI abilityNameAndLV;//��ų �̸��� �����ؽ�Ʈ
-    [SerializeField] TextMeshProUGUI upgradeMoney;//���� �ؽ�Ʈ
-    [SerializeField] TextMeshProUGUI abilityExplanation;//��ų ���� �ؽ�Ʈ
+    [SerializeField] TextMeshProUGUI abilityNameAndLV;//스킬 이름과 레벨텍스트
+    [SerializeField] TextMeshProUGUI upgradeMoney;//가격 텍스트
 
-    [SerializeField] Sprite[] abilitySprite = new Sprite[2];//��ų �̹���
+    [SerializeField] TextMeshProUGUI abilityExplanation;//스킬 설명 텍스트
+    [SerializeField] Sprite[] abilitySprite = new Sprite[2];//스킬 이미지
 
     [SerializeField] Vector3 startOpenPos;
     [SerializeField] Vector3 startClosePos;
@@ -89,11 +89,6 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
         SettingQusetPanel();
         StaminaUpdate();
         AbilitySelect(0);
-    }
-    private void Start()
-    {
-        SettingBreadShop(breadScriptable);
-        SettingQusetPanel();
     }
     public void MoneyLess()
     {
@@ -157,7 +152,7 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     }
     void SettingQusetPanel()
     {
-        for (int i = 0; i < 3; i++)//0 : ���� / 1 : �ְ� / 2 : ����
+        for (int i = 0; i < 3; i++)//0 : 일일 / 1 : 주간 / 2 : 메인
         {
             List<QusetScript> scripts = new List<QusetScript>();
             for (int j = 0; j < QusetManager.Instance.qusetScriptables[i].QusetList.Count; j++)
@@ -173,11 +168,11 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     }
     public void OpenQusetPanel(int Type)
     {
-        qusetScroll.content = qusetPanel[Type];//������ ����
-        qusetPanel[openingQusetPanel].gameObject.SetActive(false);//���� ����Ʈâ ��Ȱ��ȭ
-        qusetPanel[Type].gameObject.SetActive(true);//������ ����Ʈâ Ȱ��ȭ
-        qusetButtons[openingQusetPanel].transform.position -= new Vector3(0, 5, 0);//���� ����â ������
-        qusetButtons[Type].transform.position += new Vector3(0, 5, 0);//����â �ø���
+        qusetScroll.content = qusetPanel[Type];//콘텐츠 변경
+        qusetPanel[openingQusetPanel].gameObject.SetActive(false);//이전 퀘스트창 비활성화
+        qusetPanel[Type].gameObject.SetActive(true);//열려는 퀘스트창 활성화
+        qusetButtons[openingQusetPanel].transform.position -= new Vector3(0, 5, 0);//이전 선택창 내리기
+        qusetButtons[Type].transform.position += new Vector3(0, 5, 0);//선택창 올리기
         qusetButtons[openingQusetPanel].image.sprite = qusetButtonsSprite[openingQusetPanel + 3];
         qusetButtons[Type].image.sprite = qusetButtonsSprite[Type];
         openingQusetPanel = Type;
@@ -194,19 +189,18 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
         {
             case 0:
                 {
-
                     abilityImage_Main.sprite = abilitySprite[SelectAbility];
-                    abilityNameAndLV.text = $"�ִ� ü�� LV.{GameManager.Instance.maxHpLv}";
+                    abilityNameAndLV.text = $"최대 체력 LV.{GameManager.Instance.maxHpLv}";
                     upgradeMoney.text = $"{5000 + (GameManager.Instance.maxHpLv - 1) * 500} Gold";
-                    abilityExplanation.text = $"�߰� ü���� �� {GameManager.Instance.maxHpLv * 5} �þ�ϴ�.\n\nü���� �������� ������ �� �̻� ��Ḧ ������ ���ϴ� ���������� ��ȭ�սô�.";
+                    abilityExplanation.text = $"추가 체력이 총 {GameManager.Instance.maxHpLv * 5} 늘어납니다.체력이 떨어지면 빵들은 더 이상 재료를 모으지 못하니 지속적으로 강화합시다.";
                     break;
                 }
             case 1:
                 {
                     abilityImage_Main.sprite = abilitySprite[SelectAbility];
-                    abilityNameAndLV.text = $"�浹 ������ ���� LV.{GameManager.Instance.defenseLv}";
+                    abilityNameAndLV.text = $"충돌 데미지 감소 LV.{GameManager.Instance.defenseLv}";
                     upgradeMoney.text = $"{5000 + (GameManager.Instance.defenseLv - 1) * 500} Gold";
-                    abilityExplanation.text = $"��ֹ� �浹 �� �������� {GameManager.Instance.defenseLv * 5} %��ŭ ���ҵ˴ϴ�.\n\n�������� �Ͼ�� �𸣴� ���������� ��ȭ�صӽô�.";
+                    abilityExplanation.text = $"장애물 충돌 시 데미지를 {GameManager.Instance.defenseLv * 5} %만큼 감소됩니다. 무슨일이 일어날지 모르니 만일을위해 강화해둡시다.";
                     break;
                 }
         }

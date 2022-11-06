@@ -121,12 +121,11 @@ public class Player : MonoBehaviour
     //부스트 작동
     protected virtual void BoostUpdate(float deltaTime)
     {
-        
         if (boostDuration > 0)
         {
             boostDuration -= deltaTime;
             ParticleSystem boostEffect = InGameManager.Instance.boostEffect;
-            if(boostDuration <= 0 == boostEffect.gameObject.activeSelf)
+            if (boostDuration <= 0 == boostEffect.gameObject.activeSelf)
             {
                 boostEffect.gameObject.SetActive(!boostEffect.gameObject.activeSelf);
             }
@@ -142,7 +141,11 @@ public class Player : MonoBehaviour
     protected virtual void MagnetUpdate(float deltaTime)
     {
         if (magnetSize == 0 || magnetMoveSpeed == 0)
+        {
+            InGameManager.Instance.magnetEffect.gameObject.SetActive(false);
             return;
+        }
+        InGameManager.Instance.magnetEffect.gameObject.SetActive(true);
         Collider2D[] getableColiders = Physics2D.OverlapCircleAll(transform.position, magnetSize * Mathf.Max(colider2D.size.x, colider2D.size.y), LayerMask.GetMask("Getable"));
         foreach (var colider in getableColiders)
         {
@@ -347,6 +350,8 @@ public class Player : MonoBehaviour
     protected virtual void GetToaster(GameObject obj)
     {
         obj.SetActive(false);
+        InGameManager.Instance.toasterEffect.gameObject.SetActive(true);
+        InGameManager.Instance.toasterEffect.Play();
         //TODO 자석 이펙트
         hp += toasterHealValue;
     }

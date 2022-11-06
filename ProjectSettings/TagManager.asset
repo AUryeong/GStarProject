@@ -9,6 +9,7 @@ TagManager:
   - Gold
   - Boost
   - Magnet
+  - Toaster
   layers:
   - Default
   - TransparentFX
