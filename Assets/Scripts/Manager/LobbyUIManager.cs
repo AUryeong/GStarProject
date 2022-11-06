@@ -92,8 +92,6 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     }
     private void Start()
     {
-        SettingBreadShop(breadScriptable);
-        SettingQusetPanel();
     }
     public void MoneyLess()
     {
