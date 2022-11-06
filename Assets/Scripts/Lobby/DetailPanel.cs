@@ -25,15 +25,17 @@ public class DetailPanel : MonoBehaviour
     [SerializeField] private Button upgradeButton;
     [SerializeField] private TextMeshProUGUI priceText;
     [SerializeField] private TextMeshProUGUI upgradeHp;
-
+    private float priceUpValue = 0;
+    private BreadScript breadScript;
     private void Awake()
     {
         instance = this;
         gameObject.SetActive(false);
     }
 
-    public void OpenPanel(BreadStats breadstats)
+    public void OpenPanel(BreadStats breadstats , BreadScript bread)
     {
+        breadScript = bread;
         gameObject.SetActive(true);
         scriptable = breadstats;
         for (int idx = 0; idx < 3; idx++)
@@ -48,8 +50,6 @@ public class DetailPanel : MonoBehaviour
         hpText.text = $"{scriptable.HP}";
         abilityText.text = scriptable.AbilityText_2;
 
-        float priceUpValue = 0;
-        float hpUpValue = 0;
         upgradeButton.onClick.AddListener(() => UpgradeBread());
         switch (scriptable.Rank)
         {
@@ -57,11 +57,16 @@ public class DetailPanel : MonoBehaviour
                 {
                     //기존 가격 * (0.현재 레벨) + 1성 성장수치
                     priceUpValue = scriptable.Price * (scriptable.LV / 10) + 2100;
-                    priceText.text = $"{scriptable.Price + priceUpValue}";
+                    if (scriptable.isBuy == true)
+                    {
+                        priceText.text = $"{scriptable.Price + priceUpValue}";
+
+                    }
+                    else
+                        priceText.text = $"구매 {scriptable.Price}";
 
                     //레벨-1 * 1성 성장수치
-                    hpUpValue = scriptable.LV * 20;
-                    upgradeHp.text = $"{scriptable.HP + hpUpValue}";
+                    upgradeHp.text = $"{scriptable.HP + 20}";
 
                     break;
                 }
@@ -72,8 +77,7 @@ public class DetailPanel : MonoBehaviour
                     priceText.text = $"{scriptable.Price + priceUpValue}";
 
                     //레벨-1 * 2성 성장수치
-                    hpUpValue = scriptable.LV * 35;
-                    upgradeHp.text = $"{scriptable.HP + hpUpValue}";
+                    upgradeHp.text = $"{scriptable.HP + 35}";
 
                     break;
                 }
@@ -84,8 +88,7 @@ public class DetailPanel : MonoBehaviour
                     priceText.text = $"{scriptable.Price + priceUpValue}";
 
                     //레벨-1 * 3성 성장수치
-                    hpUpValue = scriptable.LV * 40;
-                    upgradeHp.text = $"{scriptable.HP + hpUpValue}";
+                    upgradeHp.text = $"{scriptable.HP + 40}";
 
                     break;
                 }
@@ -93,10 +96,18 @@ public class DetailPanel : MonoBehaviour
     }
     private void UpgradeBread()
     {
-        scriptable.LV++;
+        if(GameManager.Instance.gold <= priceUpValue)
+        {
+            LobbyUIManager.Instance.MoneyLess();
+            return;
+        }
+        if(scriptable.LV == 6)
+        {
+            return;
+        }
+        if(scriptable.isBuy == false)
+            scriptable.isBuy = true;
 
-        float priceUpValue = 0;
-        float hpUpValue = 0;
 
         switch (scriptable.Rank)
         {
@@ -107,8 +118,8 @@ public class DetailPanel : MonoBehaviour
                     priceText.text = $"{scriptable.Price + priceUpValue}";
 
                     //레벨-1 * 1성 성장수치
-                    hpUpValue = (scriptable.LV - 1) * 20;
-                    upgradeHp.text = $"{scriptable.HP + hpUpValue}";
+                    scriptable.HP += 20;
+                    upgradeHp.text = $"{scriptable.HP +20}";
 
                     break;
                 }
@@ -119,8 +130,8 @@ public class DetailPanel : MonoBehaviour
                     priceText.text = $"{scriptable.Price + priceUpValue}";
 
                     //레벨-1 * 2성 성장수치
-                    hpUpValue = (scriptable.LV - 1) * 35;
-                    upgradeHp.text = $"{scriptable.HP + hpUpValue}";
+                    scriptable.HP += 35;
+                    upgradeHp.text = $"{scriptable.HP +35}";
 
                     break;
                 }
@@ -131,14 +142,14 @@ public class DetailPanel : MonoBehaviour
                     priceText.text = $"{scriptable.Price + priceUpValue}";
 
                     //레벨-1 * 3성 성장수치
-                    hpUpValue = (scriptable.LV - 1) * 40;
-                    upgradeHp.text = $"{scriptable.HP + hpUpValue}";
+                    scriptable.HP += 40;
+                    upgradeHp.text = $"{scriptable.HP +40}";
 
                     break;
                 }
         }//업그레이드 수치
-
-        hpText.text = $"{scriptable.HP + hpUpValue}";
+        breadScript.Upgrade();
+        hpText.text = $"{scriptable.HP}";
     }
     public void CloseButton()
     {

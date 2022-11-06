@@ -31,7 +31,7 @@ public class BreadScript : MonoBehaviour
         scriptable = breadscriptable.Stats[(int)breadCount];
 
         detailButton.onClick.RemoveAllListeners();
-        detailButton.onClick.AddListener(() => DetailPanel.instance.OpenPanel(scriptable));
+        detailButton.onClick.AddListener(() => DetailPanel.instance.OpenPanel(scriptable , this));
 
         mainName.text = scriptable.Name;
         mainImage.sprite = scriptable.ImageSprite;
@@ -51,6 +51,7 @@ public class BreadScript : MonoBehaviour
         mainExp.value = scriptable.LV / 6;
 
         mainHp.text = $"{scriptable.HP}";
+        mainAbility.text = $"{scriptable.AbilityText_2}";
 
         for (int Rank = 0; Rank < scriptable.Rank; Rank++)
             mainRanks[Rank].gameObject.SetActive(true);
@@ -67,10 +68,10 @@ public class BreadScript : MonoBehaviour
             {
                 GameManager.Instance.gold -= scriptable.Price;
                 scriptable.isBuy = true;
-                ChangeBread();
 
-                mainLv.text = $"{++scriptable.LV}.LV";
-                mainExp.value = scriptable.LV / 6;
+                Upgrade();
+
+                ChangeBread();
             }
             else
             {
@@ -78,6 +79,13 @@ public class BreadScript : MonoBehaviour
             }
         }
     }
+    public void Upgrade()
+    {
+        mainLv.text = $"{++scriptable.LV}.LV";
+        mainExp.value = scriptable.LV / 6;
+        mainHp.text = $"{scriptable.HP}";
+    }
+
     void ChangeBread()
     {
         //선택된 빵 패널 텍스트를 선택하기로 변경
