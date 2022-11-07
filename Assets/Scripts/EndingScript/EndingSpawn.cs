@@ -28,7 +28,7 @@ public class EndingSpawn : Singleton<EndingSpawn>
     {
         int LimitValue = 0;//카메라 이동 범위 값
         int CM = 0;
-        SpawnBread(BreadIdx);
+        SpawnBread(BreadIdx,0);
         yield return new WaitForSeconds(1.5f);
 
         //재료 쌓기
@@ -56,14 +56,14 @@ public class EndingSpawn : Singleton<EndingSpawn>
         Camera.main.GetComponent<Camera>().orthographicSize += ZoomOut;
         Camera.main.GetComponent<EndingCamera>().MoveLimitValue = LimitValue;
         Camera.main.GetComponent<EndingCamera>().CameraMove = true;
-        SpawnBread(BreadIdx);
+        SpawnBread(BreadIdx,1);
         CmText(CM);
         yield return null;
     }
-    void SpawnBread(int BreadIdx)
+    void SpawnBread(int BreadIdx,int idx)
     {
         SandWichObject = Instantiate(SpawnObject, transform.position, transform.rotation);
-        SandWichObject.GetComponent<SpriteRenderer>().sprite = Bread.Stats[BreadIdx].stackSprite;
+        SandWichObject.GetComponent<SpriteRenderer>().sprite = Bread.Stats[BreadIdx].stackSprite[idx];
         SandWichObject.GetComponent<BoxCollider2D>().size = new Vector2(0.5f, 1);
         SandWichObject.transform.localScale += Vector3.right * 2;
     }

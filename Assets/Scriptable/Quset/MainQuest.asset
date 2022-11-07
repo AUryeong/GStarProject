@@ -109,7 +109,7 @@ MonoBehaviour:
     M_ClearCount: 0
     rewardType: 2
     questType: 2
-  - isClear: 1
+  - isClear: 0
     questCondition: 10
     questSituation: 0
     sprite: {fileID: 0}

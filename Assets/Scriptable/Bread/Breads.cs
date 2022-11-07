@@ -31,9 +31,10 @@ public class BreadStats
 {
     public string Name;
     public Sprite ImageSprite;
-    public Sprite stackSprite;
+    public Sprite[] stackSprite;
     public int Rank;
     public int LV;
+
     public int HP;
     public int GetHp()
     {

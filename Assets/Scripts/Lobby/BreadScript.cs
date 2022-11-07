@@ -44,7 +44,7 @@ public class BreadScript : MonoBehaviour
 
         LobbyUIManager.Instance.breadSelectText.Add(mainSelectText);
         if (!scriptable.isBuy)//구매하지 않았을때 가격
-            mainSelectText.text = "" + scriptable.Price + " 골드";
+            mainSelectText.text = "" + scriptable.Price ;
         else if (LobbyUIManager.Instance.selectBread == type)//구매 후 선택된 빵일때
             mainSelectText.text = "선택됨";
         else//구매 후 선택되지 않았을때
