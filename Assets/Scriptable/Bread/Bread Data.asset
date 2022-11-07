@@ -77,7 +77,7 @@ MonoBehaviour:
     ImageSprite: {fileID: 21300000, guid: df82951e82a19a14c8f432657cde1a8f, type: 3}
     stackSprite: {fileID: 0}
     Rank: 1
-    LV: 1
+    LV: 0
     HP: 125
     Price: 2000
     AbilityLV_1: 0
@@ -93,7 +93,7 @@ MonoBehaviour:
       \uB54C \uC9C0\uC18D\uC801\uC73C\uB85C \uAC10\uC18C\uB418\uB294 \uCCB4\uB825\uC774
       2\uBC30\uB85C \uC99D\uAC00\uD55C\uB2E4."
     AbilityText_2: "\uC774\uAC8C \uC2DD\uBE75\uC774\uC57C \uC218\uBC15\uC774\uC57C"
-    isBuy: 1
+    isBuy: 0
   - Name: "\uC8FD\uBE75"
     ImageSprite: {fileID: 21300000, guid: e5297187de4cb044bb9d3eb246bbc78d, type: 3}
     stackSprite: {fileID: 0}
