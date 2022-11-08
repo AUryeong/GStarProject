@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
 
 
     [Header("플레이어 점프 관련")]
-    protected float fJumpSpeed = 13;
+    protected float fJumpSpeed = 16;
     protected readonly float jumpCheckDistance = 0.1f;
     protected int jumpCount = 0;
     protected int jumpMaxCount = 2;

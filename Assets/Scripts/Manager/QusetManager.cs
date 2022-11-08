@@ -13,18 +13,14 @@ public class QusetManager : Singleton<QusetManager>
         if (Instance == this)
             DontDestroyOnLoad(gameObject);
     }
-    public void QusetUpdate(QuestType Type, int QusetId , float Progress)
-    {
-        switch (Type){
-            case QuestType.Day:
-                qusetScriptables[0].QusetList[QusetId].questCondition += Progress;
-                return; 
-            case QuestType.Aweek:
-                qusetScriptables[1].QusetList[QusetId].questCondition += Progress;
-                return;
-            case QuestType.Main:
-                qusetScriptables[2].QusetList[QusetId].questCondition += Progress;
-                return;
-        }
-    }
+    /// <summary>
+    /// 요일
+    /// 퀘스트 인덱스
+    /// 증가 수치
+    /// </summary>
+    /// <param name="Type"></param>
+    /// <param name="QusetId"></param>
+    /// <param name="Progress"></param>
+    public void QusetUpdate(QuestType Type, int QusetId, float Progress) 
+        => qusetScriptables[(int)Type].QusetList[QusetId].questSituation += Progress;
 }

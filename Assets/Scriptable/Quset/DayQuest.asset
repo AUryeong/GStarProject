@@ -48,7 +48,7 @@ MonoBehaviour:
     questType: 0
   - isClear: 0
     questCondition: 50
-    questSituation: 0
+    questSituation: 4
     sprite: {fileID: 0}
     text:
     - "\uACE8\uB4DC 50\uAC1C \uD68D\uB4DD"

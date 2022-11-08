@@ -48,7 +48,7 @@ MonoBehaviour:
     questType: 1
   - isClear: 0
     questCondition: 100
-    questSituation: 0
+    questSituation: 4
     sprite: {fileID: 0}
     text:
     - "\uACE8\uB4DC 100\uAC1C \uD68D\uB4DD"
@@ -80,7 +80,7 @@ MonoBehaviour:
     rewardType: 1
     questType: 1
   - isClear: 0
-    questCondition: 150
+    questCondition: 1
     questSituation: 0
     sprite: {fileID: 0}
     text:

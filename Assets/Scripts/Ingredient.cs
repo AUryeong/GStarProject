@@ -30,7 +30,7 @@ public class Ingredient : MonoBehaviour
             QusetManager.Instance.QusetUpdate(QuestType.Main, 6, 1);
         }
 
-        spriteRenderer.sprite = GameManager.Instance.Inside.Stats[ingredientIdx].IconSprite;
+        spriteRenderer.sprite = GameManager.Instance.Inside.Stats[ingredientIdx].OutlineSprite;
     }
     public virtual void OnGet()
     {
