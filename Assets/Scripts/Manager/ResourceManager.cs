@@ -15,14 +15,14 @@ public class ResourceManager : Singleton<ResourceManager>
         Sprite empty = Resources.Load<Sprite>("Ingredients/SandWich/Square");
         for (Ingredients.Type i = 0; i < Ingredients.Type.NONE; i++)
         {
-            ingredients.Stats[(int)i].IconSprite = Resources.Load<Sprite>("Ingredients/" + i.ToString());
-            ingredients.Stats[(int)i].OutlineSprite = Resources.Load<Sprite>("Ingredients/Icon/Icon_" + i.ToString());
-            if (ingredients.Stats[(int)i].IconSprite == null || ingredients.Stats[(int)i].OutlineSprite == null)
+            ingredients.Stats[(int)i].IconSprite = Resources.Load<Sprite>("Ingredients/Icon" + i.ToString());
+            ingredients.Stats[(int)i].OutlineSprite = Resources.Load<Sprite>("Ingredients/OutLineIcon/Icon_" + i.ToString());
+            ingredients.Stats[(int)i].SandwichSprite = Resources.Load<Sprite>("Ingredients/SandWich/Build_" + i.ToString()); ;
+           /* if (ingredients.Stats[(int)i].IconSprite == null || ingredients.Stats[(int)i].OutlineSprite == null)
             {
                 Debug.Log(i);
             }
-            ingredients.Stats[(int)i].SandwichSprite = empty;
-            //TODO 쌓이는 오브젝트
+            //TODO 쌓이는 오브젝트*/
         }
         if (Instance != this)
             Destroy(gameObject);

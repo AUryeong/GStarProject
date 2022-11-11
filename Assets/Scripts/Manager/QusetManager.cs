@@ -18,9 +18,6 @@ public class QusetManager : Singleton<QusetManager>
     /// 퀘스트 인덱스
     /// 증가 수치
     /// </summary>
-    /// <param name="Type"></param>
-    /// <param name="QusetId"></param>
-    /// <param name="Progress"></param>
     public void QusetUpdate(QuestType Type, int QusetId, float Progress) 
         => qusetScriptables[(int)Type].QusetList[QusetId].questSituation += Progress;
 }

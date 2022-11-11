@@ -48,7 +48,7 @@ public class SaveManager : Singleton<SaveManager>
 {
     public string prefsName = "TOSSave";
 
-    public GameData _gameData;
+    private GameData _gameData;
     public GameData gameData
     {
         get
