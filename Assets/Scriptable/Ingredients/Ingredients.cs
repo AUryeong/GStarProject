@@ -6,7 +6,7 @@ using UnityEngine;
 public class Ingredients : ScriptableObject, ISerializationCallbackReceiver
 {
     public int i;
-    public List<stats> Stats = new List<stats>();
+    public List<Stats> Stats = new List<Stats>();
 
     public void OnAfterDeserialize()
     {
@@ -30,7 +30,7 @@ public class Ingredients : ScriptableObject, ISerializationCallbackReceiver
         Salmon,
         Bacon,
         Egg,
-        Meetball,
+        Meatball,
         BerryJam,
         Potato,
         Cream,
@@ -51,11 +51,13 @@ public class Ingredients : ScriptableObject, ISerializationCallbackReceiver
 }
 
 [System.Serializable]
-public class stats
+public class Stats
 {
-    [HideInInspector] public Sprite SandwichSprite;
-    [HideInInspector] public Sprite IconSprite;
-    [HideInInspector] public Sprite OutlineSprite;
+    [HideInInspector] public Sprite SandwichSprite; //쌓이는 재료 이미지
+    [HideInInspector] public Sprite IconSprite;//테두리가 없는 이미지
+    [HideInInspector] public Sprite OutlineSprite;//테두리가 있는 이미지
     public Ingredients.Type name;
     public int Size;
+    public float coliderPos;
+    public float coliderSize;
 }
