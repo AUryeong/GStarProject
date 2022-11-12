@@ -44,7 +44,7 @@ public class Ingredients : ScriptableObject, ISerializationCallbackReceiver
         Cucumber,
         KoChuJang,
         Ice,
-        PoplingCandy,
+        PoppingCandy,
         LiveOctopus,
         NONE
     }
