@@ -95,6 +95,10 @@ public class Player : MonoBehaviour
     {
         fHp = GameManager.Instance.breads.Stats[(int)type].GetHp() + GameManager.Instance.maxHpLv * 5;
         hp = fHp;
+
+        rigid.gravityScale = 2.75f;
+        fSpeed = 5;
+        fJumpSpeed = 16;
     }
 
     protected virtual void Update()
@@ -186,7 +190,7 @@ public class Player : MonoBehaviour
                 Move(Time.deltaTime);
             else
             {
-                RaycastHit2D raycastHit2D = Physics2D.BoxCast((Vector2)transform.position + colider2D.offset, colider2D.size, 0, Vector2.down, jumpCheckDistance, LayerMask.GetMask("Platform"));
+                RaycastHit2D raycastHit2D = Physics2D.BoxCast((Vector2)transform.position + colider2D.offset, colider2D.size * transform.localScale.y, 0, Vector2.down, jumpCheckDistance, LayerMask.GetMask("Platform"));
                 if (raycastHit2D.collider != null)
                 {
                     animator.Play("Die");
@@ -202,7 +206,7 @@ public class Player : MonoBehaviour
     //점프 땅에 닿음을 감지하는 함수
     protected virtual void CheckJumpReset()
     {
-        RaycastHit2D raycastHit2D = Physics2D.BoxCast((Vector2)transform.position + colider2D.offset, colider2D.size, 0, Vector2.down, jumpCheckDistance, LayerMask.GetMask("Platform"));
+        RaycastHit2D raycastHit2D = Physics2D.BoxCast((Vector2)transform.position + colider2D.offset, colider2D.size*transform.localScale.y, 0, Vector2.down, jumpCheckDistance, LayerMask.GetMask("Platform"));
         if (raycastHit2D.collider != null)
         {
             jumpCount = 0;

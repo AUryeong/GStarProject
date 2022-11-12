@@ -18,8 +18,8 @@ public class InGameManager : Singleton<InGameManager>
     [SerializeField] protected GameObject ovenMap;
     protected int mapSize = 1;
     public readonly int ovenMapSize = 10;
-    public float mapLength { get; private set; } = 20;
-    public readonly float platformMapLength = 44;
+    public float mapLength { get; private set; } = 30;
+    public readonly float platformMapLength = 66;
     protected List<GameObject> mapList = new List<GameObject>();
 
     [Header("¿Ã∆Â∆Æ")]
@@ -48,6 +48,8 @@ public class InGameManager : Singleton<InGameManager>
         base.Awake();
         breadType = GameManager.Instance.selectBread;
         player = Instantiate(breadArray[(int)breadType].gameObject, startPos, transform.rotation).GetComponent<Player>();
+        player.transform.localScale = Vector3.one * 1.2f;
+
         boostEffect.transform.SetParent(player.transform);
         boostEffect.transform.localPosition = Vector3.zero;
         magnetEffect.transform.SetParent(player.transform);
