@@ -17,6 +17,7 @@ MonoBehaviour:
     ImageSprite: {fileID: 21300000, guid: 33915cb8304d89443ad46b11b4a82b73, type: 3}
     stackSprite:
     - {fileID: 0}
+    - {fileID: 0}
     Rank: 1
     LV: 1
     HP: 100
