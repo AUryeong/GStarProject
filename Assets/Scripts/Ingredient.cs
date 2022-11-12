@@ -18,7 +18,11 @@ public class Ingredient : MonoBehaviour
     {
         ingredientIdx = Random.Range(0, GameManager.Instance.Inside.Stats.Count);
         gameObject.layer = ingredientIdx < negative ? LayerMask.NameToLayer("Getable") : LayerMask.NameToLayer("Default");
-        if(ingredientIdx < negative)
+        spriteRenderer.sprite = GameManager.Instance.Inside.Stats[ingredientIdx].OutlineSprite;
+    }
+    public virtual void OnGet()
+    {
+        if (ingredientIdx < negative)
         {
             QusetManager.Instance.QusetUpdate(QuestType.Day, 4, 1);
             QusetManager.Instance.QusetUpdate(QuestType.Aweek, 4, 1);
@@ -29,10 +33,5 @@ public class Ingredient : MonoBehaviour
             QusetManager.Instance.QusetUpdate(QuestType.Aweek, 5, 1);
             QusetManager.Instance.QusetUpdate(QuestType.Main, 6, 1);
         }
-
-        spriteRenderer.sprite = GameManager.Instance.Inside.Stats[ingredientIdx].OutlineSprite;
-    }
-    public virtual void OnGet()
-    {
     }
 }
