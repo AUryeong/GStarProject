@@ -33,10 +33,36 @@ public class EndingSpawn : Singleton<EndingSpawn>
     {
 
         SpawnBread(BreadIdx, 0);//아래쪽 빵 스폰
+
         yield return new WaitForSeconds(1.5f);
 
-        //재료 쌓기
-        SpawnSide(insideList);
+        for (int i = 0; i < insideList.Count; i++)
+        {
+            Stats stats = Inside.Stats[insideList[i]];
+            Debug.Log(stats.name);
+
+            SandWichObject = Instantiate(SpawnObject, transform.position, transform.rotation);
+            SandWichObject.GetComponent<SideObject>().SettingObject(stats);
+
+            transform.position += Vector3.up * (stats.coliderSize * 5);
+            if (i >= 5)//중간 갔을떄 화면이 올라감
+            {
+                float timer = 0;
+
+                LimitValue += stats.coliderSize;
+
+                Vector3 CameraPos = Camera.main.transform.position;
+                CM += stats.Size;
+
+                while (timer < 1f)
+                {
+                    Camera.main.transform.position = Vector3.Lerp(CameraPos, CameraPos + Vector3.up * stats.coliderSize, timer);// 콜라이더 사이즈만큼 카메라 위로 이동
+                    timer += Time.deltaTime * 3;
+                    yield return null;
+                }
+            }
+            yield return new WaitForSeconds(0.5f);
+        }
 
         yield return new WaitForSeconds(1.5f);
 
@@ -57,36 +83,6 @@ public class EndingSpawn : Singleton<EndingSpawn>
         SandWichObject.transform.localScale += Vector3.right * 2;
     }
 
-    private IEnumerator SpawnSide(List<int> insideList)
-    {
-        for (int i = 0; i < insideList.Count; i++)
-        {
-            Stats stats = Inside.Stats[insideList[i]];
-
-            SandWichObject = Instantiate(SpawnObject, transform.position, transform.rotation);
-            SandWichObject.GetComponent<SideObject>().SettingObject(stats);
-
-            transform.position += Vector3.up * (stats.coliderSize * 5);
-            if (i >= 5)//중간 갔을떄 화면이 올라감
-            {
-                float timer = 0;
-                
-                LimitValue += stats.coliderSize;
-
-                Vector3 CameraPos = Camera.main.transform.position;
-                CM += stats.Size;
-
-                while (timer < 1f)
-                {
-                    Camera.main.transform.position = Vector3.Lerp(CameraPos, CameraPos + Vector3.up * stats.coliderSize , timer);// 콜라이더 사이즈만큼 카메라 위로 이동
-                    timer += Time.deltaTime * 3;
-                    yield return null;
-                }
-            }
-            yield return new WaitForSeconds(0.5f);
-        }
-
-    }
     private void CmText(int CM)
     {
         CMTextObcject.gameObject.SetActive(true);

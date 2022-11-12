@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class InGameManager : Singleton<InGameManager>
 {
-    private List<int> ingredients = new List<int>();
+    [SerializeField] private List<int> ingredients = new List<int>();
     private Vector3 cameraDistance = new Vector3(6, 2.5f, -10);
     public IngameUIManager uiManager;
     public Player player
