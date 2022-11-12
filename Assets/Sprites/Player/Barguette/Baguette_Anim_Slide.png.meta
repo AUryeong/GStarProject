@@ -1,25 +1,25 @@
 fileFormatVersion: 2
-guid: 3aec265c730d9e540a7b296ebf1ec2da
+guid: ccf15072dffdc384d8e8fc7ed37b3acd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8257914025870418309
-    second: Barguette_Bread_Slide_0
+      213: 8733736284527636034
+    second: Baguette_Anim_Slide_0
   - first:
-      213: 2993920072424405746
-    second: Barguette_Bread_Slide_1
+      213: -8539172454026803024
+    second: Baguette_Anim_Slide_1
   - first:
-      213: 3423296135855683118
-    second: Barguette_Bread_Slide_2
+      213: -7501441364032016679
+    second: Baguette_Anim_Slide_2
   - first:
-      213: 1863645612092697161
-    second: Barguette_Bread_Slide_3
+      213: 6278458227006573215
+    second: Baguette_Anim_Slide_3
   - first:
-      213: -3554525577491316359
-    second: Barguette_Bread_Slide_4
+      213: -3272430717139781587
+    second: Baguette_Anim_Slide_4
   - first:
-      213: -3072089266765088657
-    second: Barguette_Bread_Slide_5
+      213: 7531369369356933226
+    second: Baguette_Anim_Slide_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -133,7 +133,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Barguette_Bread_Slide_0
+      name: Baguette_Anim_Slide_0
       rect:
         serializedVersion: 2
         x: 0
@@ -147,14 +147,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 581e8b1ed010a9270800000000000000
-      internalID: 8257914025870418309
+      spriteID: 24ea531a0e6743970800000000000000
+      internalID: 8733736284527636034
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Barguette_Bread_Slide_1
+      name: Baguette_Anim_Slide_1
       rect:
         serializedVersion: 2
         x: 250
@@ -168,14 +168,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2fab4c2817a8c8920800000000000000
-      internalID: 2993920072424405746
+      spriteID: 0b88ee145e3ce7980800000000000000
+      internalID: -8539172454026803024
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Barguette_Bread_Slide_2
+      name: Baguette_Anim_Slide_2
       rect:
         serializedVersion: 2
         x: 500
@@ -189,14 +189,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e2635aab2bdf18f20800000000000000
-      internalID: 3423296135855683118
+      spriteID: 9de2371e2d685e790800000000000000
+      internalID: -7501441364032016679
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Barguette_Bread_Slide_3
+      name: Baguette_Anim_Slide_3
       rect:
         serializedVersion: 2
         x: 750
@@ -210,14 +210,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 94a20086fcffcd910800000000000000
-      internalID: 1863645612092697161
+      spriteID: f9a0bd52e70912750800000000000000
+      internalID: 6278458227006573215
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Barguette_Bread_Slide_4
+      name: Baguette_Anim_Slide_4
       rect:
         serializedVersion: 2
         x: 1000
@@ -231,14 +231,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9710798e1d9cbaec0800000000000000
-      internalID: -3554525577491316359
+      spriteID: d287ec0d99df592d0800000000000000
+      internalID: -3272430717139781587
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Barguette_Bread_Slide_5
+      name: Baguette_Anim_Slide_5
       rect:
         serializedVersion: 2
         x: 1250
@@ -252,8 +252,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f683d28a61fbd55d0800000000000000
-      internalID: -3072089266765088657
+      spriteID: a6817ccd98cc48860800000000000000
+      internalID: 7531369369356933226
       vertices: []
       indices: 
       edges: []
