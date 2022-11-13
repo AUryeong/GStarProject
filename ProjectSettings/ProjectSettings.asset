@@ -247,8 +247,8 @@ PlayerSettings:
   AndroidTargetDevices: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: '{inproject}: jjukjjuk.keystore'
-  AndroidKeyaliasName: newkey
+  AndroidKeystoreName: D:/study/Unity/UnityBuild/GStarProject/user.keystore
+  AndroidKeyaliasName: jjukjjuk
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0
   AndroidIsGame: 1
