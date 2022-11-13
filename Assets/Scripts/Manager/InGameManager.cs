@@ -22,6 +22,10 @@ public class InGameManager : Singleton<InGameManager>
     public readonly float platformMapLength = 66;
     protected List<GameObject> mapList = new List<GameObject>();
 
+    protected float[] mapBGLength;
+    [SerializeField] protected SpriteRenderer[] mapBGList;
+    [SerializeField] protected float[] platformmapBGLength;
+
     [Header("¿Ã∆Â∆Æ")]
     public ParticleSystem boostEffect;
     public SpriteRenderer magnetEffect;
@@ -56,6 +60,7 @@ public class InGameManager : Singleton<InGameManager>
         magnetEffect.transform.localPosition = Vector3.zero;
         toasterEffect.transform.SetParent(player.transform);
         toasterEffect.transform.localPosition = Vector3.zero;
+        mapBGLength = new float[mapBGList.Length];
         AddNewPlatform();
     }
     protected void AddNewPlatform()
@@ -82,9 +87,19 @@ public class InGameManager : Singleton<InGameManager>
         if (player.isControllable)
             CameraMove();
         if (mapLength - player.transform.position.x < 15)
-        {
             AddNewPlatform();
-        }
+        for(int i = 0; i < mapBGLength.Length; i++)
+            if (mapBGLength[i] - player.transform.position.x < 100)
+                AddNewBackground(i);
+    }
+
+    protected void AddNewBackground(int index)
+    {
+        GameObject obj =  PoolManager.Instance.Init(mapBGList[index].gameObject);
+        obj.transform.position = new Vector3(mapBGLength[index], mapBGList[index].transform.position.y, mapBGList[index].transform.position.z);
+        mapBGLength[index] += platformmapBGLength[index];
+        if (!mapList.Contains(obj))
+            mapList.Add(obj);
     }
     protected void CameraMove()
     {
