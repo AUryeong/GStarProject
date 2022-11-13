@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: b2e701a7d490d2d49aa570bdbda0ff4d
+guid: 2d07478aa5a72944c9687a9b71ee0109
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7728981040344821817
-    second: Barguette_Bread_Jump1_0
+      213: 678500004262196262
+    second: Barguette_Anim_Fall_0
   - first:
-      213: 5491187895821745916
-    second: Barguette_Bread_Jump1_1
+      213: -3892825123074072369
+    second: Barguette_Anim_Fall_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -121,7 +121,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Barguette_Bread_Jump1_0
+      name: Barguette_Anim_Fall_0
       rect:
         serializedVersion: 2
         x: 0
@@ -135,14 +135,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9307b796e4bd24b60800000000000000
-      internalID: 7728981040344821817
+      spriteID: 6243626b8248a6900800000000000000
+      internalID: 678500004262196262
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Barguette_Bread_Jump1_1
+      name: Barguette_Anim_Fall_1
       rect:
         serializedVersion: 2
         x: 250
@@ -156,8 +156,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cfe31653c4e943c40800000000000000
-      internalID: 5491187895821745916
+      spriteID: fc02476fc28e9f9c0800000000000000
+      internalID: -3892825123074072369
       vertices: []
       indices: 
       edges: []

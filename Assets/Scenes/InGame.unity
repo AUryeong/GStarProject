@@ -843,7 +843,7 @@ MonoBehaviour:
   - {fileID: 3559122120417978861, guid: 6a053c90d28e0d947b44364ce45ea768, type: 3}
   - {fileID: 8974899199686686189, guid: b66badc664a8c9f4aa96625fe48e2800, type: 3}
   - {fileID: 3505843312332731503, guid: 12caccfb9e2a0c84fb2967306b6784c5, type: 3}
-  ovenMap: {fileID: 8276920893370596245, guid: 74c471807e1d1de48a455c1837e85665, type: 3}
+  ovenMap: {fileID: 1198905207621059951, guid: dd9c2fcf0ed0fdf43b9f71817ebfd012, type: 3}
   boostEffect: {fileID: 1516333509}
   magnetEffect: {fileID: 1312669743}
   toasterEffect: {fileID: 1597267402}

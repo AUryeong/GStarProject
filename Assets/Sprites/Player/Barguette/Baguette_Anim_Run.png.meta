@@ -1,34 +1,25 @@
 fileFormatVersion: 2
-guid: 83080b0f65186c9439dd696c677f12c4
+guid: 554bc596c90fde14c80b408975e6723a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6026527102046202582
-    second: Barguette_Bread_Jump2_0
+      213: -7460923914585174212
+    second: Baguette_Anim_Run_0
   - first:
-      213: 2685102789539774447
-    second: Barguette_Bread_Jump2_1
+      213: 6190990319397277120
+    second: Baguette_Anim_Run_1
   - first:
-      213: 3407642810855215992
-    second: Barguette_Bread_Jump2_2
+      213: -7819264992874648407
+    second: Baguette_Anim_Run_2
   - first:
-      213: 1617679078701778777
-    second: Barguette_Bread_Jump2_3
+      213: -8570069729896080696
+    second: Baguette_Anim_Run_3
   - first:
-      213: -9202985709121737798
-    second: Barguette_Bread_Jump2_4
+      213: 8374556301490331172
+    second: Baguette_Anim_Run_4
   - first:
-      213: 4289745023090420649
-    second: Barguette_Bread_Jump2_5
-  - first:
-      213: 5890838406847421331
-    second: Barguette_Bread_Jump2_6
-  - first:
-      213: -5093988798632673530
-    second: Barguette_Bread_Jump2_7
-  - first:
-      213: -8028327229380404324
-    second: Barguette_Bread_Jump2_8
+      213: 7698823607475939118
+    second: Baguette_Anim_Run_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -142,7 +133,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Barguette_Bread_Jump2_0
+      name: Baguette_Anim_Run_0
       rect:
         serializedVersion: 2
         x: 0
@@ -156,14 +147,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a259545d7897d5ca0800000000000000
-      internalID: -6026527102046202582
+      spriteID: c3f0fe6ba39757890800000000000000
+      internalID: -7460923914585174212
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Barguette_Bread_Jump2_1
+      name: Baguette_Anim_Run_1
       rect:
         serializedVersion: 2
         x: 250
@@ -177,14 +168,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fefbde3c2c6634520800000000000000
-      internalID: 2685102789539774447
+      spriteID: 0cd8e8be4e0dae550800000000000000
+      internalID: 6190990319397277120
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Barguette_Bread_Jump2_2
+      name: Baguette_Anim_Run_2
       rect:
         serializedVersion: 2
         x: 500
@@ -198,14 +189,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 873507ef4116a4f20800000000000000
-      internalID: 3407642810855215992
+      spriteID: 9ac2f0fcae36c7390800000000000000
+      internalID: -7819264992874648407
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Barguette_Bread_Jump2_3
+      name: Baguette_Anim_Run_3
       rect:
         serializedVersion: 2
         x: 750
@@ -219,14 +210,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 957c99e1d86237610800000000000000
-      internalID: 1617679078701778777
+      spriteID: 8ca5731acfef01980800000000000000
+      internalID: -8570069729896080696
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Barguette_Bread_Jump2_4
+      name: Baguette_Anim_Run_4
       rect:
         serializedVersion: 2
         x: 1000
@@ -240,14 +231,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: abb6dcec14d684080800000000000000
-      internalID: -9202985709121737798
+      spriteID: 42e17ddf596683470800000000000000
+      internalID: 8374556301490331172
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Barguette_Bread_Jump2_5
+      name: Baguette_Anim_Run_5
       rect:
         serializedVersion: 2
         x: 1250
@@ -261,71 +252,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9abed46de5c388b30800000000000000
-      internalID: 4289745023090420649
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Barguette_Bread_Jump2_6
-      rect:
-        serializedVersion: 2
-        x: 1500
-        y: 0
-        width: 250
-        height: 250
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 39b5e5de15670c150800000000000000
-      internalID: 5890838406847421331
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Barguette_Bread_Jump2_7
-      rect:
-        serializedVersion: 2
-        x: 1750
-        y: 0
-        width: 250
-        height: 250
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 60f3eaf3d248e49b0800000000000000
-      internalID: -5093988798632673530
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Barguette_Bread_Jump2_8
-      rect:
-        serializedVersion: 2
-        x: 2000
-        y: 0
-        width: 250
-        height: 250
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c9b5f28bbe6a59090800000000000000
-      internalID: -8028327229380404324
+      spriteID: e27aef7e747b7da60800000000000000
+      internalID: 7698823607475939118
       vertices: []
       indices: 
       edges: []

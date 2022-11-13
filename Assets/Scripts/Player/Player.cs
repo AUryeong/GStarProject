@@ -53,8 +53,8 @@ public class Player : MonoBehaviour
     protected float hitFadeOutTime = 0.9f;
 
     [Header("ÀÚ¼®")]
-    protected float magnetMoveSpeed = 4f;
-    protected float magnetSize = 0f;
+    protected float magnetMoveSpeed = 7f;
+    public float magnetSize = 0f;
     protected readonly float itemMagnetSize = 4;
     protected readonly float itemMagnetDuration = 5;
 
