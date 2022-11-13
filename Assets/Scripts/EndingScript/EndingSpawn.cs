@@ -15,7 +15,6 @@ public class EndingSpawn : Singleton<EndingSpawn>
     [SerializeField] TextMeshProUGUI CMTextObcject;
 
     private GameObject SandWichObject;
-    public List<int> InsideIdx = new List<int>();
 
     [HideInInspector] public float spawnSpeed;
 
@@ -27,11 +26,12 @@ public class EndingSpawn : Singleton<EndingSpawn>
         StartCoroutine(MakeSandwich(breadIdx, insideList));
     }
 
-    private float LimitValue = 0;//카메라 이동 범위 값
-    private int CM = 0;//총 쌓인 CM
+    private float limitValue = 0;//카메라 이동 범위 값
+    private int cm = 0;//총 쌓인 CM
+    private int totalSideCount;
     IEnumerator MakeSandwich(int BreadIdx, List<int> insideList)
     {
-
+        totalSideCount = insideList.Count;
         SpawnBread(BreadIdx, 0);//아래쪽 빵 스폰
 
         yield return new WaitForSeconds(1.5f);
@@ -42,21 +42,22 @@ public class EndingSpawn : Singleton<EndingSpawn>
             Debug.Log(stats.name);
 
             SandWichObject = Instantiate(SpawnObject, transform.position, transform.rotation);
-            SandWichObject.GetComponent<SideObject>().SettingObject(stats);
+            SandWichObject.GetComponent<SideObject>().SettingObject(stats,i);
 
             transform.position += Vector3.up * (stats.coliderSize * 5);
             if (i >= 5)//중간 갔을떄 화면이 올라감
             {
                 float timer = 0;
 
-                LimitValue += stats.coliderSize;
+                limitValue += stats.coliderSize;
 
                 Vector3 CameraPos = Camera.main.transform.position;
-                CM += stats.Size;
+                Vector3 targetPos = CameraPos + Vector3.up * (stats.coliderSize * 5);
+                cm += stats.Size;
 
                 while (timer < 1f)
                 {
-                    Camera.main.transform.position = Vector3.Lerp(CameraPos, CameraPos + Vector3.up * stats.coliderSize, timer);// 콜라이더 사이즈만큼 카메라 위로 이동
+                    Camera.main.transform.position = Vector3.Lerp(CameraPos, targetPos, timer);// 콜라이더 사이즈만큼 카메라 위로 이동
                     timer += Time.deltaTime * 3;
                     yield return null;
                 }
@@ -67,20 +68,27 @@ public class EndingSpawn : Singleton<EndingSpawn>
         yield return new WaitForSeconds(1.5f);
 
         Camera.main.GetComponent<Camera>().orthographicSize += ZoomOut;
-        Camera.main.GetComponent<EndingCamera>().MoveLimitValue = LimitValue;
+        Camera.main.GetComponent<EndingCamera>().MoveLimitValue = limitValue;
         Camera.main.GetComponent<EndingCamera>().CameraMove = true;
 
         SpawnBread(BreadIdx, 1);//위쪽 빵 스폰
 
-        CmText(CM);
+        CmText(cm);
         yield return null;
     }
-    private void SpawnBread(int BreadIdx, int idx)
+    private void SpawnBread(int BreadIdx, int overObject)
     {
         SandWichObject = Instantiate(SpawnObject, transform.position, transform.rotation);
-        SandWichObject.GetComponent<SpriteRenderer>().sprite = Bread.Stats[BreadIdx].stackSprite[idx];
-        SandWichObject.GetComponent<BoxCollider2D>().size = new Vector2(0.5f, 1);
-        SandWichObject.transform.localScale += Vector3.right * 2;
+        SpriteRenderer spriteRenderer = SandWichObject.GetComponent<SpriteRenderer>();
+        BoxCollider2D boxCollider = SandWichObject.GetComponent<BoxCollider2D>();
+
+        spriteRenderer.sprite = Bread.Stats[BreadIdx].stackSprite[overObject];
+        spriteRenderer.flipY = Bread.Stats[BreadIdx].isFlip && overObject == 1;//flip이고 위에 쌓이는 오브젝트일결우 Flip
+        spriteRenderer.sortingOrder = totalSideCount;//bread
+
+        boxCollider.size = new Vector2(1, 0.8f);
+
+        SandWichObject.transform.localScale = Vector2.one; 
     }
 
     private void CmText(int CM)

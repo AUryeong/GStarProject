@@ -32,6 +32,8 @@ public class BreadStats
     public string Name;
     public Sprite ImageSprite;
     public Sprite[] stackSprite;
+    public bool isFlip;
+
     public int Rank;
     public int LV;
 
@@ -57,13 +59,16 @@ public class BreadStats
         return hp;
     }
     public float Price;
+
     public int AbilityLV_1;
     public int AbilityLV_2;
     public Sprite AbilityImage_1;
     public Sprite AbilityImage_2;
+
     [TextArea]
     public string AbilityText_1;
     [TextArea]
     public string AbilityText_2;
+
     public bool isBuy;
 }

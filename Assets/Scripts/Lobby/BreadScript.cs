@@ -84,6 +84,9 @@ public class BreadScript : MonoBehaviour
     }
     public void Upgrade()
     {
+        if (scriptable.LV >= 6)
+            return;
+
         scriptable.LV++;
 
         mainLv.text = $"{scriptable.LV}.LV";
