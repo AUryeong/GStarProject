@@ -186,7 +186,7 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
         int breadCount = 0;
         foreach (BreadStats Bread in BreadList.Stats)
         {
-            GameObject breadPanelObject = Instantiate(breadPrefab, transform.position, transform.rotation, breadContent.transform);
+            GameObject breadPanelObject = Instantiate(breadPrefab, Vector3.one, transform.rotation, breadContent.transform);
             breadPanelObject.transform.GetComponent<BreadScript>().BreadSetting(breadScriptable, (Breads.Type)breadCount);
             breadCount++;
         }
@@ -198,7 +198,7 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
             List<QusetScript> scripts = new List<QusetScript>();
             for (int j = 0; j < QusetManager.Instance.qusetScriptables[i].QusetList.Count; j++)
             {
-                scripts.Add(Instantiate(qusetPrefab, transform.position, transform.rotation, qusetPanel[i].transform)
+                scripts.Add(Instantiate(qusetPrefab, Vector3.one, transform.rotation, qusetPanel[i].transform)
                     .GetComponent<QusetScript>());
             }
             for (int j = 0; j < QusetManager.Instance.qusetScriptables[i].QusetList.Count; j++)
@@ -247,6 +247,9 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
         {
             case 0:
                 {
+                    if (GameManager.Instance.maxHpLv >= 50)
+                        break;
+
                     abilityImage_Main.sprite = abilitySprite[SelectAbility];
                     abilityNameAndLV.text = $"최대 체력 LV.{GameManager.Instance.maxHpLv}";
                     upgradeMoney.text = $"{5000 + (GameManager.Instance.maxHpLv - 1) * 500} Gold";
@@ -255,6 +258,9 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
                 }
             case 1:
                 {
+                    if (GameManager.Instance.defenseLv >= 50)
+                        break;
+
                     abilityImage_Main.sprite = abilitySprite[SelectAbility];
                     abilityNameAndLV.text = $"충돌 데미지 감소 LV.{GameManager.Instance.defenseLv}";
                     upgradeMoney.text = $"{5000 + (GameManager.Instance.defenseLv - 1) * 500} Gold";

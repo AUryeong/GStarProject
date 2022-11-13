@@ -16,8 +16,9 @@ MonoBehaviour:
   - Name: "\uC6B0\uC720 \uC2DD\uBE75"
     ImageSprite: {fileID: 21300000, guid: 33915cb8304d89443ad46b11b4a82b73, type: 3}
     stackSprite:
-    - {fileID: 0}
-    - {fileID: 0}
+    - {fileID: 8731995329614773011, guid: 318235fcca0158b40bc06d1623c11c34, type: 3}
+    - {fileID: 8731995329614773011, guid: 318235fcca0158b40bc06d1623c11c34, type: 3}
+    isFlip: 0
     Rank: 1
     LV: 1
     HP: 100
@@ -35,8 +36,9 @@ MonoBehaviour:
     ImageSprite: {fileID: 21300000, guid: 9a3a6d22b0a249a4cb50251f901ab05a, type: 3}
     stackSprite:
     - {fileID: 0}
+    isFlip: 0
     Rank: 1
-    LV: 0
+    LV: 1
     HP: 50
     Price: 2000
     AbilityLV_1: 0
@@ -46,11 +48,13 @@ MonoBehaviour:
     AbilityText_1: "\uB2A5\uB825 : \uCCB4\uB825\uC774 \uB290\uB9AC\uAC8C \uAC10\uC18C\uD568\n\uBD80\uC815
       \uC7AC\uB8CC\uB97C \uD68D\uB4DD \uC2DC \uCCB4\uB825 \uC18C\uD3ED \uAC10\uC18C."
     AbilityText_2: "\uC624\uB798 \uAC00\uB294\uB370 \uB9DB\uC740 \uC5C6\uC5B4"
-    isBuy: 0
+    isBuy: 1
   - Name: "\uCC38\uAE68\uBE75"
     ImageSprite: {fileID: 21300000, guid: 9fc66053ae0ebb54aa30c1ad167fade5, type: 3}
     stackSprite:
-    - {fileID: 0}
+    - {fileID: -8438216063673986850, guid: d525c32d176f27c4fbdf264bb0ebac7f, type: 3}
+    - {fileID: -5618492200517925479, guid: d525c32d176f27c4fbdf264bb0ebac7f, type: 3}
+    isFlip: 0
     Rank: 1
     LV: 0
     HP: 100
@@ -67,7 +71,9 @@ MonoBehaviour:
   - Name: "\uC218\uBC15\uC2DD\uBE75"
     ImageSprite: {fileID: 21300000, guid: df82951e82a19a14c8f432657cde1a8f, type: 3}
     stackSprite:
-    - {fileID: 0}
+    - {fileID: 7838882045380290229, guid: ce8e846c9ac526144b6ea7620b178fc9, type: 3}
+    - {fileID: 7838882045380290229, guid: ce8e846c9ac526144b6ea7620b178fc9, type: 3}
+    isFlip: 0
     Rank: 1
     LV: 0
     HP: 125
@@ -85,6 +91,7 @@ MonoBehaviour:
     ImageSprite: {fileID: 21300000, guid: e5297187de4cb044bb9d3eb246bbc78d, type: 3}
     stackSprite:
     - {fileID: 0}
+    isFlip: 0
     Rank: 1
     LV: 0
     HP: 200
@@ -100,9 +107,11 @@ MonoBehaviour:
   - Name: "\uB450\uBD80"
     ImageSprite: {fileID: 21300000, guid: 3532b10d60d8db245902e46eea93669c, type: 3}
     stackSprite:
-    - {fileID: 0}
+    - {fileID: 1195874690822263961, guid: c653f99b7c55db445921c048c028571e, type: 3}
+    - {fileID: 1195874690822263961, guid: c653f99b7c55db445921c048c028571e, type: 3}
+    isFlip: 0
     Rank: 1
-    LV: 0
+    LV: 1
     HP: 100
     Price: 2000
     AbilityLV_1: 0
@@ -113,11 +122,12 @@ MonoBehaviour:
       \uC18C\uD3ED \uD68C\uBCF5,\n\uC7AC\uB8CC \uD68D\uB4DD\uB7C9 \uC99D\uAC00, \uC7A5\uC560\uBB3C
       \uCDA9\uB3CC \uC2DC \uC989\uC0AC"
     AbilityText_2: "\uB450\uBD80\uB294 \uB108\uBB34 \uC57D\uD574"
-    isBuy: 0
+    isBuy: 1
   - Name: "\uBC84\uD130\uD1B1 \uC2DD\uBE75"
     ImageSprite: {fileID: 21300000, guid: 8f97059fc931c444490229cfda067950, type: 3}
     stackSprite:
     - {fileID: 0}
+    isFlip: 0
     Rank: 2
     LV: 0
     HP: 125
@@ -135,6 +145,7 @@ MonoBehaviour:
     ImageSprite: {fileID: 21300000, guid: 8758dc55855b98e458d14a52f42b2ec1, type: 3}
     stackSprite:
     - {fileID: 0}
+    isFlip: 0
     Rank: 2
     LV: 0
     HP: 150
@@ -151,6 +162,7 @@ MonoBehaviour:
     ImageSprite: {fileID: 21300000, guid: f0e48b101ea22014ca1bcc8c3b0472ca, type: 3}
     stackSprite:
     - {fileID: 0}
+    isFlip: 0
     Rank: 2
     LV: 0
     HP: 150
@@ -167,7 +179,9 @@ MonoBehaviour:
   - Name: "\uBC14\uAC8C\uD2B8 \uBE75"
     ImageSprite: {fileID: 21300000, guid: 966b39c3b1384944ba62ea47b02538a2, type: 3}
     stackSprite:
-    - {fileID: 0}
+    - {fileID: 1347495854608636575, guid: c3a929c94ec5e9240a1eebe831a3e60f, type: 3}
+    - {fileID: 1347495854608636575, guid: c3a929c94ec5e9240a1eebe831a3e60f, type: 3}
+    isFlip: 0
     Rank: 2
     LV: 0
     HP: 225
@@ -185,6 +199,7 @@ MonoBehaviour:
     ImageSprite: {fileID: 21300000, guid: 91852f3476bf9e147be34f55c5d76c35, type: 3}
     stackSprite:
     - {fileID: 0}
+    isFlip: 0
     Rank: 3
     LV: 0
     HP: 225
@@ -202,6 +217,7 @@ MonoBehaviour:
     ImageSprite: {fileID: 21300000, guid: 18fd9203622a35f46921331bd08a91d6, type: 3}
     stackSprite:
     - {fileID: 0}
+    isFlip: 0
     Rank: 3
     LV: 0
     HP: 275
@@ -219,6 +235,7 @@ MonoBehaviour:
     ImageSprite: {fileID: 21300000, guid: 60cf51b35fbf42a4592b42d284717e5d, type: 3}
     stackSprite:
     - {fileID: 0}
+    isFlip: 0
     Rank: 3
     LV: 0
     HP: 250
@@ -237,6 +254,7 @@ MonoBehaviour:
     ImageSprite: {fileID: 21300000, guid: 60956f8567f71c24f9c57c90515d185b, type: 3}
     stackSprite:
     - {fileID: 0}
+    isFlip: 0
     Rank: 3
     LV: 0
     HP: 250
@@ -255,6 +273,7 @@ MonoBehaviour:
     ImageSprite: {fileID: 21300000, guid: c2c6161652235234c85996c805784dca, type: 3}
     stackSprite:
     - {fileID: 0}
+    isFlip: 0
     Rank: 3
     LV: 0
     HP: 300

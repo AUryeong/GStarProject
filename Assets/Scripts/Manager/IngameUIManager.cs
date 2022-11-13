@@ -89,12 +89,6 @@ public class IngameUIManager : Singleton<IngameUIManager>
         if (GameManager.Instance.inGaming)
         {
             PausePanel.SetActive(false);
-            float timer = 3;
-            while (timer > 0)
-            {
-                timer -= Time.deltaTime;
-                //텍스트에 타이머 올림해서 적용
-            }
             Time.timeScale = 1;
         }
     }
@@ -124,6 +118,7 @@ public class IngameUIManager : Singleton<IngameUIManager>
     {
         if (yes)
         {
+            Time.timeScale = 1;
             SceneManager.LoadScene("Lobby");
         }
         else
