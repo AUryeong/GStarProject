@@ -17,7 +17,7 @@ public class InGameManager : Singleton<InGameManager>
     [SerializeField] protected List<GameObject> firstMapList;
     [SerializeField] protected GameObject ovenMap;
     protected int mapSize = 1;
-    public readonly int ovenMapSize = 10;
+    public readonly int ovenMapSize = 1;
     public float mapLength { get; private set; } = 30;
     public readonly float platformMapLength = 66;
     protected List<GameObject> mapList = new List<GameObject>();
