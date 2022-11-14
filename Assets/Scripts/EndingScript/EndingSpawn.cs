@@ -44,15 +44,17 @@ public class EndingSpawn : Singleton<EndingSpawn>
             SandWichObject = Instantiate(SpawnObject, transform.position, transform.rotation);
             SandWichObject.GetComponent<SideObject>().SettingObject(stats,i);
 
-            transform.position += Vector3.up * (stats.coliderSize * 5);
-            if (i >= 5)//중간 갔을떄 화면이 올라감
+            Vector3 upPos = Vector3.up * (stats.coliderSize * 5);
+
+            transform.position += upPos;
+            if (limitValue >= 5)//중간 갔을떄 화면이 올라감
             {
                 float timer = 0;
 
-                limitValue += stats.coliderSize;
+                limitValue += stats.coliderSize * 5;
 
                 Vector3 CameraPos = Camera.main.transform.position;
-                Vector3 targetPos = CameraPos + Vector3.up * (stats.coliderSize * 5);
+                Vector3 targetPos = CameraPos + upPos;
                 cm += stats.Size;
 
                 while (timer < 1f)
