@@ -47,7 +47,7 @@ public class EndingSpawn : Singleton<EndingSpawn>
             Vector3 upPos = Vector3.up * (stats.coliderSize * 5);
 
             transform.position += upPos;
-            if (limitValue >= 5)//중간 갔을떄 화면이 올라감
+            if (limitValue >= 2)//중간 갔을떄 화면이 올라감
             {
                 float timer = 0;
 
@@ -90,7 +90,7 @@ public class EndingSpawn : Singleton<EndingSpawn>
 
         boxCollider.size = new Vector2(1, 0.8f);
 
-        SandWichObject.transform.localScale = Vector2.one; 
+        SandWichObject.transform.localScale = new Vector3(1.5f,1); 
     }
 
     private void CmText(int CM)
