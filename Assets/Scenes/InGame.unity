@@ -859,7 +859,7 @@ MonoBehaviour:
   breadArray:
   - {fileID: 6148039255070333001, guid: f029403e818610449bcfeca62e678424, type: 3}
   - {fileID: 6148039255070333001, guid: f029403e818610449bcfeca62e678424, type: 3}
-  - {fileID: 6148039255070333001, guid: f029403e818610449bcfeca62e678424, type: 3}
+  - {fileID: 7310025685894621478, guid: d6acdb631f593e34ba7dc7805770081c, type: 3}
   - {fileID: 6979276265400207888, guid: 7111c3b3aa6188040a38ca3f566b92a1, type: 3}
   - {fileID: 6148039255070333001, guid: f029403e818610449bcfeca62e678424, type: 3}
   - {fileID: 1550404406684823248, guid: a7a9600e3aaf32b479d921d69f5ff4df, type: 3}
@@ -868,7 +868,7 @@ MonoBehaviour:
   - {fileID: 6148039255070333001, guid: f029403e818610449bcfeca62e678424, type: 3}
   - {fileID: 5519395511417958222, guid: 99a05da4f824f54409017122e8c22ee1, type: 3}
   - {fileID: 6148039255070333001, guid: f029403e818610449bcfeca62e678424, type: 3}
-  - {fileID: 6148039255070333001, guid: f029403e818610449bcfeca62e678424, type: 3}
+  - {fileID: 1769029321078186077, guid: 7ea61c7fcce81e448b59e3f5ff8b743b, type: 3}
   - {fileID: 2527684618746051527, guid: 7871b6df0e7719644a7aa0347957243d, type: 3}
   - {fileID: 6148039255070333001, guid: f029403e818610449bcfeca62e678424, type: 3}
   - {fileID: 6148039255070333001, guid: f029403e818610449bcfeca62e678424, type: 3}
@@ -9195,7 +9195,7 @@ MonoBehaviour:
   Inside: {fileID: 11400000, guid: 2e224c58cda19024abf407faf4f77ea8, type: 2}
   breads: {fileID: 11400000, guid: 5b31b5c9ae4ed8d4ba162f0581743b00, type: 2}
   inGaming: 1
-  selectBread: 0
+  selectBread: 2
   selectMap: 0
   gold: 0
   macaron: 0
