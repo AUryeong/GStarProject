@@ -61,6 +61,8 @@ public class InGameManager : Singleton<InGameManager>
         toasterEffect.transform.SetParent(player.transform);
         toasterEffect.transform.localPosition = Vector3.zero;
         mapBGLength = new float[mapBGList.Length];
+
+        SoundManager.Instance.PlaySoundClip("BGM_Cafe", ESoundType.BGM);
         AddNewPlatform();
     }
     protected void AddNewPlatform()
