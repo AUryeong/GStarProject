@@ -208,7 +208,7 @@ public class Player : MonoBehaviour
     //점프 땅에 닿음을 감지하는 함수
     protected virtual void CheckJumpReset()
     {
-        RaycastHit2D raycastHit2D = Physics2D.BoxCast((Vector2)transform.position + colider2D.offset, colider2D.size*transform.localScale.y, 0, Vector2.down, jumpCheckDistance, LayerMask.GetMask("Platform"));
+        RaycastHit2D raycastHit2D = Physics2D.BoxCast((Vector2)transform.position + colider2D.offset, colider2D.size * transform.localScale.y, 0, Vector2.down, jumpCheckDistance, LayerMask.GetMask("Platform"));
         if (raycastHit2D.collider != null)
         {
             jumpCount = 0;
@@ -386,19 +386,22 @@ public class Player : MonoBehaviour
         isControllable = false;
         spriteRenderer.sortingLayerName = "Background";
 
-        bool activeSelf = InGameManager.Instance.boostEffect.gameObject.activeSelf;
-        bool activeSelf2 = InGameManager.Instance.magnetEffect.gameObject.activeSelf;
-        bool activeSelf3 = InGameManager.Instance.toasterEffect.gameObject.activeSelf;
+        bool[] bools = new bool[transform.childCount];
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            GameObject boolObj = transform.GetChild(i).gameObject;
+            bools[i] = boolObj.activeSelf;
+            boolObj.SetActive(false);
+        }
 
-        InGameManager.Instance.boostEffect.gameObject.SetActive(false);
-        InGameManager.Instance.toasterEffect.gameObject.SetActive(false);
-        InGameManager.Instance.magnetEffect.gameObject.SetActive(false);
         yield return new WaitForSeconds(1.5f);
         obj.Play("Out");
 
-        InGameManager.Instance.boostEffect.gameObject.SetActive(activeSelf);
-        InGameManager.Instance.toasterEffect.gameObject.SetActive(activeSelf3);
-        InGameManager.Instance.magnetEffect.gameObject.SetActive(activeSelf2);
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(bools[i]);
+        }
+
         boostDuration = Mathf.Max(boostDuration, ovenBoostDuration);
         hp += ovenHealValue;
         isControllable = true;
