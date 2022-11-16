@@ -23,7 +23,7 @@ public class EndingCamera : MonoBehaviour
     void Update()
     {
         DragMove();
-        ZoomInOut();
+        //ZoomInOut();
     }
     void DragMove()
     {

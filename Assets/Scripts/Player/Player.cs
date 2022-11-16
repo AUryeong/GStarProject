@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
     protected PlayerState state;
 
     public Breads.Type type;
-    protected float fSpeed = 5;
+    protected float fSpeed = 7;
     [HideInInspector] public float fHp;
 
     public float hp;
@@ -83,6 +83,8 @@ public class Player : MonoBehaviour
     protected float hpRemoveDuration = 0;
     protected float hpRemoveValue = 1;
 
+    //30퍼센트 아래일때 효과음 나왔는지 체크
+    protected bool isDangerHpSound;
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -236,6 +238,15 @@ public class Player : MonoBehaviour
             }
         }
     }
+    //체력이 30% 아래인지 체크
+    protected virtual void CheckDangerHp()
+    {
+        if(0.3 <= hp/fHp && isDangerHpSound == false)
+        {
+            isDangerHpSound = true;
+            SoundManager.Instance.PlaySoundClip("SFX_InGame_Danger", ESoundType.SFX);
+        } 
+    }
 
     protected virtual float GetSpeedMultipler()
     {
@@ -317,6 +328,7 @@ public class Player : MonoBehaviour
     {
         if (jumpCount >= jumpMaxCount)
             return;
+        SoundManager.Instance.PlaySoundClip("SFX_InGame_Jump", ESoundType.SFX);
         jumpCount++;
 
         QusetManager.Instance.QusetUpdate(QuestType.Day, 1, 1);
@@ -348,9 +360,6 @@ public class Player : MonoBehaviour
         if (collider2D.CompareTag("Gold"))
         {
             GetGold(collider2D.gameObject);
-            QusetManager.Instance.QusetUpdate(QuestType.Day, 3, 1);
-            QusetManager.Instance.QusetUpdate(QuestType.Aweek, 3, 1);
-            QusetManager.Instance.QusetUpdate(QuestType.Main, 4, 1);
         }
 
         if (collider2D.CompareTag("Ingredient"))
@@ -400,6 +409,7 @@ public class Player : MonoBehaviour
     {
         obj.SetActive(false);
         boostDuration = Mathf.Max(boostDuration, itemBoostDuration);
+        SoundManager.Instance.PlaySoundClip("SFX_InGame_Get_Boost", ESoundType.SFX);
     }
 
     protected virtual void GetMagnet(GameObject obj)
@@ -407,6 +417,7 @@ public class Player : MonoBehaviour
         obj.SetActive(false);
         //TODO 자석 이펙트
         StartCoroutine(MagnetRemove());
+        SoundManager.Instance.PlaySoundClip("SFX_InGame_Get_Magnet", ESoundType.SFX);
     }
 
     protected virtual void GetToaster(GameObject obj)
@@ -439,6 +450,8 @@ public class Player : MonoBehaviour
         InGameManager.Instance.AddIngredients(ingredient);
 
         ingredient.gameObject.SetActive(false);
+
+         SoundManager.Instance.PlaySoundClip("SFX_InGame_Get_Ingredinet", ESoundType.SFX);
     }
 
     protected void GetGold(GameObject obj)
@@ -447,11 +460,18 @@ public class Player : MonoBehaviour
         // 이펙트 넣기 TODO
         InGameManager.Instance.GoldEffect(obj.transform.position);
         InGameManager.Instance.gold++;
+
+        QusetManager.Instance.QusetUpdate(QuestType.Day, 3, 1);//일일 골드 흭득
+        QusetManager.Instance.QusetUpdate(QuestType.Aweek, 3, 1);//주간 골드 흭득
+        QusetManager.Instance.QusetUpdate(QuestType.Main, 4, 1);//메인 골드 흭득
+
+        SoundManager.Instance.PlaySoundClip("SFX_InGame_Get_Coin", ESoundType.SFX);
     }
 
     protected virtual float GetDamage(float damage)
     {
         return damage * (1 - (GameManager.Instance.defenseLv / 20));
+
     }
 
     //장애물에 부딛혔을 경우
@@ -473,13 +493,13 @@ public class Player : MonoBehaviour
 
         hitable = false;
 
+        SoundManager.Instance.PlaySoundClip("SFX_InGame_Damage", ESoundType.SFX);
         hp -= hitDamage;
         if (hp <= 0)
         {
             GameOver();
             return;
         }
-
         IngameUIManager.Instance.PlayerHurt();
         rigid.velocity = Vector2.zero;
         gameObject.layer = LayerMask.NameToLayer("PlayerInv");

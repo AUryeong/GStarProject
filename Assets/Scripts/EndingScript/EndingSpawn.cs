@@ -36,18 +36,20 @@ public class EndingSpawn : Singleton<EndingSpawn>
 
         yield return new WaitForSeconds(1.5f);
 
+        float totalValue = 0;
+
         for (int i = 0; i < insideList.Count; i++)
         {
             Stats stats = Inside.Stats[insideList[i]];
-            Debug.Log(stats.name);
 
             SandWichObject = Instantiate(SpawnObject, transform.position, transform.rotation);
             SandWichObject.GetComponent<SideObject>().SettingObject(stats,i);
 
             Vector3 upPos = Vector3.up * (stats.coliderSize * 5);
-
             transform.position += upPos;
-            if (limitValue >= 2)//중간 갔을떄 화면이 올라감
+
+            totalValue += stats.coliderSize * 5;
+            if (totalValue >= 2)//중간 갔을떄 화면이 올라감
             {
                 float timer = 0;
 

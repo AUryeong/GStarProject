@@ -98,6 +98,7 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
         StaminaUpdate();
         AbilitySelect(0);
         ChangeBread();
+        SoundManager.Instance.PlaySoundClip("BGM_Lobby", ESoundType.BGM);
     }
     public void SettingSave()
     {
@@ -296,7 +297,7 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
 
     public void OpenStartPanel()
     {
-        if (reCheck == false)
+        /*if (reCheck == false)
         {
             startPanel.transform.DOLocalMove(startOpenPos, 0.5f).SetEase(Ease.OutBack);
             shopUIGroup.transform.DOLocalMove(shopUIClosePos, 0.5f).SetEase(Ease.OutQuad);
@@ -304,8 +305,9 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
         }
         else
         {
+        */
             reCheckPanel.SetActive(true);
-        }
+        //}
     }
     public void CloseStartPanel()
     {
