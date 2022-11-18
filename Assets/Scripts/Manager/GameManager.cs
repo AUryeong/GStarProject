@@ -57,7 +57,7 @@ public class GameManager : Singleton<GameManager>
 
     public void EndingSceneLoadComplete(Scene scene, LoadSceneMode loadSceneMode)
     {
-        EndingSpawn.Instance.Spawn(0, ingredientIdxList);
+        EndingSpawn.Instance.Spawn((int)selectBread, ingredientIdxList);
         SceneManager.sceneLoaded -= EndingSceneLoadComplete;
     }
 }

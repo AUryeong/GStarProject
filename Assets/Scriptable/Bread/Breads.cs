@@ -71,4 +71,7 @@ public class BreadStats
     public string AbilityText_2;
 
     public bool isBuy;
+
+    //임시 잠금
+    public bool isLock;
 }
