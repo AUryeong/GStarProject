@@ -43,7 +43,7 @@ public class EndingSpawn : Singleton<EndingSpawn>
             Stats stats = Inside.Stats[insideList[i]];
 
             SandWichObject = Instantiate(SpawnObject, transform.position, transform.rotation);
-            SandWichObject.GetComponent<SideObject>().SettingObject(stats,i);
+            SandWichObject.GetComponent<SideObject>().SettingObject(stats,i + 2);//재료 정보와 레이어 순서는 2번부터 시작
 
             Vector3 upPos = Vector3.up * (stats.coliderSize * 5);
             transform.position += upPos;
@@ -82,17 +82,18 @@ public class EndingSpawn : Singleton<EndingSpawn>
     }
     private void SpawnBread(int BreadIdx, int overObject)
     {
+        print(BreadIdx);
         SandWichObject = Instantiate(SpawnObject, transform.position, transform.rotation);
         SpriteRenderer spriteRenderer = SandWichObject.GetComponent<SpriteRenderer>();
         BoxCollider2D boxCollider = SandWichObject.GetComponent<BoxCollider2D>();
 
         spriteRenderer.sprite = Bread.Stats[BreadIdx].stackSprite[overObject];
         spriteRenderer.flipY = Bread.Stats[BreadIdx].isFlip && overObject == 1;//flip이고 위에 쌓이는 오브젝트일결우 Flip
-        spriteRenderer.sortingOrder = totalSideCount;//bread
+        spriteRenderer.sortingOrder = totalSideCount + 1;//bread
 
-        boxCollider.size = new Vector2(1, 0.8f);
+        boxCollider.size = new Vector2(1, 0.7f);
 
-        SandWichObject.transform.localScale = new Vector3(1.5f,1); 
+        SandWichObject.transform.localScale = new Vector3(1.2f,1); 
     }
 
     private void CmText(int CM)

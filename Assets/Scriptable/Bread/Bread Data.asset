@@ -32,6 +32,7 @@ MonoBehaviour:
       \uB0AE\uCD94\uB294 \uB370 \uB3C4\uC6C0\uC744 \uC900\uB2E4.\r"
     AbilityText_2: "\uD3C9\uBC94\uD55C \uC2DD\uBE75\uC774\uC57C"
     isBuy: 1
+    isLock: 0
   - Name: "\uBE44\uC0C1 \uC2DD\uBE75"
     ImageSprite: {fileID: 21300000, guid: 9a3a6d22b0a249a4cb50251f901ab05a, type: 3}
     stackSprite:
@@ -49,6 +50,7 @@ MonoBehaviour:
       \uC7AC\uB8CC\uB97C \uD68D\uB4DD \uC2DC \uCCB4\uB825 \uC18C\uD3ED \uAC10\uC18C."
     AbilityText_2: "\uC624\uB798 \uAC00\uB294\uB370 \uB9DB\uC740 \uC5C6\uC5B4"
     isBuy: 1
+    isLock: 0
   - Name: "\uCC38\uAE68\uBE75"
     ImageSprite: {fileID: 21300000, guid: 9fc66053ae0ebb54aa30c1ad167fade5, type: 3}
     stackSprite:
@@ -68,6 +70,7 @@ MonoBehaviour:
       \uC2DC \uCCB4\uB825 \uB300\uD3ED \uD68C\uBCF5"
     AbilityText_2: "\uCC38\uAE68\uBE75 \uC704\uC5D0...?"
     isBuy: 0
+    isLock: 0
   - Name: "\uC218\uBC15\uC2DD\uBE75"
     ImageSprite: {fileID: 21300000, guid: df82951e82a19a14c8f432657cde1a8f, type: 3}
     stackSprite:
@@ -87,6 +90,7 @@ MonoBehaviour:
       \uAC10\uC18C\uD558\uC9C0 \uC54A\uC74C"
     AbilityText_2: "\uC774\uAC8C \uC2DD\uBE75\uC774\uC57C \uC218\uBC15\uC774\uC57C"
     isBuy: 0
+    isLock: 0
   - Name: "\uC8FD\uBE75"
     ImageSprite: {fileID: 21300000, guid: e5297187de4cb044bb9d3eb246bbc78d, type: 3}
     stackSprite:
@@ -104,6 +108,7 @@ MonoBehaviour:
       \uC7A5\uC560\uBB3C\uC744 \uC7AC\uB8CC\uB85C \uC313\uC744 \uC218 \uC788\uC74C.\n\n"
     AbilityText_2: "\uB2E4 \uB54C\uB824 \uBD80\uC234\uBC84\uB824!"
     isBuy: 0
+    isLock: 0
   - Name: "\uB450\uBD80"
     ImageSprite: {fileID: 21300000, guid: 3532b10d60d8db245902e46eea93669c, type: 3}
     stackSprite:
@@ -123,6 +128,7 @@ MonoBehaviour:
       \uCDA9\uB3CC \uC2DC \uC989\uC0AC"
     AbilityText_2: "\uB450\uBD80\uB294 \uB108\uBB34 \uC57D\uD574"
     isBuy: 1
+    isLock: 0
   - Name: "\uBC84\uD130\uD1B1 \uC2DD\uBE75"
     ImageSprite: {fileID: 21300000, guid: 8f97059fc931c444490229cfda067950, type: 3}
     stackSprite:
@@ -141,6 +147,7 @@ MonoBehaviour:
       '\uBC84\uD130' \uC0DD\uC131"
     AbilityText_2: "\uBC84\uD130\uB9CC \uC5B4\uC6B8\uB9B0\uB2E4\uB098?"
     isBuy: 0
+    isLock: 0
   - Name: "\uD480\uBA3C \uC2DD\uBE75"
     ImageSprite: {fileID: 21300000, guid: 8758dc55855b98e458d14a52f42b2ec1, type: 3}
     stackSprite:
@@ -158,6 +165,7 @@ MonoBehaviour:
       \uD68D\uB4DD \uC2DC\n\uD55C\uBC88 \uB354 \uC810\uD504 \uAC00\uB2A5"
     AbilityText_2: "\uAC01\uC838\uC11C \uB354 \uC798 \uB6F0\uB098\uBD10"
     isBuy: 0
+    isLock: 0
   - Name: "\uD1A0\uC2A4\uD2B8"
     ImageSprite: {fileID: 21300000, guid: f0e48b101ea22014ca1bcc8c3b0472ca, type: 3}
     stackSprite:
@@ -176,6 +184,7 @@ MonoBehaviour:
       \uD328\uB110\uD2F0 \uC644\uD654"
     AbilityText_2: "\uBE68\uB9AC \uAEBC\uB0B4\uC57C \uC548 \uD0C8\uAC70\uC57C"
     isBuy: 0
+    isLock: 0
   - Name: "\uBC14\uAC8C\uD2B8 \uBE75"
     ImageSprite: {fileID: 21300000, guid: 966b39c3b1384944ba62ea47b02538a2, type: 3}
     stackSprite:
@@ -195,6 +204,7 @@ MonoBehaviour:
       \uB300\uD3ED \uC99D\uAC00"
     AbilityText_2: "\uC5C4\uCCAD \uB2E8\uB2E8\uD574!"
     isBuy: 0
+    isLock: 0
   - Name: "\uD50C\uB7AB \uBE0C\uB808\uB4DC"
     ImageSprite: {fileID: 21300000, guid: 91852f3476bf9e147be34f55c5d76c35, type: 3}
     stackSprite:
@@ -213,10 +223,12 @@ MonoBehaviour:
       \uC18C\uD3ED \uD68C\uBCF5"
     AbilityText_2: "\uBC18\uC73C\uB85C-\uC811\uB294 \uBE75!"
     isBuy: 0
+    isLock: 0
   - Name: "\uB6F0\uB6F0\uBE75\uBE75"
     ImageSprite: {fileID: 21300000, guid: 18fd9203622a35f46921331bd08a91d6, type: 3}
     stackSprite:
-    - {fileID: 0}
+    - {fileID: 8731995329614773011, guid: 318235fcca0158b40bc06d1623c11c34, type: 3}
+    - {fileID: 8731995329614773011, guid: 318235fcca0158b40bc06d1623c11c34, type: 3}
     isFlip: 0
     Rank: 3
     LV: 0
@@ -231,10 +243,12 @@ MonoBehaviour:
       \uB3CC\uC9C4\uD558\uBA70 \uC7A5\uC560\uBB3C \uCDA9\uB3CC \uBB34\uC2DC"
     AbilityText_2: "\uC5F0\uB8CC\uB97C \uAC00\uB4DD \uCC44\uC6CC\uC918"
     isBuy: 0
+    isLock: 0
   - Name: "\uC548\uC804\uBE75"
     ImageSprite: {fileID: 21300000, guid: 60cf51b35fbf42a4592b42d284717e5d, type: 3}
     stackSprite:
-    - {fileID: 0}
+    - {fileID: 8142771492524278843, guid: cfa51bfe70e64a54eab7a8aec6d42059, type: 3}
+    - {fileID: 8142771492524278843, guid: cfa51bfe70e64a54eab7a8aec6d42059, type: 3}
     isFlip: 0
     Rank: 3
     LV: 0
@@ -250,6 +264,7 @@ MonoBehaviour:
       \uC5BB\uC74C"
     AbilityText_2: "\uB2E4\uB978 \uC7AC\uB8CC\uB791 \uC798 \uC5B4\uC6B8\uB824"
     isBuy: 0
+    isLock: 0
   - Name: "\uAE5C\uBE75"
     ImageSprite: {fileID: 21300000, guid: 60956f8567f71c24f9c57c90515d185b, type: 3}
     stackSprite:
@@ -269,6 +284,7 @@ MonoBehaviour:
       \uC313\uC784"
     AbilityText_2: "\uB9DB \uC5C6\uB294\uAC74 \uB2E4 \uAC10\uAE08\uC774\uC57C"
     isBuy: 0
+    isLock: 0
   - Name: "\uB77C\uBA74\uC0AC\uB9AC"
     ImageSprite: {fileID: 21300000, guid: c2c6161652235234c85996c805784dca, type: 3}
     stackSprite:
@@ -286,3 +302,4 @@ MonoBehaviour:
       \uB2E4\uB978 \uAD6D\uBB3C\n\uC694\uB9AC\uC5D0 \uB123\uC5B4 \uBA39\uAE30 \uC801\uD569\uD558\uB2E4."
     AbilityText_2: "\uC598\uB294 \uBE75\uC774 \uC544\uB2CC\uB370..."
     isBuy: 0
+    isLock: 0

@@ -43,7 +43,12 @@ public class BreadScript : MonoBehaviour
         mainSelectButton.onClick.AddListener(() => SelectButton());
 
         LobbyUIManager.Instance.breadSelectText.Add(mainSelectText);
-        if (!scriptable.isBuy)//구매하지 않았을때 가격
+        if(scriptable.isLock)
+        {
+            mainSelectText.text = "잠금";
+            mainSelectButton.enabled = false;
+        }
+        else if (!scriptable.isBuy)//구매하지 않았을때 가격
             mainSelectText.text = "<sprite name=Gold> " + scriptable.Price;
         else if (LobbyUIManager.Instance.selectBread == type)//구매 후 선택된 빵일때
             mainSelectText.text = "선택됨";
