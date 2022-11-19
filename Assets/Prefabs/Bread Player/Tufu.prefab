@@ -167,13 +167,14 @@ MonoBehaviour:
   type: 5
   fHp: 0
   hp: 0
+  magnetSize: 0
   boostDuration: 0
   idleColiderSize:
-    offset: {x: -0.075, y: -0.3}
-    size: {x: 1.65, y: 1}
+    offset: {x: -0.075, y: 0}
+    size: {x: 1.65, y: 1.6}
   slidingColiderSize:
     offset: {x: 0.15, y: -0.5}
     size: {x: 1.8, y: 0.6}
   jumpingColiderSize:
     offset: {x: -0.025, y: -0.065}
-    size: {x: 1.45, y: 1.125}
+    size: {x: 1.2, y: 1.125}
