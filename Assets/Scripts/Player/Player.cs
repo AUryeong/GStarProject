@@ -98,8 +98,8 @@ public class Player : MonoBehaviour
         fHp = GameManager.Instance.breads.Stats[(int)type].GetHp() + GameManager.Instance.maxHpLv * 5;
         hp = fHp;
 
-        rigid.gravityScale = 2.75f;
-        fSpeed = 5;
+        rigid.gravityScale = 3.2f;
+        fSpeed = 7;
         fJumpSpeed = 16;
     }
 

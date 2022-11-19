@@ -106,13 +106,13 @@ MonoBehaviour:
   magnetSize: 0
   boostDuration: 0
   idleColiderSize:
-    offset: {x: -0.2, y: 0.04}
-    size: {x: 1.9, y: 1.45}
+    offset: {x: 0, y: 0.2}
+    size: {x: 1.3, y: 1.6}
   slidingColiderSize:
     offset: {x: 0.5, y: -0.0675}
     size: {x: 2, y: 1.25}
   jumpingColiderSize:
-    offset: {x: -0.2, y: 0}
+    offset: {x: 0.1, y: 0}
     size: {x: 1.3, y: 1.3}
   uiGauge: {fileID: 7238093580289158570}
 --- !u!61 &4800415973199210524

@@ -437,8 +437,8 @@ MonoBehaviour:
   magnetSize: 0
   boostDuration: 0
   idleColiderSize:
-    offset: {x: 0, y: -0.1}
-    size: {x: 1, y: 1.4}
+    offset: {x: 0, y: 0.1}
+    size: {x: 1, y: 1.65}
   slidingColiderSize:
     offset: {x: 0.3, y: -0.125}
     size: {x: 1.8, y: 0.65}
