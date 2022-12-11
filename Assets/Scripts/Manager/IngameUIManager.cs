@@ -184,7 +184,7 @@ public class IngameUIManager : Singleton<IngameUIManager>
             InGameManager.Instance.player.ReturnToIdle();
         }
     }
-    public void PressJump()
+    public void PressDownJump()
     {
         if (GameManager.Instance.inGaming && InGameManager.Instance.player.isControllable)
             InGameManager.Instance.player.Jump();
