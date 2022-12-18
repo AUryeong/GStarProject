@@ -13,8 +13,8 @@ public class EndingCamera : MonoBehaviour
     [Header("ZoomInOut")]
     float m_fOldToucDis = 0f;       // 터치 이전 거리를 저장합니다.
     float m_fFieldOfView = 5f;     // 카메라의 FieldOfView의 기본값을 5으로 정합니다.
-    [SerializeField] private float M_ZoomSpeed;
-    [SerializeField] private float P_ZoomSpeed;
+    [SerializeField] private float M_ZoomSpeed;//모바일 줌 속도 
+    [SerializeField] private float P_ZoomSpeed;//PC 줌 속도
 
     void Start()
     {
@@ -23,7 +23,7 @@ public class EndingCamera : MonoBehaviour
     void Update()
     {
         DragMove();
-        //ZoomInOut();
+        ZoomInOut();
     }
     void DragMove()
     {

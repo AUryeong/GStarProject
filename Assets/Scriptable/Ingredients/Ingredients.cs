@@ -17,7 +17,6 @@ public class Ingredients : ScriptableObject, ISerializationCallbackReceiver
     public void OnBeforeSerialize()
     {
     }
-
     public enum Type
     {
         Ham,

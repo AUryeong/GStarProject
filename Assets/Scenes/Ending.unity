@@ -493,7 +493,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CameraMove: 0
   MoveLimitValue: 0
-  M_ZoomSpeed: 0.1
+  M_ZoomSpeed: 0.5
   P_ZoomSpeed: 20
 --- !u!114 &248715641
 MonoBehaviour:
