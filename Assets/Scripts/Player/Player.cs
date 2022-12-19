@@ -106,6 +106,7 @@ public class Player : MonoBehaviour
     protected virtual void Update()
     {
         float deltaTime = Time.deltaTime;
+        //좋긴한데 따로 함수로 빼서 GetIsDie()같은 bool반환형 함수를 사용해도 괜찮다 생각 , 선택은 자유
         if (hp > 0 && isControllable)
         {
             Move(deltaTime);
@@ -131,6 +132,7 @@ public class Player : MonoBehaviour
     //부스트 작동
     protected virtual void BoostUpdate(float deltaTime)
     {
+        //if문이 너무 복잡하게 얽혀있음 안쪽 내용을 따로 함수로 빼두던지 하는것이 좋을것 또는 중복되는 내용을 생략
         if (boostDuration > 0)
         {
             boostDuration -= deltaTime;
@@ -141,6 +143,7 @@ public class Player : MonoBehaviour
                 if (boostDuration <= 0)
                 {
                     hitable = false;
+                    //ONComplete도 좋은데 역시 보기가 영... 코류틴을 이용한 딜레이 주는 방식을 어떨까 생각
                     spriteRenderer.DOFade(hitFadeInAlpha, hitFadeInTime).
                         OnComplete(() => spriteRenderer.DOFade(1, hitFadeOutTime).SetEase(Ease.InExpo).
                         OnComplete(() =>

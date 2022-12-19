@@ -49,8 +49,7 @@ public class SoundManager : Singleton<SoundManager>
         {
             GameObject AudioSourceobj = new GameObject(enumNames[i]);
             AudioSourceobj.transform.SetParent(transform);
-            AudioSourceClass sourceClass
-                = new AudioSourceClass
+            AudioSourceClass sourceClass = new AudioSourceClass
                 { audiosource = AudioSourceobj.AddComponent<AudioSource>(), audioVolume = 0.5f };
             audioSourceClasses[(ESoundType)i] = sourceClass;
         }
