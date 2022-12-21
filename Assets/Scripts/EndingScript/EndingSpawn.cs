@@ -79,6 +79,7 @@ public class EndingSpawn : Singleton<EndingSpawn>
         Camera.main.GetComponent<EndingCamera>().CameraMove = true;
 
         SpawnBread(BreadIdx, 1);//위쪽 빵 스폰
+        UseAbility();
 
         CmText(cm);
         yield return null;
@@ -102,6 +103,7 @@ public class EndingSpawn : Singleton<EndingSpawn>
     {
         foreach (Stats stat in stats)
         {
+            Camera.main.transform.position = SandWichObject[a_sideCount].transform.position;
             switch (stat.name)
             {
                 case Ingredients.Type.Kimchi://위 아래 재료들 사이즈 50%감소

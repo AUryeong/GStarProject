@@ -18,4 +18,11 @@ public class SideObject : MonoBehaviour
         spriteRenderer.sprite = stats.SandwichSprite;
         spriteRenderer.sortingOrder = layer;
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(stats.name == Ingredients.Type.Durian && collision.transform.tag == "Side")
+        {
+
+        }
+    }
 }
