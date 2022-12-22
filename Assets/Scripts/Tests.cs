@@ -5,16 +5,18 @@ using UnityEngine.UI;
 
 public class Tests : MonoBehaviour
 {
-    public BreadScript a;
+    public ParticleSystem a;
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<Text>().text = $"{a.transform.position}";
+        a = GetComponent<ParticleSystem>();
+        StartCoroutine("test");
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator test()
     {
-        
+        yield return new WaitForSeconds(0.7f);
+        ParticleSystem.ExternalForcesModule externalForcesModule = a.externalForces;
+        externalForcesModule.influenceMask = LayerMask.GetMask("Ingredients");
     }
 }
