@@ -7,25 +7,31 @@ using UnityEngine.UI;
 public class QusetScript : MonoBehaviour
 {
     private Quest questContents;
+
     [SerializeField] Image questImage;//퀘스트 보상 이미지
+    [SerializeField] Sprite qusetSprite;//퀘스트 보상 스프라이트
+
     [SerializeField] TextMeshProUGUI questrewardText;//퀘스트 보상 텍스트
     [SerializeField] TextMeshProUGUI questText; //퀘스트 내용 텍스트
+
     [SerializeField] Button questButton; //퀘스트 버튼
     [SerializeField] Sprite[] questButtonImages;//버튼 이미지
-    [SerializeField] Slider questSliders;//퀘스트 진행도 슬라이더
-    [SerializeField] GameObject fadePanel;//퀘스트 진행도 슬라이더
-    // Start is called before the first frame update
-    private void Start()
-    {
 
-    }
+    [SerializeField] Slider questSliders;//퀘스트 진행도 슬라이더
+    [SerializeField] GameObject fadePanel;//퀘스트 클리어 검정색 패널
+
+    [SerializeField] ParticleSystem particle;
+    [SerializeField] ParticleSystemRenderer particleSystemRenderer;
+    private ParticleSystem.ExternalForcesModule externalForcesModule;
     private void Update()
     {
         if (questContents.isClear == false)
         {
+            //퀘스트 진행도
             questSliders.value = questContents.questSituation / questContents.questCondition;
             if (questContents.questCondition <= questContents.questSituation)
             {
+                //퀘스트 클리어시 완료로 바꾸기
                 questButton.image.sprite = questButtonImages[1];
                 questButton.interactable = true;
             }
@@ -41,17 +47,22 @@ public class QusetScript : MonoBehaviour
     {
         questContents = scriptable.QusetList[Idx];
 
-        questImage.sprite = QusetManager.Instance.rewardSprite[(int)questContents.rewardType];
+        qusetSprite = QusetManager.Instance.rewardSprite[(int)questContents.rewardType];
+        questImage.sprite = qusetSprite;
+
         questrewardText.text = "" + questContents.rewards;
-        questButton.onClick.AddListener(QusetClear);
+
+        questButton.image.sprite = questButtonImages[0]; 
         questButton.interactable = false;
-        questButton.image.sprite = questButtonImages[0];
+        questButton.onClick.AddListener(QusetClear);
+
+        particleSystemRenderer.material = QusetManager.Instance.rewardParticle[(int)questContents.questType];
+        externalForcesModule = particle.externalForces;
 
         if (questContents.questType == QuestType.Main)
             questText.text = $"{questContents.text[0]}{questContents.questCondition}{questContents.text[1]}";
         else
             questText.text = questContents.text[0];
-
 
         if (questContents.isClear)
         {
@@ -73,6 +84,8 @@ public class QusetScript : MonoBehaviour
     public void QusetClear()
     {
         questContents.isClear = true;
+        StartCoroutine(QuestClearParticle());
+
         //메인일때는 달성시 바로 초기화
         if (questContents.questType == QuestType.Main)
         {
@@ -102,7 +115,7 @@ public class QusetScript : MonoBehaviour
                     break;
                 }
         }
-
+        //보상
         switch (questContents.rewardType)
         {
             case RewardType.Gold:
@@ -121,6 +134,14 @@ public class QusetScript : MonoBehaviour
                     return;
                 }
         }
-
     }
+
+    private IEnumerator QuestClearParticle()
+    {
+        particle.Play();
+        yield return new WaitForSeconds(0.5f);
+        print(questContents.rewardType.ToString());
+        externalForcesModule.influenceMask = LayerMask.NameToLayer("Gold");
+    }
+   
 }

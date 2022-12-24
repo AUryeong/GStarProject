@@ -15,7 +15,7 @@ public class Tests : MonoBehaviour
 
     IEnumerator test()
     {
-        yield return new WaitForSeconds(0.7f);
+        yield return new WaitForSeconds(0.5f);
         ParticleSystem.ExternalForcesModule externalForcesModule = a.externalForces;
         externalForcesModule.influenceMask = LayerMask.GetMask("Ingredients");
     }

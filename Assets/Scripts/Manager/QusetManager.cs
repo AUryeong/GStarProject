@@ -7,12 +7,14 @@ public class QusetManager : Singleton<QusetManager>
 {
     public QuestScriptable[] qusetScriptables;
     public Sprite[] rewardSprite;
+    public Material[] rewardParticle;
     protected override void Awake()
     {
         base.Awake();
         if (Instance == this)
             DontDestroyOnLoad(gameObject);
     }
+
     /// <summary>
     /// ø‰¿œ
     /// ƒ˘Ω∫∆Æ ¿Œµ¶Ω∫

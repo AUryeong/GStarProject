@@ -201,23 +201,24 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
             {
                 scripts.Add(Instantiate(qusetPrefab, Vector3.one, transform.rotation, qusetPanel[i].transform)
                     .GetComponent<QusetScript>());
-            }
-            for (int j = 0; j < QusetManager.Instance.qusetScriptables[i].QusetList.Count; j++)
-            {
                 scripts[j].SettingQuset(QusetManager.Instance.qusetScriptables[i], j);
             }
         }
     }
     public void OpenQusetPanel(int Type)
     {
+        openingQusetPanel = Type;
+
         qusetScroll.content = qusetPanel[Type];//콘텐츠 변경
+
         qusetPanel[openingQusetPanel].gameObject.SetActive(false);//이전 퀘스트창 비활성화
         qusetPanel[Type].gameObject.SetActive(true);//열려는 퀘스트창 활성화
+
         qusetButtons[openingQusetPanel].transform.localPosition -= new Vector3(0, 5, 0);//이전 선택창 내리기
+        qusetButtons[openingQusetPanel].image.sprite = qusetButtonsSprite[openingQusetPanel + 3]; 
         qusetButtons[Type].transform.localPosition += new Vector3(0, 5, 0);//선택창 올리기
-        qusetButtons[openingQusetPanel].image.sprite = qusetButtonsSprite[openingQusetPanel + 3];
         qusetButtons[Type].image.sprite = qusetButtonsSprite[Type];
-        openingQusetPanel = Type;
+
     }
 
     public void SettingButton()
