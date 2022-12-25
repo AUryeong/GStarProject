@@ -140,8 +140,8 @@ public class QusetScript : MonoBehaviour
     {
         particle.Play();
         yield return new WaitForSeconds(0.5f);
-        print(questContents.rewardType.ToString());
-        externalForcesModule.influenceMask = LayerMask.NameToLayer("Gold");
+        LayerMask layerMask = LayerMask.GetMask(questContents.rewardType.ToString());
+        externalForcesModule.influenceMask = layerMask;
     }
    
 }
