@@ -56,7 +56,7 @@ public class Stats
     [HideInInspector] public Sprite IconSprite;//테두리가 없는 이미지
     [HideInInspector] public Sprite OutlineSprite;//테두리가 있는 이미지
     public Ingredients.Type name;
-    public int Size;
+    public float Size;
     public float coliderPos;
     public float coliderSize;
 }

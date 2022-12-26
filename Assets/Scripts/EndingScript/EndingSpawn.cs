@@ -7,20 +7,20 @@ using TMPro;
 
 public class EndingSpawn : Singleton<EndingSpawn>
 {
-    [SerializeField] private Breads Bread;
-    [SerializeField] private Ingredients Inside;
-    [SerializeField] private List<Stats> stats = new List<Stats>();
-    private List<GameObject> SandWichObject;//샌드위치에 있는 오브젝트들
+    [SerializeField] private Breads Bread; //빵 스크립터블
+    [SerializeField] private Ingredients Inside; // 재료 스크립터블
+    [SerializeField] private List<Stats> stats = new List<Stats>();//쌓인 재료를 사용할때 사용합니다.
+
+    private List<GameObject> SandWichObject = new List<GameObject>();//샌드위치에 있는 오브젝트들
 
     [SerializeField] private GameObject SpawnObject;
 
     [SerializeField] private TextMeshProUGUI CMTextObcject;
 
-
-    [HideInInspector] public float spawnSpeed;
-
     [SerializeField] float ZoomOut;
     [SerializeField] float maxZoomLimite;
+
+    [HideInInspector] public float spawnSpeed;
 
     private float limitValue = 0;//카메라 이동 범위 값
     private int cm = 0;//총 쌓인 CM
@@ -41,11 +41,11 @@ public class EndingSpawn : Singleton<EndingSpawn>
 
         float totalValue = 0;
 
-        for (int i = 0; i < insideList.Count; i++)
+        for (int i = 0; i < totalSideCount; i++)
         {
             stats.Add(Inside.Stats[insideList[i]]);
 
-            SandWichObject[i] = Instantiate(SpawnObject, transform.position, transform.rotation);
+            SandWichObject.Add(Instantiate(SpawnObject, transform.position, transform.rotation));
             SandWichObject[i].GetComponent<SideObject>().SettingObject(stats[i], i + 2);//재료 정보와 레이어 순서는 2번부터 시작
 
             Vector3 upPos = Vector3.up * (stats[i].coliderSize * 5);
@@ -60,7 +60,7 @@ public class EndingSpawn : Singleton<EndingSpawn>
 
                 Vector3 CameraPos = Camera.main.transform.position;
                 Vector3 targetPos = CameraPos + upPos;
-                cm += stats[i].Size;
+                cm += (int)stats[i].Size;
 
                 while (timer < 1f)
                 {
@@ -79,31 +79,32 @@ public class EndingSpawn : Singleton<EndingSpawn>
         Camera.main.GetComponent<EndingCamera>().CameraMove = true;
 
         SpawnBread(BreadIdx, 1);//위쪽 빵 스폰
-        UseAbility();
+        StartCoroutine(UseAbility());
 
         CmText(cm);
         yield return null;
     }
     private void SpawnBread(int BreadIdx, int overObject)
     {
-        print(BreadIdx);
         GameObject BreadObject = Instantiate(SpawnObject, transform.position, transform.rotation);
         SpriteRenderer spriteRenderer = BreadObject.GetComponent<SpriteRenderer>();
         BoxCollider2D boxCollider = BreadObject.GetComponent<BoxCollider2D>();
 
         spriteRenderer.sprite = Bread.Stats[BreadIdx].stackSprite[overObject];
-        spriteRenderer.flipY = Bread.Stats[BreadIdx].isFlip && overObject == 1;//flip이고 위에 쌓이는 오브젝트일결우 Flip
+        spriteRenderer.flipY = Bread.Stats[BreadIdx].isFlip && overObject == 1;//isFlip이 트루이고 위에 쌓이는 오브젝트일결우 Flip
         spriteRenderer.sortingOrder = totalSideCount + 1;//bread
 
         boxCollider.size = new Vector2(1, 0.7f);
 
         BreadObject.transform.localScale = new Vector3(1.2f, 1);
     }
-    private void UseAbility()
+    private IEnumerator UseAbility()
     {
         foreach (Stats stat in stats)
         {
-            Camera.main.transform.position = SandWichObject[a_sideCount].transform.position;
+            //                                                                    Z값은 -10으로 고정
+            Vector3 sideObjPos = SandWichObject[a_sideCount].transform.position + Vector3.forward *-10;
+            Camera.main.transform.position = sideObjPos;
             switch (stat.name)
             {
                 case Ingredients.Type.Kimchi://위 아래 재료들 사이즈 50%감소
@@ -122,7 +123,7 @@ public class EndingSpawn : Singleton<EndingSpawn>
                     }
                 case Ingredients.Type.Oyster://모든 재료들 10%감소
                     {
-                        for(int i = a_sideCount - 1;i >= 0;i++)
+                        for(int i = totalSideCount - 1;i >= 0;i++)
                             stats[i].Size -= stats[i].Size / 10;
                         break;
                     }
@@ -141,15 +142,17 @@ public class EndingSpawn : Singleton<EndingSpawn>
                     {
                         for (int i = a_sideCount - 1; i >= 0; i++)
                             stats[i].Size += stats[i].Size / 20;
-                        for (int i = 1; i < 10; i++)
+                        for (int i = 1; i < 5 && totalSideCount < a_sideCount; i++)
                         { 
                             stats.Remove(stats[a_sideCount + 1]);
                             SandWichObject.Remove(SandWichObject[a_sideCount + 1]);
+                            totalSideCount--;
                         }
                         break;
                     }
             }
             a_sideCount++;
+            yield return new WaitForSeconds(0.5f);
         }
     }
     private void CmText(int CM)
