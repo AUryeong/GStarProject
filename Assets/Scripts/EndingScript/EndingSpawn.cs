@@ -103,14 +103,16 @@ public class EndingSpawn : Singleton<EndingSpawn>
         foreach (Stats stat in stats)
         {
             //                                                                    Z값은 -10으로 고정
-            Vector3 sideObjPos = SandWichObject[a_sideCount].transform.position + Vector3.forward *-10;
+            Vector3 sideObjPos = SandWichObject[a_sideCount].transform.position + Vector3.forward * -10;
             Camera.main.transform.position = sideObjPos;
             switch (stat.name)
             {
                 case Ingredients.Type.Kimchi://위 아래 재료들 사이즈 50%감소
                     {
                         for (int i = 1; i > -2 && a_sideCount != 0; i--)
+                        {
                             stats[a_sideCount + i].Size = stats[a_sideCount + i].Size / 2;
+                        }
                         break;
                     }
                 case Ingredients.Type.MintChoco://위 2개 재료 2CM감소
@@ -123,14 +125,14 @@ public class EndingSpawn : Singleton<EndingSpawn>
                     }
                 case Ingredients.Type.Oyster://모든 재료들 10%감소
                     {
-                        for(int i = totalSideCount - 1;i >= 0;i++)
+                        for (int i = totalSideCount - 1; i >= 0; i--)
                             stats[i].Size -= stats[i].Size / 10;
                         break;
                     }
                 case Ingredients.Type.Cilantro://모든 재료들 10%감소
                     {
-                        for (int i = a_sideCount - 1; i >= 0; i++)
-                            if(stats[i].Size > 1) stats[i].Size -= 1;
+                        for (int i = a_sideCount - 1; i >= 0; i--)
+                            if (stats[i].Size > 1) stats[i].Size -= 1;
                         break;
                     }
                 case Ingredients.Type.Cucumber://위에 쌓이는 재료의 사이즈만큼 점수 감소
@@ -140,13 +142,15 @@ public class EndingSpawn : Singleton<EndingSpawn>
                     }
                 case Ingredients.Type.PoppingCandy://지금 까지 쌓인 재료 20%증가 , 위에 5개 재료들 삭제
                     {
-                        for (int i = a_sideCount - 1; i >= 0; i++)
+                        for (int i = a_sideCount - 1; i >= 0; i--)
                             stats[i].Size += stats[i].Size / 20;
-                        for (int i = 1; i < 5 && totalSideCount < a_sideCount; i++)
-                        { 
+                        for (int i = 0; i < 5 && totalSideCount > a_sideCount + i; i++)
+                        {
+                            Destroy(SandWichObject[a_sideCount + 1]);
                             stats.Remove(stats[a_sideCount + 1]);
                             SandWichObject.Remove(SandWichObject[a_sideCount + 1]);
                             totalSideCount--;
+                            yield return new WaitForSeconds(0.3f);
                         }
                         break;
                     }
