@@ -144,13 +144,15 @@ public class EndingSpawn : Singleton<EndingSpawn>
                     {
                         for (int i = a_sideCount - 1; i >= 0; i--)
                             stats[i].Size += stats[i].Size / 20;
-                        for (int i = 0; i < 5 && totalSideCount > a_sideCount + i; i++)
+
+                        int beforeCount = totalSideCount;
+                        for (int i = 0; i < 5 && beforeCount > a_sideCount + i; i++)
                         {
+                            yield return new WaitForSeconds(0.3f);
                             Destroy(SandWichObject[a_sideCount + 1]);
                             stats.Remove(stats[a_sideCount + 1]);
                             SandWichObject.Remove(SandWichObject[a_sideCount + 1]);
                             totalSideCount--;
-                            yield return new WaitForSeconds(0.3f);
                         }
                         break;
                     }

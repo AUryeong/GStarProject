@@ -20,9 +20,13 @@ public class QusetScript : MonoBehaviour
     [SerializeField] Slider questSliders;//퀘스트 진행도 슬라이더
     [SerializeField] GameObject fadePanel;//퀘스트 클리어 검정색 패널
 
-    [SerializeField] ParticleSystem particle;
-    [SerializeField] ParticleSystemRenderer particleSystemRenderer;
+    [SerializeField] ParticleSystem particle;//클리어시 나오는 파티클입니다.
+    [SerializeField] ParticleSystemRenderer particleSystemRenderer;//보상에 따라 머터리얼을 바꿀때 사용됩니다
+
     private ParticleSystem.ExternalForcesModule externalForcesModule;
+    private ParticleSystem.TriggerModule triggerModule;//목표 지점에 다 도착하면 바로 사라지도록 합니다.
+    private LayerMask windfildLayerMask;//보상 파티클이 모이게할 때 사용됩니다.
+
     private void Update()
     {
         if (questContents.isClear == false)
@@ -56,8 +60,12 @@ public class QusetScript : MonoBehaviour
         questButton.interactable = false;
         questButton.onClick.AddListener(QusetClear);
 
-        particleSystemRenderer.material = QusetManager.Instance.rewardParticle[(int)questContents.questType];
         externalForcesModule = particle.externalForces;
+        triggerModule = particle.trigger;
+        
+        particleSystemRenderer.material = QusetManager.Instance.m_RewardParticle[(int)questContents.questType];
+
+        windfildLayerMask = LayerMask.GetMask(questContents.rewardType.ToString());//보상에 맞는 위치로 레이어를 설정합니다.
 
         if (questContents.questType == QuestType.Main)
             questText.text = $"{questContents.text[0]}{questContents.questCondition}{questContents.text[1]}";
@@ -139,9 +147,13 @@ public class QusetScript : MonoBehaviour
     private IEnumerator QuestClearParticle()
     {
         particle.Play();
+        externalForcesModule.influenceMask = new LayerMask();//WindFild를 초기화합니다
+        triggerModule.RemoveCollider(0);//triggerModule을 초기화 합니다
+
         yield return new WaitForSeconds(0.5f);
-        LayerMask layerMask = LayerMask.GetMask(questContents.rewardType.ToString());
-        externalForcesModule.influenceMask = layerMask;
+
+        externalForcesModule.influenceMask = windfildLayerMask;//WindFild의 레이어를 넣는다
+        triggerModule.AddCollider(QusetManager.Instance.topUICoilider[(int)questContents.rewardType]);//닿으면 사라지도록 콜라이더를 지정한다
     }
    
 }

@@ -7,7 +7,8 @@ public class QusetManager : Singleton<QusetManager>
 {
     public QuestScriptable[] qusetScriptables;
     public Sprite[] rewardSprite;
-    public Material[] rewardParticle;
+    public Material[] m_RewardParticle;
+    public BoxCollider[] topUICoilider;
     protected override void Awake()
     {
         base.Awake();
