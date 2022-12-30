@@ -1812,11 +1812,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Bread: {fileID: 11400000, guid: 5b31b5c9ae4ed8d4ba162f0581743b00, type: 2}
   Inside: {fileID: 11400000, guid: 2e224c58cda19024abf407faf4f77ea8, type: 2}
+  stats: []
   SpawnObject: {fileID: 5288402436765138598, guid: 3afdccf61b8c7fb44b0520cc66d5730a, type: 3}
   CMTextObcject: {fileID: 1217072324}
-  spawnSpeed: 0
   ZoomOut: 0
   maxZoomLimite: 0
+  spawnSpeed: 0
+  totalSideCount: 0
+  a_sideCount: 0
 --- !u!4 &1314945464
 Transform:
   m_ObjectHideFlags: 0
@@ -2404,7 +2407,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2122592522}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 101.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1786979915}
