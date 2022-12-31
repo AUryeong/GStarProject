@@ -99,8 +99,8 @@ public class QusetScript : MonoBehaviour
         {
             questButton.image.sprite = questButtonImages[0];
             questContents.isClear = false;
-            questContents.questCondition = questContents.rewards + questContents.M_UpCondition * questContents.M_ClearCount;
-            questText.text = $"{questContents.text[0]} {questContents.questCondition} {questContents.text[1]}";
+            questContents.questCondition = questContents.questCondition + questContents.M_UpCondition * ++questContents.M_ClearCount;
+            questText.text = $"{questContents.text[0]} {questContents.questCondition}{questContents.text[1]}";
         }
         else
         {

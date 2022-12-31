@@ -60,3 +60,6 @@ TagManager:
   - name: UI
     uniqueID: 1945887035
     locked: 0
+  - name: Debuff
+    uniqueID: 802394157
+    locked: 0
