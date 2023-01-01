@@ -27,6 +27,13 @@ public class QusetScript : MonoBehaviour
     private ParticleSystem.TriggerModule triggerModule;//목표 지점에 다 도착하면 바로 사라지도록 합니다.
     private LayerMask windfildLayerMask;//보상 파티클이 모이게할 때 사용됩니다.
 
+    private void Start()
+    {
+        if(questContents.isClear == true)
+        {
+            transform.SetAsLastSibling();
+        }
+    }
     private void Update()
     {
         if (questContents.isClear == false)
@@ -49,29 +56,38 @@ public class QusetScript : MonoBehaviour
 
     public void SettingQuset(QuestScriptable scriptable, int Idx)
     {
+        //퀘스트 내용 적용
         questContents = scriptable.QusetList[Idx];
 
+        //퀘스트 보상 스프라이트 적용
         qusetSprite = QusetManager.Instance.rewardSprite[(int)questContents.rewardType];
         questImage.sprite = qusetSprite;
 
+        //퀘스트 보상 표시
         questrewardText.text = "" + questContents.rewards;
 
-        questButton.image.sprite = questButtonImages[0]; 
+        //퀘스트 달성 미달성 스프라이트 변경, 클릭 함수 적용
+        questButton.image.sprite = questButtonImages[0];
         questButton.interactable = false;
         questButton.onClick.AddListener(QusetClear);
 
+        //보상 파티클 모듈 적용
         externalForcesModule = particle.externalForces;
         triggerModule = particle.trigger;
-        
-        particleSystemRenderer.material = QusetManager.Instance.m_RewardParticle[(int)questContents.questType];
 
-        windfildLayerMask = LayerMask.GetMask(questContents.rewardType.ToString());//보상에 맞는 위치로 레이어를 설정합니다.
+        //파티클 보상 스프라이트 적용
+        particleSystemRenderer.material = QusetManager.Instance.m_RewardParticle[(int)questContents.rewardType];
 
+        //보상에 맞는 위치로 레이어를 설정
+        windfildLayerMask = LayerMask.GetMask(questContents.rewardType.ToString());
+
+        //목표 텍스트 변경
         if (questContents.questType == QuestType.Main)
             questText.text = $"{questContents.text[0]}{questContents.questCondition}{questContents.text[1]}";
         else
             questText.text = questContents.text[0];
-
+        
+        //클리어 한거 일 시 클리어 표시로 변경
         if (questContents.isClear)
         {
             if (questContents.questType == QuestType.Main)
@@ -85,7 +101,6 @@ public class QusetScript : MonoBehaviour
             {
                 questButton.gameObject.SetActive(false);
                 fadePanel.SetActive(true);
-                transform.SetAsLastSibling();
             }
         }
     }
@@ -93,10 +108,31 @@ public class QusetScript : MonoBehaviour
     {
         questContents.isClear = true;
         StartCoroutine(QuestClearParticle());
+        StartCoroutine(C_QusetClear());
+    }
+    private IEnumerator C_QusetClear()
+    {
+        float timer = 1;
+        float timespeed = 3;
 
         //메인일때는 달성시 바로 초기화
         if (questContents.questType == QuestType.Main)
         {
+            //잠깐 작아졌다가 다시 커지는 연출
+            while (timer >= 0.9f)
+            {
+                timer -= Time.deltaTime * timespeed;
+                transform.localScale = Vector3.one * timer;
+                yield return null;
+            }
+            while (timer <= 1f)
+            {
+                timer += Time.deltaTime * timespeed;
+                transform.localScale = Vector3.one * timer;
+                yield return null;
+            }
+            transform.localScale = Vector3.one;
+
             questButton.image.sprite = questButtonImages[0];
             questContents.isClear = false;
             questContents.questCondition = questContents.questCondition + questContents.M_UpCondition * ++questContents.M_ClearCount;
@@ -104,9 +140,18 @@ public class QusetScript : MonoBehaviour
         }
         else
         {
+            //작아지면서 사라지는 연출
+            while (timer > 0)
+            {
+                timer -= Time.deltaTime * timespeed;
+                transform.localScale = Vector3.one * timer;
+                yield return null;
+            }
+
             questButton.gameObject.SetActive(false);
             fadePanel.SetActive(true);
             transform.SetAsLastSibling();
+            transform.localScale = Vector3.one;
         }
 
         //QusetUpdate - 클리어 횟수 추가
@@ -123,27 +168,26 @@ public class QusetScript : MonoBehaviour
                     break;
                 }
         }
-        //보상
+        //보상 추가
         switch (questContents.rewardType)
         {
             case RewardType.Gold:
                 {
                     GameManager.Instance.gold += questContents.rewards;
-                    return;
+                    break;
                 }
             case RewardType.Heart:
                 {
                     GameManager.Instance.heart += questContents.rewards;
-                    return;
+                    break;
                 }
             case RewardType.Macaron:
                 {
                     GameManager.Instance.macaron += questContents.rewards;
-                    return;
+                    break;
                 }
         }
     }
-
     private IEnumerator QuestClearParticle()
     {
         particle.Play();
@@ -155,5 +199,5 @@ public class QusetScript : MonoBehaviour
         externalForcesModule.influenceMask = windfildLayerMask;//WindFild의 레이어를 넣는다
         triggerModule.AddCollider(QusetManager.Instance.topUICoilider[(int)questContents.rewardType]);//닿으면 사라지도록 콜라이더를 지정한다
     }
-   
+
 }
