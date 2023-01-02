@@ -20,7 +20,8 @@ public class QusetScript : MonoBehaviour
     [SerializeField] Slider questSliders;//퀘스트 진행도 슬라이더
     [SerializeField] GameObject fadePanel;//퀘스트 클리어 검정색 패널
 
-    [SerializeField] ParticleSystem particle;//클리어시 나오는 파티클입니다.
+    [SerializeField] ParticleSystem particle;//클리어시 나오는 보상 파티클입니다.
+    [SerializeField] ParticleSystem starParticle;//클리어시 나오는 별 파티클입니다.
     [SerializeField] ParticleSystemRenderer particleSystemRenderer;//보상에 따라 머터리얼을 바꿀때 사용됩니다
 
     private ParticleSystem.ExternalForcesModule externalForcesModule;
@@ -191,6 +192,8 @@ public class QusetScript : MonoBehaviour
     private IEnumerator QuestClearParticle()
     {
         particle.Play();
+        starParticle.Play();
+
         externalForcesModule.influenceMask = new LayerMask();//WindFild를 초기화합니다
         triggerModule.RemoveCollider(0);//triggerModule을 초기화 합니다
 

@@ -190,6 +190,7 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
             GameObject breadPanelObject = Instantiate(breadPrefab, Vector3.one, transform.rotation, breadContent.transform);
             breadPanelObject.transform.GetComponent<BreadScript>().BreadSetting(breadScriptable, (Breads.Type)breadCount);
             breadCount++;
+            
         }
     }
     void SettingQusetPanel()
