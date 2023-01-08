@@ -47,6 +47,7 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     [SerializeField] GameObject shopUIGroup;
     [SerializeField] Vector3 shopUIOpenPos;
     [SerializeField] Vector3 shopUIClosePos;
+
     [Header("Bread")]
     [Space(10f)]
     [SerializeField] Breads breadScriptable;
@@ -56,13 +57,14 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     public Breads.Type selectBread;
 
     [Header("Quset")]
-
     public ScrollRect qusetScroll;
     public RectTransform[] qusetPanel;
     public Button[] qusetButtons;
     public Sprite[] qusetButtonsSprite;
     public GameObject qusetPrefab;
     private int openingQusetPanel = 0;
+    public BoxCollider[] topUICoilider;
+
     [Header("Map")]
     public List<GameObject> mapLockPanel = new List<GameObject>();
     public MapEX SelectMap;

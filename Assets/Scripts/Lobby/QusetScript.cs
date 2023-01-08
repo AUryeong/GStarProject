@@ -200,7 +200,7 @@ public class QusetScript : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         externalForcesModule.influenceMask = windfildLayerMask;//WindFild의 레이어를 넣는다
-        triggerModule.AddCollider(QusetManager.Instance.topUICoilider[(int)questContents.rewardType]);//닿으면 사라지도록 콜라이더를 지정한다
+        triggerModule.AddCollider(LobbyUIManager.Instance.topUICoilider[(int)questContents.rewardType]);//닿으면 사라지도록 콜라이더를 지정한다
     }
 
 }
