@@ -15,10 +15,12 @@ public class Quest
     public Sprite sprite;//이미지
     public string[] text;//퀘스트 내용
     public int rewards;//보상 수치
-    public float M_UpCondition;//(메인 전용) 조건 증가 수치
-    public float M_ClearCount;//(메인 전용) 클리어 횟수
     public RewardType rewardType;
     public QuestType questType;
+    public bool questEnd;//마지막 퀘스트인지 체크
+    [Header("Main")]
+    public float M_UpCondition;//(메인 전용) 조건 증가 수치
+    public float M_ClearCount;//(메인 전용) 클리어 횟수
 }
 public enum RewardType
 {

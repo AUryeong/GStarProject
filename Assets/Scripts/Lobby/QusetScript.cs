@@ -30,7 +30,7 @@ public class QusetScript : MonoBehaviour
 
     private void Start()
     {
-        if(questContents.isClear == true)
+        if (questContents.isClear == true)
         {
             transform.SetAsLastSibling();
         }
@@ -83,11 +83,11 @@ public class QusetScript : MonoBehaviour
         windfildLayerMask = LayerMask.GetMask(questContents.rewardType.ToString());
 
         //목표 텍스트 변경
-        if (questContents.questType == QuestType.Main)
-            questText.text = $"{questContents.text[0]}{questContents.questCondition}{questContents.text[1]}";
+        if (questContents.questEnd == true)
+            questText.text = $"{questContents.text[0]}";
         else
-            questText.text = questContents.text[0];
-        
+            questText.text = $"{questContents.text[0]}<color=#48FFFF>{questContents.questCondition}</color>{questContents.text[1]}";
+
         //클리어 한거 일 시 클리어 표시로 변경
         if (questContents.isClear)
         {
