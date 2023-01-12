@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Player_Sesame : Player
 {
-    [SerializeField] SpriteRenderer[] ingredientsSprites;
     protected int[] ingredientIdxes = new int[5];
     public int idx = 0;
     protected float hpHealValue = 50;
@@ -20,7 +19,7 @@ public class Player_Sesame : Player
         base.AddIngredient(ingredient);
         if (ingredientIdxes[idx] == ingredient.ingredientIdx)
         {
-            ingredientsSprites[idx].gameObject.SetActive(false);
+            InGameManager.Instance.sesameIngredients[idx].gameObject.SetActive(false);
             idx++;
             if (idx >= ingredientIdxes.Length)
             {
@@ -38,8 +37,8 @@ public class Player_Sesame : Player
         {
             int idx = Random.Range(0, GameManager.Instance.Inside.Stats.Count);
             ingredientIdxes[i] = idx;
-            ingredientsSprites[i].sprite = GameManager.Instance.Inside.Stats[idx].OutlineSprite;
-            ingredientsSprites[i].gameObject.SetActive(true);
+            InGameManager.Instance.sesameIngredients[i].sprite = GameManager.Instance.Inside.Stats[idx].OutlineSprite;
+            InGameManager.Instance.sesameIngredients[i].gameObject.SetActive(true);
         }
     }
 }

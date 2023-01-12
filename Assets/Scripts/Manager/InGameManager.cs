@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InGameManager : Singleton<InGameManager>
 {
@@ -37,6 +38,10 @@ public class InGameManager : Singleton<InGameManager>
     [SerializeField] GameObject[] breadArray;
     [SerializeField] Vector3 startPos;
 
+    [Header("Âü±ú»§¿ë")]
+    public RectTransform sesameIngredientsParent;
+    public Image[] sesameIngredients;
+
     [Header("ÀÌ¿Ü")]
     public int gold;
 
@@ -61,6 +66,9 @@ public class InGameManager : Singleton<InGameManager>
         toasterEffect.transform.SetParent(player.transform);
         toasterEffect.transform.localPosition = Vector3.zero;
         mapBGLength = new float[mapBGList.Length];
+
+        if (player is Player_Sesame)
+            sesameIngredientsParent.gameObject.SetActive(true);
 
         SoundManager.Instance.PlaySoundClip("BGM_Cafe", ESoundType.BGM);
         AddNewPlatform();
