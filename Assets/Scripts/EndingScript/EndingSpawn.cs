@@ -168,7 +168,7 @@ public class EndingSpawn : Singleton<EndingSpawn>
                         for (int i = a_sideCount - 1; i >= 0; i--)
                             stats[i].Size += stats[i].Size / 20;
 
-                        int beforeCount = totalSideCount;
+                        int beforeCount = totalSideCount - 1;
                         for (int i = 0; i < 5 && beforeCount > a_sideCount + i; i++)
                         {
                             yield return new WaitForSeconds(0.3f);

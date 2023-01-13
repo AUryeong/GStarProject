@@ -457,7 +457,7 @@ public class Player : MonoBehaviour
 
         ingredient.gameObject.SetActive(false);
 
-         SoundManager.Instance.PlaySoundClip("SFX_InGame_Get_Ingredinet", ESoundType.SFX);
+         SoundManager.Instance.PlaySoundClip("SFX_InGame_Get_Ingredient", ESoundType.SFX);
     }
 
     protected void GetGold(GameObject obj)
