@@ -96,7 +96,7 @@ public class QusetScript : MonoBehaviour
                 questButton.image.sprite = questButtonImages[0];
                 questContents.isClear = false;
                 questContents.questCondition = questContents.rewards + questContents.M_UpCondition * questContents.M_ClearCount;
-                questText.text = $"{questContents.text[0]} {questContents.questCondition} {questContents.text[1]}";
+                questText.text = $"{questContents.text[0]}<color=#48FFFF>{questContents.questCondition}</color>{questContents.text[1]}";
             }
             else
             {

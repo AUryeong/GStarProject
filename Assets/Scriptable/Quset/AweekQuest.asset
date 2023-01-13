@@ -18,86 +18,102 @@ MonoBehaviour:
     questSituation: 30
     sprite: {fileID: 0}
     text:
-    - "\uC0CC\uB4DC\uC704\uCE58 20\uD68C \uC313\uAE30"
+    - "\uC0CC\uB4DC\uC704\uCE58 "
+    - "\uC313\uAE30"
     rewards: 5000
-    M_UpCondition: 0
-    M_ClearCount: 0
     rewardType: 0
     questType: 1
+    questEnd: 0
+    M_UpCondition: 0
+    M_ClearCount: 0
   - isClear: 1
     questCondition: 300
-    questSituation: 839
+    questSituation: 884
     sprite: {fileID: 0}
     text:
-    - "300\uBC88 \uC810\uD504\uD558\uAE30"
+    - 
+    - "\uBC88 \uC810\uD504\uD558\uAE30"
     rewards: 7000
-    M_UpCondition: 0
-    M_ClearCount: 0
     rewardType: 0
     questType: 1
+    questEnd: 0
+    M_UpCondition: 0
+    M_ClearCount: 0
   - isClear: 1
     questCondition: 300
-    questSituation: 521
+    questSituation: 535
     sprite: {fileID: 0}
     text:
-    - "300\uBC88 \uC2AC\uB77C\uC774\uB4DC\uD558\uAE30"
+    - 
+    - "\uBC88 \uC2AC\uB77C\uC774\uB4DC\uD558\uAE30"
     rewards: 7000
-    M_UpCondition: 0
-    M_ClearCount: 0
     rewardType: 0
     questType: 1
+    questEnd: 0
+    M_UpCondition: 0
+    M_ClearCount: 0
   - isClear: 1
     questCondition: 100
-    questSituation: 5289
+    questSituation: 5578
     sprite: {fileID: 0}
     text:
-    - "\uACE8\uB4DC 100\uAC1C \uD68D\uB4DD"
+    - 
+    - "100\uAC1C \uD68D\uB4DD"
     rewards: 3
-    M_UpCondition: 0
-    M_ClearCount: 0
     rewardType: 1
     questType: 1
+    questEnd: 0
+    M_UpCondition: 0
+    M_ClearCount: 0
   - isClear: 1
     questCondition: 60
-    questSituation: 334
+    questSituation: 349
     sprite: {fileID: 0}
     text:
-    - "\uAE0D\uC815\uC801 \uC7AC\uB8CC 60\uAC1C \uD68D\uB4DD"
+    - "\uAE0D\uC815\uC801 \uC7AC\uB8CC "
+    - "\uAC1C \uD68D\uB4DD"
     rewards: 7000
-    M_UpCondition: 0
-    M_ClearCount: 0
     rewardType: 0
     questType: 1
-  - isClear: 1
-    questCondition: 30
-    questSituation: 203
-    sprite: {fileID: 0}
-    text:
-    - "\uBD80\uC815\uC801 \uC7AC\uB8CC 30\uAC1C \uD68D\uB4DD"
-    rewards: 3
+    questEnd: 0
     M_UpCondition: 0
     M_ClearCount: 0
+  - isClear: 1
+    questCondition: 30
+    questSituation: 213
+    sprite: {fileID: 0}
+    text:
+    - "\uBD80\uC815\uC801 \uC7AC\uB8CC "
+    - "\uAC1C \uD68D\uB4DD"
+    rewards: 3
     rewardType: 1
     questType: 1
+    questEnd: 0
+    M_UpCondition: 0
+    M_ClearCount: 0
   - isClear: 0
     questCondition: 1
     questSituation: 0
     sprite: {fileID: 0}
     text:
-    - "150\uCD08 \uC774\uC0C1 \uB2EC\uB9AC\uAE30 "
+    - 
+    - "\uCD08 \uC774\uC0C1 \uB2EC\uB9AC\uAE30 "
     rewards: 1
-    M_UpCondition: 0
-    M_ClearCount: 0
     rewardType: 2
     questType: 1
+    questEnd: 0
+    M_UpCondition: 0
+    M_ClearCount: 0
   - isClear: 1
     questCondition: 7
-    questSituation: 11
+    questSituation: 0
     sprite: {fileID: 0}
     text:
     - "\uBAA8\uB4E0 \uC8FC\uAC04 \uD018\uC2A4\uD2B8\uB97C \uD074\uB9AC\uC5B4\uD558\uAE30"
+    - 
     rewards: 5
-    M_UpCondition: 0
-    M_ClearCount: 0
     rewardType: 2
     questType: 1
+    questEnd: 1
+    M_UpCondition: 0
+    M_ClearCount: 0
