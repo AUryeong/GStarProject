@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1563084133117034102}
   - component: {fileID: 7830102051078855516}
-  m_Layer: 0
+  - component: {fileID: 1815746587675196165}
+  m_Layer: 6
   m_Name: cafe_platform_long
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,6 +83,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &1815746587675196165
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1501532804232048112}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 86.97436, y: 1.65625}
+    newSize: {x: 55.66359, y: 1.06}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 86.97436, y: 1.65625}
+  m_EdgeRadius: 0
 --- !u!1 &1591743886115171730
 GameObject:
   m_ObjectHideFlags: 0
@@ -122,7 +149,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6503531530325618981}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}

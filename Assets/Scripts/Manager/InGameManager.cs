@@ -14,35 +14,35 @@ public class InGameManager : Singleton<InGameManager>
         get; private set;
     }
 
-    [Header("¸Ê")]
+    [Header("ë§µ")]
     [SerializeField] protected List<GameObject> firstMapList;
     [SerializeField] protected GameObject ovenMap;
     protected int mapSize = 1;
     public readonly int ovenMapSize = 10;
-    public float mapLength { get; private set; } = 30;
-    public readonly float platformMapLength = 66;
+    public float mapLength { get; private set; } = 43.48718f;
+    public readonly float platformMapLength = 86.96436f;
     protected List<GameObject> mapList = new List<GameObject>();
 
     protected float[] mapBGLength;
     [SerializeField] protected SpriteRenderer[] mapBGList;
     [SerializeField] protected float[] platformmapBGLength;
 
-    [Header("ÀÌÆåÆ®")]
+    [Header("ì´í™íŠ¸")]
     public ParticleSystem boostEffect;
     public SpriteRenderer magnetEffect;
     public ParticleSystem toasterEffect;
     [SerializeField] ParticleSystem goldEffect;
 
-    [Header("»§")]
+    [Header("ë¹µ")]
     private Breads.Type breadType;
     [SerializeField] GameObject[] breadArray;
     [SerializeField] Vector3 startPos;
 
-    [Header("Âü±ú»§¿ë")]
+    [Header("ì°¸ê¹¨ë¹µìš©")]
     public RectTransform sesameIngredientsParent;
     public Image[] sesameIngredients;
 
-    [Header("ÀÌ¿Ü")]
+    [Header("ì´ì™¸")]
     public int gold;
 
     public void GoldEffect(Vector3 pos)
