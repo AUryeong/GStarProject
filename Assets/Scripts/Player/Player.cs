@@ -33,10 +33,7 @@ public class Player : MonoBehaviour
     [HideInInspector] public float fHp;
 
     public float hp;
-    public bool isControllable
-    {
-        get; protected set;
-    } = true;
+    public bool isControllable = true;
 
 
     [Header("플레이어 점프 관련")]
@@ -53,7 +50,7 @@ public class Player : MonoBehaviour
     protected float hitFadeOutTime = 0.9f;
 
     [Header("자석")]
-    protected float magnetMoveSpeed = 7f;
+    protected float magnetMoveSpeed = 10f;
     public float magnetSize = 0f;
     protected readonly float itemMagnetSize = 4;
     protected readonly float itemMagnetDuration = 5;
@@ -75,6 +72,11 @@ public class Player : MonoBehaviour
     public ColiderPos idleColiderSize;
     public ColiderPos slidingColiderSize;
     public ColiderPos jumpingColiderSize;
+
+    [Header("광고 관련")]
+    protected bool playingAD;//광고가 진행되고 있는지 확인용
+    protected bool resurrection;//부활 했는지 체크
+
 
     protected float downGameoverY = -4.5f;
 
@@ -106,6 +108,7 @@ public class Player : MonoBehaviour
     protected virtual void Update()
     {
         float deltaTime = Time.deltaTime;
+
         //좋긴한데 따로 함수로 빼서 GetIsDie()같은 bool반환형 함수를 사용해도 괜찮다 생각 , 선택은 자유
         if (hp > 0 && isControllable)
         {
@@ -234,21 +237,26 @@ public class Player : MonoBehaviour
         {
             hpRemoveDuration -= hpRemoveCool;
             hp -= hpRemoveValue;
-            if (hp <= 0)
+            if (hp <= 0 && playingAD == false)
             {
                 GameOver();
                 return;
             }
         }
     }
+    //광고중인지 체크
+    protected virtual void CheckAd()
+    {
+    }
+
     //체력이 30% 아래인지 체크
     protected virtual void CheckDangerHp()
     {
-        if(0.3 <= hp/fHp && isDangerHpSound == false)
+        if (0.3 <= hp / fHp && isDangerHpSound == false)
         {
             isDangerHpSound = true;
             SoundManager.Instance.PlaySoundClip("SFX_InGame_Danger", ESoundType.SFX);
-        } 
+        }
     }
 
     protected virtual float GetSpeedMultipler()
@@ -287,7 +295,6 @@ public class Player : MonoBehaviour
             InGameManager.Instance.GameOver();
         }
     }
-
 
     //애니메이터 관련 업데이트
     protected virtual void CheckAnimator()
@@ -457,7 +464,7 @@ public class Player : MonoBehaviour
 
         ingredient.gameObject.SetActive(false);
 
-         SoundManager.Instance.PlaySoundClip("SFX_InGame_Get_Ingredient", ESoundType.SFX);
+        SoundManager.Instance.PlaySoundClip("SFX_InGame_Get_Ingredient", ESoundType.SFX);
     }
 
     protected void GetGold(GameObject obj)

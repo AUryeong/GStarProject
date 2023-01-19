@@ -39,14 +39,25 @@ public class IngameUIManager : Singleton<IngameUIManager>
     [SerializeField] Sprite ingredientsIconNeg;
     [SerializeField] Sprite ingredientsIconPos;
 
-    [SerializeField] Image onHItImage;
-    private bool pressSliding = false;
     [Header("설정")]
     [SerializeField] Toggle bgmToggle;
     [SerializeField] Toggle sfxToggle;
     [SerializeField] Toggle flipToggle;
     [SerializeField] GameObject settingObject;
 
+    [Header("부활")]
+    [SerializeField] GameObject resurrectionPanel;//부활 패널
+    [SerializeField] Text resurrectionTimer;//광고보고 부활 타이머
+    public bool adDone = false;//플레이어에서 광고가 완료되었는지 체크하는데 사용
+
+    [Header("재시작 타이머")]
+    [SerializeField] Image timerCircle;//재시작 표시 원
+    [SerializeField] Text t_reStartTimer;//재시작 타이머
+    private const float restartTime = 4;
+    private float f_reStartTimer;
+
+    [SerializeField] Image onHItImage;
+    private bool pressSliding = false;
 
     private void OnEnable()
     {
@@ -56,6 +67,16 @@ public class IngameUIManager : Singleton<IngameUIManager>
         hpIconImage.sprite = hpIconSprites[GameManager.Instance.maxHpLv / 10];
         SettingUpdate();
     }
+    private void Update()
+    {
+        if (GameManager.Instance.inGaming)
+        {
+            CheckSliding();
+            UpdateOvenBar();
+            UpdateHealthBar();
+        }
+    }
+
     public void SettingSave()
     {
         SaveManager.Instance.gameData.bgmActive = bgmToggle.isOn;
@@ -127,16 +148,6 @@ public class IngameUIManager : Singleton<IngameUIManager>
         }
     }
 
-    private void Update()
-    {
-        if (GameManager.Instance.inGaming)
-        {
-            CheckSliding();
-            UpdateOvenBar();
-            UpdateHealthBar();
-        }
-    }
-
     public void UpdateHealthBar()
     {
         hpBarSlider.value = Mathf.Lerp(hpBarSlider.value, InGameManager.Instance.player.hp / InGameManager.Instance.player.fHp, Time.deltaTime * 20);
@@ -197,5 +208,24 @@ public class IngameUIManager : Singleton<IngameUIManager>
     private void UpdateOvenBar()
     {
         OvenBar.value = (InGameManager.Instance.player.transform.position.x % (InGameManager.Instance.platformMapLength * InGameManager.Instance.ovenMapSize)) / (InGameManager.Instance.platformMapLength * InGameManager.Instance.ovenMapSize);
+    }
+    public void CheckAdDone()
+    {
+        if (adDone == true)
+        {
+            adDone = false;
+            Coroutine coroutine = StartCoroutine(OnRestartTimer());
+        }
+    }
+    public IEnumerator OnRestartTimer()
+    {
+        f_reStartTimer = restartTime;
+        while (f_reStartTimer >= 0)
+        {
+            f_reStartTimer -= Time.deltaTime;
+            t_reStartTimer.text = $"{(int)f_reStartTimer}";
+            yield return null;
+        }
+        InGameManager.Instance.player.isControllable = true;
     }
 }

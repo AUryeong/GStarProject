@@ -200,5 +200,4 @@ public class EndingSpawn : Singleton<EndingSpawn>
         //TODO 번호별로 또는 string별로 씬을 가지고 있는 또는 반환하는 함수를 만들어두는것을 추천 매직넘버 또는 string은 실수가 생길확률이 높음
         SceneManager.LoadScene(0);
     }
-
 }
