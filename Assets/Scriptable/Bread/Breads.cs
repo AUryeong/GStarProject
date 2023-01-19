@@ -72,6 +72,6 @@ public class BreadStats
 
     public bool isBuy;
 
-    //ÀÓ½Ã Àá±Ý
+    //ìž„ì‹œ ìž ê¸ˆ
     public bool isLock;
 }

@@ -916,9 +916,10 @@ MonoBehaviour:
   - {fileID: 6112165772462754544, guid: f027e2b182df68a4b85bdd82e982cb35, type: 3}
   - {fileID: 7240329802579503554, guid: a3e4ce7a041f79b419f153c2b9bfabf0, type: 3}
   - {fileID: 3996838272394727956, guid: f344bf43a3e09ef49b90008e65725bd6, type: 3}
-  - {fileID: 3559122120417978861, guid: 6a053c90d28e0d947b44364ce45ea768, type: 3}
-  - {fileID: 8974899199686686189, guid: b66badc664a8c9f4aa96625fe48e2800, type: 3}
-  - {fileID: 3505843312332731503, guid: 12caccfb9e2a0c84fb2967306b6784c5, type: 3}
+  - {fileID: 5004238162652014381, guid: fd1623396011778408077e7a883bad8f, type: 3}
+  - {fileID: 16955074116614246, guid: fe714e915ad736b44800de6a35425fd3, type: 3}
+  - {fileID: 598071968501027996, guid: 1230074c7caa1904ebb35884b1722158, type: 3}
+  - {fileID: 4827802816653219059, guid: a448fe8d768fc0c4ca77460de772f153, type: 3}
   ovenMap: {fileID: 7556733719849036316, guid: 3b1567ecabd6202479c150b4a2a75b97, type: 3}
   mapBGList:
   - {fileID: 3801574698928167012, guid: 9f0e1e42d8f3f72418685ee3c4373348, type: 3}
@@ -939,8 +940,8 @@ MonoBehaviour:
   - {fileID: 6979276265400207888, guid: 7111c3b3aa6188040a38ca3f566b92a1, type: 3}
   - {fileID: 6148039255070333001, guid: f029403e818610449bcfeca62e678424, type: 3}
   - {fileID: 1550404406684823248, guid: a7a9600e3aaf32b479d921d69f5ff4df, type: 3}
-  - {fileID: 6148039255070333001, guid: f029403e818610449bcfeca62e678424, type: 3}
-  - {fileID: 6148039255070333001, guid: f029403e818610449bcfeca62e678424, type: 3}
+  - {fileID: 6434328978134316475, guid: 68d86553ea57350409e812c220de8b99, type: 3}
+  - {fileID: 4395555969316631500, guid: 943905dc2e8c03045891a1002a63db01, type: 3}
   - {fileID: 6148039255070333001, guid: f029403e818610449bcfeca62e678424, type: 3}
   - {fileID: 5519395511417958222, guid: 99a05da4f824f54409017122e8c22ee1, type: 3}
   - {fileID: 6148039255070333001, guid: f029403e818610449bcfeca62e678424, type: 3}
@@ -1299,11 +1300,16 @@ MonoBehaviour:
   ingredientsIconBlank: {fileID: 21300000, guid: 7a9cede73019b424fa5aeabd15640a1f, type: 3}
   ingredientsIconNeg: {fileID: 21300000, guid: 02f181ee65ca44c46a0581a66f068b3a, type: 3}
   ingredientsIconPos: {fileID: 21300000, guid: 0572f0cdcf22c5b4982e672ebf097370, type: 3}
-  onHItImage: {fileID: 459926320}
   bgmToggle: {fileID: 46533491}
   sfxToggle: {fileID: 1332235164}
   flipToggle: {fileID: 1178148472}
   settingObject: {fileID: 375884322}
+  resurrectionPanel: {fileID: 0}
+  resurrectionTimer: {fileID: 0}
+  adDone: 0
+  timerCircle: {fileID: 0}
+  t_reStartTimer: {fileID: 0}
+  onHItImage: {fileID: 459926320}
 --- !u!4 &280773576
 Transform:
   m_ObjectHideFlags: 0
@@ -9702,7 +9708,7 @@ MonoBehaviour:
   Inside: {fileID: 11400000, guid: 2e224c58cda19024abf407faf4f77ea8, type: 2}
   breads: {fileID: 11400000, guid: 5b31b5c9ae4ed8d4ba162f0581743b00, type: 2}
   inGaming: 1
-  selectBread: 2
+  selectBread: 7
   selectMap: 0
   gold: 0
   macaron: 0
