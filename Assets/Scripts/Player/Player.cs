@@ -73,10 +73,9 @@ public class Player : MonoBehaviour
     public ColiderPos slidingColiderSize;
     public ColiderPos jumpingColiderSize;
 
-    [Header("광고 관련")]
-    protected bool playingAD;//광고가 진행되고 있는지 확인용
+    [Header("부활 관련")]
     protected bool resurrection;//부활 했는지 체크
-
+    private Vector2 diePos;//죽었을 당시 위치
 
     protected float downGameoverY = -4.5f;
 
@@ -123,7 +122,11 @@ public class Player : MonoBehaviour
             if (transform.position.y <= downGameoverY)
             {
                 isControllable = false;
-                InGameManager.Instance.GameOverMoveCP();
+                diePos = new Vector2(transform.position.x, 0);
+                if (resurrection == false)
+                    IngameUIManager.Instance.OpenResurrection();
+                else
+                    InGameManager.Instance.GameOverMoveCP();
             }
         }
         if (Input.GetKeyDown(KeyCode.C))
@@ -188,6 +191,8 @@ public class Player : MonoBehaviour
 
     IEnumerator MoveCenterCoroutine()
     {
+        diePos = new Vector2(transform.position.x,0);
+
         Vector3 pos = Camera.main.ScreenToWorldPoint(Vector3.zero);
         state = PlayerState.Idle;
         CheckAnimator();
@@ -203,7 +208,10 @@ public class Player : MonoBehaviour
                 {
                     animator.Play("Die");
                     yield return new WaitForSeconds(2);
-                    InGameManager.Instance.GameOverMoveCP();
+                    if (resurrection == false)
+                        IngameUIManager.Instance.OpenResurrection();
+                    else
+                        InGameManager.Instance.GameOverMoveCP();
                     yield break;
                 }
             }
@@ -237,16 +245,26 @@ public class Player : MonoBehaviour
         {
             hpRemoveDuration -= hpRemoveCool;
             hp -= hpRemoveValue;
-            if (hp <= 0 && playingAD == false)
+            if (hp <= 0)
             {
                 GameOver();
                 return;
             }
         }
     }
-    //광고중인지 체크
-    protected virtual void CheckAd()
+    
+    //부활
+    public virtual void Resurrection()
     {
+        transform.position = diePos;
+        hp = fHp / 2;
+        resurrection = true;
+        isControllable = true;
+        gameObject.layer = LayerMask.NameToLayer("Player");
+        animator.Play("Run");
+
+        boostDuration = Mathf.Max(boostDuration, itemBoostDuration);
+        SoundManager.Instance.PlaySoundClip("SFX_InGame_Get_Boost", ESoundType.SFX);
     }
 
     //체력이 30% 아래인지 체크
@@ -515,6 +533,10 @@ public class Player : MonoBehaviour
         }
         IngameUIManager.Instance.PlayerHurt();
         rigid.velocity = Vector2.zero;
+        Invincibility();
+    }
+    protected virtual void Invincibility()
+    {
         gameObject.layer = LayerMask.NameToLayer("PlayerInv");
         animator.Play("Hurt");
         spriteRenderer.DOFade(hitFadeInAlpha, hitFadeInTime).

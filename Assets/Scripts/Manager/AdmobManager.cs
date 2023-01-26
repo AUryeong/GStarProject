@@ -46,7 +46,7 @@ public class AdmobManager : Singleton<AdmobManager>
         frontAd.LoadAd(GetAdRequest());
         frontAd.OnAdClosed += (sender, e) =>
         {
-            IngameUIManager.Instance.adDone = true;
+            IngameUIManager.Instance.DoneAD();
         };
     }
 

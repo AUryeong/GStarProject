@@ -12,8 +12,10 @@ public class QusetManager : Singleton<QusetManager>
     protected override void Awake()
     {
         base.Awake();
-        if (Instance == this)
-            DontDestroyOnLoad(gameObject);
+        if (Instance != this)
+            Destroy(gameObject);
+
+        DontDestroyOnLoad(gameObject);
     }
 
     /// <summary>

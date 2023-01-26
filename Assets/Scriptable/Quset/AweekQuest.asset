@@ -28,7 +28,7 @@ MonoBehaviour:
     M_ClearCount: 0
   - isClear: 1
     questCondition: 300
-    questSituation: 884
+    questSituation: 1083
     sprite: {fileID: 0}
     text:
     - 
@@ -41,7 +41,7 @@ MonoBehaviour:
     M_ClearCount: 0
   - isClear: 1
     questCondition: 300
-    questSituation: 535
+    questSituation: 611
     sprite: {fileID: 0}
     text:
     - 
@@ -54,11 +54,11 @@ MonoBehaviour:
     M_ClearCount: 0
   - isClear: 1
     questCondition: 100
-    questSituation: 5578
+    questSituation: 6368
     sprite: {fileID: 0}
     text:
     - 
-    - "100\uAC1C \uD68D\uB4DD"
+    - "\uAC1C \uD68D\uB4DD"
     rewards: 3
     rewardType: 1
     questType: 1
@@ -67,7 +67,7 @@ MonoBehaviour:
     M_ClearCount: 0
   - isClear: 1
     questCondition: 60
-    questSituation: 349
+    questSituation: 411
     sprite: {fileID: 0}
     text:
     - "\uAE0D\uC815\uC801 \uC7AC\uB8CC "
@@ -80,7 +80,7 @@ MonoBehaviour:
     M_ClearCount: 0
   - isClear: 1
     questCondition: 30
-    questSituation: 213
+    questSituation: 259
     sprite: {fileID: 0}
     text:
     - "\uBD80\uC815\uC801 \uC7AC\uB8CC "

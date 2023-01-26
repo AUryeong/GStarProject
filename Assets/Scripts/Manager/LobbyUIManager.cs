@@ -92,6 +92,9 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     protected override void Awake()
     {
         base.Awake();
+    }
+    private void Start()
+    {
         selectBread = GameManager.Instance.selectBread;
         SettingBreadShop(breadScriptable);
         SettingQusetPanel();

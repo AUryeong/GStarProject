@@ -47,12 +47,14 @@ public class IngameUIManager : Singleton<IngameUIManager>
 
     [Header("부활")]
     [SerializeField] GameObject resurrectionPanel;//부활 패널
-    [SerializeField] Text resurrectionTimer;//광고보고 부활 타이머
-    public bool adDone = false;//플레이어에서 광고가 완료되었는지 체크하는데 사용
+    [SerializeField] TextMeshProUGUI resurrectionTimer;//광고보고 부활 타이머
+    [SerializeField] Image re_timerCircle;//타이머 표시 원
+    private bool resurrection;//재시작 타이머가 끝날때 부활함수 실행용
+    private bool adDone;//광고를 완료했는지 확인
 
     [Header("재시작 타이머")]
     [SerializeField] Image timerCircle;//재시작 표시 원
-    [SerializeField] Text t_reStartTimer;//재시작 타이머
+    [SerializeField] TextMeshProUGUI t_reStartTimer;//재시작 타이머
     private const float restartTime = 4;
     private float f_reStartTimer;
 
@@ -209,16 +211,9 @@ public class IngameUIManager : Singleton<IngameUIManager>
     {
         OvenBar.value = (InGameManager.Instance.player.transform.position.x % (InGameManager.Instance.platformMapLength * InGameManager.Instance.ovenMapSize)) / (InGameManager.Instance.platformMapLength * InGameManager.Instance.ovenMapSize);
     }
-    public void CheckAdDone()
+    public IEnumerator StartRestartTimer()
     {
-        if (adDone == true)
-        {
-            adDone = false;
-            Coroutine coroutine = StartCoroutine(OnRestartTimer());
-        }
-    }
-    public IEnumerator OnRestartTimer()
-    {
+        timerCircle.gameObject.SetActive(true);
         f_reStartTimer = restartTime;
         while (f_reStartTimer >= 0)
         {
@@ -226,6 +221,50 @@ public class IngameUIManager : Singleton<IngameUIManager>
             t_reStartTimer.text = $"{(int)f_reStartTimer}";
             yield return null;
         }
+
+        timerCircle.gameObject.SetActive(false);
         InGameManager.Instance.player.isControllable = true;
+        if (resurrection == true)
+        {
+            InGameManager.Instance.player.Resurrection();
+            resurrection = false;
+        }
+
+    }
+
+    //부활패널 오픈
+    public void OpenResurrection()
+    {
+        resurrectionPanel.SetActive(true);
+        StartCoroutine(ResurrectionTimer(5));
+    }
+    //광고 다 시청시 실행
+    public void DoneAD()
+    {
+        resurrectionPanel.SetActive(false);
+        adDone = true;
+        resurrection = true;
+        StartCoroutine(StartRestartTimer());
+    }
+    private IEnumerator ResurrectionTimer(float time)
+    {
+        float timer = time;
+        while(timer > 0)
+        {
+            timer -= Time.deltaTime;
+            resurrectionTimer.text = $"{(int)timer + 1}";
+            re_timerCircle.fillAmount = timer / time;
+            yield return null;
+        }
+        if(adDone == false)
+            InGameManager.Instance.GameOverMoveCP();
+    }
+    public void PressStartAd()
+    {
+        AdmobManager.Instance.ShowFrontAd();
+    }
+    public void PressDontRestart()
+    {
+        InGameManager.Instance.GameOverMoveCP();
     }
 }
