@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class Ingredient : MonoBehaviour
 {
-    SpriteRenderer spriteRenderer;
+    protected SpriteRenderer spriteRenderer;
 
     public int ingredientIdx = 0;
     public static readonly int negative = (int)Ingredients.Type.Kimchi;

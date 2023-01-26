@@ -131,6 +131,11 @@ public class InGameManager : Singleton<InGameManager>
         GameManager.Instance.GameOver(ingredients);
     }
 
+    public void AddIngredients(Ingredients.Type ingredientType)
+    {
+        ingredients.Add((int)ingredientType);
+        uiManager.UpdateIngredientsCount((int)ingredientType, ingredients.Count);
+    }
     public void AddIngredients(Ingredient ingredient)
     {
         ingredients.Add(ingredient.ingredientIdx);
