@@ -33,6 +33,7 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     [Space(10f)]
     [SerializeField] TextMeshProUGUI goldText;
     [SerializeField] TextMeshProUGUI macaronText;
+
     [Header("Stamina")]
     [SerializeField] GameObject[] heartGroup;
     [SerializeField] TextMeshProUGUI staminaText;
@@ -58,30 +59,36 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
 
     [Header("Quset")]
     public ScrollRect qusetScroll;
+
     public RectTransform[] qusetPanel;
+    public BoxCollider[] topUICoilider;
     public Button[] qusetButtons;
     public Sprite[] qusetButtonsSprite;
+
     public GameObject qusetPrefab;
     private int openingQusetPanel = 0;
-    public BoxCollider[] topUICoilider;
 
     [Header("Map")]
     public List<GameObject> mapLockPanel = new List<GameObject>();
     public MapEX SelectMap;
-    [Header("Start")]
+
+    [Header("Ability")]
     [SerializeField] GameObject startPanel;//정비 화면
     [SerializeField] GameObject reCheckPanel;//정비 화면에서 시작을 누를떄 나오는 이미지
 
     [SerializeField] Image abilityImage_Main;//클릭 했을떄 나오는 이미지
 
+    [SerializeField] TextMeshProUGUI MaxLvText;//최대 레벨일때 알려주는 경고창
     [SerializeField] TextMeshProUGUI abilityNameAndLV;//스킬 이름과 레벨텍스트
     [SerializeField] TextMeshProUGUI upgradeMoney;//가격 텍스트
-
     [SerializeField] TextMeshProUGUI abilityExplanation;//스킬 설명 텍스트
+    [SerializeField] TextMeshProUGUI[] abilityLvTMP = new TextMeshProUGUI[2];//스킬 설명 텍스트
+
     [SerializeField] Sprite[] abilitySprite = new Sprite[2];//스킬 이미지
 
     [SerializeField] Vector3 startOpenPos;
     [SerializeField] Vector3 startClosePos;
+
     [Header("Setting")]
     [SerializeField] Toggle bgmToggle;
     [SerializeField] Toggle sfxToggle;
@@ -146,6 +153,18 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
             moneyLessText.DOFade(0, 1).SetDelay(2).OnComplete(() =>
             {
                 moneyLessText.gameObject.SetActive(false);
+            });
+        });
+    }
+    public void MaxLVText()
+    {
+        MaxLvText.gameObject.SetActive(true);
+        MaxLvText.color = new Color(moneyLessText.color.r, moneyLessText.color.g, moneyLessText.color.b, 0);
+        MaxLvText.DOFade(1, 0.3f).OnComplete(() =>
+        {
+            MaxLvText.DOFade(0, 1).SetDelay(2).OnComplete(() =>
+            {
+                MaxLvText.gameObject.SetActive(false);
             });
         });
     }
@@ -251,13 +270,12 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     }
     protected void UpdateAbility()
     {
+        abilityLvTMP[0].text = $"LV.{GameManager.Instance.maxHpLv}";
+        abilityLvTMP[1].text = $"LV.{GameManager.Instance.defenseLv}";
         switch (SelectAbility)
         {
             case 0:
                 {
-                    if (GameManager.Instance.maxHpLv >= 50)
-                        break;
-
                     abilityImage_Main.sprite = abilitySprite[SelectAbility];
                     abilityNameAndLV.text = $"최대 체력 LV.{GameManager.Instance.maxHpLv}";
                     upgradeMoney.text = $"{5000 + (GameManager.Instance.maxHpLv - 1) * 500} Gold";
@@ -266,9 +284,6 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
                 }
             case 1:
                 {
-                    if (GameManager.Instance.defenseLv >= 50)
-                        break;
-
                     abilityImage_Main.sprite = abilitySprite[SelectAbility];
                     abilityNameAndLV.text = $"충돌 데미지 감소 LV.{GameManager.Instance.defenseLv}";
                     upgradeMoney.text = $"{5000 + (GameManager.Instance.defenseLv - 1) * 500} Gold";
@@ -288,11 +303,21 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
         {
             case 0:
                 {
-                    GameManager.Instance.maxHpLv++;
+                    if(GameManager.Instance.maxHpLv >= 50)
+                    {
+                        MaxLVText();
+                    }
+                    else
+                        GameManager.Instance.maxHpLv++;
                     break;
                 }
             case 1:
                 {
+                    if (GameManager.Instance.defenseLv >= 30)
+                    {
+                        MaxLVText();
+                    }
+                    else
                     GameManager.Instance.defenseLv++;
                     break;
                 }
@@ -300,7 +325,6 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
         }
         UpdateAbility();
     }
-
 
     public void OpenStartPanel()
     {
@@ -312,7 +336,6 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
         }
         else
         {
-       
             reCheckPanel.SetActive(true);
         }
     }
