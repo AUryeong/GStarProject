@@ -11,7 +11,7 @@ public class GameManager : Singleton<GameManager>
     public bool inGaming = true;
     [Header("InGameStats")]
     public Breads.Type selectBread = Breads.Type.Milk;
-    public int selectMap;
+    public Map selectMap;
 
     [Header("Assets")]
     public int gold;

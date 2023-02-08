@@ -6,6 +6,7 @@ using UnityEngine.Serialization;
 public enum Map
 {
     Cafe,
+    Sandwich,
     Food,
     Kitchen,
     BreadShop
@@ -13,33 +14,30 @@ public enum Map
 
 public class MapManager : MonoBehaviour
 {
-    [Header("맵")]
-    public float platformMapLength = 86.96436f;
-    
-    [Space(20)]
-    [SerializeField] protected GameObject firstMap;
-    [SerializeField] protected GameObject ovenMap;
+    public List<MapData> mapDatas = new List<MapData>();
+    public MapData selectMapData { get; private set; }
+    [SerializeField] private SpriteRenderer cameraBackground;
+    [SerializeField] private SpriteRenderer cameraBackground2;
 
-    [FormerlySerializedAs("firstMapList")] [SerializeField]
-    protected List<GameObject> mapList;
+    private float[] mapBGLength;
 
     protected int mapSize = 1;
     public readonly int ovenMapSize = 10;
     private float mapLength;
     private List<GameObject> createdMapList = new List<GameObject>();
 
-    private float[] mapBGLength;
-    [SerializeField] protected SpriteRenderer[] mapBGList;
     protected Dictionary<int, List<GameObject>> mapDictionary = new Dictionary<int, List<GameObject>>();
-    [SerializeField] protected float[] platformmapBGLength;
-
-    [SerializeField] protected float[] platformmapBGSpeed;
 
     // Start is called before the first frame update
     public void Init()
     {
-        mapBGLength = new float[mapBGList.Length];
-        mapLength = platformMapLength / 2;
+        selectMapData = mapDatas[(int)GameManager.Instance.selectMap];
+
+        cameraBackground.sprite = selectMapData.cameraBackgroundSprite;
+        cameraBackground2.sprite = selectMapData.cameraBackgroundSprite;
+
+        mapBGLength = new float[selectMapData.mapBGList.Length];
+        mapLength = selectMapData.platformMapLength / 2;
 
         for (int i = 0; i < mapBGLength.Length; i++)
             mapDictionary.Add(i, new List<GameObject>());
@@ -50,7 +48,7 @@ public class MapManager : MonoBehaviour
 
     private void CreateFirstPlatform()
     {
-        var platform = PoolManager.Instance.Init(firstMap);
+        var platform = PoolManager.Instance.Init(selectMapData.firstMap);
         platform.transform.position = new Vector3(0, 1.5f, 0);
         if (!createdMapList.Contains(platform))
             createdMapList.Add(platform);
@@ -67,11 +65,11 @@ public class MapManager : MonoBehaviour
 
         GameObject platform;
         if (mapSize % ovenMapSize == 0)
-            platform = PoolManager.Instance.Init(ovenMap);
+            platform = PoolManager.Instance.Init(selectMapData.ovenMap);
         else
-            platform = PoolManager.Instance.Init(mapList[Random.Range(0, mapList.Count)]);
-        platform.transform.position = new Vector3(mapLength + platformMapLength / 2, 1.5f, 0);
-        mapLength += platformMapLength;
+            platform = PoolManager.Instance.Init(selectMapData.mapList[Random.Range(0, selectMapData.mapList.Count)]);
+        platform.transform.position = new Vector3(mapLength + selectMapData.platformMapLength / 2, 1.5f, 0);
+        mapLength += selectMapData.platformMapLength;
         mapSize++;
         if (!createdMapList.Contains(platform))
             createdMapList.Add(platform);
@@ -88,12 +86,12 @@ public class MapManager : MonoBehaviour
     {
         for (int i = 0; i < mapBGLength.Length; i++)
         {
-            if (platformmapBGSpeed.Length > i)
+            if (selectMapData.platformmapBGSpeed.Length > i)
             {
-                if (platformmapBGSpeed[i] != 0)
+                if (selectMapData.platformmapBGSpeed[i] != 0)
                 {
-                    mapBGLength[i] += platformmapBGSpeed[i] * Time.deltaTime;
-                    var power = new Vector3(platformmapBGSpeed[i] * Time.deltaTime, 0, 0);
+                    mapBGLength[i] += selectMapData.platformmapBGSpeed[i] * Time.deltaTime;
+                    var power = new Vector3(selectMapData.platformmapBGSpeed[i] * Time.deltaTime, 0, 0);
                     foreach (var obj in mapDictionary[i])
                     {
                         if (obj.gameObject.activeSelf)
@@ -116,9 +114,9 @@ public class MapManager : MonoBehaviour
                     disableObj.gameObject.SetActive(false);
         }
 
-        GameObject obj = PoolManager.Instance.Init(mapBGList[index].gameObject);
-        obj.transform.position = new Vector3(mapBGLength[index], mapBGList[index].transform.position.y, mapBGList[index].transform.position.z);
-        mapBGLength[index] += platformmapBGLength[index];
+        GameObject obj = PoolManager.Instance.Init(selectMapData.mapBGList[index].gameObject);
+        obj.transform.position = new Vector3(mapBGLength[index], selectMapData.mapBGList[index].transform.position.y, selectMapData.mapBGList[index].transform.position.z);
+        mapBGLength[index] += selectMapData.platformmapBGLength[index];
         if (!createdMapList.Contains(obj))
             createdMapList.Add(obj);
         if (!mapDictionary[index].Contains(obj))

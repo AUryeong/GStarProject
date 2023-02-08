@@ -2855,6 +2855,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2974bb76b33e4474ebe2dd99232209d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  map: 1
   Name: "\uC0CC\uB4DC\uC704\uCE58 \uAC00\uAC8C"
   Sprite: {fileID: 0}
   Rank: 1
@@ -3198,6 +3199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2974bb76b33e4474ebe2dd99232209d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  map: 0
   Name: "\uCE74\uD398"
   Sprite: {fileID: 0}
   Rank: 1
@@ -3219,7 +3221,7 @@ MonoBehaviour:
   SelectButton: {fileID: 2009165802}
   priceText: {fileID: 711521689}
   Lock: 0
-  isBuy: 0
+  isBuy: 1
 --- !u!1 &362377966
 GameObject:
   m_ObjectHideFlags: 0
@@ -4421,6 +4423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2974bb76b33e4474ebe2dd99232209d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  map: 3
   Name: "\uC8FC\uBC29"
   Sprite: {fileID: 0}
   Rank: 2
@@ -4440,9 +4443,9 @@ MonoBehaviour:
   MapInspector: {fileID: 1786428369}
   LockPanel: {fileID: 390271751}
   SelectButton: {fileID: 2082153997}
-  priceText: {fileID: 0}
+  priceText: {fileID: 1459142821}
   Lock: 1
-  isBuy: 1
+  isBuy: 0
 --- !u!1 &493419566
 GameObject:
   m_ObjectHideFlags: 0
@@ -6688,6 +6691,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2974bb76b33e4474ebe2dd99232209d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  map: 4
   Name: "\uBE75\uC9D1"
   Sprite: {fileID: 0}
   Rank: 3
@@ -6707,9 +6711,9 @@ MonoBehaviour:
   MapInspector: {fileID: 633089716}
   LockPanel: {fileID: 283457493}
   SelectButton: {fileID: 2082672190}
-  priceText: {fileID: 0}
+  priceText: {fileID: 2124863703}
   Lock: 1
-  isBuy: 1
+  isBuy: 0
 --- !u!1 &792672731
 GameObject:
   m_ObjectHideFlags: 0
@@ -10906,6 +10910,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2974bb76b33e4474ebe2dd99232209d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  map: 2
   Name: "\uD478\uB4DC\uCF54\uD2B8"
   Sprite: {fileID: 0}
   Rank: 2
@@ -10925,9 +10930,9 @@ MonoBehaviour:
   MapInspector: {fileID: 1857807363}
   LockPanel: {fileID: 1985361087}
   SelectButton: {fileID: 1240328741}
-  priceText: {fileID: 0}
+  priceText: {fileID: 581808129}
   Lock: 1
-  isBuy: 1
+  isBuy: 0
 --- !u!1 &1273200111
 GameObject:
   m_ObjectHideFlags: 0
@@ -15753,7 +15758,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1275889323}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.999942
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -15876,7 +15881,12 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 58d59123cf5cbb943a56f5098c2bee33, type: 3}
   qusetPrefab: {fileID: 1434964374479437888, guid: 349fdf4f58b7047419f8b70ee68ec67b, type: 3}
   mapLockPanel: []
-  SelectMap: {fileID: 361369822}
+  mapExList:
+  - {fileID: 361369822}
+  - {fileID: 333118953}
+  - {fileID: 1257822795}
+  - {fileID: 491073484}
+  - {fileID: 769651642}
   startPanel: {fileID: 561392397}
   reCheckPanel: {fileID: 1173106161}
   abilityImage_Main: {fileID: 2038908706}
@@ -19070,7 +19080,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000017653932}
+  m_AnchoredPosition: {x: 0, y: 0.00003972387}
   m_SizeDelta: {x: 0, y: 20}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2049428066
