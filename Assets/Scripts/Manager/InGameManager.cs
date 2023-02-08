@@ -46,6 +46,7 @@ public class InGameManager : Singleton<InGameManager>
     {
         base.Awake();
         breadType = GameManager.Instance.selectBread;
+        Debug.Log(breadType);
         player = Instantiate(breadArray[(int)breadType].gameObject, startPos, transform.rotation).GetComponent<Player>();
         player.transform.localScale = Vector3.one * 1.2f;
 
