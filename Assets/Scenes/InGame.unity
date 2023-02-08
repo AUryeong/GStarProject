@@ -679,6 +679,7 @@ MonoBehaviour:
   mapDatas:
   - {fileID: 11400000, guid: ed0a35a69f57d03469c6821a3353e6d9, type: 2}
   - {fileID: 11400000, guid: ed0a35a69f57d03469c6821a3353e6d9, type: 2}
+  - {fileID: 11400000, guid: d38a13e64e790ce4e99a348d6eca1426, type: 2}
   cameraBackground: {fileID: 1210933303}
   cameraBackground2: {fileID: 752763112}
 --- !u!1 &139077345
@@ -10134,7 +10135,7 @@ MonoBehaviour:
   breads: {fileID: 11400000, guid: 5b31b5c9ae4ed8d4ba162f0581743b00, type: 2}
   inGaming: 1
   selectBread: 13
-  selectMap: 1
+  selectMap: 2
   gold: 0
   macaron: 0
   stamina: 7

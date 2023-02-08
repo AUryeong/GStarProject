@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7db867ca393449fa48c7e4658bfe65e, type: 3}
+  m_Name: Food
+  m_EditorClassIdentifier: 
+  cameraBackgroundSprite: {fileID: 0}
+  platformMapLength: 86.23438
+  firstMap: {fileID: 1151904946972779616, guid: 11179fe0a0b119243b73a5d184e75a0e, type: 3}
+  ovenMap: {fileID: 4265805884578163309, guid: 84ffef761649c4b4388728fe68cc6f69, type: 3}
+  mapList:
+  - {fileID: 4664525176380709369, guid: fb0592d94c477e94a966dfa63ceee470, type: 3}
+  - {fileID: 664346270302558355, guid: fef7d258a3aa490409c8f37772015619, type: 3}
+  - {fileID: 440595828935441628, guid: 9820b0f1a71c5cf479ef9af150cc3b27, type: 3}
+  - {fileID: 6831428356240710090, guid: 0e2ef04fbef91624494fd81b2a4366ff, type: 3}
+  - {fileID: 1219038319689572117, guid: 18310fc8fe7563d4c8f2f0aa662a70de, type: 3}
+  - {fileID: 2203728993754448521, guid: c40ac0150d8a55b4f965f9c33ec31c9f, type: 3}
+  - {fileID: 2931120346731013687, guid: eb76a6d061da4204891997073f1ca71a, type: 3}
+  - {fileID: 8122096862824070797, guid: 9e9cd251c2f3d6a47b35f46c65ca2dc0, type: 3}
+  - {fileID: 5166193762316735957, guid: 465de06feafc1c145997685c480d27fd, type: 3}
+  - {fileID: 1047163324858513705, guid: bfefd132f1fe94645a4a3c19aaff5b99, type: 3}
+  - {fileID: 4084594287080796113, guid: e357871fd435d524b9da1c8293a76c82, type: 3}
+  - {fileID: 4573112734616654501, guid: 738622904d68fbe4d81fe87a94b222c6, type: 3}
+  - {fileID: 2233790324798259115, guid: 9035501358eb99e49b657a9ccd952e19, type: 3}
+  - {fileID: 8791341216693575911, guid: 85ae13d23820082428873385336a21a0, type: 3}
+  - {fileID: 2633096300085539844, guid: 00af77bf6981baa43bebe4e68d9f511a, type: 3}
+  - {fileID: 47628694620577829, guid: 3ed46a71998899a47902d98b2671f8b8, type: 3}
+  mapBGList: []
+  platformmapBGLength: []
+  platformmapBGSpeed: []
