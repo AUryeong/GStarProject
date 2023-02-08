@@ -30,6 +30,8 @@ public class InGameManager : Singleton<InGameManager>
     public RectTransform sesameIngredientsParent;
     public Image[] sesameIngredients;
 
+    [Header("토스트용")] public Image toastDarkPanel;
+
     [Header("이외")]
     public int gold;
 
@@ -57,6 +59,9 @@ public class InGameManager : Singleton<InGameManager>
 
         if (player is Player_Sesame)
             sesameIngredientsParent.gameObject.SetActive(true);
+
+        if (player is Player_Toast)
+            toastDarkPanel.gameObject.SetActive(true);
 
         SoundManager.Instance.PlaySoundClip("BGM_Cafe", ESoundType.BGM);
     }
