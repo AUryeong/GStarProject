@@ -72,7 +72,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7483373927064081818}
   - component: {fileID: 4787224904342934516}
-  - component: {fileID: 8532153885837052042}
   - component: {fileID: 2535676509619287751}
   m_Layer: 6
   m_Name: Foodcourt_Platform_long
@@ -146,32 +145,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &8532153885837052042
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3790430133807596939}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 86.234375, y: 1.65625}
-    newSize: {x: 55.66359, y: 1.06}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 86.234375, y: 1.65625}
-  m_EdgeRadius: 0
 --- !u!61 &2535676509619287751
 BoxCollider2D:
   m_ObjectHideFlags: 0
