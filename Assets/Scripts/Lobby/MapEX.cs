@@ -13,7 +13,9 @@ public class MapEX : MonoBehaviour
     [SerializeField] string Inspector;
     [SerializeField] int price;
 
-    public bool Select { set 
+    public bool Select 
+    { 
+        set 
         {
             if(value == false)
                 SelectButton.image.sprite = buttonImage[0];
@@ -42,6 +44,7 @@ public class MapEX : MonoBehaviour
         {
             Ranks[i].color = Color.white;
         }
+
         SelectButton.onClick.AddListener(() => Buy());
     }
     void Buy()
@@ -58,6 +61,17 @@ public class MapEX : MonoBehaviour
             GameManager.Instance.gold -= price;
             isBuy = true;
         }
+    }
 
+    public void BuySetting(bool buy)
+    {
+        isBuy = buy;
+        if (buy)
+        {
+            Lock = false;
+            LockPanel.gameObject.SetActive(Lock);
+        }
+        priceText.gameObject.SetActive(!buy);
+        SelectButton.image.sprite = buy ? buttonImage[0] : buttonImage[2];
     }
 }
