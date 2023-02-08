@@ -209,7 +209,8 @@ public class IngameUIManager : Singleton<IngameUIManager>
     }
     private void UpdateOvenBar()
     {
-        OvenBar.value = (InGameManager.Instance.player.transform.position.x % (InGameManager.Instance.platformMapLength * InGameManager.Instance.ovenMapSize)) / (InGameManager.Instance.platformMapLength * InGameManager.Instance.ovenMapSize);
+        var mapManager = InGameManager.Instance.mapManager;
+        OvenBar.value = InGameManager.Instance.player.transform.position.x % (mapManager.platformMapLength * mapManager.ovenMapSize) / (mapManager.platformMapLength * mapManager.ovenMapSize);
     }
     public IEnumerator StartRestartTimer()
     {

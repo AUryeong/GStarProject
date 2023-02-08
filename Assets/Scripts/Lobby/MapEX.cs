@@ -6,6 +6,7 @@ using TMPro;
 
 public class MapEX : MonoBehaviour
 {
+    public Map map;
     [SerializeField] string Name;
     [SerializeField] Sprite Sprite;
     [SerializeField] int Rank;

@@ -9,23 +9,11 @@ public class InGameManager : Singleton<InGameManager>
     [SerializeField] private List<int> ingredients = new List<int>();
     private Vector3 cameraDistance = new Vector3(6, 2.5f, -10);
     public IngameUIManager uiManager;
+    public MapManager mapManager;
     public Player player
     {
         get; private set;
     }
-
-    [Header("맵")]
-    [SerializeField] protected List<GameObject> firstMapList;
-    [SerializeField] protected GameObject ovenMap;
-    protected int mapSize = 1;
-    public readonly int ovenMapSize = 10;
-    public float mapLength { get; private set; } = 43.48718f;
-    public readonly float platformMapLength = 86.96436f;
-    protected List<GameObject> mapList = new List<GameObject>();
-
-    protected float[] mapBGLength;
-    [SerializeField] protected SpriteRenderer[] mapBGList;
-    [SerializeField] protected float[] platformmapBGLength;
 
     [Header("이펙트")]
     public ParticleSystem boostEffect;
@@ -65,51 +53,19 @@ public class InGameManager : Singleton<InGameManager>
         magnetEffect.transform.localPosition = Vector3.zero;
         toasterEffect.transform.SetParent(player.transform);
         toasterEffect.transform.localPosition = Vector3.zero;
-        mapBGLength = new float[mapBGList.Length];
+        mapManager.Init();
 
         if (player is Player_Sesame)
             sesameIngredientsParent.gameObject.SetActive(true);
 
         SoundManager.Instance.PlaySoundClip("BGM_Cafe", ESoundType.BGM);
-        AddNewPlatform();
     }
-    protected void AddNewPlatform()
-    {
-        foreach (GameObject obj in mapList)
-        {
-            if (obj.gameObject.activeSelf)
-                if (mapLength - obj.transform.position.x > 45)
-                    obj.gameObject.SetActive(false);
-        }
-        GameObject platform;
-        if (mapSize % ovenMapSize == 0)
-            platform = PoolManager.Instance.Init(ovenMap);
-        else
-            platform = PoolManager.Instance.Init(firstMapList[Random.Range(0, firstMapList.Count)]);
-        platform.transform.position = new Vector3(mapLength + platformMapLength / 2, 1.5f, 0);
-        mapLength += platformMapLength;
-        mapSize++;
-        if (!mapList.Contains(platform))
-            mapList.Add(platform);
-    }
+   
     private void Update()
     {
         if (player.isControllable)
             CameraMove();
-        if (mapLength - player.transform.position.x < 15)
-            AddNewPlatform();
-        for(int i = 0; i < mapBGLength.Length; i++)
-            if (mapBGLength[i] - player.transform.position.x < 100)
-                AddNewBackground(i);
-    }
-
-    protected void AddNewBackground(int index)
-    {
-        GameObject obj =  PoolManager.Instance.Init(mapBGList[index].gameObject);
-        obj.transform.position = new Vector3(mapBGLength[index], mapBGList[index].transform.position.y, mapBGList[index].transform.position.z);
-        mapBGLength[index] += platformmapBGLength[index];
-        if (!mapList.Contains(obj))
-            mapList.Add(obj);
+        mapManager.MapUpdate();
     }
     protected void CameraMove()
     {

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6698803737880279367}
   - component: {fileID: 8993536599569806836}
-  - component: {fileID: 6551540833673892068}
+  - component: {fileID: 2859394656044403207}
   m_Layer: 6
   m_Name: cafe_platform_long
   m_TagString: Untagged
@@ -83,7 +83,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &6551540833673892068
+--- !u!61 &2859394656044403207
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -100,14 +100,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 86.97436, y: 1.65625}
+    oldSize: {x: 86.234375, y: 1.65625}
     newSize: {x: 55.66359, y: 1.06}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 86.97436, y: 1.65625}
+  m_Size: {x: 86.234375, y: 1.65625}
   m_EdgeRadius: 0
 --- !u!1 &1669004444010440641
 GameObject:
