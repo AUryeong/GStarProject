@@ -60,9 +60,6 @@ public class InGameManager : Singleton<InGameManager>
         if (player is Player_Sesame)
             sesameIngredientsParent.gameObject.SetActive(true);
 
-        if (player is Player_Toast)
-            toastDarkPanel.gameObject.SetActive(true);
-
         SoundManager.Instance.PlaySoundClip("BGM_Cafe", ESoundType.BGM);
     }
    
@@ -90,6 +87,11 @@ public class InGameManager : Singleton<InGameManager>
     {
         GameManager.Instance.gold += gold;
         GameManager.Instance.GameOver(ingredients);
+    }
+
+    public void AddIngredients(int ingredientIdx) {
+        ingredients.Add(ingredientIdx);
+        uiManager.UpdateIngredientsCount(ingredientIdx, ingredients.Count);
     }
 
     public void AddIngredients(Ingredients.Type ingredientType)

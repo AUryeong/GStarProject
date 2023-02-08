@@ -5,6 +5,12 @@ public class Player_Toast : Player
 {
     public float power;
     public float hpHealValue = 2;
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        InGameManager.Instance.toastDarkPanel.gameObject.SetActive(true);
+    }
     
     protected override void LiveUpdate(float deltaTime)
     {
