@@ -180,7 +180,7 @@ public class Player : MonoBehaviour
         Collider2D[] getableColiders = Physics2D.OverlapCircleAll(transform.position, magnetSize * Mathf.Max(idleColiderSize.size.x, idleColiderSize.size.y), LayerMask.GetMask("Getable"));
         foreach (var colider in getableColiders)
         {
-            colider.transform.Translate((transform.position - colider.transform.position).normalized * magnetMoveSpeed * deltaTime);
+            colider.transform.Translate((transform.position - colider.transform.position).normalized * (magnetMoveSpeed * deltaTime));
         }
     }
 
