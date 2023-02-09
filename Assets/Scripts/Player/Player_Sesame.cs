@@ -11,6 +11,7 @@ public class Player_Sesame : Player
     protected override void OnEnable()
     {
         base.OnEnable();
+        InGameManager.Instance.sesameIngredientsParent.gameObject.SetActive(true);
         ReRoll();
     }
 

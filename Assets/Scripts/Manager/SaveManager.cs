@@ -4,7 +4,7 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
-[System.Serializable] // Á÷·ÄÈ­
+[System.Serializable] // ï¿½ï¿½ï¿½ï¿½È­
 
 public class GameData
 {
@@ -20,6 +20,8 @@ public class GameData
     public bool sfxActive;
     public bool uiFlip;
     public Breads.Type selectBread = Breads.Type.Milk;
+    public Map selectMap = Map.Cafe;
+    public List<Map> buyMaps = new List<Map>() { Map.Cafe }; 
     public List<Quests> questData = new List<Quests>();
     public List<Bread> breadData = new List<Bread>();
 
@@ -97,6 +99,7 @@ public class SaveManager : Singleton<SaveManager>
         GameManager.Instance.selectBread = gameData.selectBread;
         GameManager.Instance.defenseLv = gameData.defenseLv;
         GameManager.Instance.maxHpLv = gameData.maxHpLv;
+        GameManager.Instance.selectMap = gameData.selectMap;
         foreach (var quests in gameData.questData)
         {
             var questList = QusetManager.Instance.qusetScriptables[(int)quests.qusetType].QusetList;
@@ -134,6 +137,7 @@ public class SaveManager : Singleton<SaveManager>
         gameData.selectBread = GameManager.Instance.selectBread;
         gameData.defenseLv = GameManager.Instance.defenseLv;
         gameData.maxHpLv = GameManager.Instance.maxHpLv;
+        gameData.selectMap = GameManager.Instance.selectMap;
         gameData.questData.Clear();
         for (int i = 0; i < QusetManager.Instance.qusetScriptables.Length; i++)
         {
