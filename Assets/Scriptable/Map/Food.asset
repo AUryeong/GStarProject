@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7db867ca393449fa48c7e4658bfe65e, type: 3}
   m_Name: Food
   m_EditorClassIdentifier: 
-  cameraBackgroundSprite: {fileID: 0}
+  cameraBackgroundSprite: {fileID: 21300000, guid: 3435530b6e76f5e4180f0a7ea8721928, type: 3}
   platformMapLength: 86.23438
   firstMap: {fileID: 1151904946972779616, guid: 11179fe0a0b119243b73a5d184e75a0e, type: 3}
   ovenMap: {fileID: 4265805884578163309, guid: 84ffef761649c4b4388728fe68cc6f69, type: 3}
@@ -33,6 +33,12 @@ MonoBehaviour:
   - {fileID: 8791341216693575911, guid: 85ae13d23820082428873385336a21a0, type: 3}
   - {fileID: 2633096300085539844, guid: 00af77bf6981baa43bebe4e68d9f511a, type: 3}
   - {fileID: 47628694620577829, guid: 3ed46a71998899a47902d98b2671f8b8, type: 3}
-  mapBGList: []
-  platformmapBGLength: []
+  mapBGList:
+  - {fileID: 6224731480761649120, guid: af42d67614a97c5499b2e3b4d0193e5f, type: 3}
+  - {fileID: 1644472159673587036, guid: 5448452be63d3be4a9d446835b031041, type: 3}
+  - {fileID: 230635579787882957, guid: 7b055f1490cc68845b8ff2241456ebbd, type: 3}
+  platformmapBGLength:
+  - 90
+  - 70
+  - 60
   platformmapBGSpeed: []
