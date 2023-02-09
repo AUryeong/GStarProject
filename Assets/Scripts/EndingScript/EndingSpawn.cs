@@ -142,12 +142,12 @@ public class EndingSpawn : Singleton<EndingSpawn>
     private IEnumerator UseAbility(int nevIngCount = 0) // 재료 패털티 무시하는 갯수
     {
         yield return new WaitForSeconds(1f);
-        for (int statIdx = nevIngCount; totalSideCount > statIdx; statIdx++)
+        for (int stackIdx = nevIngCount; totalSideCount > stackIdx; stackIdx++)
         {
             //                                                                    Z값은 -10으로 고정
             Vector3 sideObjPos = SandWichObject[a_sideCount].transform.position + Vector3.forward * -10;
             Camera.main.transform.position = sideObjPos;
-            switch (stats[statIdx].name)
+            switch (stats[stackIdx].name)
             {
                 case Ingredients.Type.Kimchi: //위 아래 재료들 사이즈 50%감소
                 {
@@ -188,8 +188,8 @@ public class EndingSpawn : Singleton<EndingSpawn>
 
                     break;
                 }
-                case Ingredients.Type.Cilantro: //모든 재료들 10%감소
-                {
+                case Ingredients.Type.Cilantro: //지금까지 쌓인 재료의 두께 1cm 감소
+                    {
                     for (int sideIdx = a_sideCount - 1; sideIdx >= 0; sideIdx--)
                     {
                         if (stats[sideIdx].Size > 1) stats[sideIdx].Size -= 1;
@@ -204,7 +204,7 @@ public class EndingSpawn : Singleton<EndingSpawn>
                     if (a_sideCount >= totalSideCount)
                         break;
 
-                    stats[statIdx].Size -= stats[a_sideCount + 1].Size;
+                    stats[stackIdx].Size -= stats[a_sideCount + 1].Size;
                     Debuff(SandWichObject[a_sideCount + 1]);
                     break;
                 }
@@ -225,6 +225,26 @@ public class EndingSpawn : Singleton<EndingSpawn>
 
                     break;
                 }
+                case Ingredients.Type.LiveOctopus://이 재료가 맨 위에일때 10CM 증가 ,위에 2개 재료 삭제
+                    {
+                        if (a_sideCount >= totalSideCount)
+                        {
+                            stats[stackIdx].Size += 10;
+                            break;
+                        }
+
+                        int beforeCount = totalSideCount - 1;
+                        for (int i = 0; i < 2 && beforeCount > a_sideCount + i; i++)
+                        {
+                            yield return new WaitForSeconds(0.3f);
+                            Destroy(SandWichObject[a_sideCount + 1]);
+                            stats.Remove(stats[a_sideCount + 1]);
+                            SandWichObject.Remove(SandWichObject[a_sideCount + 1]);
+                            totalSideCount--;
+                        }
+
+                        break;
+                    }
             }
 
             a_sideCount++;
