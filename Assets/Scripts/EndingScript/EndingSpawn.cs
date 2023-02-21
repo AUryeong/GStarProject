@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 using TMPro;
 
 public class EndingSpawn : Singleton<EndingSpawn>
@@ -25,8 +26,11 @@ public class EndingSpawn : Singleton<EndingSpawn>
 
     private float limitValue = 0; //카메라 이동 범위 값
     private int cm = 0; //총 쌓인 CM
-    [SerializeField] private int totalSideCount;
-    [SerializeField] private int a_sideCount = 0; //재료 능력 발동할때 순서를 체크할때 사용합니다.
+    private int totalSideCount;
+    private int a_sideCount = 0; //재료 능력 발동할때 순서를 체크할때 사용합니다.
+
+    [Header("Button")]
+    public GameObject buttonGroup;
 
     public void Spawn(int breadIdx, List<int> insideList, List<int> nevIngList = null)
     {
@@ -246,11 +250,15 @@ public class EndingSpawn : Singleton<EndingSpawn>
 
                         break;
                     }
+                default:
+                    a_sideCount++;
+                    continue;
             }
 
             a_sideCount++;
             yield return new WaitForSeconds(0.5f);
         }
+        ButtonUp();
     }
 
     private void Debuff(GameObject particleObject)
@@ -276,7 +284,13 @@ public class EndingSpawn : Singleton<EndingSpawn>
         if (spawnSpeed > 4)
             spawnSpeed = 1;
 
-        speedText.text = $"{spawnSpeed}";
+        speedText.text = $"X{spawnSpeed}";
         Time.timeScale = spawnSpeed;
+    }
+
+    private void ButtonUp()
+    {
+        Debug.Log("aa");
+        buttonGroup.transform.DOLocalMove(new Vector3(0,0,0), 1,false).SetEase(Ease.OutBounce);
     }
 }

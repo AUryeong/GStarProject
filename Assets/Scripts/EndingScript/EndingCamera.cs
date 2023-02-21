@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class EndingCamera : MonoBehaviour
 {
@@ -16,10 +17,7 @@ public class EndingCamera : MonoBehaviour
     [SerializeField] private float M_ZoomSpeed;//∏πŸ¿œ ¡‹ º”µµ 
     [SerializeField] private float P_ZoomSpeed;//PC ¡‹ º”µµ
 
-    void Start()
-    {
-    }
-
+    
     void Update()
     {
         DragMove();
@@ -116,4 +114,5 @@ public class EndingCamera : MonoBehaviour
     {
         SceneManager.LoadScene("Lobby");
     }
+    
 }
