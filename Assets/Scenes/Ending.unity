@@ -494,7 +494,7 @@ MonoBehaviour:
   CameraMove: 0
   MoveLimitValue: 0
   M_ZoomSpeed: 0.5
-  P_ZoomSpeed: 20
+  P_ZoomSpeed: 30
 --- !u!114 &248715641
 MonoBehaviour:
   m_ObjectHideFlags: 0
