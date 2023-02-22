@@ -14,6 +14,8 @@ public class EndingSpawn : Singleton<EndingSpawn>
 
     private List<GameObject> SandWichObject = new List<GameObject>(); //샌드위치에 있는 오브젝트들
 
+    [SerializeField] private GameObject SpawnBlockObject; // 죽빵용 장애물용 재료
+
     [SerializeField] private GameObject SpawnObject;
 
     [SerializeField] private TextMeshProUGUI CMTextObcject;
@@ -35,6 +37,74 @@ public class EndingSpawn : Singleton<EndingSpawn>
     public void Spawn(int breadIdx, List<int> insideList, List<int> nevIngList = null)
     {
         StartCoroutine(MakeSandwich(breadIdx, insideList, nevIngList));
+    }
+    public void SpawnForPunch(int breadIdx, List<int> insideList, List<Sprite> blockSpriteList)
+    {
+        StartCoroutine(MakeSandwichPunch(breadIdx, insideList, blockSpriteList));
+    }
+
+    IEnumerator MakeSandwichPunch(int breadIdx, List<int> insideList, List<Sprite> blockSpriteList)
+    {
+        totalSideCount = insideList.Count;
+        SpawnBread(breadIdx, 0); //아래쪽 빵 스폰
+
+        yield return new WaitForSeconds(1.5f);
+
+        float totalValue = 0;
+
+        for (int i = 0; i < totalSideCount; i++)
+        {
+            Vector3 pos = transform.position;
+            Vector2 colliderOffset;
+            if (insideList[i] >= blockSpriteList.Count/2f) // 매달리는 경우
+            {
+                pos += new Vector3(-2.25f, 0, 0);
+                colliderOffset = new Vector2(0, -3);
+            }
+            else
+            {
+                pos += new Vector3(0.875f, 0, 0);
+                colliderOffset = new Vector2(0, 1.25f);
+            }
+            SandWichObject.Add(Instantiate(SpawnBlockObject, pos, Quaternion.Euler(0,0,90)));
+            SandWichObject[i].GetComponent<SideBlockObject>().SettingObject(blockSpriteList[insideList[i]], colliderOffset, i + 2); //재료 정보와 레이어 순서는 2번부터 시작
+
+            
+            Vector3 upPos = Vector3.up;
+            transform.position += upPos;
+
+            totalValue += 1f;
+            if (totalValue >= 2) //화면의 중간까지 올라왔을떄 화면이 올라감
+            {
+                float timer = 0;
+
+                limitValue += 1;
+
+                Vector3 CameraPos = Camera.main.transform.position;
+                Vector3 targetPos = CameraPos + upPos;
+                cm += 1;
+
+                while (timer < 1f)
+                {
+                    Camera.main.transform.position = Vector3.Lerp(CameraPos, targetPos, timer); // 콜라이더 사이즈만큼 카메라 위로 이동
+                    timer += Time.deltaTime * 3;
+                    yield return null;
+                }
+            }
+
+            yield return new WaitForSeconds(0.5f);
+        }
+
+        yield return new WaitForSeconds(1.5f);
+
+        Camera.main.GetComponent<Camera>().orthographicSize += ZoomOut;
+        Camera.main.GetComponent<EndingCamera>().MoveLimitValue = limitValue;
+        Camera.main.GetComponent<EndingCamera>().CameraMove = true;
+
+        SpawnBread(breadIdx, 1); //위쪽 빵 스폰
+        ButtonUp();
+        CmText(cm);
+        yield return null;
     }
 
     IEnumerator MakeSandwich(int BreadIdx, List<int> insideList, List<int> nevIngList = null)

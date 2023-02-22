@@ -966,7 +966,7 @@ MonoBehaviour:
   - {fileID: 6148039255070333001, guid: f029403e818610449bcfeca62e678424, type: 3}
   - {fileID: 7310025685894621478, guid: d6acdb631f593e34ba7dc7805770081c, type: 3}
   - {fileID: 6979276265400207888, guid: 7111c3b3aa6188040a38ca3f566b92a1, type: 3}
-  - {fileID: 6148039255070333001, guid: f029403e818610449bcfeca62e678424, type: 3}
+  - {fileID: 515686843321011505, guid: f23dbe90afc731e4aa565844f4368c96, type: 3}
   - {fileID: 1550404406684823248, guid: a7a9600e3aaf32b479d921d69f5ff4df, type: 3}
   - {fileID: 6434328978134316475, guid: 68d86553ea57350409e812c220de8b99, type: 3}
   - {fileID: 4395555969316631500, guid: 943905dc2e8c03045891a1002a63db01, type: 3}
@@ -10134,7 +10134,7 @@ MonoBehaviour:
   Inside: {fileID: 11400000, guid: 2e224c58cda19024abf407faf4f77ea8, type: 2}
   breads: {fileID: 11400000, guid: 5b31b5c9ae4ed8d4ba162f0581743b00, type: 2}
   inGaming: 1
-  selectBread: 13
+  selectBread: 4
   selectMap: 2
   gold: 0
   macaron: 0

@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a29bc04a46cc4643af5f8e049002ec3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ingredientIdx: 0
+  isNegative: 0
 --- !u!61 &8293937403422407420
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -720,7 +720,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a29bc04a46cc4643af5f8e049002ec3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ingredientIdx: 0
+  isNegative: 0
 --- !u!61 &8387935538549002318
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -952,7 +952,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a29bc04a46cc4643af5f8e049002ec3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ingredientIdx: 0
+  isNegative: 0
 --- !u!61 &3018015218898288134
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1075,7 +1075,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a29bc04a46cc4643af5f8e049002ec3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ingredientIdx: 0
+  isNegative: 0
 --- !u!61 &6822459590074382754
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1198,7 +1198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a29bc04a46cc4643af5f8e049002ec3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ingredientIdx: 0
+  isNegative: 0
 --- !u!61 &3365453095618789522
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1975,7 +1975,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a29bc04a46cc4643af5f8e049002ec3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ingredientIdx: 0
+  isNegative: 0
 --- !u!61 &352890990014098309
 BoxCollider2D:
   m_ObjectHideFlags: 0

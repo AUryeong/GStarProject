@@ -37,6 +37,11 @@ MonoBehaviour:
   - {fileID: 3801574698928167012, guid: 9f0e1e42d8f3f72418685ee3c4373348, type: 3}
   - {fileID: 7305013767253663350, guid: ef856c7d40f10bb498ed54c5f067aa42, type: 3}
   - {fileID: 4071653772563047597, guid: 8d01b11f8c2491f4a8e42ac90c021b73, type: 3}
+  mapBlockSpriteList:
+  - {fileID: 21300000, guid: a880777da3cd4874ea843bffc96cb75b, type: 3}
+  - {fileID: 21300000, guid: a0e2ca3a066c7124fbf42c8cecd9fc41, type: 3}
+  - {fileID: 21300000, guid: df7d1614753add84c8277ffd8f490f66, type: 3}
+  - {fileID: 21300000, guid: 7085e9872f2699d4ca9c32c3cd72f4e0, type: 3}
   platformmapBGLength:
   - 33.4
   - 66.8

@@ -95,6 +95,10 @@ public class InGameManager : Singleton<InGameManager>
         uiManager.UpdateIngredientsCount(ingredientIdx, ingredients.Count);
     }
 
+    public void AddIngredientsForPunch(int ingredientIdx) {
+        ingredients.Add(ingredientIdx);
+    }
+
     public void AddIngredients(Ingredients.Type ingredientType)
     {
         ingredients.Add((int)ingredientType);

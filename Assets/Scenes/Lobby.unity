@@ -2881,8 +2881,9 @@ MonoBehaviour:
   Name: "\uC0CC\uB4DC\uC704\uCE58 \uAC00\uAC8C"
   Sprite: {fileID: 0}
   Rank: 1
-  Inspector: "\uCE59\uCE59\uD55C \uC0C9\uAC10, \uCC28\uAC00\uC6B4 \uBD84\uC704\uAE30\uC778
-    \uC73C\uC2A4\uC2A4\uD574 \uBCF4\uC774\uB294 \uC0CC\uB4DC\uC704\uCE58 \uAC00\uAC8C"
+  Inspector: "\uCA4C\uB294 \uC0CC\uB4DC\uC704\uCE58\uB97C \uB9CC\uB4E4\uC790\uB294
+    \uAC70\uB2E4, \uBE75\uC744 \uC77C\uC77C\uC774 \uC2E0\uACBD \uC4F8 \uC218\uB294
+    \uC5C6\uC9C0"
   price: 10800
   buttonImage:
   - {fileID: 21300000, guid: 7afb7421debbab34aba3bc7e14e539ae, type: 3}
@@ -3225,8 +3226,7 @@ MonoBehaviour:
   Name: "\uCE74\uD398"
   Sprite: {fileID: 0}
   Rank: 1
-  Inspector: "\uBC1D\uC740 \uC0C9\uAC10, \uB530\uB4EF\uD55C \uBD84\uC704\uAE30\uC778
-    \uD3C9\uBC94\uD55C \uCE74\uD398"
+  Inspector: "\uCEE4\uD53C\uB294 \uB2F5\uC744 \uC54C\uACE0 \uC788\uB2E4"
   price: 0
   buttonImage:
   - {fileID: 21300000, guid: 7afb7421debbab34aba3bc7e14e539ae, type: 3}
@@ -4449,8 +4449,7 @@ MonoBehaviour:
   Name: "\uC8FC\uBC29"
   Sprite: {fileID: 0}
   Rank: 2
-  Inspector: "\uBD89\uACE0 \uBB34\uC11C\uC6B4 \uC0C9\uAC10, \uACF5\uD3EC\uC2A4\uB7FD\uACE0
-    \uC0B4\uBC8C\uD55C \uBD84\uC704\uAE30\uC778 \uBE68\uAC04 \uC8FC\uBC29"
+  Inspector: "\uBE75\uC5D4 \uAD00\uC2EC \uC5C6\uB2E4, \uC911\uC694\uD55C \uAC74 \uC18C\uC138\uC9C0\uC9C0"
   price: 0
   buttonImage:
   - {fileID: 21300000, guid: 7afb7421debbab34aba3bc7e14e539ae, type: 3}
@@ -6739,8 +6738,7 @@ MonoBehaviour:
   Name: "\uBE75\uC9D1"
   Sprite: {fileID: 0}
   Rank: 3
-  Inspector: "\uD654\uB824\uD55C \uC0C9\uAC10, \uACE0\uAE09\uC2A4\uB7FD\uACE0 \uC0AC\uCE58\uC2A4\uB7EC\uC6B4
-    \uBD84\uC704\uAE30\uC778 \uACE0\uAE09 \uBE75\uC9D1"
+  Inspector: "\uAE00\uB8E8\uD150 \uC801\uC740 \uBE75\uC740... loser! "
   price: 0
   buttonImage:
   - {fileID: 21300000, guid: 7afb7421debbab34aba3bc7e14e539ae, type: 3}
@@ -11152,8 +11150,8 @@ MonoBehaviour:
   Name: "\uD478\uB4DC\uCF54\uD2B8"
   Sprite: {fileID: 0}
   Rank: 2
-  Inspector: "\uC5B4\uB461\uACE0 \uCE59\uCE59\uD55C \uC0C9\uAC10, \uBD81\uC801\uBD81\uC801\uD558\uACE0
-    \uB2F5\uB2F5\uD55C \uBD84\uC704\uAE30\uC778 \uC9C0\uD558 \uD478\uB4DC\uCF54\uD2B8"
+  Inspector: "\uC0AC\uB78C\uC740 \uBBF8\uC6CC\uD558\uB418 \uBE75\uC740 \uBBF8\uC6CC\uD558\uC9C0
+    \uB9D0\uB77C"
   price: 21600
   buttonImage:
   - {fileID: 21300000, guid: 7afb7421debbab34aba3bc7e14e539ae, type: 3}
@@ -15968,7 +15966,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1275889323}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9980666
+  m_Size: 0.9999979
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
