@@ -35,6 +35,7 @@ public class GameManager : Singleton<GameManager>
     List<int> ingredientIdxList = new List<int>();
 
     private List<int> nevIngredientIdxList = new List<int>();
+    private List<Sprite> mapBlockSpriteList;
 
     protected override void Awake()
     {
@@ -54,7 +55,13 @@ public class GameManager : Singleton<GameManager>
         ingredientIdxList = ingredients;
 
         nevIngredientIdxList = InGameManager.Instance.player is Player_Prison p ? p.ingredientIdxes.ToList() : null;
-
+        if (InGameManager.Instance.player is Player_Punch)
+        {
+            mapBlockSpriteList = InGameManager.Instance.mapManager.selectMapData.mapBlockSpriteList;
+            SceneManager.LoadScene("Ending");
+            SceneManager.sceneLoaded += PunchEndingSceneLoadComplete;
+            return;
+        }
 
         //씬 넘어가는게 삭제될 가능성이 높기에 대충짜서 코드 더러움
         SceneManager.LoadScene("Ending");
@@ -65,5 +72,11 @@ public class GameManager : Singleton<GameManager>
     {
         EndingSpawn.Instance.Spawn((int)selectBread, ingredientIdxList, nevIngredientIdxList);
         SceneManager.sceneLoaded -= EndingSceneLoadComplete;
+    }
+
+    public void PunchEndingSceneLoadComplete(Scene scene, LoadSceneMode loadSceneMode)
+    {
+        EndingSpawn.Instance.SpawnForPunch((int)selectBread, ingredientIdxList, mapBlockSpriteList);
+        SceneManager.sceneLoaded -= PunchEndingSceneLoadComplete;
     }
 }

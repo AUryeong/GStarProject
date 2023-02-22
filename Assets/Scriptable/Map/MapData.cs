@@ -15,6 +15,8 @@ public class MapData : ScriptableObject
 
     public SpriteRenderer[] mapBGList;
 
+    [Tooltip("절반을 기준으로 아래에서 들어가는거 위로 들어가는거 배치")] public List<Sprite> mapBlockSpriteList;
+
     public float[] platformmapBGLength;
     public float[] platformmapBGSpeed;
 }
