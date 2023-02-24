@@ -49,7 +49,7 @@ public class EndingCamera : MonoBehaviour
             m_fFieldOfView -= (fToucDis - m_fOldToucDis) * M_ZoomSpeed;
 
             // 최대는 5, 최소는 10으로 더이상 증가 혹은 감소가 되지 않도록 합니다.
-            m_fFieldOfView = Mathf.Clamp(m_fFieldOfView, 5.0f, 10.0f);
+            m_fFieldOfView = Mathf.Clamp(m_fFieldOfView, 5.0f, 6.0f);
 
             // 확대 / 축소가 갑자기 되지않도록 보간합니다.
             Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, m_fFieldOfView, Time.deltaTime * 5);
@@ -64,11 +64,13 @@ public class EndingCamera : MonoBehaviour
 
             // 이전 두 터치의 거리와 지금 두 터치의 거리의 차이를 FleldOfView를 차감합니다.
             m_fFieldOfView = Camera.main.orthographicSize - fToucDis;
+
             // 최대는 5, 최소는 10으로 더이상 증가 혹은 감소가 되지 않도록 합니다.
-            m_fFieldOfView = Mathf.Clamp(m_fFieldOfView, 5.0f, 10.0f);
+            m_fFieldOfView = Mathf.Clamp(m_fFieldOfView, 5.0f, 6.0f);
 
             // 확대 / 축소가 갑자기 되지않도록 보간합니다.
             Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, m_fFieldOfView, Time.deltaTime * 5);
+
         }
     }
 
