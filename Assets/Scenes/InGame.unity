@@ -963,7 +963,7 @@ MonoBehaviour:
   goldEffect: {fileID: 621515546}
   breadArray:
   - {fileID: 6148039255070333001, guid: f029403e818610449bcfeca62e678424, type: 3}
-  - {fileID: 6148039255070333001, guid: f029403e818610449bcfeca62e678424, type: 3}
+  - {fileID: 2513076546232664253, guid: b39632a985fd69f4295bdd3594854992, type: 3}
   - {fileID: 7310025685894621478, guid: d6acdb631f593e34ba7dc7805770081c, type: 3}
   - {fileID: 6979276265400207888, guid: 7111c3b3aa6188040a38ca3f566b92a1, type: 3}
   - {fileID: 515686843321011505, guid: f23dbe90afc731e4aa565844f4368c96, type: 3}
@@ -972,11 +972,11 @@ MonoBehaviour:
   - {fileID: 4395555969316631500, guid: 943905dc2e8c03045891a1002a63db01, type: 3}
   - {fileID: 8409458896933655919, guid: eef78de5876a92942a95d3d84ef21d2d, type: 3}
   - {fileID: 5519395511417958222, guid: 99a05da4f824f54409017122e8c22ee1, type: 3}
-  - {fileID: 6148039255070333001, guid: f029403e818610449bcfeca62e678424, type: 3}
+  - {fileID: 8738567239489222292, guid: b6e5b16f46b2d8e489a12e4c821bbb8f, type: 3}
   - {fileID: 1769029321078186077, guid: 7ea61c7fcce81e448b59e3f5ff8b743b, type: 3}
   - {fileID: 2527684618746051527, guid: 7871b6df0e7719644a7aa0347957243d, type: 3}
   - {fileID: 7572184446876972369, guid: 7e83c07e5ba343443be0933589d04792, type: 3}
-  - {fileID: 6148039255070333001, guid: f029403e818610449bcfeca62e678424, type: 3}
+  - {fileID: 6860580404584574328, guid: 3adadecec36ed7644a44400117e27ce4, type: 3}
   startPos: {x: -12.5, y: 5, z: 0}
   sesameIngredientsParent: {fileID: 1990494246}
   sesameIngredients:
@@ -10134,7 +10134,7 @@ MonoBehaviour:
   Inside: {fileID: 11400000, guid: 2e224c58cda19024abf407faf4f77ea8, type: 2}
   breads: {fileID: 11400000, guid: 5b31b5c9ae4ed8d4ba162f0581743b00, type: 2}
   inGaming: 1
-  selectBread: 4
+  selectBread: 1
   selectMap: 2
   gold: 0
   macaron: 0

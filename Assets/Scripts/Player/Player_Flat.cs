@@ -43,7 +43,7 @@ public class Player_Flat : Player
 
     public override void Jump()
     {
-        if (jumpCount >= jumpMaxCount)
+        if (jumpCount < jumpMaxCount)
         {
             if (abilityDuration > 0 || state == PlayerState.Sliding)
             {

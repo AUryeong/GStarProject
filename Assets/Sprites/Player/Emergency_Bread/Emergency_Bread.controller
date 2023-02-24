@@ -90,7 +90,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: b1841969d675c6049897c617265944f9, type: 2}
+  m_Motion: {fileID: 7400000, guid: 8bf872bae60f59e4bb2cce8af5288e30, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -380,7 +380,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 7a46423672afdd643a5f55ea355bfbb6, type: 2}
+  m_Motion: {fileID: 7400000, guid: f3abb115a96d04249a8cf700e2a93b4c, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -407,7 +407,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: fdf9c609f7998394f9861b423b5a3c72, type: 2}
+  m_Motion: {fileID: 7400000, guid: 39abcc212f26f1e4983aa774c3f8468f, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -480,7 +480,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: c0c29becb87ddba4a8ada92b3468f7c1, type: 2}
+  m_Motion: {fileID: 7400000, guid: 9174e0b0ffba50b438ba8c94e44a9461, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -514,7 +514,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Milk_Bread
+  m_Name: Emergency_Bread
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: State
@@ -637,7 +637,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 4eef5d28239edfe4fa2b5208160fe902, type: 2}
+  m_Motion: {fileID: 7400000, guid: ba62ea8fd204fa7479b4baac1cb26e4d, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
