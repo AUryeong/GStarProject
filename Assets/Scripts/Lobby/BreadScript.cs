@@ -67,9 +67,7 @@ public class BreadScript : MonoBehaviour
     void SelectButton()
     {
         if (scriptable.isBuy)
-        {
             ChangeBread();
-        }
         else
         {
             if (GameManager.Instance.gold >= scriptable.Price)

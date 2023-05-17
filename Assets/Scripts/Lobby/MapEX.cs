@@ -24,13 +24,15 @@ public class MapEX : MonoBehaviour
         } }
     [SerializeField] Sprite[] buttonImage = new Sprite[3];
 
-    [SerializeField] private TextMeshProUGUI MapName;
     [SerializeField] private Image MapImage;
     [SerializeField] private Image[] Ranks;
+
+    [SerializeField] private TextMeshProUGUI MapName;
     [SerializeField] private TextMeshProUGUI MapInspector;
+    [SerializeField] private TextMeshProUGUI priceText;
+
     [SerializeField] private GameObject LockPanel;
     [SerializeField] private Button SelectButton;
-    [SerializeField] private TextMeshProUGUI priceText;
 
     [SerializeField] bool Lock;
     [SerializeField] private bool isBuy;

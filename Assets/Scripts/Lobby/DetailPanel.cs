@@ -10,14 +10,15 @@ public class DetailPanel : MonoBehaviour
 {
     static public DetailPanel instance { get; private set; }
     private BreadStats scriptable;
-    //Image
+
+    [Header("Image")]
     [SerializeField] private GameObject[] rankGroup = new GameObject[3];
     [SerializeField] private Image breadImage;
 
-    //More Information
+    [Header("More Information")]
     [SerializeField] private TextMeshProUGUI breadInspector;
 
-    //Inspector
+    [Header("Inspector")]
     [SerializeField] private TextMeshProUGUI breadName;
 
     [SerializeField] private TextMeshProUGUI lvText;
@@ -27,7 +28,7 @@ public class DetailPanel : MonoBehaviour
     [SerializeField] private TextMeshProUGUI hpText;
     [SerializeField] private TextMeshProUGUI abilityText;
 
-    //UpgradeButton
+    [Header("UpgradeButton")]
     [SerializeField] private Button upgradeButton;
     [SerializeField] private TextMeshProUGUI priceText;
     [SerializeField] private TextMeshProUGUI upgradeHp;
@@ -101,7 +102,7 @@ public class DetailPanel : MonoBehaviour
             upgradeHp.text = $"Max";
             return;
         }
-        switch (scriptable.Rank)
+        switch (scriptable.Rank)//업그레이드 수치
         {
             case 1:
                 {
@@ -136,7 +137,7 @@ public class DetailPanel : MonoBehaviour
 
                     break;
                 }
-        }//업그레이드 수치
+        }
     }
     public void CloseButton()
     {

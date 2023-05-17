@@ -8,23 +8,23 @@ public class QusetScript : MonoBehaviour
 {
     private Quest questContents;
 
-    [SerializeField] Image questImage;//퀘스트 보상 이미지
-    [SerializeField] Sprite qusetSprite;//퀘스트 보상 스프라이트
+    [SerializeField] Image questRewardImage;
+    [SerializeField] Sprite qusetRewardSprite;
 
-    [SerializeField] TextMeshProUGUI questrewardText;//퀘스트 보상 텍스트
-    [SerializeField] TextMeshProUGUI questText; //퀘스트 내용 텍스트
+    [SerializeField] TextMeshProUGUI questRewardText;
+    [SerializeField] TextMeshProUGUI questText;
 
-    [SerializeField] Button questButton; //퀘스트 버튼
-    [SerializeField] Sprite[] questButtonImages;//버튼 이미지
+    [SerializeField] Button questButton;
+    [SerializeField] Sprite[] questButtonImages;
 
-    [SerializeField] Slider questSliders;//퀘스트 진행도 슬라이더
-    [SerializeField] GameObject fadePanel;//퀘스트 클리어 검정색 패널
+    [SerializeField] Slider questSliders;
+    [SerializeField] GameObject fadePanel;
 
-    [SerializeField] ParticleSystem particle;//클리어시 나오는 보상 파티클입니다.
-    [SerializeField] ParticleSystem starParticle;//클리어시 나오는 별 파티클입니다.
-    [SerializeField] ParticleSystemRenderer particleSystemRenderer;//보상에 따라 머터리얼을 바꿀때 사용됩니다
+    [SerializeField] ParticleSystem rewardParticle;
+    [SerializeField] ParticleSystem starParticle;
+    [SerializeField] ParticleSystemRenderer particleSystemRenderer;
 
-    private ParticleSystem.ExternalForcesModule externalForcesModule;
+    private ParticleSystem.ExternalForcesModule externalForcesModule;//ForceFild를 설정 해줄 때 사용됩니다.
     private ParticleSystem.TriggerModule triggerModule;//목표 지점에 다 도착하면 바로 사라지도록 합니다.
     private LayerMask windfildLayerMask;//보상 파티클이 모이게할 때 사용됩니다.
 
@@ -57,29 +57,22 @@ public class QusetScript : MonoBehaviour
 
     public void SettingQuset(QuestScriptable scriptable, int Idx)
     {
-        //퀘스트 내용 적용
         questContents = scriptable.QusetList[Idx];
 
-        //퀘스트 보상 스프라이트 적용
-        qusetSprite = QusetManager.Instance.rewardSprite[(int)questContents.rewardType];
-        questImage.sprite = qusetSprite;
+        qusetRewardSprite = QusetManager.Instance.rewardSprite[(int)questContents.rewardType];
+        questRewardImage.sprite = qusetRewardSprite;
 
-        //퀘스트 보상 표시
-        questrewardText.text = "" + questContents.rewards;
+        questRewardText.text = "" + questContents.rewards;
 
-        //퀘스트 달성 미달성 스프라이트 변경, 클릭 함수 적용
         questButton.image.sprite = questButtonImages[0];
         questButton.interactable = false;
         questButton.onClick.AddListener(QusetClear);
 
-        //보상 파티클 모듈 적용
-        externalForcesModule = particle.externalForces;
-        triggerModule = particle.trigger;
+        externalForcesModule = rewardParticle.externalForces;
+        triggerModule = rewardParticle.trigger;
 
-        //파티클 보상 스프라이트 적용
         particleSystemRenderer.material = QusetManager.Instance.m_RewardParticle[(int)questContents.rewardType];
 
-        //보상에 맞는 위치로 레이어를 설정
         windfildLayerMask = LayerMask.GetMask(questContents.rewardType.ToString());
 
         //목표 텍스트 변경
@@ -191,7 +184,7 @@ public class QusetScript : MonoBehaviour
     }
     private IEnumerator QuestClearParticle()
     {
-        particle.Play();
+        rewardParticle.Play();
         starParticle.Play();
 
         externalForcesModule.influenceMask = new LayerMask();//WindFild를 초기화합니다

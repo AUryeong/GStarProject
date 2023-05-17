@@ -60,7 +60,6 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
 
     [SerializeField] GameObject breadContent;
 
-    //[SerializeField] List<GameObject> BreadPanels = new List<GameObject>();//�� ����â ������Ʈ
     public Breads.Type selectBread;
 
     [Header("Quset")] public ScrollRect qusetScroll;

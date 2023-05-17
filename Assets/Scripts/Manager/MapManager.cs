@@ -28,8 +28,7 @@ public class MapManager : MonoBehaviour
 
     protected Dictionary<int, List<GameObject>> mapDictionary = new Dictionary<int, List<GameObject>>();
 
-    // Start is called before the first frame update
-    public void Init()
+    public void Init()  
     {
         selectMapData = mapDatas[(int)GameManager.Instance.selectMap];
 
