@@ -6,6 +6,7 @@ using DG.Tweening;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using DG.Tweening.Core.Easing;
 
 class BreadInspector
 {
@@ -92,13 +93,15 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     [SerializeField] Vector3 startOpenPos;
     [SerializeField] Vector3 startClosePos;
 
-    [Header("Setting")] [SerializeField] Toggle bgmToggle;
+    [Header("Setting")] 
+    [SerializeField] Toggle bgmToggle;
     [SerializeField] Toggle sfxToggle;
     [SerializeField] Toggle flipToggle;
     [SerializeField] GameObject settingObject;
 
     private bool reCheck;
 
+    private GameManager gameManager;
     // Start is called before the first frame update
     protected override void Awake()
     {
@@ -107,7 +110,7 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
         SettingQusetPanel();
         SettingMapShop();
     }
-
+    
     private void SettingMapShop()
     {
         for (int i = 0; i < mapExList.Count; i++)
@@ -123,13 +126,15 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
 
     private void Start()
     {
-        selectBread = GameManager.Instance.selectBread;
+        gameManager = GameManager.Instance;
+        selectBread = gameManager.selectBread;
         SettingUpdate();
 
         StaminaUpdate();
         AbilitySelect(0);
         ChangeBread();
         SoundManager.Instance.PlaySoundClip("BGM_Lobby", ESoundType.BGM);
+
     }
 
     public void SettingSave()
@@ -148,12 +153,12 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
 
     public void MoneyAdd()
     {
-        GameManager.Instance.gold += 1000;
+        gameManager.gold += 1000;
     }
 
     public void HeartAdd()
     {
-        GameManager.Instance.heart++;
+        gameManager.heart++;
     }
 
     public void HeartLess()
@@ -179,13 +184,16 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
 
     void Update()
     {
-        goldText.text = $"{GameManager.Instance.gold}";
-        macaronText.text = $"{GameManager.Instance.macaron}";
+        UiUpdate();
     }
-
+    private void UiUpdate()
+    {
+        goldText.text = string.Format("{0:#,0}", gameManager.gold);
+        macaronText.text = string.Format("{0:#,0}" , gameManager.macaron);
+    }
     public void StaminaUpdate()
     {
-        int count = GameManager.Instance.heart;
+        int count = gameManager.heart;
         //                   MaxMarkStamina
         staminaText.text = $"+{count - 7}";
         for (int idx = 0; idx < 8; idx++)
@@ -285,24 +293,24 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
 
     protected void UpdateAbility()
     {
-        abilityLvTMP[0].text = $"LV.{GameManager.Instance.maxHpLv}";
-        abilityLvTMP[1].text = $"LV.{GameManager.Instance.defenseLv}";
+        abilityLvTMP[0].text = $"LV.{gameManager.maxHpLv}";
+        abilityLvTMP[1].text = $"LV.{gameManager.defenseLv}";
         switch (SelectAbility)
         {
             case 0:
             {
                 abilityImage_Main.sprite = abilitySprite[SelectAbility];
-                abilityNameAndLV.text = $"최대 체력 LV.{GameManager.Instance.maxHpLv}";
-                upgradeMoney.text = $"{5000 + (GameManager.Instance.maxHpLv - 1) * 500} Gold";
-                abilityExplanation.text = $"추가 체력이 총 {GameManager.Instance.maxHpLv * 5} 늘어납니다.체력이 떨어지면 빵들은 더 이상 재료를 모으지 못하니 지속적으로 강화합시다.";
+                abilityNameAndLV.text = $"최대 체력 LV.{gameManager.maxHpLv}";
+                upgradeMoney.text = $"{5000 + (gameManager.maxHpLv - 1) * 500} Gold";
+                abilityExplanation.text = $"추가 체력이 총 {gameManager.maxHpLv * 5} 늘어납니다.체력이 떨어지면 빵들은 더 이상 재료를 모으지 못하니 지속적으로 강화합시다.";
                 break;
             }
             case 1:
             {
                 abilityImage_Main.sprite = abilitySprite[SelectAbility];
-                abilityNameAndLV.text = $"충돌 데미지 감소 LV.{GameManager.Instance.defenseLv}";
-                upgradeMoney.text = $"{5000 + (GameManager.Instance.defenseLv - 1) * 500} Gold";
-                abilityExplanation.text = $"장애물 충돌 시 데미지를 {GameManager.Instance.defenseLv * 5} %만큼 감소됩니다. 무슨일이 일어날지 모르니 만일을위해 강화해둡시다.";
+                abilityNameAndLV.text = $"충돌 데미지 감소 LV.{gameManager.defenseLv}";
+                upgradeMoney.text = $"{5000 + (gameManager.defenseLv - 1) * 500} Gold";
+                abilityExplanation.text = $"장애물 충돌 시 데미지를 {gameManager.defenseLv * 5} %만큼 감소됩니다. 무슨일이 일어날지 모르니 만일을위해 강화해둡시다.";
                 break;
             }
         }
@@ -320,23 +328,23 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
         {
             case 0:
             {
-                if (GameManager.Instance.maxHpLv >= 50)
+                if (gameManager.maxHpLv >= 50)
                 {
                     MaxLVText();
                 }
                 else
-                    GameManager.Instance.maxHpLv++;
+                    gameManager.maxHpLv++;
 
                 break;
             }
             case 1:
             {
-                if (GameManager.Instance.defenseLv >= 30)
+                if (gameManager.defenseLv >= 30)
                 {
                     MaxLVText();
                 }
                 else
-                    GameManager.Instance.defenseLv++;
+                    gameManager.defenseLv++;
 
                 break;
             }
@@ -371,11 +379,11 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     {
         if (_bool)
         {
-            if (GameManager.Instance.stamina > 0)
+            if (gameManager.stamina > 0)
             {
-                GameManager.Instance.selectBread = selectBread;
-                GameManager.Instance.inGaming = true;
-                GameManager.Instance.stamina--;
+                gameManager.selectBread = selectBread;
+                gameManager.inGaming = true;
+                gameManager.stamina--;
                 SceneManager.LoadScene("InGame");
             }
             else
@@ -401,7 +409,7 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
 
         this.SelectMap = SelectMap;
         this.SelectMap.Select = true; //바뀔 맵 버튼 눌리기
-        GameManager.Instance.selectMap = SelectMap.map;
+        gameManager.selectMap = SelectMap.map;
         if (!SaveManager.Instance.gameData.buyMaps.Contains(SelectMap.map))
             SaveManager.Instance.gameData.buyMaps.Add(SelectMap.map);
     }

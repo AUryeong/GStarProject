@@ -2284,17 +2284,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 296658990}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.00035858154}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1869780460}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -515, y: 205}
-  m_SizeDelta: {x: 612, y: 918}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 450, y: 783}
+  m_SizeDelta: {x: 647.6, y: 971.39}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &296658992
 MonoBehaviour:
@@ -2889,16 +2889,16 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 7afb7421debbab34aba3bc7e14e539ae, type: 3}
   - {fileID: 21300000, guid: edb003bf6d67caf489717e9a1d75afc2, type: 3}
   - {fileID: 21300000, guid: 1548099cf5026d940b8096d71355fe03, type: 3}
-  MapName: {fileID: 1887466751}
   MapImage: {fileID: 1310417634}
   Ranks:
   - {fileID: 1786911929}
   - {fileID: 862059137}
   - {fileID: 1393210581}
+  MapName: {fileID: 1887466751}
   MapInspector: {fileID: 330193756}
+  priceText: {fileID: 474326074}
   LockPanel: {fileID: 1210000610}
   SelectButton: {fileID: 1092271643}
-  priceText: {fileID: 474326074}
   Lock: 0
   isBuy: 0
 --- !u!1 &338950689
@@ -3232,16 +3232,16 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 7afb7421debbab34aba3bc7e14e539ae, type: 3}
   - {fileID: 21300000, guid: edb003bf6d67caf489717e9a1d75afc2, type: 3}
   - {fileID: 21300000, guid: 1548099cf5026d940b8096d71355fe03, type: 3}
-  MapName: {fileID: 1160789935}
   MapImage: {fileID: 1507323962}
   Ranks:
   - {fileID: 1292826368}
   - {fileID: 686711412}
   - {fileID: 1079318858}
+  MapName: {fileID: 1160789935}
   MapInspector: {fileID: 307615925}
+  priceText: {fileID: 711521689}
   LockPanel: {fileID: 30746097}
   SelectButton: {fileID: 2009165802}
-  priceText: {fileID: 711521689}
   Lock: 0
   isBuy: 1
 --- !u!1 &362377966
@@ -4455,16 +4455,16 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 7afb7421debbab34aba3bc7e14e539ae, type: 3}
   - {fileID: 21300000, guid: edb003bf6d67caf489717e9a1d75afc2, type: 3}
   - {fileID: 21300000, guid: 1548099cf5026d940b8096d71355fe03, type: 3}
-  MapName: {fileID: 1091538726}
   MapImage: {fileID: 975886348}
   Ranks:
   - {fileID: 194104571}
   - {fileID: 1598448646}
   - {fileID: 145017482}
+  MapName: {fileID: 1091538726}
   MapInspector: {fileID: 1786428369}
+  priceText: {fileID: 1459142821}
   LockPanel: {fileID: 390271751}
   SelectButton: {fileID: 2082153997}
-  priceText: {fileID: 1459142821}
   Lock: 1
   isBuy: 0
 --- !u!1 &493419566
@@ -6744,16 +6744,16 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 7afb7421debbab34aba3bc7e14e539ae, type: 3}
   - {fileID: 21300000, guid: edb003bf6d67caf489717e9a1d75afc2, type: 3}
   - {fileID: 21300000, guid: 1548099cf5026d940b8096d71355fe03, type: 3}
-  MapName: {fileID: 1391928408}
   MapImage: {fileID: 1713273598}
   Ranks:
   - {fileID: 1182447975}
   - {fileID: 563549832}
   - {fileID: 1893165690}
+  MapName: {fileID: 1391928408}
   MapInspector: {fileID: 633089716}
+  priceText: {fileID: 2124863703}
   LockPanel: {fileID: 283457493}
   SelectButton: {fileID: 2082672190}
-  priceText: {fileID: 2124863703}
   Lock: 1
   isBuy: 0
 --- !u!1 &792672731
@@ -11157,16 +11157,16 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 7afb7421debbab34aba3bc7e14e539ae, type: 3}
   - {fileID: 21300000, guid: edb003bf6d67caf489717e9a1d75afc2, type: 3}
   - {fileID: 21300000, guid: 1548099cf5026d940b8096d71355fe03, type: 3}
-  MapName: {fileID: 2008583930}
   MapImage: {fileID: 1429227875}
   Ranks:
   - {fileID: 2094557557}
   - {fileID: 1508710992}
   - {fileID: 758306527}
+  MapName: {fileID: 2008583930}
   MapInspector: {fileID: 1857807363}
+  priceText: {fileID: 581808129}
   LockPanel: {fileID: 1985361087}
   SelectButton: {fileID: 1240328741}
-  priceText: {fileID: 581808129}
   Lock: 0
   isBuy: 0
 --- !u!1 &1273200111
@@ -14462,10 +14462,10 @@ RectTransform:
   m_Father: {fileID: 1869780460}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -150, y: 0}
-  m_SizeDelta: {x: 2334, y: 1020}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -59.119934, y: 0}
+  m_SizeDelta: {x: 118.24016, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1607345425
 MonoBehaviour:
@@ -15966,7 +15966,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1275889323}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9999979
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -17767,10 +17767,10 @@ RectTransform:
   m_Father: {fileID: 2139786996}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -72}
-  m_SizeDelta: {x: 2334, y: 1020}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1869780461
 MonoBehaviour:
@@ -19288,7 +19288,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 1.1567194}
+  m_AnchoredPosition: {x: 0, y: 0.00013697147}
   m_SizeDelta: {x: 0, y: 20}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2049428066
@@ -20338,17 +20338,17 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2139786995}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 90}
+  m_LocalPosition: {x: 0, y: 0, z: 89.99991}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1869780460}
   m_Father: {fileID: 1642923934}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 42}
-  m_SizeDelta: {x: 2334, y: 1020}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2139786997
 MonoBehaviour:
