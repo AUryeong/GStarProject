@@ -114,6 +114,7 @@ public class EndingCamera : MonoBehaviour
     }
     public void ExitButton()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("Lobby");
     }
     

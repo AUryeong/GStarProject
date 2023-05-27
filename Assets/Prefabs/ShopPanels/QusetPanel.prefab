@@ -472,7 +472,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c5eae764d29cc7e47a6886a8d7973923, type: 3}
   questSliders: {fileID: 988287510159256472}
   fadePanel: {fileID: 3532610424467952359}
-  rewardParticle: {fileID: 0}
+  rewardParticle: {fileID: 671798340567191874}
   starParticle: {fileID: 8896121695621215507}
   particleSystemRenderer: {fileID: 6435881181619924526}
 --- !u!114 &7077554099678033707
