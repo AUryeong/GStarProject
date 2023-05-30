@@ -22,48 +22,39 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
 
     #endregion
 
-    [Header("Shop Object")] [SerializeField]
-    GameObject ShopBgPanel;
-
-    [SerializeField] GameObject Bread;
-    [SerializeField] GameObject Quset;
-    [SerializeField] GameObject Map;
-
+    [Header("Shop Object")]
     [SerializeField] TextMeshProUGUI moneyLessText;
     [SerializeField] Vector3 shopOpenPos;
     [SerializeField] Vector3 shopClosePos;
 
     public List<TextMeshProUGUI> breadSelectText = new List<TextMeshProUGUI>(); //빵 선택 텍스트들
-    private GameObject ShopPanelObject;
+    private GameObject shopPanelObject;
 
-    [Header("Top UI")] [Space(10f)] [SerializeField]
-    TextMeshProUGUI goldText;
-
+    [Header("Top UI")] [Space(10f)] 
+    [SerializeField] TextMeshProUGUI goldText;
     [SerializeField] TextMeshProUGUI macaronText;
-
-    [Header("Stamina")] [SerializeField] GameObject[] heartGroup;
+    [SerializeField] GameObject[] staminaImageGroup;
     [SerializeField] TextMeshProUGUI staminaText;
     [SerializeField] TextMeshProUGUI staminaLessText;
 
-    [Header("Mid UI")] [Space(10f)] [SerializeField]
-    Animator breadAnim;
+    [Header("Mid UI")] [Space(10f)] 
+    [SerializeField] Animator breadAnim;
 
-    [Header("Bottom UI")] [Header("Shop UI")] [SerializeField]
-    GameObject shopUIGroup;
-
+    [Header("Bottom UI")]
+    [SerializeField] GameObject shopUIGroup;
     [SerializeField] Vector3 shopUIOpenPos;
     [SerializeField] Vector3 shopUIClosePos;
 
-    [Header("Bread")] [Space(10f)] [SerializeField]
-    Breads breadScriptable;
+    [Header("Bread")] [Space(10f)] 
+    [SerializeField]Breads breadScriptable;
 
     [SerializeField] GameObject breadPrefab;
-
     [SerializeField] GameObject breadContent;
 
     public Breads.Type selectBread;
 
-    [Header("Quset")] public ScrollRect qusetScroll;
+    [Header("Quset")] 
+    public ScrollRect qusetScroll;
 
     public RectTransform[] qusetPanel;
     public BoxCollider[] topUICoilider;
@@ -73,16 +64,21 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
     public GameObject qusetPrefab;
     private int openingQusetPanel = 0;
 
-    [Header("Map")] public List<GameObject> mapLockPanel = new List<GameObject>();
-    private MapEX SelectMap;
+    [Header("Map")] 
+    public List<GameObject> mapLockPanel = new List<GameObject>();
+    private MapEX selectMap;
     [SerializeField] private List<MapEX> mapExList = new List<MapEX>();
 
+    [Header("GoldShop")]//재화 장섬
+
+
+    [Space(10f)]
     [Header("Ability")] [SerializeField] GameObject startPanel; //정비 화면
     [SerializeField] GameObject reCheckPanel; //정비 화면에서 시작을 누를떄 나오는 이미지
 
     [SerializeField] Image abilityImage_Main; //클릭 했을떄 나오는 이미지
 
-    [SerializeField] TextMeshProUGUI MaxLvText; //최대 레벨일때 알려주는 경고창
+    [SerializeField] TextMeshProUGUI maxLvText; //최대 레벨일때 알려주는 경고창
     [SerializeField] TextMeshProUGUI abilityNameAndLV; //스킬 이름과 레벨텍스트
     [SerializeField] TextMeshProUGUI upgradeMoney; //가격 텍스트
     [SerializeField] TextMeshProUGUI abilityExplanation; //스킬 설명 텍스트
@@ -110,19 +106,7 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
         SettingQusetPanel();
         SettingMapShop();
     }
-    
-    private void SettingMapShop()
-    {
-        for (int i = 0; i < mapExList.Count; i++)
-        {
-            mapExList[i].BuySetting(SaveManager.Instance.gameData.buyMaps.Contains((Map)i));
-            if (GameManager.Instance.selectMap == mapExList[i].map)
-            {
-                SelectMap = mapExList[i];
-                mapExList[i].Select = true;
-            }
-        }
-    }
+   
 
     private void Start()
     {
@@ -177,9 +161,9 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
 
     public void MaxLVText()
     {
-        MaxLvText.gameObject.SetActive(true);
-        MaxLvText.color = new Color(moneyLessText.color.r, moneyLessText.color.g, moneyLessText.color.b, 0);
-        MaxLvText.DOFade(1, 0.3f).OnComplete(() => { MaxLvText.DOFade(0, 1).SetDelay(2).OnComplete(() => { MaxLvText.gameObject.SetActive(false); }); });
+        maxLvText.gameObject.SetActive(true);
+        maxLvText.color = new Color(moneyLessText.color.r, moneyLessText.color.g, moneyLessText.color.b, 0);
+        maxLvText.DOFade(1, 0.3f).OnComplete(() => { maxLvText.DOFade(0, 1).SetDelay(2).OnComplete(() => { maxLvText.gameObject.SetActive(false); }); });
     }
 
     void Update()
@@ -200,30 +184,30 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
         {
             if (idx < count)
             {
-                heartGroup[idx].SetActive(true);
+                staminaImageGroup[idx].SetActive(true);
             }
             else
-                heartGroup[idx].SetActive(false);
+                staminaImageGroup[idx].SetActive(false);
         }
     }
 
     public void OpenShopPanel(GameObject Object)
     {
-        if (ShopPanelObject != null)
+        if (shopPanelObject != null)
         {
-            ShopPanelObject.transform.DOKill();
-            ShopPanelObject.transform.DOLocalMove(shopClosePos, 0.5f).SetEase(Ease.InBack);
+            shopPanelObject.transform.DOKill();
+            shopPanelObject.transform.DOLocalMove(shopClosePos, 0.5f).SetEase(Ease.InBack);
         }
 
-        ShopPanelObject = Object;
-        ShopPanelObject.transform.DOKill();
-        ShopPanelObject.transform.DOLocalMove(shopOpenPos, 0.5f).SetEase(Ease.OutBack);
+        shopPanelObject = Object;
+        shopPanelObject.transform.DOKill();
+        shopPanelObject.transform.DOLocalMove(shopOpenPos, 0.5f).SetEase(Ease.OutBack);
     }
 
     public void ClosePanel()
     {
-        ShopPanelObject.transform.DOKill();
-        ShopPanelObject.transform.DOLocalMove(shopClosePos, 0.5f).SetEase(Ease.InBack);
+        shopPanelObject.transform.DOKill();
+        shopPanelObject.transform.DOLocalMove(shopClosePos, 0.5f).SetEase(Ease.InBack);
     }
 
     void SettingBreadShop(Breads BreadList)
@@ -252,6 +236,18 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
         }
     }
 
+    private void SettingMapShop()
+    {
+        for (int i = 0; i < mapExList.Count; i++)
+        {
+            mapExList[i].BuySetting(SaveManager.Instance.gameData.buyMaps.Contains((Map)i));
+            if (GameManager.Instance.selectMap == mapExList[i].map)
+            {
+                selectMap = mapExList[i];
+                mapExList[i].Select = true;
+            }
+        }
+    }
     public void OpenQusetPanel(int Type)
     {
         qusetScroll.content = qusetPanel[Type]; //콘텐츠 변경
@@ -265,6 +261,8 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
         qusetButtons[Type].image.sprite = qusetButtonsSprite[Type];
         openingQusetPanel = Type;
     }
+
+    
 
     public void SettingButton()
     {
@@ -405,10 +403,10 @@ public class LobbyUIManager : Singleton<LobbyUIManager>
 
     public void ChangeMap(MapEX SelectMap)
     {
-        if (this.SelectMap != null) this.SelectMap.Select = false; //원래 선택 맵은 버튼 올리기
+        if (this.selectMap != null) this.selectMap.Select = false; //원래 선택 맵은 버튼 올리기
 
-        this.SelectMap = SelectMap;
-        this.SelectMap.Select = true; //바뀔 맵 버튼 눌리기
+        this.selectMap = SelectMap;
+        this.selectMap.Select = true; //바뀔 맵 버튼 눌리기
         gameManager.selectMap = SelectMap.map;
         if (!SaveManager.Instance.gameData.buyMaps.Contains(SelectMap.map))
             SaveManager.Instance.gameData.buyMaps.Add(SelectMap.map);
